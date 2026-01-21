@@ -1,84 +1,84 @@
 # Swish Tac Toe 🏀
 
-**Swish Tac Toe** is an interactive NBA trivia game inspired by "Tiki Taka Toe" and "Immaculate Grid". Test your basketball knowledge by filling a 3x3 grid with players who match the criteria (Teams, Awards, Stats, etc.) of the intersecting rows and columns.
+**Swish Tac Toe** est un jeu interactif de trivia NBA inspiré du "Tiki Taka Toe" et de l'"Immaculate Grid". Testez vos connaissances en basketball en remplissant une grille 3x3 avec des joueurs correspondant aux critères (Équipes, Récompenses, Stats, etc.) des lignes et colonnes qui se croisent.
 
-## 🌟 Features
+## 🌟 Fonctionnalités
 
-*   **Interactive 3x3 Grid**: Select players to fill cells based on dynamic criteria.
-*   **Massive Player Database**: Includes thousands of NBA players (active and retired), powered by the official NBA API and Wikipedia data.
-*   **Real-time Validation**: Instant feedback on whether a player matches the selected criteria.
-*   **Difficulty Modes**:
-    *   **Easy**: Standard team/award criteria.
-    *   **Hard**: Includes deeper stats, international players, and decades played.
-*   **Blind Mode**: Criteria are hidden until the game starts.
-*   **Search**: Smarter player search that prevents spoilers (hides teams/status).
-*   **Responsive Design**: Built for desktop and mobile play using Tailwind CSS.
+*   **Grille Interactive 3x3** : Sélectionnez des joueurs pour remplir les cases en fonction de critères dynamiques.
+*   **Base de Données Massive** : Comprend des milliers de joueurs NBA (actifs et retraités), alimentée par l'API officielle de la NBA et les données Wikipédia.
+*   **Validation en Temps Réel** : Feedback instantané pour savoir si un joueur correspond aux critères sélectionnés.
+*   **Modes de Difficulté** :
+    *   **Facile** : Critères standards d'équipes et de récompenses.
+    *   **Difficile** : Inclut des statistiques plus poussées, les joueurs internationaux et les décennies de jeu.
+*   **Mode Aveugle** : Les critères sont cachés jusqu'au lancement de la partie.
+*   **Recherche Intelligente** : Recherche de joueurs optimisée pour éviter les spoils (masquage des équipes/statuts).
+*   **Design Responsive** : Conçu pour être joué sur ordinateur et mobile grâce à Tailwind CSS.
 
-## 🛠️ Tech Stack
+## 🛠️ Stack Technique
 
-*   **Framework**: [Next.js](https://nextjs.org/) (App Router)
-*   **Language**: TypeScript
-*   **Styling**: Tailwind CSS
-*   **Icons**: Lucide React
-*   **Data Sources**:
+*   **Framework** : [Next.js](https://nextjs.org/) (App Router)
+*   **Langage** : TypeScript
+*   **Style** : Tailwind CSS
+*   **Icônes** : Lucide React
+*   **Sources de Données** :
     *   `nba_api` (Python)
-    *   Wikipedia (Transfer scraping)
-    *   Manual overrides for "Superstars"
+    *   Wikipédia (Scraping des transferts)
+    *   Surcharges manuelles pour les "Superstars"
 
-## 🚀 Getting Started
+## 🚀 Installation
 
-### Prerequisites
+### Prérequis
 
 *   Node.js 18+
-*   Python 3.9+ (for data scripts)
+*   Python 3.9+ (pour les scripts de données)
 
-### Installation
+### Pour commencer
 
-1.  **Clone the repository**:
+1.  **Cloner le dépôt** :
     ```bash
     git clone https://github.com/binksterrel/swish-tac-toe.git
     cd swish-tac-toe
     ```
 
-2.  **Install dependencies**:
+2.  **Installer les dépendances** :
     ```bash
     npm install
     ```
 
-3.  **Run the development server**:
+3.  **Lancer le serveur de développement** :
     ```bash
     npm run dev
     ```
 
-4.  Open [http://localhost:3000](http://localhost:3000) with your browser.
+4.  Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-## 📊 Data Management
+## 📊 Gestion des Données
 
-The game relies on a rich dataset located in `lib/players.json`. We use several scripts to keep this data accurate and up-to-date.
+Le jeu repose sur un riche jeu de données situé dans `lib/players.json`. Nous utilisons plusieurs scripts pour garder ces données précises et à jour.
 
-### Key Scripts
+### Scripts Clés
 
-*   **`scripts/fetch_awards.py`**:
-    *   A Python script that iterates through the player database and fetches comprehensive award history (MVP, DPOY, All-Star, Championships, etc.) directly from the NBA Stats API.
-    *   *Usage*: `python3 scripts/fetch_awards.py`
-    *   *Note*: Includes rate-limiting and resume capability.
+*   **`scripts/fetch_awards.py`** :
+    *   Un script Python qui itère sur la base de joueurs et récupère l'historique complet des récompenses (MVP, DPOY, All-Star, Titres, etc.) directement depuis l'API NBA Stats.
+    *   *Usage* : `python3 scripts/fetch_awards.py`
+    *   *Note* : Inclut une gestion du rate-limiting et une capacité de reprise (resume).
 
-*   **`scripts/update-rosters-wiki-2024.js`** & **`2025.js`**:
-    *   Node.js scripts to scrape Wikipedia transfer lists and apply roster moves to the database.
+*   **`scripts/update-rosters-wiki-2024.js`** & **`2025.js`** :
+    *   Scripts Node.js pour scraper les listes de transferts Wikipédia et appliquer les mouvements d'effectifs à la base de données.
 
-*   **`lib/additional-nba-data.ts`**:
-    *   A manual override file ("God Mode") to ensure data accuracy for superstars and handle edge cases that APIs might miss.
+*   **`lib/additional-nba-data.ts`** :
+    *   Un fichier de surcharge manuelle ("God Mode") pour assurer la précision des données pour les superstars et gérer les cas particuliers que les API pourraient manquer.
 
-## 🤝 Contributing
+## 🤝 Contribuer
 
-Contributions, issues, and feature requests are welcome!
+Les contributions, problèmes et demandes de fonctionnalités sont les bienvenus !
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+1.  Forker le projet
+2.  Créer votre branche de fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3.  Commiter vos changements (`git commit -m 'Add some AmazingFeature'`)
+4.  Pusher vers la branche (`git push origin feature/AmazingFeature`)
+5.  Ouvrir une Pull Request
 
-## 📄 License
+## 📄 Licence
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distribué sous la licence MIT. Voir `LICENSE` pour plus d'informations.
