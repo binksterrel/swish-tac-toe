@@ -1,7 +1,7 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Oswald, Roboto } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+
 import './globals.css'
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-heading" });
@@ -10,7 +10,7 @@ const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"], varia
 export const metadata: Metadata = {
   title: 'Swish Tac Toe - Official NBA Grid Game',
   description: 'The official-style NBA trivia game. Test your knowledge with the daily grid.',
-  generator: 'v0.app',
+
   icons: {
     icon: [
       {
@@ -39,7 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${oswald.variable} ${roboto.variable} font-sans antialiased dark bg-[#000000]`}>
         {children}
-        <Analytics />
+
       </body>
     </html>
   )

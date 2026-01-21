@@ -18529,19 +18529,15 @@
       "BOS",
       "IND"
     ],
-    "awards": [
-      "Champion"
-    ],
+    "awards": [],
     "allStar": false,
-    "champion": true,
-    "championYears": [
-      "1984"
-    ],
+    "champion": false,
+    "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
     "allNBA": false,
-    "allDefensive": true,
+    "allDefensive": false,
     "college": "Indiana",
     "country": "USA",
     "decades": [
@@ -18553,8 +18549,7 @@
     "apgCareer": 4.3,
     "position": "G",
     "nbaId": "76296",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "dave-budd",
@@ -18581,8 +18576,7 @@
     "apgCareer": 1,
     "position": "F",
     "nbaId": "76297",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "chase-budinger",
@@ -18613,8 +18607,7 @@
     "apgCareer": 1.2,
     "position": "F",
     "nbaId": "201978",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "walter-budko",
@@ -18643,8 +18636,7 @@
     "apgCareer": 1.9,
     "position": "F",
     "nbaId": "76298",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "jud-buechler",
@@ -18658,16 +18650,10 @@
       "PHX",
       "ORL"
     ],
-    "awards": [
-      "Champion"
-    ],
+    "awards": [],
     "allStar": false,
-    "champion": true,
-    "championYears": [
-      "1996",
-      "1997",
-      "1998"
-    ],
+    "champion": false,
+    "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -18684,8 +18670,7 @@
     "apgCareer": 0.8,
     "position": "G-F",
     "nbaId": "146",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "kobe-bufkin",
@@ -18713,8 +18698,7 @@
     "apgCareer": 1.6,
     "position": "G",
     "nbaId": "1641723",
-    "active": true,
-    "awards_checked": true
+    "active": true
   },
   {
     "id": "rodney-buford",
@@ -18746,8 +18730,7 @@
     "apgCareer": 0.8,
     "position": "F-G",
     "nbaId": "1934",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "matt-bullard",
@@ -18757,14 +18740,10 @@
       "ATL",
       "CHH"
     ],
-    "awards": [
-      "Champion"
-    ],
+    "awards": [],
     "allStar": false,
-    "champion": true,
-    "championYears": [
-      "1994"
-    ],
+    "champion": false,
+    "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -18781,8 +18760,7 @@
     "apgCareer": 0.9,
     "position": "F",
     "nbaId": "672",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "reggie-bullock-jr",
@@ -18816,8 +18794,7 @@
     "apgCareer": 0.3,
     "position": "G-F",
     "nbaId": "203493",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "greg-bunch",
@@ -18844,8 +18821,7 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "76300",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "dick-bunt",
@@ -18872,8 +18848,7 @@
     "apgCareer": 0.7,
     "position": "G",
     "nbaId": "76301",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "bill-buntin",
@@ -22626,8 +22601,7 @@
     "apgCareer": 0.8,
     "position": "C",
     "nbaId": "76365",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "terry-catledge",
@@ -22657,8 +22631,7 @@
     "apgCareer": 0.9,
     "position": "F",
     "nbaId": "767",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "sid-catlett",
@@ -22685,8 +22658,7 @@
     "apgCareer": 0.1,
     "position": "F",
     "nbaId": "76367",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "kelvin-cato",
@@ -22718,8 +22690,7 @@
     "apgCareer": 0.5,
     "position": "C",
     "nbaId": "1509",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "bobby-cattage",
@@ -22747,8 +22718,7 @@
     "apgCareer": 0.1,
     "position": "F",
     "nbaId": "76368",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "willie-cauley-stein",
@@ -22779,8 +22749,7 @@
     "apgCareer": 1.4,
     "position": "C",
     "nbaId": "1626161",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "troy-caupain",
@@ -22807,8 +22776,7 @@
     "apgCareer": 1,
     "position": "G",
     "nbaId": "1628505",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "duane-causwell",
@@ -22837,8 +22805,7 @@
     "apgCareer": 0.4,
     "position": "C",
     "nbaId": "190",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "tyler-cavanaugh",
@@ -22866,8 +22833,7 @@
     "apgCareer": 0.6,
     "position": "F",
     "nbaId": "1628463",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "ron-cavenall",
@@ -22895,8 +22861,7 @@
     "apgCareer": 0.3,
     "position": "C",
     "nbaId": "76370",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "ahmad-caver",
@@ -22922,8 +22887,7 @@
     "rpgCareer": 0,
     "apgCareer": 0,
     "position": "G",
-    "nbaId": "1629958",
-    "awards_checked": true
+    "nbaId": "1629958"
   },
   {
     "id": "malcolm-cazalon",
@@ -22949,8 +22913,7 @@
     "rpgCareer": 0,
     "apgCareer": 0,
     "position": "G",
-    "nbaId": "1630608",
-    "awards_checked": true
+    "nbaId": "1630608"
   },
   {
     "id": "cedric-ceballos",
@@ -22962,10 +22925,8 @@
       "DET",
       "MIA"
     ],
-    "awards": [
-      "All-Star"
-    ],
-    "allStar": true,
+    "awards": [],
+    "allStar": false,
     "champion": false,
     "championYears": [],
     "mvp": false,
@@ -22984,8 +22945,7 @@
     "apgCareer": 1.2,
     "position": "F",
     "nbaId": "76",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "john-celestand",
@@ -23013,8 +22973,7 @@
     "apgCareer": 1.3,
     "position": "G",
     "nbaId": "1911",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "al-cervi",
@@ -23029,7 +22988,7 @@
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": true,
+    "allNBA": false,
     "allDefensive": false,
     "college": "East HS (NY)",
     "country": "USA",
@@ -23042,8 +23001,7 @@
     "apgCareer": 3.2,
     "position": "G",
     "nbaId": "76373",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "lionel-chalmers",
@@ -23070,8 +23028,7 @@
     "apgCareer": 1.4,
     "position": "G",
     "nbaId": "2763",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "mario-chalmers",
@@ -23080,15 +23037,10 @@
       "MIA",
       "MEM"
     ],
-    "awards": [
-      "Champion"
-    ],
+    "awards": [],
     "allStar": false,
-    "champion": true,
-    "championYears": [
-      "2012",
-      "2013"
-    ],
+    "champion": false,
+    "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -23105,8 +23057,7 @@
     "apgCareer": 3.7,
     "position": "G",
     "nbaId": "201596",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "bill-chamberlain",
@@ -23133,8 +23084,7 @@
     "apgCareer": 1.3,
     "position": "F",
     "nbaId": "76374",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "wilt-chamberlain",
@@ -23145,25 +23095,15 @@
       "PHL",
       "LAL"
     ],
-    "awards": [
-      "MVP",
-      "ROY",
-      "All-Star",
-      "Champion",
-      "Finals MVP",
-      "All-Star MVP"
-    ],
-    "allStar": true,
-    "champion": true,
-    "championYears": [
-      "1967",
-      "1972"
-    ],
-    "mvp": true,
+    "awards": [],
+    "allStar": false,
+    "champion": false,
+    "championYears": [],
+    "mvp": false,
     "dpoy": false,
-    "roy": true,
-    "allNBA": true,
-    "allDefensive": true,
+    "roy": false,
+    "allNBA": false,
+    "allDefensive": false,
     "college": "Kansas",
     "country": "USA",
     "decades": [
@@ -23176,8 +23116,7 @@
     "apgCareer": 4.4,
     "position": "C",
     "nbaId": "76375",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "jerry-chambers",
@@ -23208,8 +23147,7 @@
     "apgCareer": 0.8,
     "position": "F",
     "nbaId": "76376",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "tom-chambers",
@@ -23222,17 +23160,14 @@
       "CHH",
       "PHI"
     ],
-    "awards": [
-      "All-Star",
-      "All-Star MVP"
-    ],
-    "allStar": true,
+    "awards": [],
+    "allStar": false,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": true,
+    "allNBA": false,
     "allDefensive": false,
     "college": "Utah",
     "country": "USA",
@@ -23245,8 +23180,7 @@
     "apgCareer": 2.1,
     "position": "F",
     "nbaId": "1472",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "julian-champagnie",
@@ -23274,8 +23208,7 @@
     "apgCareer": 1.4,
     "position": "F",
     "nbaId": "1630577",
-    "active": true,
-    "awards_checked": true
+    "active": true
   },
   {
     "id": "justin-champagnie",
@@ -23304,8 +23237,7 @@
     "apgCareer": 1.3,
     "position": "G-F",
     "nbaId": "1630551",
-    "active": true,
-    "awards_checked": true
+    "active": true
   },
   {
     "id": "mike-champion",
@@ -23332,8 +23264,7 @@
     "apgCareer": 0,
     "position": "F",
     "nbaId": "76378",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "kennedy-chandler",
@@ -23360,8 +23291,7 @@
     "apgCareer": 1.6,
     "position": "G",
     "nbaId": "1631113",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "tyson-chandler",
@@ -23377,21 +23307,15 @@
       "LAL",
       "HOU"
     ],
-    "awards": [
-      "DPOY",
-      "All-Star",
-      "Champion"
-    ],
-    "allStar": true,
-    "champion": true,
-    "championYears": [
-      "2011"
-    ],
+    "awards": [],
+    "allStar": false,
+    "champion": false,
+    "championYears": [],
     "mvp": false,
-    "dpoy": true,
+    "dpoy": false,
     "roy": false,
-    "allNBA": true,
-    "allDefensive": true,
+    "allNBA": false,
+    "allDefensive": false,
     "college": "Dominguez HS (CA)",
     "country": "USA",
     "decades": [
@@ -23403,8 +23327,7 @@
     "apgCareer": 0.8,
     "position": "C",
     "nbaId": "2199",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "wilson-chandler",
@@ -23436,8 +23359,7 @@
     "apgCareer": 1.8,
     "position": "F",
     "nbaId": "201163",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "don-chaney",
@@ -23446,20 +23368,15 @@
       "BOS",
       "LAL"
     ],
-    "awards": [
-      "Champion"
-    ],
+    "awards": [],
     "allStar": false,
-    "champion": true,
-    "championYears": [
-      "1969",
-      "1974"
-    ],
+    "champion": false,
+    "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
     "allNBA": false,
-    "allDefensive": true,
+    "allDefensive": false,
     "college": "Houston",
     "country": "USA",
     "decades": [
@@ -23471,8 +23388,7 @@
     "apgCareer": 2.1,
     "position": "G",
     "nbaId": "76379",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "john-chaney",
@@ -23500,8 +23416,7 @@
     "apgCareer": 1.3,
     "position": "",
     "nbaId": "76380",
-    "active": false,
-    "awards_checked": true
+    "active": false
   },
   {
     "id": "rex-chapman",
@@ -31474,7 +31389,8 @@
     "apgCareer": 0.7,
     "position": "C-F",
     "nbaId": "202334",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "edward-davis",
@@ -31501,7 +31417,8 @@
     "apgCareer": 1,
     "position": "F",
     "nbaId": "76522",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "emanual-davis",
@@ -31531,7 +31448,8 @@
     "apgCareer": 1.8,
     "position": "G",
     "nbaId": "1023",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "glen-davis",
@@ -31541,10 +31459,14 @@
       "ORL",
       "LAC"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2008"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -31561,7 +31483,8 @@
     "apgCareer": 0.9,
     "position": "F-C",
     "nbaId": "201175",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "harry-davis",
@@ -31589,7 +31512,8 @@
     "apgCareer": 0.4,
     "position": "F",
     "nbaId": "76523",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "hubert-davis",
@@ -31622,7 +31546,8 @@
     "apgCareer": 1.7,
     "position": "G",
     "nbaId": "93",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "james-davis",
@@ -31649,7 +31574,8 @@
     "apgCareer": 0.3,
     "position": "C",
     "nbaId": "76524",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "jim-davis",
@@ -31680,7 +31606,8 @@
     "apgCareer": 1.2,
     "position": "C",
     "nbaId": "76525",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "johnny-davis",
@@ -31691,10 +31618,14 @@
       "ATL",
       "CLE"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1977"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -31711,7 +31642,8 @@
     "apgCareer": 4.5,
     "position": "G",
     "nbaId": "76526",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "johnny-davis-2",
@@ -31738,7 +31670,8 @@
     "apgCareer": 0.6,
     "position": "G",
     "nbaId": "1631098",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "josh-davis",
@@ -31771,7 +31704,8 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "2668",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "mark-davis",
@@ -31801,7 +31735,8 @@
     "apgCareer": 1.3,
     "position": "G-F",
     "nbaId": "707",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "mark-davis-2",
@@ -31829,7 +31764,8 @@
     "apgCareer": 0.4,
     "position": "F",
     "nbaId": "76528",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "mel-davis",
@@ -31857,7 +31793,8 @@
     "apgCareer": 0.9,
     "position": "F",
     "nbaId": "76529",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "michael-davis",
@@ -31884,7 +31821,8 @@
     "apgCareer": 0,
     "position": "F",
     "nbaId": "76530",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "mike-davis",
@@ -31913,7 +31851,8 @@
     "apgCareer": 1.8,
     "position": "G",
     "nbaId": "76531",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "monti-davis",
@@ -31941,7 +31880,8 @@
     "apgCareer": 0,
     "position": "F",
     "nbaId": "76520",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "paul-davis",
@@ -31969,7 +31909,8 @@
     "apgCareer": 0.4,
     "position": "C",
     "nbaId": "200781",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "ralph-davis",
@@ -31997,7 +31938,8 @@
     "apgCareer": 2.8,
     "position": "G",
     "nbaId": "76532",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "ricky-davis",
@@ -32030,7 +31972,8 @@
     "apgCareer": 3.3,
     "position": "F-G",
     "nbaId": "1729",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "ron-davis",
@@ -32059,7 +32002,8 @@
     "apgCareer": 0.7,
     "position": "G",
     "nbaId": "76534",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "terence-davis",
@@ -32088,7 +32032,8 @@
     "apgCareer": 1.3,
     "position": "G",
     "nbaId": "1629056",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "terry-davis",
@@ -32120,7 +32065,8 @@
     "apgCareer": 0.6,
     "position": "C-F",
     "nbaId": "426",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "tyler-davis",
@@ -32146,7 +32092,8 @@
     "rpgCareer": 1,
     "apgCareer": 0,
     "position": "C",
-    "nbaId": "1629093"
+    "nbaId": "1629093",
+    "awards_checked": true
   },
   {
     "id": "walt-davis",
@@ -32154,10 +32101,15 @@
     "teams": [
       "PHW"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1956",
+      "1958"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -32173,7 +32125,8 @@
     "apgCareer": 0.7,
     "position": "C",
     "nbaId": "76536",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "walter-davis",
@@ -32183,14 +32136,17 @@
       "DEN",
       "POR"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "ROY",
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
-    "roy": false,
-    "allNBA": false,
+    "roy": true,
+    "allNBA": true,
     "allDefensive": false,
     "college": "North Carolina",
     "country": "USA",
@@ -32204,7 +32160,8 @@
     "apgCareer": 3.8,
     "position": "G",
     "nbaId": "1453",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "jd-davison",
@@ -32232,7 +32189,8 @@
     "apgCareer": 1.3,
     "position": "G",
     "nbaId": "1631120",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "andre-dawkins",
@@ -32258,7 +32216,8 @@
     "rpgCareer": 0.5,
     "apgCareer": 0.3,
     "position": "G",
-    "nbaId": "203958"
+    "nbaId": "203958",
+    "awards_checked": true
   },
   {
     "id": "darryl-dawkins",
@@ -32289,7 +32248,8 @@
     "apgCareer": 1.3,
     "position": "C",
     "nbaId": "76539",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "johnny-dawkins",
@@ -32319,7 +32279,8 @@
     "apgCareer": 5.5,
     "position": "G",
     "nbaId": "1008",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "paul-dawkins",
@@ -32346,7 +32307,8 @@
     "apgCareer": 1.4,
     "position": "F",
     "nbaId": "76541",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "branden-dawson",
@@ -32373,7 +32335,8 @@
     "apgCareer": 0,
     "position": "F",
     "nbaId": "1626183",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "eric-dawson",
@@ -32399,7 +32362,8 @@
     "rpgCareer": 2.5,
     "apgCareer": 0,
     "position": "F",
-    "nbaId": "201286"
+    "nbaId": "201286",
+    "awards_checked": true
   },
   {
     "id": "tony-dawson",
@@ -32427,7 +32391,8 @@
     "apgCareer": 0.2,
     "position": "F",
     "nbaId": "76542",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "todd-day",
@@ -32459,7 +32424,8 @@
     "apgCareer": 1.5,
     "position": "G-F",
     "nbaId": "103",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "austin-daye",
@@ -32471,10 +32437,14 @@
       "SAS",
       "ATL"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2014"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -32491,7 +32461,8 @@
     "apgCareer": 0.7,
     "position": "F",
     "nbaId": "201948",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "darren-daye",
@@ -32520,7 +32491,8 @@
     "apgCareer": 2,
     "position": "F",
     "nbaId": "76543",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "darius-days",
@@ -32547,7 +32519,8 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "1630620",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "nando-de-colo",
@@ -32575,7 +32548,8 @@
     "apgCareer": 1.7,
     "position": "G",
     "nbaId": "201986",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "dave-debusschere",
@@ -32584,15 +32558,21 @@
       "DET",
       "NYK"
     ],
-    "awards": [],
-    "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "awards": [
+      "All-Star",
+      "Champion"
+    ],
+    "allStar": true,
+    "champion": true,
+    "championYears": [
+      "1970",
+      "1973"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": false,
-    "allDefensive": false,
+    "allNBA": true,
+    "allDefensive": true,
     "college": "Detroit",
     "country": "USA",
     "decades": [
@@ -32604,7 +32584,8 @@
     "apgCareer": 2.9,
     "position": "F",
     "nbaId": "76545",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "andrew-declercq",
@@ -32636,7 +32617,8 @@
     "apgCareer": 0.6,
     "position": "C",
     "nbaId": "692",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "javin-delaurier",
@@ -32662,7 +32644,8 @@
     "rpgCareer": 1,
     "apgCareer": 0,
     "position": "C",
-    "nbaId": "1629602"
+    "nbaId": "1629602",
+    "awards_checked": true
   },
   {
     "id": "nate-delong",
@@ -32689,7 +32672,8 @@
     "apgCareer": 0.8,
     "position": "C",
     "nbaId": "76551",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "demar-derozan",
@@ -32700,14 +32684,16 @@
       "CHI",
       "SAC"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": false,
+    "allNBA": true,
     "allDefensive": false,
     "college": "Southern California",
     "country": "USA",
@@ -32721,7 +32707,8 @@
     "apgCareer": 5.3,
     "position": "G-F",
     "nbaId": "201942",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "hank-dezonie",
@@ -32748,7 +32735,8 @@
     "apgCareer": 1.8,
     "position": "F",
     "nbaId": "76562",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "greg-deane",
@@ -32775,7 +32763,8 @@
     "apgCareer": 0.9,
     "position": "G",
     "nbaId": "76544",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "gabriel-deck",
@@ -32802,7 +32791,8 @@
     "apgCareer": 1.7,
     "position": "F",
     "nbaId": "1630466",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "dewayne-dedmon",
@@ -32836,7 +32826,8 @@
     "apgCareer": 0.7,
     "position": "C",
     "nbaId": "203473",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "archie-dees",
@@ -32866,7 +32857,8 @@
     "apgCareer": 0.7,
     "position": "F",
     "nbaId": "76546",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "terry-dehere",
@@ -32895,7 +32887,8 @@
     "apgCareer": 2.6,
     "position": "G",
     "nbaId": "143",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "red-dehnert",
@@ -32922,7 +32915,8 @@
     "apgCareer": 0,
     "position": "",
     "nbaId": "76548",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bryce-dejean-jones",
@@ -32948,7 +32942,8 @@
     "rpgCareer": 3.4,
     "apgCareer": 1.1,
     "position": "G",
-    "nbaId": "1626214"
+    "nbaId": "1626214",
+    "awards_checked": true
   },
   {
     "id": "sam-dekker",
@@ -32975,7 +32970,8 @@
     "rpgCareer": 3,
     "apgCareer": 0.8,
     "position": "F",
-    "nbaId": "1626155"
+    "nbaId": "1626155",
+    "awards_checked": true
   },
   {
     "id": "vinny-del-negro",
@@ -33009,7 +33005,8 @@
     "apgCareer": 3.2,
     "position": "G",
     "nbaId": "219",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "malcolm-delaney",
@@ -33036,7 +33033,8 @@
     "apgCareer": 2.8,
     "position": "G",
     "nbaId": "1627098",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bison-dele",
@@ -33048,10 +33046,14 @@
       "CHI",
       "DET"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1997"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33067,7 +33069,8 @@
     "apgCareer": 1.1,
     "position": "C-F",
     "nbaId": "183",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "carlos-delfino",
@@ -33098,7 +33101,8 @@
     "apgCareer": 1.7,
     "position": "G-F",
     "nbaId": "2568",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "angel-delgado",
@@ -33125,7 +33129,8 @@
     "apgCareer": 0,
     "position": "C",
     "nbaId": "1629116",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "tony-delk",
@@ -33160,7 +33165,8 @@
     "apgCareer": 1.9,
     "position": "G",
     "nbaId": "960",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "matthew-dellavedova",
@@ -33170,10 +33176,14 @@
       "MIL",
       "SAC"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2016"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33190,7 +33200,8 @@
     "apgCareer": 3.5,
     "position": "G",
     "nbaId": "203521",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "fennis-dembo",
@@ -33198,10 +33209,14 @@
     "teams": [
       "DET"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1989"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33217,7 +33232,8 @@
     "apgCareer": 0.2,
     "position": "F",
     "nbaId": "76552",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "larry-demic",
@@ -33245,7 +33261,8 @@
     "apgCareer": 0.5,
     "position": "F",
     "nbaId": "76553",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "dell-demps",
@@ -33274,7 +33291,8 @@
     "apgCareer": 0.5,
     "position": "G",
     "nbaId": "725",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "george-dempsey",
@@ -33283,10 +33301,14 @@
       "PHW",
       "SYR"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1956"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33302,7 +33324,8 @@
     "apgCareer": 2.3,
     "position": "G",
     "nbaId": "76555",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "luol-deng",
@@ -33314,15 +33337,17 @@
       "LAL",
       "MIN"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
     "allNBA": false,
-    "allDefensive": false,
+    "allDefensive": true,
     "college": "Duke",
     "country": "United Kingdom",
     "decades": [
@@ -33334,7 +33359,8 @@
     "apgCareer": 2.3,
     "position": "F",
     "nbaId": "2736",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "kenny-dennard",
@@ -33362,7 +33388,8 @@
     "apgCareer": 1,
     "position": "F",
     "nbaId": "76556",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "blaine-denning",
@@ -33389,7 +33416,8 @@
     "apgCareer": 0,
     "position": "G",
     "nbaId": "76557",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "dexter-dennis",
@@ -33415,7 +33443,8 @@
     "rpgCareer": 2.3,
     "apgCareer": 1,
     "position": "G",
-    "nbaId": "1641926"
+    "nbaId": "1641926",
+    "awards_checked": true
   },
   {
     "id": "rayj-dennis",
@@ -33444,7 +33473,8 @@
     "apgCareer": 1.7,
     "position": "G",
     "nbaId": "1642484",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "justin-dentmon",
@@ -33470,7 +33500,8 @@
     "rpgCareer": 1,
     "apgCareer": 1.3,
     "position": "G",
-    "nbaId": "202458"
+    "nbaId": "202458",
+    "awards_checked": true
   },
   {
     "id": "randy-denton",
@@ -33497,7 +33528,8 @@
     "apgCareer": 0.7,
     "position": "C",
     "nbaId": "76558",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "rod-derline",
@@ -33524,7 +33556,8 @@
     "apgCareer": 0.7,
     "position": "G",
     "nbaId": "76559",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "marcus-derrickson",
@@ -33551,7 +33584,8 @@
     "apgCareer": 0.1,
     "position": "F",
     "nbaId": "1629094",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "dave-deutsch",
@@ -33578,7 +33612,8 @@
     "apgCareer": 0.8,
     "position": "G",
     "nbaId": "76560",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "walter-devlin",
@@ -33606,7 +33641,8 @@
     "apgCareer": 2.1,
     "position": "G",
     "nbaId": "76561",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "ernie-digregorio",
@@ -33616,13 +33652,15 @@
       "LAL",
       "BOS"
     ],
-    "awards": [],
+    "awards": [
+      "ROY"
+    ],
     "allStar": false,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
-    "roy": false,
+    "roy": true,
     "allNBA": false,
     "allDefensive": false,
     "college": "Providence",
@@ -33635,7 +33673,8 @@
     "apgCareer": 5.1,
     "position": "G",
     "nbaId": "76568",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "donte-divincenzo",
@@ -33647,10 +33686,14 @@
       "NYK",
       "MIN"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2021"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33667,7 +33710,8 @@
     "apgCareer": 2.7,
     "position": "G",
     "nbaId": "1628978",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "moussa-diabat\u00e9",
@@ -33695,7 +33739,8 @@
     "apgCareer": 0.4,
     "position": "F",
     "nbaId": "1631217",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "mamadi-diakite",
@@ -33707,10 +33752,14 @@
       "SAS",
       "NYK"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2021"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33726,7 +33775,8 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "1629603",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "derrick-dial",
@@ -33757,7 +33807,8 @@
     "apgCareer": 0.8,
     "position": "G",
     "nbaId": "1760",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "cheick-diallo",
@@ -33787,7 +33838,8 @@
     "apgCareer": 0.4,
     "position": "F-C",
     "nbaId": "1627767",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "hamidou-diallo",
@@ -33817,7 +33869,8 @@
     "apgCareer": 0.5,
     "position": "G",
     "nbaId": "1628977",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "boris-diaw",
@@ -33829,10 +33882,14 @@
       "SAS",
       "UTA"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2014"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -33849,7 +33906,8 @@
     "apgCareer": 3.5,
     "position": "C-F",
     "nbaId": "2564",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "mohamed-diawara",
@@ -33876,7 +33934,8 @@
     "apgCareer": 0.5,
     "position": "F",
     "nbaId": "1642885",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "yakhouba-diawara",
@@ -33904,7 +33963,8 @@
     "apgCareer": 0.7,
     "position": "F-G",
     "nbaId": "200821",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "guillermo-diaz",
@@ -33931,7 +33991,8 @@
     "apgCareer": 0.2,
     "position": "G",
     "nbaId": "200799",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "gradey-dick",
@@ -33958,7 +34019,8 @@
     "apgCareer": 1.1,
     "position": "G-F",
     "nbaId": "1641711",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "dan-dickau",
@@ -33990,7 +34052,8 @@
     "apgCareer": 2.5,
     "position": "G",
     "nbaId": "2424",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "kaniel-dickens",
@@ -34016,7 +34079,8 @@
     "rpgCareer": 0.6,
     "apgCareer": 0.1,
     "position": "F",
-    "nbaId": "2079"
+    "nbaId": "2079",
+    "awards_checked": true
   },
   {
     "id": "henry-dickerson",
@@ -34044,7 +34108,8 @@
     "apgCareer": 0.8,
     "position": "G",
     "nbaId": "76563",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "michael-dickerson",
@@ -34074,7 +34139,8 @@
     "apgCareer": 2.6,
     "position": "G",
     "nbaId": "1722",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "derrek-dickey",
@@ -34083,10 +34149,14 @@
       "GOS",
       "CHI"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1975"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -34102,7 +34172,8 @@
     "apgCareer": 1.1,
     "position": "F",
     "nbaId": "76564",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "dick-dickey",
@@ -34129,7 +34200,8 @@
     "apgCareer": 1.1,
     "position": "G",
     "nbaId": "76565",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "hunter-dickinson",
@@ -34156,7 +34228,8 @@
     "apgCareer": 0,
     "position": "C",
     "nbaId": "1630621",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "travis-diener",
@@ -34185,7 +34258,8 @@
     "apgCareer": 2.4,
     "position": "G",
     "nbaId": "101143",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "gorgui-dieng",
@@ -34216,7 +34290,8 @@
     "apgCareer": 1.3,
     "position": "C",
     "nbaId": "203476",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "ousmane-dieng",
@@ -34224,10 +34299,14 @@
     "teams": [
       "OKC"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2025"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -34243,7 +34322,8 @@
     "apgCareer": 1.1,
     "position": "F",
     "nbaId": "1631172",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "connie-dierking",
@@ -34275,7 +34355,8 @@
     "apgCareer": 1.5,
     "position": "C",
     "nbaId": "76566",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "coby-dietrick",
@@ -34304,7 +34385,8 @@
     "apgCareer": 2.1,
     "position": "C",
     "nbaId": "76567",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "mickey-dillard",
@@ -34331,7 +34413,8 @@
     "apgCareer": 1,
     "position": "G",
     "nbaId": "76569",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bob-dille",
@@ -34358,7 +34441,8 @@
     "apgCareer": 0.7,
     "position": "F",
     "nbaId": "76570",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "rob-dillingham",
@@ -34385,7 +34469,8 @@
     "apgCareer": 1.9,
     "position": "G",
     "nbaId": "1642265",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "john-dillon",
@@ -34412,7 +34497,8 @@
     "apgCareer": 0.2,
     "position": "F",
     "nbaId": "76571",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "byron-dinkins",
@@ -34442,7 +34528,8 @@
     "apgCareer": 2.1,
     "position": "G",
     "nbaId": "76574",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "jackie-dinkins",
@@ -34469,7 +34556,8 @@
     "apgCareer": 0.4,
     "position": "F",
     "nbaId": "76575",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bill-dinwiddie",
@@ -34499,7 +34587,8 @@
     "apgCareer": 0.6,
     "position": "F",
     "nbaId": "76576",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "spencer-dinwiddie",
@@ -34531,7 +34620,8 @@
     "apgCareer": 4.7,
     "position": "G",
     "nbaId": "203915",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "ike-diogu",
@@ -34564,7 +34654,8 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "101113",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "desagana-diop",
@@ -34595,7 +34686,8 @@
     "apgCareer": 0.4,
     "position": "C",
     "nbaId": "2205",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "terry-dischinger",
@@ -34606,13 +34698,16 @@
       "DET",
       "POR"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "ROY",
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
-    "roy": false,
+    "roy": true,
     "allNBA": false,
     "allDefensive": false,
     "college": "Purdue",
@@ -34626,7 +34721,8 @@
     "apgCareer": 1.8,
     "position": "F",
     "nbaId": "76577",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "fred-diute",
@@ -34653,7 +34749,8 @@
     "apgCareer": 0.6,
     "position": "G",
     "nbaId": "76578",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "vlade-divac",
@@ -34663,8 +34760,10 @@
       "CHH",
       "SAC"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
@@ -34684,7 +34783,8 @@
     "apgCareer": 3.1,
     "position": "C",
     "nbaId": "124",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "juan-dixon",
@@ -34714,7 +34814,8 @@
     "apgCareer": 1.8,
     "position": "G",
     "nbaId": "2413",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "aleksandar-djordjevic",
@@ -34740,7 +34841,8 @@
     "rpgCareer": 0.6,
     "apgCareer": 0.6,
     "position": "G",
-    "nbaId": "1059"
+    "nbaId": "1059",
+    "awards_checked": true
   },
   {
     "id": "earl-dodd",
@@ -34767,7 +34869,8 @@
     "apgCareer": 0.7,
     "position": "F",
     "nbaId": "76580",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "michael-doleac",
@@ -34780,10 +34883,14 @@
       "MIA",
       "MIN"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2006"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -34800,7 +34907,8 @@
     "apgCareer": 0.6,
     "position": "C",
     "nbaId": "1720",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "joe-dolhon",
@@ -34828,7 +34936,8 @@
     "apgCareer": 2.3,
     "position": "G",
     "nbaId": "76581",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bob-doll",
@@ -34856,7 +34965,8 @@
     "apgCareer": 1.4,
     "position": "F",
     "nbaId": "76582",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "james-donaldson",
@@ -34869,8 +34979,10 @@
       "NYK",
       "UTH"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
@@ -34889,7 +35001,8 @@
     "apgCareer": 0.8,
     "position": "C",
     "nbaId": "76583",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bob-donham",
@@ -34916,7 +35029,8 @@
     "apgCareer": 2.6,
     "position": "G",
     "nbaId": "76584",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "billy-donovan",
@@ -34943,7 +35057,8 @@
     "apgCareer": 2,
     "position": "G",
     "nbaId": "76586",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "harry-donovan",
@@ -34970,7 +35085,8 @@
     "apgCareer": 0.8,
     "position": "G",
     "nbaId": "76585",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "keyon-dooling",
@@ -35004,7 +35120,8 @@
     "apgCareer": 2.2,
     "position": "G",
     "nbaId": "2039",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "jacky-dorsey",
@@ -35035,7 +35152,8 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "76587",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "joey-dorsey",
@@ -35065,7 +35183,8 @@
     "apgCareer": 0.4,
     "position": "C-F",
     "nbaId": "201595",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "tyler-dorsey",
@@ -35095,7 +35214,8 @@
     "apgCareer": 1.3,
     "position": "G",
     "nbaId": "1628416",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "luguentz-dort",
@@ -35103,15 +35223,19 @@
     "teams": [
       "OKC"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2025"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
     "allNBA": false,
-    "allDefensive": false,
+    "allDefensive": true,
     "college": "Arizona State",
     "country": "Canada",
     "decades": [
@@ -35123,7 +35247,8 @@
     "apgCareer": 1.4,
     "position": "G",
     "nbaId": "1629652",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "ayo-dosunmu",
@@ -35150,7 +35275,8 @@
     "apgCareer": 3.2,
     "position": "G",
     "nbaId": "1630245",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "damyean-dotson",
@@ -35179,7 +35305,8 @@
     "apgCareer": 1.5,
     "position": "G",
     "nbaId": "1628422",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "devon-dotson",
@@ -35207,7 +35334,8 @@
     "apgCareer": 1.1,
     "position": "G",
     "nbaId": "1629653",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "quincy-douby",
@@ -35235,7 +35363,8 @@
     "apgCareer": 0.7,
     "position": "G",
     "nbaId": "200763",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bruce-douglas",
@@ -35262,7 +35391,8 @@
     "apgCareer": 2.1,
     "position": "G",
     "nbaId": "76588",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "john-douglas",
@@ -35289,7 +35419,8 @@
     "apgCareer": 2.2,
     "position": "G",
     "nbaId": "76589",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "leon-douglas",
@@ -35318,7 +35449,8 @@
     "apgCareer": 1.1,
     "position": "C",
     "nbaId": "76590",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "sherman-douglas",
@@ -35351,7 +35483,8 @@
     "apgCareer": 5.9,
     "position": "G",
     "nbaId": "428",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "toney-douglas",
@@ -35385,7 +35518,8 @@
     "apgCareer": 2.3,
     "position": "G",
     "nbaId": "201962",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "chris-douglas-roberts",
@@ -35417,7 +35551,8 @@
     "apgCareer": 1.1,
     "position": "G",
     "nbaId": "201604",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "sekou-doumbouya",
@@ -35446,7 +35581,8 @@
     "apgCareer": 0.7,
     "position": "F",
     "nbaId": "1629635",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "lloyd-dove",
@@ -35473,7 +35609,8 @@
     "apgCareer": 0.4,
     "position": "F",
     "nbaId": "76592",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "zabian-dowdell",
@@ -35500,7 +35637,8 @@
     "apgCareer": 2.1,
     "position": "G",
     "nbaId": "202220",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bill-downey",
@@ -35527,7 +35665,8 @@
     "apgCareer": 0,
     "position": "C",
     "nbaId": "76593",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "steve-downing",
@@ -35535,10 +35674,14 @@
     "teams": [
       "BOS"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1974"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -35554,7 +35697,8 @@
     "apgCareer": 0.4,
     "position": "C",
     "nbaId": "76594",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "jeff-dowtin-jr",
@@ -35585,7 +35729,8 @@
     "apgCareer": 2.3,
     "position": "G",
     "nbaId": "1630288",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "danny-doyle",
@@ -35612,7 +35757,8 @@
     "apgCareer": 0.8,
     "position": "F",
     "nbaId": "76595",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "milton-doyle",
@@ -35639,7 +35785,8 @@
     "apgCareer": 1,
     "position": "G",
     "nbaId": "1628495",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "pj-dozier",
@@ -35671,7 +35818,8 @@
     "apgCareer": 1.6,
     "position": "G-F",
     "nbaId": "1628408",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "terry-dozier",
@@ -35698,7 +35846,8 @@
     "apgCareer": 0.3,
     "position": "F",
     "nbaId": "76596",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "goran-dragic",
@@ -35712,14 +35861,16 @@
       "CHI",
       "MIL"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": false,
+    "allNBA": true,
     "allDefensive": false,
     "college": "Union Olimpija",
     "country": "Slovenia",
@@ -35733,7 +35884,8 @@
     "apgCareer": 4.7,
     "position": "G",
     "nbaId": "201609",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "zoran-dragic",
@@ -35761,7 +35913,8 @@
     "apgCareer": 0.3,
     "position": "G-F",
     "nbaId": "204054",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "greg-dreiling",
@@ -35791,7 +35944,8 @@
     "apgCareer": 0.4,
     "position": "C",
     "nbaId": "1068",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "henri-drell",
@@ -35818,7 +35972,8 @@
     "apgCareer": 1,
     "position": "F",
     "nbaId": "1630929",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bryce-drew",
@@ -35849,7 +36004,8 @@
     "apgCareer": 2.2,
     "position": "G",
     "nbaId": "1724",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "john-drew",
@@ -35858,8 +36014,10 @@
       "ATL",
       "UTH"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
@@ -35878,7 +36036,8 @@
     "apgCareer": 1.7,
     "position": "F",
     "nbaId": "76598",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "larry-drew",
@@ -35910,7 +36069,8 @@
     "apgCareer": 5.2,
     "position": "G",
     "nbaId": "76599",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "larry-drew-ii",
@@ -35938,7 +36098,8 @@
     "apgCareer": 2.5,
     "position": "G",
     "nbaId": "203580",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "clyde-drexler",
@@ -35947,14 +36108,19 @@
       "POR",
       "HOU"
     ],
-    "awards": [],
-    "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "awards": [
+      "All-Star",
+      "Champion"
+    ],
+    "allStar": true,
+    "champion": true,
+    "championYears": [
+      "1995"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": false,
+    "allNBA": true,
     "allDefensive": false,
     "college": "Houston",
     "country": "USA",
@@ -35967,7 +36133,8 @@
     "apgCareer": 5.6,
     "position": "G",
     "nbaId": "17",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "nate-driggers",
@@ -35994,7 +36161,8 @@
     "apgCareer": 0.4,
     "position": "G-F",
     "nbaId": "1041",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "terry-driscoll",
@@ -36023,7 +36191,8 @@
     "apgCareer": 0.8,
     "position": "F",
     "nbaId": "76603",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "predrag-drobnjak",
@@ -36052,7 +36221,8 @@
     "apgCareer": 0.8,
     "position": "C",
     "nbaId": "1542",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "ralph-drollinger",
@@ -36079,7 +36249,8 @@
     "apgCareer": 2.3,
     "position": "C",
     "nbaId": "76604",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "andre-drummond",
@@ -36092,14 +36263,16 @@
       "BKN",
       "CHI"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": false,
+    "allNBA": true,
     "allDefensive": false,
     "college": "Connecticut",
     "country": "USA",
@@ -36112,7 +36285,8 @@
     "apgCareer": 0.5,
     "position": "C",
     "nbaId": "203083",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "dennis-duval",
@@ -36140,7 +36314,8 @@
     "apgCareer": 0.7,
     "position": "G",
     "nbaId": "76623",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "chris-duarte",
@@ -36169,7 +36344,8 @@
     "apgCareer": 0.7,
     "position": "G",
     "nbaId": "1630537",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "alex-ducas",
@@ -36177,10 +36353,14 @@
     "teams": [
       "OKC"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2025"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -36196,7 +36376,8 @@
     "apgCareer": 0.2,
     "position": "G",
     "nbaId": "1642505",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "dick-duckett",
@@ -36223,7 +36404,8 @@
     "apgCareer": 1.4,
     "position": "G",
     "nbaId": "76605",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "kevin-duckworth",
@@ -36235,8 +36417,10 @@
       "MIL",
       "LAC"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
@@ -36255,7 +36439,8 @@
     "apgCareer": 0.9,
     "position": "C",
     "nbaId": "404",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "charles-dudley",
@@ -36265,10 +36450,14 @@
       "GOS",
       "CHI"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1975"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -36284,7 +36473,8 @@
     "apgCareer": 3.4,
     "position": "G",
     "nbaId": "76607",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "chris-dudley",
@@ -36317,7 +36507,8 @@
     "apgCareer": 0.4,
     "position": "C",
     "nbaId": "201",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "jared-dudley",
@@ -36331,10 +36522,14 @@
       "BKN",
       "LAL"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "2020"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -36352,7 +36547,8 @@
     "apgCareer": 1.5,
     "position": "F",
     "nbaId": "201162",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "terry-duerod",
@@ -36363,10 +36559,14 @@
       "DAL",
       "GOS"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1981"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -36383,7 +36583,8 @@
     "apgCareer": 1.2,
     "position": "G",
     "nbaId": "76608",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bob-duffy",
@@ -36411,7 +36612,8 @@
     "apgCareer": 0,
     "position": "F",
     "nbaId": "76609",
-    "active": false
+    "active": false,
+    "awards_checked": true
   },
   {
     "id": "bob-duffy-2",
@@ -36437,7 +36639,8 @@
     "rpgCareer": 1.1,
     "apgCareer": 1.8,
     "position": "G",
-    "nbaId": "76610"
+    "nbaId": "76610",
+    "awards_checked": true
   },
   {
     "id": "chris-duhon",
@@ -36464,7 +36667,8 @@
     "rpgCareer": 2.3,
     "apgCareer": 4.4,
     "position": "G",
-    "nbaId": "2768"
+    "nbaId": "2768",
+    "awards_checked": true
   },
   {
     "id": "duje-dukan",
@@ -36490,7 +36694,8 @@
     "rpgCareer": 4,
     "apgCareer": 1,
     "position": "F",
-    "nbaId": "1626251"
+    "nbaId": "1626251",
+    "awards_checked": true
   },
   {
     "id": "david-duke-jr",
@@ -36518,7 +36723,8 @@
     "apgCareer": 1.3,
     "position": "G",
     "nbaId": "1630561",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "walter-dukes",
@@ -36526,8 +36732,10 @@
     "teams": [
       "DET"
     ],
-    "awards": [],
-    "allStar": false,
+    "awards": [
+      "All-Star"
+    ],
+    "allStar": true,
     "champion": false,
     "championYears": [],
     "mvp": false,
@@ -36545,7 +36753,8 @@
     "rpgCareer": 11.3,
     "apgCareer": 1.1,
     "position": "C",
-    "nbaId": "76611"
+    "nbaId": "76611",
+    "awards_checked": true
   },
   {
     "id": "joe-dumars",
@@ -36553,15 +36762,22 @@
     "teams": [
       "DET"
     ],
-    "awards": [],
-    "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "awards": [
+      "All-Star",
+      "Champion",
+      "Finals MVP"
+    ],
+    "allStar": true,
+    "champion": true,
+    "championYears": [
+      "1989",
+      "1990"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
-    "allNBA": false,
-    "allDefensive": false,
+    "allNBA": true,
+    "allDefensive": true,
     "college": "McNeese State",
     "country": "USA",
     "decades": [
@@ -36572,7 +36788,8 @@
     "rpgCareer": 2.2,
     "apgCareer": 4.5,
     "position": "G",
-    "nbaId": "247"
+    "nbaId": "247",
+    "awards_checked": true
   },
   {
     "id": "richard-dumas",
@@ -36598,7 +36815,8 @@
     "rpgCareer": 3.4,
     "apgCareer": 1.1,
     "position": "F",
-    "nbaId": "30"
+    "nbaId": "30",
+    "awards_checked": true
   },
   {
     "id": "tony-dumas",
@@ -36624,7 +36842,8 @@
     "rpgCareer": 1.3,
     "apgCareer": 1.2,
     "position": "G",
-    "nbaId": "434"
+    "nbaId": "434",
+    "awards_checked": true
   },
   {
     "id": "andy-duncan",
@@ -36651,7 +36870,8 @@
     "rpgCareer": 2.1,
     "apgCareer": 0.7,
     "position": "F",
-    "nbaId": "76615"
+    "nbaId": "76615",
+    "awards_checked": true
   },
   {
     "id": "mike-dunleavy",
@@ -36678,7 +36898,8 @@
     "rpgCareer": 4.3,
     "apgCareer": 2.2,
     "position": "G-F",
-    "nbaId": "2399"
+    "nbaId": "2399",
+    "awards_checked": true
   },
   {
     "id": "mike-dunleavy-2",
@@ -36705,7 +36926,8 @@
     "rpgCareer": 1.6,
     "apgCareer": 3.9,
     "position": "G",
-    "nbaId": "76616"
+    "nbaId": "76616",
+    "awards_checked": true
   },
   {
     "id": "kris-dunn",
@@ -36738,7 +36960,8 @@
     "apgCareer": 3.8,
     "position": "G",
     "nbaId": "1627739",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "pat-dunn",
@@ -36764,7 +36987,8 @@
     "rpgCareer": 1.1,
     "apgCareer": 1,
     "position": "G",
-    "nbaId": "76617"
+    "nbaId": "76617",
+    "awards_checked": true
   },
   {
     "id": "ryan-dunn",
@@ -36791,7 +37015,8 @@
     "apgCareer": 1.1,
     "position": "F",
     "nbaId": "1642346",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "tr-dunn",
@@ -36807,7 +37032,7 @@
     "dpoy": false,
     "roy": false,
     "allNBA": false,
-    "allDefensive": false,
+    "allDefensive": true,
     "college": "Alabama",
     "country": "USA",
     "decades": [
@@ -36819,7 +37044,8 @@
     "rpgCareer": 4.4,
     "apgCareer": 1.6,
     "position": "G",
-    "nbaId": "76618"
+    "nbaId": "76618",
+    "awards_checked": true
   },
   {
     "id": "ronald-dupree",
@@ -36846,7 +37072,8 @@
     "rpgCareer": 2.2,
     "apgCareer": 0.6,
     "position": "F",
-    "nbaId": "2648"
+    "nbaId": "2648",
+    "awards_checked": true
   },
   {
     "id": "jalen-duren",
@@ -36873,7 +37100,8 @@
     "apgCareer": 2.4,
     "position": "C",
     "nbaId": "1631105",
-    "active": true
+    "active": true,
+    "awards_checked": true
   },
   {
     "id": "john-duren",
@@ -36899,7 +37127,8 @@
     "rpgCareer": 1.1,
     "apgCareer": 2,
     "position": "G",
-    "nbaId": "76619"
+    "nbaId": "76619",
+    "awards_checked": true
   },
   {
     "id": "pat-durham",
@@ -36925,7 +37154,8 @@
     "rpgCareer": 1.7,
     "apgCareer": 0.9,
     "position": "F",
-    "nbaId": "1090"
+    "nbaId": "1090",
+    "awards_checked": true
   },
   {
     "id": "devin-durrant",
@@ -36951,7 +37181,8 @@
     "rpgCareer": 2.1,
     "apgCareer": 1.3,
     "position": "F",
-    "nbaId": "76621"
+    "nbaId": "76621",
+    "awards_checked": true
   },
   {
     "id": "ken-durrett",
@@ -36977,7 +37208,8 @@
     "rpgCareer": 1.9,
     "apgCareer": 0.5,
     "position": "F",
-    "nbaId": "76622"
+    "nbaId": "76622",
+    "awards_checked": true
   },
   {
     "id": "trevon-duval",
@@ -37003,7 +37235,8 @@
     "rpgCareer": 0.3,
     "apgCareer": 0.7,
     "position": "G",
-    "nbaId": "1628979"
+    "nbaId": "1628979",
+    "awards_checked": true
   },
   {
     "id": "jack-dwan",
@@ -37011,10 +37244,14 @@
     "teams": [
       "LAL"
     ],
-    "awards": [],
+    "awards": [
+      "Champion"
+    ],
     "allStar": false,
-    "champion": false,
-    "championYears": [],
+    "champion": true,
+    "championYears": [
+      "1949"
+    ],
     "mvp": false,
     "dpoy": false,
     "roy": false,
@@ -37029,7 +37266,8 @@
     "rpgCareer": 0,
     "apgCareer": 2.2,
     "position": "F",
-    "nbaId": "76624"
+    "nbaId": "76624",
+    "awards_checked": true
   },
   {
     "id": "craig-dykema",
@@ -37055,7 +37293,8 @@
     "rpgCareer": 0.4,
     "apgCareer": 0.5,
     "position": "F",
-    "nbaId": "76625"
+    "nbaId": "76625",
+    "awards_checked": true
   },
   {
     "id": "gene-dyker",
@@ -37081,7 +37320,8 @@
     "rpgCareer": 1.5,
     "apgCareer": 0.5,
     "position": "F",
-    "nbaId": "76626"
+    "nbaId": "76626",
+    "awards_checked": true
   },
   {
     "id": "jerome-dyson",
@@ -37107,7 +37347,8 @@
     "rpgCareer": 2.1,
     "apgCareer": 2,
     "position": "G",
-    "nbaId": "202406"
+    "nbaId": "202406",
+    "awards_checked": true
   },
   {
     "id": "egor-d\u00ebmin",
@@ -37133,7 +37374,8 @@
     "rpgCareer": 3,
     "apgCareer": 3.4,
     "position": "G",
-    "nbaId": "1642856"
+    "nbaId": "1642856",
+    "awards_checked": true
   },
   {
     "id": "ledell-eackles",
@@ -37160,7 +37402,8 @@
     "rpgCareer": 2.2,
     "apgCareer": 1.7,
     "position": "G",
-    "nbaId": "289"
+    "nbaId": "289",
+    "awards_checked": true
   },
   {
     "id": "jim-eakins",
@@ -37186,7 +37429,8 @@
     "rpgCareer": 3.8,
     "apgCareer": 1.3,
     "position": "C",
-    "nbaId": "76628"
+    "nbaId": "76628",
+    "awards_checked": true
   },
   {
     "id": "acie-earl",
