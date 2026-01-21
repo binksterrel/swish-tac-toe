@@ -1,0 +1,535 @@
+[
+  {
+    "id": "alaa-abdelnaby",
+    "name": "Alaa Abdelnaby",
+    "teams": [
+      "POR",
+      "MIL",
+      "BOS",
+      "SAC",
+      "PHL"
+    ],
+    "nbaId": "76001",
+    "active": false
+  },
+  {
+    "id": "zaid-abdul-aziz",
+    "name": "Zaid Abdul-Aziz",
+    "teams": [
+      "MIL",
+      "CIN",
+      "SEA",
+      "HOU",
+      "BUF",
+      "BOS"
+    ],
+    "nbaId": "76002",
+    "active": false
+  },
+  {
+    "id": "kareem-abdul-jabbar",
+    "name": "Kareem Abdul-Jabbar",
+    "teams": [
+      "MIL",
+      "LAL"
+    ],
+    "nbaId": "76003",
+    "active": false
+  },
+  {
+    "id": "mahmoud-abdul-rauf",
+    "name": "Mahmoud Abdul-Rauf",
+    "teams": [
+      "DEN",
+      "SAC",
+      "VAN"
+    ],
+    "nbaId": "51",
+    "active": false
+  },
+  {
+    "id": "tariq-abdul-wahad",
+    "name": "Tariq Abdul-Wahad",
+    "teams": [
+      "SAC",
+      "ORL",
+      "DEN",
+      "DAL"
+    ],
+    "nbaId": "1505",
+    "active": false
+  },
+  {
+    "id": "shareef-abdur-rahim",
+    "name": "Shareef Abdur-Rahim",
+    "teams": [
+      "VAN",
+      "ATL",
+      "POR",
+      "SAC"
+    ],
+    "nbaId": "949",
+    "active": false
+  },
+  {
+    "id": "tom-abernethy",
+    "name": "Tom Abernethy",
+    "teams": [
+      "LAL",
+      "GOS",
+      "IND"
+    ],
+    "nbaId": "76005",
+    "active": false
+  },
+  {
+    "id": "forest-able",
+    "name": "Forest Able",
+    "teams": [
+      "SYR"
+    ],
+    "nbaId": "76006",
+    "active": false
+  },
+  {
+    "id": "john-abramovic",
+    "name": "John Abramovic",
+    "teams": [
+      "PIT",
+      "BOM",
+      "BAL"
+    ],
+    "nbaId": "76007",
+    "active": false
+  },
+  {
+    "id": "alex-abrines",
+    "name": "Alex Abrines",
+    "teams": [
+      "OKC"
+    ],
+    "nbaId": "203518",
+    "active": false
+  },
+  {
+    "id": "precious-achiuwa",
+    "name": "Precious Achiuwa",
+    "teams": [
+      "MIA",
+      "TOR",
+      "NYK",
+      "SAC"
+    ],
+    "nbaId": "1630173",
+    "active": true
+  },
+  {
+    "id": "alex-acker",
+    "name": "Alex Acker",
+    "teams": [
+      "DET",
+      "LAC"
+    ],
+    "nbaId": "101165",
+    "active": false
+  },
+  {
+    "id": "donald-ackerman",
+    "name": "Donald Ackerman",
+    "teams": [
+      "NYK"
+    ],
+    "nbaId": "76008",
+    "active": false
+  },
+  {
+    "id": "mark-acres",
+    "name": "Mark Acres",
+    "teams": [
+      "BOS",
+      "ORL",
+      "HOU",
+      "WAS"
+    ],
+    "nbaId": "76009",
+    "active": false
+  },
+  {
+    "id": "charles-acton",
+    "name": "Charles Acton",
+    "teams": [
+      "SDR"
+    ],
+    "nbaId": "76010",
+    "active": false
+  },
+  {
+    "id": "quincy-acy",
+    "name": "Quincy Acy",
+    "teams": [
+      "TOR",
+      "SAC",
+      "NYK",
+      "DAL",
+      "BKN",
+      "PHX"
+    ],
+    "nbaId": "203112",
+    "active": false
+  },
+  {
+    "id": "alvan-adams",
+    "name": "Alvan Adams",
+    "teams": [
+      "PHX"
+    ],
+    "nbaId": "76011",
+    "active": false
+  },
+  {
+    "id": "don-adams",
+    "name": "Don Adams",
+    "teams": [
+      "SDR",
+      "ATL",
+      "HOU",
+      "DET",
+      "BUF"
+    ],
+    "nbaId": "76012",
+    "active": false
+  },
+  {
+    "id": "hassan-adams",
+    "name": "Hassan Adams",
+    "teams": [
+      "NJN",
+      "TOR"
+    ],
+    "nbaId": "200801",
+    "active": false
+  },
+  {
+    "id": "jaylen-adams",
+    "name": "Jaylen Adams",
+    "teams": [
+      "ATL",
+      "MIL"
+    ],
+    "nbaId": "1629121",
+    "active": false
+  },
+  {
+    "id": "jordan-adams",
+    "name": "Jordan Adams",
+    "teams": [
+      "MEM"
+    ],
+    "nbaId": "203919",
+    "active": false
+  },
+  {
+    "id": "michael-adams",
+    "name": "Michael Adams",
+    "teams": [
+      "SAC",
+      "WAS",
+      "DEN",
+      "CHH"
+    ],
+    "nbaId": "149",
+    "active": false
+  },
+  {
+    "id": "steven-adams",
+    "name": "Steven Adams",
+    "teams": [
+      "OKC",
+      "NOP",
+      "MEM",
+      "HOU"
+    ],
+    "nbaId": "203500",
+    "active": true
+  },
+  {
+    "id": "rafael-addison",
+    "name": "Rafael Addison",
+    "teams": [
+      "PHX",
+      "NJN",
+      "DET",
+      "CHH"
+    ],
+    "nbaId": "912",
+    "active": false
+  },
+  {
+    "id": "bam-adebayo",
+    "name": "Bam Adebayo",
+    "teams": [
+      "MIA"
+    ],
+    "nbaId": "1628389",
+    "active": true
+  },
+  {
+    "id": "deng-adel",
+    "name": "Deng Adel",
+    "teams": [
+      "CLE"
+    ],
+    "nbaId": "1629061",
+    "active": false
+  },
+  {
+    "id": "rick-adelman",
+    "name": "Rick Adelman",
+    "teams": [
+      "SDR",
+      "POR",
+      "CHI",
+      "NOJ",
+      "KCK"
+    ],
+    "nbaId": "76015",
+    "active": false
+  },
+  {
+    "id": "jeff-adrien",
+    "name": "Jeff Adrien",
+    "teams": [
+      "GSW",
+      "HOU",
+      "CHA",
+      "MIL",
+      "MIN"
+    ],
+    "nbaId": "202399",
+    "active": false
+  },
+  {
+    "id": "arron-afflalo",
+    "name": "Arron Afflalo",
+    "teams": [
+      "DET",
+      "DEN",
+      "ORL",
+      "POR",
+      "NYK",
+      "SAC"
+    ],
+    "nbaId": "201167",
+    "active": false
+  },
+  {
+    "id": "ochai-agbaji",
+    "name": "Ochai Agbaji",
+    "teams": [
+      "UTA",
+      "TOR"
+    ],
+    "nbaId": "1630534",
+    "active": true
+  },
+  {
+    "id": "maurice-ager",
+    "name": "Maurice Ager",
+    "teams": [
+      "DAL",
+      "NJN",
+      "MIN"
+    ],
+    "nbaId": "200772",
+    "active": false
+  },
+  {
+    "id": "mark-aguirre",
+    "name": "Mark Aguirre",
+    "teams": [
+      "DAL",
+      "DET",
+      "LAC"
+    ],
+    "nbaId": "76016",
+    "active": false
+  },
+  {
+    "id": "blake-ahearn",
+    "name": "Blake Ahearn",
+    "teams": [
+      "MIA",
+      "SAS",
+      "UTA"
+    ],
+    "nbaId": "201336",
+    "active": false
+  },
+  {
+    "id": "danny-ainge",
+    "name": "Danny Ainge",
+    "teams": [
+      "BOS",
+      "SAC",
+      "POR",
+      "PHX"
+    ],
+    "nbaId": "76017",
+    "active": false
+  },
+  {
+    "id": "alexis-ajinca",
+    "name": "Alexis Ajinca",
+    "teams": [
+      "CHA",
+      "DAL",
+      "TOR",
+      "NOP"
+    ],
+    "nbaId": "201582",
+    "active": false
+  },
+  {
+    "id": "henry-akin",
+    "name": "Henry Akin",
+    "teams": [
+      "NYK",
+      "SEA"
+    ],
+    "nbaId": "76018",
+    "active": false
+  },
+  {
+    "id": "josh-akognon",
+    "name": "Josh Akognon",
+    "teams": [
+      "DAL"
+    ],
+    "nbaId": "203006",
+    "active": false
+  },
+  {
+    "id": "solomon-alabi",
+    "name": "Solomon Alabi",
+    "teams": [
+      "TOR"
+    ],
+    "nbaId": "202374",
+    "active": false
+  },
+  {
+    "id": "mark-alarie",
+    "name": "Mark Alarie",
+    "teams": [
+      "DEN",
+      "WAS"
+    ],
+    "nbaId": "76019",
+    "active": false
+  },
+  {
+    "id": "gary-alcorn",
+    "name": "Gary Alcorn",
+    "teams": [
+      "DET",
+      "LAL"
+    ],
+    "nbaId": "76020",
+    "active": false
+  },
+  {
+    "id": "santi-aldama",
+    "name": "Santi Aldama",
+    "teams": [
+      "MEM"
+    ],
+    "nbaId": "1630583",
+    "active": true
+  },
+  {
+    "id": "furkan-aldemir",
+    "name": "Furkan Aldemir",
+    "teams": [
+      "PHI"
+    ],
+    "nbaId": "203128",
+    "active": false
+  },
+  {
+    "id": "cole-aldrich",
+    "name": "Cole Aldrich",
+    "teams": [
+      "OKC",
+      "HOU",
+      "SAC",
+      "NYK",
+      "LAC",
+      "MIN"
+    ],
+    "nbaId": "202332",
+    "active": false
+  },
+  {
+    "id": "lamarcus-aldridge",
+    "name": "LaMarcus Aldridge",
+    "teams": [
+      "POR",
+      "SAS",
+      "BKN"
+    ],
+    "nbaId": "200746",
+    "active": false
+  },
+  {
+    "id": "chuck-aleksinas",
+    "name": "Chuck Aleksinas",
+    "teams": [
+      "GOS"
+    ],
+    "nbaId": "76021",
+    "active": false
+  },
+  {
+    "id": "cliff-alexander",
+    "name": "Cliff Alexander",
+    "teams": [
+      "POR"
+    ],
+    "nbaId": "1626146",
+    "active": false
+  },
+  {
+    "id": "cory-alexander",
+    "name": "Cory Alexander",
+    "teams": [
+      "SAN",
+      "SAS",
+      "DEN",
+      "ORL",
+      "CHA"
+    ],
+    "nbaId": "724",
+    "active": false
+  },
+  {
+    "id": "courtney-alexander",
+    "name": "Courtney Alexander",
+    "teams": [
+      "DAL",
+      "WAS",
+      "NOH"
+    ],
+    "nbaId": "2042",
+    "active": false
+  },
+  {
+    "id": "gary-alexander",
+    "name": "Gary Alexander",
+    "teams": [
+      "MIA",
+      "CLE"
+    ],
+    "nbaId": "76022",
+    "active": false
+  }
+]
