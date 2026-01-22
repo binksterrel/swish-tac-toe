@@ -107,6 +107,8 @@ export default function LandingPage() {
 
         </div>
 
+
+
         {/* Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 w-full max-w-5xl animate-in fade-in duration-1000 delay-300">
             

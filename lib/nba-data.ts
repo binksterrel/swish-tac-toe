@@ -1188,13 +1188,25 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
 import { ADDITIONAL_NBA_PLAYERS } from './additional-nba-data'
 import importedPlayers from './players.json'
 
-// Helper to remove duplicates (prefer Manual > Additional > Imported)
+// Helper to remove duplicates (prefer Manual > Imported > Additional)
+
 const manualIds = new Set(MANUAL_PLAYERS.map(p => p.id));
-const additionalIds = new Set(ADDITIONAL_NBA_PLAYERS.map(p => p.id));
+const manualNames = new Set(MANUAL_PLAYERS.map(p => p.name));
 
-const uniqueImported = (importedPlayers as unknown as NBAPlayer[]).filter(p => !manualIds.has(p.id) && !additionalIds.has(p.id));
+const importedArray = importedPlayers as unknown as NBAPlayer[];
+const importedIds = new Set(importedArray.map(p => p.id));
+const importedNames = new Set(importedArray.map(p => p.name));
 
-export const ALL_NBA_PLAYERS = [...MANUAL_PLAYERS, ...ADDITIONAL_NBA_PLAYERS, ...uniqueImported]
+// 1. Keep imported players that aren't in manual list (check ID and Name)
+const uniqueImported = importedArray.filter(p => !manualIds.has(p.id) && !manualNames.has(p.name));
+
+// 2. Keep additional players ONLY if they aren't in manual OR imported list (check ID and Name)
+const uniqueAdditional = ADDITIONAL_NBA_PLAYERS.filter(p => 
+  !manualIds.has(p.id) && !manualNames.has(p.name) &&
+  !importedIds.has(p.id) && !importedNames.has(p.name)
+);
+
+export const ALL_NBA_PLAYERS = [...MANUAL_PLAYERS, ...uniqueImported, ...uniqueAdditional]
 export const NBA_PLAYERS = ALL_NBA_PLAYERS // Backward compatibility
 
 // Team info for display
@@ -1577,4 +1589,58 @@ export function getPlayerSuggestions(query: string, limit = 5): NBAPlayer[] {
   return ALL_NBA_PLAYERS
     .filter((p) => p.name.toLowerCase().includes(normalizedQuery))
     .slice(0, limit)
+}
+
+// Get a random notable player for the "Guessing Game"
+export function getRandomNotablePlayer(): NBAPlayer {
+  // Filter for the "Top 100" most famous players to make the game guessable for average fans.
+  // Criteria:
+  // 1. Won an MVP or Finals MVP (Legends)
+  // 2. 5+ All-Star appearances (Superstars)
+  // 3. High Career PPG (> 20.0) with significant career
+  // 4. RECENT PLAYERS ONLY (played in 2000s or later)
+  
+  const candidates = ALL_NBA_PLAYERS.filter(p => {
+      // Must have valid ID for photo
+      if (!p.nbaId) return false;
+      
+      // CRITICAL: Only recent players (2000s onwards)
+      // Check if player has played in 2000s, 2010s, or 2020s
+      const isRecent = p.decades.some(d => d === "2000s" || d === "2010s" || d === "2020s");
+      if (!isRecent) return false;
+      
+      // Auto-include MVPs and Finals MVPs
+      if (p.mvp || (p.awards && p.awards.includes("Finals MVP"))) return true;
+      
+      // Count All-Star appearances (approximated by checking awards list or just assume "All-Star" implies at least 1, 
+      // but here we want MULTIPLE. Since we don't store the exact count in this simple schema, 
+      // we rely on other proxies like "75th Anniversary" if we had it, or high stats.)
+      
+      // High Scoring average is a good proxy for fame
+      if (p.ppgCareer >= 22.0) return true;
+      
+      // Recent stars (active with > 20 PPG)
+      if (p.active && p.ppgCareer >= 20.0) return true;
+      
+      // Manual check for "very famous" names based on awards density
+      // If they have > 3 types of awards (e.g. All-Star, All-NBA, ROY)
+      if (p.awards && p.awards.length >= 3) return true;
+      
+      return false;
+  });
+  
+  // If pool is too small, fallback to slightly looser criteria (but still recent!)
+  if (candidates.length < 50) {
+      const backup = ALL_NBA_PLAYERS.filter(p => {
+          const isRecent = p.decades.some(d => d === "2000s" || d === "2010s" || d === "2020s");
+          return p.nbaId && p.allStar && p.ppgCareer > 18.0 && isRecent;
+      });
+      if (backup.length > 0) {
+          const randomIndex = Math.floor(Math.random() * backup.length);
+          return backup[randomIndex];
+      }
+  }
+  
+  const randomIndex = Math.floor(Math.random() * candidates.length);
+  return candidates[randomIndex];
 }

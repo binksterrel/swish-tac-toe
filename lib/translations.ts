@@ -30,6 +30,7 @@ export const translations = {
     },
     game: {
       header_title: "SWISH TAC TOE",
+      gest: "GEST",
       games: "GAMES",
       stats: "STATS",
       standings: "STANDINGS",
@@ -120,6 +121,7 @@ export const translations = {
     },
     game: {
       header_title: "SWISH TAC TOE",
+      gest: "GUEST",
       games: "MATCHS",
       stats: "STATS",
       standings: "CLASSEMENT",

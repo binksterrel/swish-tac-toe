@@ -26,28 +26,7 @@ export const ADDITIONAL_NBA_PLAYERS: NBAPlayer[] = [
     position: "SG",
     nbaId: "1628973"
   },
-  {
-    id: "lamelo-ball",
-    name: "LaMelo Ball",
-    teams: ["CHA"],
-    awards: [],
-    allStar: false,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: false,
-    allDefensive: false,
-    college: "Illawarra",
-    country: "USA",
-    decades: ["2020s"],
-    ppgCareer: 23.9,
-    rpgCareer: 5.1,
-    apgCareer: 8.0,
-    position: "SG",
-    nbaId: "1630163"
-  },
+
   {
     id: "anthony-edwards",
     name: "Anthony Edwards",
@@ -158,28 +137,7 @@ export const ADDITIONAL_NBA_PLAYERS: NBAPlayer[] = [
     position: "SG",
     nbaId: "1630169"
   },
-  {
-    id: "paolo-banchero",
-    name: "Paolo Banchero",
-    teams: ["ORL"],
-    awards: [],
-    allStar: false,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: false,
-    allDefensive: false,
-    college: "Duke",
-    country: "USA",
-    decades: ["2020s"],
-    ppgCareer: 22.6,
-    rpgCareer: 6.9,
-    apgCareer: 5.4,
-    position: "SF",
-    nbaId: "1631094"
-  },
+
   {
     id: "desmond-bane",
     name: "Desmond Bane",
@@ -1201,28 +1159,7 @@ export const ADDITIONAL_NBA_PLAYERS: NBAPlayer[] = [
     position: "C",
     nbaId: "1631105"
   },
-  {
-    id: "michael-porter-jr-",
-    name: "Michael Porter Jr.",
-    teams: ["DEN"],
-    awards: [],
-    allStar: false,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: false,
-    allDefensive: false,
-    college: "Missouri",
-    country: "USA",
-    decades: ["2010s","2020s"],
-    ppgCareer: 16.7,
-    rpgCareer: 7.0,
-    apgCareer: 1.5,
-    position: "SF",
-    nbaId: "1629008"
-  },
+
   {
     id: "elijah-bryant",
     name: "Elijah Bryant",
