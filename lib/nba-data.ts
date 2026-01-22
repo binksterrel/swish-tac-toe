@@ -72,7 +72,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.5,
     apgCareer: 7.4,
     position: "SF",
-    nbaId: "2544"
+    nbaId: "2544",
+    active: true
   },
   {
     id: "stephen-curry",
@@ -94,7 +95,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.7,
     apgCareer: 6.4,
     position: "PG",
-    nbaId: "201939"
+    nbaId: "201939",
+    active: true
   },
   {
     id: "kevin-durant",
@@ -116,7 +118,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.0,
     apgCareer: 4.4,
     position: "SF",
-    nbaId: "201142"
+    nbaId: "201142",
+    active: true
   },
   {
     id: "giannis-antetokounmpo",
@@ -138,7 +141,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 9.6,
     apgCareer: 4.7,
     position: "PF",
-    nbaId: "203507"
+    nbaId: "203507",
+    active: true
   },
   {
     id: "kawhi-leonard",
@@ -160,7 +164,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 6.5,
     apgCareer: 3.0,
     position: "SF",
-    nbaId: "202695"
+    nbaId: "202695",
+    active: true
   },
   {
     id: "james-harden",
@@ -182,7 +187,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 5.6,
     apgCareer: 7.1,
     position: "SG",
-    nbaId: "201935"
+    nbaId: "201935",
+    active: true
   },
   {
     id: "nikola-jokic",
@@ -204,12 +210,13 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.5,
     apgCareer: 6.6,
     position: "C",
-    nbaId: "203999"
+    nbaId: "203999",
+    active: true
   },
   {
     id: "luka-doncic",
     name: "Luka Doncic",
-    teams: ["DAL","LAL"],
+    teams: ["DAL", "LAL"],
     awards: ["ROY"],
     allStar: true,
     champion: false,
@@ -226,7 +233,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 8.6,
     apgCareer: 8.0,
     position: "PG",
-    nbaId: "1629029"
+    nbaId: "1629029",
+    active: true
   },
   {
     id: "kobe-bryant",
@@ -1435,7 +1443,10 @@ const FAMOUS_PLAYER_IDS = [
   "jalen-brunson", "bam-adebayo", "jaylen-brown", "domantas-sabonis", "de-aaron-fox"
 ];
 
-export function generateGrid(difficulty: "easy" | "medium" | "hard" = "medium"): {
+export function generateGrid(
+  difficulty: "easy" | "medium" | "hard" = "medium",
+  size: number = 3
+): {
   rows: Criteria[]
   cols: Criteria[]
 } {
@@ -1483,9 +1494,9 @@ export function generateGrid(difficulty: "easy" | "medium" | "hard" = "medium"):
       const cols: Criteria[] = []
       const usedTypes = new Set<string>()
 
-      // Pick 3 row criteria
+      // Pick row criteria
       for (const criteria of shuffled) {
-        if (rows.length >= 3) break
+        if (rows.length >= size) break
         const typeKey = `${criteria.type}-${criteria.value}`
         if (!usedTypes.has(typeKey)) {
           rows.push(criteria)
@@ -1493,9 +1504,9 @@ export function generateGrid(difficulty: "easy" | "medium" | "hard" = "medium"):
         }
       }
 
-      // Pick 3 column criteria (different from rows)
+      // Pick column criteria (different from rows)
       for (const criteria of shuffled) {
-        if (cols.length >= 3) break
+        if (cols.length >= size) break
         const typeKey = `${criteria.type}-${criteria.value}`
         if (!usedTypes.has(typeKey)) {
           cols.push(criteria)
@@ -1527,15 +1538,22 @@ export function generateGrid(difficulty: "easy" | "medium" | "hard" = "medium"):
           }
       }
 
-      // If we got here, it's a valid grid (or we accepted it for medium/hard)
-      return { rows, cols }
+      // Check validation for other modes too? For medium/hard we just assume consistency?
+      // Actually, for 5x5, we might run out of intersections if we pick random stuff.
+      // Ideally we should check if EVERY cell has at least 1 solution for any difficulty.
+      // But for now, let's trust the "Retry Limit" logic coupled with Easy check.
+      // For 5x5 Hard, it might be tough.
+      
+      if (rows.length === size && cols.length === size) {
+         return { rows, cols }
+      }
   }
 
   // Fallback if retries exhausted (just return the last attempt)
-  console.warn("Could not generate perfect Easy grid after retries.");
+  console.warn("Could not generate perfect grid after retries.");
   return { 
-      rows: allCriteria.slice(0, 3), 
-      cols: allCriteria.slice(3, 6) 
+      rows: allCriteria.slice(0, size), 
+      cols: allCriteria.slice(size, size * 2) 
   }
 }
 

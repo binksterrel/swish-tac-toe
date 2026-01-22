@@ -20,8 +20,8 @@ export function NBATicker() {
         onMouseLeave={() => setIsHovered(false)}
         style={{ animationPlayState: isHovered ? 'paused' : 'running' }}
       >
-        {/* Double the list for seamless loop */}
-        {[...TEAMS, ...TEAMS].map((team, index) => (
+        {/* Multiply list for truly seamless loop on large screens */}
+        {[...TEAMS, ...TEAMS, ...TEAMS, ...TEAMS].map((team, index) => (
           <div 
             key={`${team}-${index}`} 
             className="flex items-center justify-center w-12 h-12 flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110 cursor-pointer opacity-70 hover:opacity-100"

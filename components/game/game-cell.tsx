@@ -85,6 +85,21 @@ export function GameCell({ cell, isSelected, onClick, disabled }: GameCellProps)
                  ))}
                </p>
             </div>
+            </div>
+
+          
+          {/* Rarity & Score Badge */}
+          <div className="absolute top-1 right-1 flex flex-col items-end gap-0.5">
+             {cell.isUnicorn && (
+                 <span className="bg-purple-600/90 text-white text-[9px] px-1.5 py-0.5 rounded-sm font-bold shadow-lg animate-pulse">
+                   UNICORN
+                 </span>
+             )}
+             {cell.score && (
+                 <span className="text-[9px] font-mono text-nba-blue bg-black/80 px-1 rounded-sm">
+                   +{cell.score}
+                 </span>
+             )}
           </div>
         </>
       ) : null}

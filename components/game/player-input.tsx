@@ -9,12 +9,14 @@ import { Search, X, AlertCircle, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
+// Reverting to previous state without Hint System
 interface PlayerInputProps {
   onSubmit: (player: NBAPlayer) => void
   onCancel: () => void
   usedPlayers: Set<string>
   rowLabel: string
   colLabel: string
+  hiddenLabels?: boolean
 }
 
 export function PlayerInput({
@@ -23,6 +25,7 @@ export function PlayerInput({
   usedPlayers,
   rowLabel,
   colLabel,
+  hiddenLabels = false,
 }: PlayerInputProps) {
   const [query, setQuery] = useState("")
   const [suggestions, setSuggestions] = useState<NBAPlayer[]>([])
@@ -44,7 +47,7 @@ export function PlayerInput({
   const handleSubmit = (player: NBAPlayer) => {
     onSubmit(player)
   }
-
+  
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowDown") {
       e.preventDefault()
@@ -82,10 +85,16 @@ export function PlayerInput({
               <X className="w-5 h-5 text-muted-foreground" />
             </button>
           </div>
-          <p className="text-sm text-muted-foreground">
-            Qui a joué pour <span className="text-primary font-semibold">{rowLabel}</span> et est{" "}
-            <span className="text-primary font-semibold">{colLabel}</span> ?
-          </p>
+          {hiddenLabels ? (
+            <p className="text-sm text-yellow-500 font-bold animate-pulse">
+                🕵️ Critères Mystères : À vous de déduire !
+            </p>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+                Qui a joué pour <span className="text-primary font-semibold">{rowLabel}</span> et est{" "}
+                <span className="text-primary font-semibold">{colLabel}</span> ?
+            </p>
+          )}
         </div>
 
         {/* Input */}

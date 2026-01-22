@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   },
 }
 
+import { LanguageProvider } from '@/contexts/language-context'
+import { LanguageToggle } from '@/components/language-toggle'
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,8 +41,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${oswald.variable} ${roboto.variable} font-sans antialiased dark bg-[#000000]`}>
-        {children}
-
+        <LanguageProvider>
+          {children}
+          
+          {/* Global Language Toggle (Bottom Right) */}
+          <div className="fixed bottom-4 right-4 z-[9999]">
+             <LanguageToggle />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   )

@@ -6,13 +6,15 @@ import { ALL_NBA_PLAYERS, TEAM_CRITERIA, NBAPlayer } from "@/lib/nba-data"
 import { PlayerCard } from "@/components/players/player-card"
 import Link from "next/link"
 import { Search, Filter, Home, ArrowLeft } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 const ITEMS_PER_PAGE = 50;
 
 export default function PlayersPage() {
+  const { t } = useLanguage()
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedTeam, setSelectedTeam] = useState("ALL")
-  const [activeFilter, setActiveFilter] = useState<"ALL" | "ACTIVE" | "RETIRED">("ALL")
+  const [decadeFilter, setDecadeFilter] = useState("ALL")
   const [page, setPage] = useState(1)
 
   // Filter players efficiently
@@ -27,13 +29,14 @@ export default function PlayersPage() {
         if (!player.teams.includes(selectedTeam)) return false
       }
 
-      // 3. Status Match
-      if (activeFilter === "ACTIVE" && !player.active) return false
-      if (activeFilter === "RETIRED" && player.active) return false
+      // 3. Decade Match
+      if (decadeFilter !== "ALL") {
+         if (!player.decades.includes(decadeFilter)) return false
+      }
 
       return true
     })
-  }, [searchTerm, selectedTeam, activeFilter])
+  }, [searchTerm, selectedTeam, decadeFilter])
 
   // Pagination logic
   const displayedPlayers = useMemo(() => {
@@ -60,7 +63,7 @@ export default function PlayersPage() {
                       <ArrowLeft className="w-6 h-6 text-slate-300" />
                   </Link>
                   <h1 className="text-xl md:text-2xl font-oswald font-bold uppercase tracking-wide text-white">
-                      Player Database <span className="text-blue-500 font-mono text-sm ml-2 bg-blue-500/10 px-2 py-0.5 rounded-full">{filteredPlayers.length}</span>
+                      {t('players.title')} <span className="text-blue-500 font-mono text-sm ml-2 bg-blue-500/10 px-2 py-0.5 rounded-full">{filteredPlayers.length}</span>
                   </h1>
               </div>
           </div>
@@ -77,7 +80,7 @@ export default function PlayersPage() {
                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
                        <input 
                           type="text" 
-                          placeholder="Search player name..." 
+                          placeholder={t('players.search_placeholder')}
                           className="w-full bg-black border border-slate-700 text-white rounded-sm pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none placeholder:text-slate-600 uppercase font-bold tracking-tight"
                           value={searchTerm}
                           onChange={(e) => {
@@ -98,7 +101,7 @@ export default function PlayersPage() {
                               setPage(1)
                           }}
                        >
-                           <option value="ALL">ALL TEAMS</option>
+                           <option value="ALL">{t('players.filter_all_teams')}</option>
                            {sortedTeams.map(t => (
                                <option key={t.value} value={t.value}>{t.label.toUpperCase()}</option>
                            ))}
@@ -108,26 +111,23 @@ export default function PlayersPage() {
                        </div>
                    </div>
 
-                   {/* Status Filter */}
+                   {/* Decade Filter */}
                    <div className="flex rounded-sm overflow-hidden border border-slate-700">
                        <button 
-                           onClick={() => setActiveFilter("ALL")}
-                           className={`px-4 py-2 text-sm font-bold uppercase transition-colors ${activeFilter === "ALL" ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                           onClick={() => setDecadeFilter("ALL")}
+                           className={`px-3 py-2 text-sm font-bold uppercase transition-colors ${decadeFilter === "ALL" ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
                         >
-                           All
+                           ALL
                        </button>
-                       <button 
-                           onClick={() => setActiveFilter("ACTIVE")}
-                           className={`px-4 py-2 text-sm font-bold uppercase transition-colors ${activeFilter === "ACTIVE" ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
-                        >
-                           Active
-                       </button>
-                       <button 
-                           onClick={() => setActiveFilter("RETIRED")}
-                           className={`px-4 py-2 text-sm font-bold uppercase transition-colors ${activeFilter === "RETIRED" ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
-                        >
-                           Retired
-                       </button>
+                       {["1980s", "1990s", "2000s", "2010s", "2020s"].map((dec) => (
+                           <button 
+                               key={dec}
+                               onClick={() => setDecadeFilter(dec)}
+                               className={`px-3 py-2 text-sm font-bold uppercase transition-colors border-l border-slate-700 ${decadeFilter === dec ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}`}
+                            >
+                               {dec.slice(2)}
+                           </button>
+                       ))}
                    </div>
 
                </div>
@@ -149,15 +149,15 @@ export default function PlayersPage() {
                             onClick={handleLoadMore}
                             className="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-8 rounded-full border border-slate-600 uppercase tracking-widest transition-all transform hover:scale-105"
                         >
-                            Load More Players
+                            {t('players.load_more')}
                         </button>
                     </div>
                 )}
                </>
            ) : (
                <div className="text-center py-20 text-slate-500">
-                   <p className="text-2xl font-oswald uppercase">No players found</p>
-                   <p className="mt-2">Try adjusting your filters or search term.</p>
+                   <p className="text-2xl font-oswald uppercase">{t('players.no_results')}</p>
+                   <p className="mt-2">{t('players.no_results_desc')}</p>
                </div>
            )}
 

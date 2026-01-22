@@ -11,6 +11,8 @@ import {
 export type CellState = {
   player: NBAPlayer | null
   status: "empty" | "correct" | "incorrect"
+  score?: number
+  isUnicorn?: boolean
 }
 
 export type GameState = {
@@ -25,9 +27,13 @@ export type GameState = {
   gameOver: boolean
   won: boolean
   difficulty: "easy" | "medium" | "hard"
+  mode: "classic" | "time_attack" | "sudden_death" | "blind"
+  timeLeft: number // For Time Attack
+  gridSize: number
 }
 
-const INITIAL_MAX_ATTEMPTS = 9
+const INITIAL_MAX_ATTEMPTS = 15
+const TIME_ATTACK_DURATION = 90 // 1 minute 30 seconds
 
 export function useGameState() {
   const [gameState, setGameState] = useState<GameState | null>(null)
@@ -38,16 +44,36 @@ export function useGameState() {
   const [isGameActive, setIsGameActive] = useState(false)
 
   // Initialize game
-  const initGame = useCallback((difficulty: "easy" | "medium" | "hard" = "medium") => {
-    const { rows, cols } = generateGrid(difficulty)
+  const initGame = useCallback((
+    difficulty: "easy" | "medium" | "hard" = "medium", 
+    mode: "classic" | "time_attack" | "sudden_death" | "blind" = "classic",
+    size: number = 3
+  ) => {
+    const { rows, cols } = generateGrid(difficulty, size)
     
-    const grid: CellState[][] = Array(3)
+    const grid: CellState[][] = Array(size)
       .fill(null)
       .map(() =>
-        Array(3)
+        Array(size)
           .fill(null)
           .map(() => ({ player: null, status: "empty" as const }))
       )
+
+    // Calculate Max Attempts based on size
+    let maxAttempts = INITIAL_MAX_ATTEMPTS
+    let calculatedTime = TIME_ATTACK_DURATION
+
+    if (size === 4) {
+        maxAttempts = 25
+        calculatedTime = 180 // 3 minutes
+    }
+    if (size === 5) {
+        maxAttempts = 40
+        calculatedTime = 300 // 5 minutes
+    }
+
+    if (mode === "sudden_death") maxAttempts = size * size // Must fill precisely, but logic says game over on 1 error anyway
+    if (mode === "blind") maxAttempts = 999
 
     setGameState({
       grid,
@@ -55,12 +81,15 @@ export function useGameState() {
       cols,
       score: 0,
       attempts: 0,
-      maxAttempts: INITIAL_MAX_ATTEMPTS,
+      maxAttempts,
       usedPlayers: new Set(),
       selectedCell: null,
       gameOver: false,
       won: false,
       difficulty,
+      mode,
+      timeLeft: calculatedTime,
+      gridSize: size
     })
     
     // Reset Timer but DO NOT start it yet
@@ -79,6 +108,17 @@ export function useGameState() {
     if (isGameActive && gameState && !gameState.gameOver) {
       interval = setInterval(() => {
         setGameTime((prev) => prev + 1)
+        
+        if (gameState.mode === "time_attack") {
+            setGameState(prev => {
+                if (!prev) return null
+                const newTimeLeft = prev.timeLeft - 1
+                if (newTimeLeft <= 0) {
+                    return { ...prev, timeLeft: 0, gameOver: true }
+                }
+                return { ...prev, timeLeft: newTimeLeft }
+            })
+        }
       }, 1000)
     }
     return () => clearInterval(interval)
@@ -104,10 +144,10 @@ export function useGameState() {
       } catch (err) {
         console.error("Failed to load saved game:", err)
         localStorage.removeItem("nba-ttt-game")
-        initGame("medium")
+        initGame("medium", "classic")
       }
     } else {
-      initGame("medium")
+      initGame("medium", "classic")
     }
   }, [initGame])
 
@@ -164,26 +204,80 @@ export function useGameState() {
         
         let newScore = prev.score
         
-        // SCORING LOGIC: Shot Clock Style (Swish Scoring)
+        // SCORING LOGIC: Shot Clock Style + Rarity Bonus
         // Base 1000 points - (Time elapsed * 2)
-        // Encourages speed. Minimum 100 points.
+        // Rarity Multiplier: x3 if NOT an All-Star (Unicorn), x1 otherwise
         if (validationResult.valid) {
             const timePenalty = gameTime * 2
-            const cellScore = Math.max(100, 1000 - timePenalty)
+            const baseScore = Math.max(100, 1000 - timePenalty)
+            
+            // Unicorn Bonus
+            const isUnicorn = !player.allStar
+            const multiplier = isUnicorn ? 3 : 1
+            
+            const cellScore = baseScore * multiplier
             newScore += cellScore
-        }
-
-        if (validationResult.valid) {
-          newGrid[row][col] = { player, status: "correct" }
-          // We still track used players, but we don't block them anymore
-          newUsedPlayers.add(player.id)
+            
+            // Time Attack Bonus
+            let newTimeLeft = prev.timeLeft
+            if (prev.mode === "time_attack") {
+                newTimeLeft = Math.min(newTimeLeft + 10, TIME_ATTACK_DURATION) // Cap at max? Or unlimited? Let's cap at max for balance or allow overflow? "3 minutes to fill" suggests limit.
+                // User said "rajoute +10s". Usually time attack allows going beyond start. Let's allow it.
+                newTimeLeft = prev.timeLeft + 10
+            }
+            
+            // Update cell with player AND score info
+            newGrid[row][col] = { 
+              player, 
+              status: "correct",
+              score: cellScore,
+              isUnicorn
+            }
+            
+            // We still track used players
+            newUsedPlayers.add(player.id)
         } else {
           newGrid[row][col] = { ...newGrid[row][col], status: "incorrect" }
+          
+          // Time Attack Penalty
+          if (prev.mode === "time_attack") {
+              const penaltyTime = prev.timeLeft - 20
+              // Check for game over immediately? The timer effect handles 0, but immediate penalty might kill.
+              if (penaltyTime <= 0) {
+                 // Game Over in next state update
+              }
+             // Actually we should update state specifically.
+          }
+        }
+        
+        const isGameWon = newGrid.every((r) => r.every((c) => c.status === "correct"))
+
+        let newTimeLeftFinal = prev.timeLeft
+        let isGameOver = false
+        
+        if (prev.mode === "time_attack") {
+             if (validationResult.valid) {
+                 newTimeLeftFinal = prev.timeLeft + 10
+             } else {
+                 newTimeLeftFinal = Math.max(0, prev.timeLeft - 20)
+             }
+             if (newTimeLeftFinal <= 0) isGameOver = true
+        } else if (prev.mode === "sudden_death") {
+             // Sudden Death: Game Over on any error
+             if (!validationResult.valid) {
+                 isGameOver = true
+             }
+             // Also check standard 9 attempts (which is maxAttempts anyway)
+             const newAttempts = prev.attempts + 1
+             if (newAttempts >= prev.maxAttempts) isGameOver = true
+        } else {
+             // Classic and Blind attempts limit
+             const newAttempts = prev.attempts + 1
+             // For Blind mode, maxAttempts is 999, so this check works fine
+             if (newAttempts >= prev.maxAttempts) isGameOver = true
         }
 
-        const newAttempts = prev.attempts + 1
-        const isGameWon = newGrid.every((r) => r.every((c) => c.status === "correct"))
-        const isGameOver = newAttempts >= prev.maxAttempts || isGameWon
+        if (isGameWon) isGameOver = true
         
         if (isGameOver) {
             setIsGameActive(false)
@@ -193,7 +287,8 @@ export function useGameState() {
           ...prev,
           grid: newGrid,
           score: newScore,
-          attempts: newAttempts,
+          attempts: prev.attempts + 1, // Always increment attempts for stats
+          timeLeft: newTimeLeftFinal,
           usedPlayers: newUsedPlayers,
           selectedCell: null, // Deselect after move
           gameOver: isGameOver,
@@ -208,8 +303,8 @@ export function useGameState() {
     gameState,
     isLoading,
     initGame,
-    startGame, // New Function
-    isGameActive, // New State Export
+    startGame,
+    isGameActive,
     handleCellClick, 
     handlePlayerSelect, 
     gameTime,

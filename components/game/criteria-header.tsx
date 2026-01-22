@@ -7,9 +7,10 @@ interface CriteriaHeaderProps {
   criteria: Criteria
   direction: "row" | "col"
   hidden?: boolean
+  blur?: boolean
 }
 
-export function CriteriaHeader({ criteria, direction, hidden = false }: CriteriaHeaderProps) {
+export function CriteriaHeader({ criteria, direction, hidden = false, blur = false }: CriteriaHeaderProps) {
   const isTeam = criteria.type === "team"
   const logoUrl = isTeam ? getTeamLogoUrl(criteria.value) : null
 
@@ -46,31 +47,41 @@ export function CriteriaHeader({ criteria, direction, hidden = false }: Criteria
           </div>
       ) : (
           /* Official Box-Score Style: Minimalist and Sharp */
-          <>
-          {isTeam && logoUrl ? (
-            <div className="w-10 h-10 md:w-14 md:h-14 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
-              <img 
-                src={logoUrl} 
-                alt={criteria.value}
-                className="w-full h-full object-contain"
-                onError={(e) => { e.currentTarget.style.display = 'none' }}
-              />
-            </div>
-          ) : (
-            <div className="flex flex-col items-center">
-              {/* Accent Line for awards */}
-              <div className={cn("w-8 h-1 mb-1", 
-                criteria.type === "mvp" ? "bg-nba-blue" : 
-                criteria.type === "champion" ? "bg-amber-400" :
-                criteria.type === "allStar" ? "bg-nba-red" : "bg-zinc-700"
-              )} />
-              
-              <span className="text-[10px] md:text-xs font-heading font-normal uppercase tracking-widest text-zinc-400 text-center leading-none">
-                {getLabel()}
-              </span>
-            </div>
-          )}
-          </>
+          <div className="relative group transition-all duration-300">
+             {/* Blurred/Hidden State Overlay */}
+             {blur ? (
+                 <div className="absolute inset-0 flex items-center justify-center z-10 bg-[#0a0a0a]">
+                     <span className="text-xl md:text-2xl font-bold text-zinc-700 animate-pulse">?</span>
+                 </div>
+             ) : (
+                /* Actual Content */
+                <div className="transition-all duration-300">
+                    {isTeam && logoUrl ? (
+                        <div className="w-10 h-10 md:w-14 md:h-14 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
+                        <img 
+                            src={logoUrl} 
+                            alt={criteria.value}
+                            className="w-full h-full object-contain"
+                            onError={(e) => { e.currentTarget.style.display = 'none' }}
+                        />
+                        </div>
+                    ) : (
+                        <div className="flex flex-col items-center">
+                        {/* Accent Line for awards */}
+                        <div className={cn("w-8 h-1 mb-1", 
+                            criteria.type === "mvp" ? "bg-nba-blue" : 
+                            criteria.type === "champion" ? "bg-amber-400" :
+                            criteria.type === "allStar" ? "bg-nba-red" : "bg-zinc-700"
+                        )} />
+                        
+                        <span className="text-[10px] md:text-xs font-heading font-normal uppercase tracking-widest text-zinc-400 text-center leading-none">
+                            {getLabel()}
+                        </span>
+                        </div>
+                    )}
+                </div>
+             )}
+          </div>
       )}
     </div>
   )
