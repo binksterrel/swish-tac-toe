@@ -61,7 +61,7 @@ export default function LandingPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-col md:flex-row gap-4 md:gap-5 w-full max-w-2xl animate-in slide-in-from-bottom-8 duration-700 delay-200 px-4 md:px-0">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-5 w-full max-w-2xl animate-in slide-in-from-bottom-8 duration-700 delay-200 px-4 md:px-0">
           
           <Link href="/game" className="flex-1 group relative overflow-hidden rounded-xl bg-nba-red transition-all hover:scale-[1.02] active:scale-95 hover:shadow-[0_0_30px_rgba(201,8,42,0.6)] border border-nba-red/80">
              
@@ -71,14 +71,14 @@ export default function LandingPage() {
              </div>
 
              <div className="relative h-full bg-black/10 hover:bg-transparent transition-colors rounded-xl flex items-center justify-between p-1">
-               <div className="flex-1 h-full rounded-lg p-5 md:p-6 flex items-center justify-between">
+               <div className="flex-1 h-full rounded-lg p-4 md:p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                     <div className="bg-white/20 p-3 rounded-full group-hover:scale-110 transition-transform backdrop-blur-sm shadow-lg">
-                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white fill-current" />
+                     <div className="bg-white/20 p-2.5 md:p-3 rounded-full group-hover:scale-110 transition-transform backdrop-blur-sm shadow-lg">
+                        <Play className="w-5 h-5 md:w-8 md:h-8 text-white fill-current" />
                      </div>
                      <div className="text-left">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-white/80 mb-0.5">{t('landing.play_sub')}</div>
-                        <div className="text-3xl md:text-4xl font-heading font-bold italic text-white drop-shadow-md">{t('common.play')}</div>
+                        <div className="text-2xl md:text-4xl font-heading font-bold italic text-white drop-shadow-md">{t('common.play')}</div>
                      </div>
                   </div>
                   <ChevronRight className="w-6 h-6 md:w-8 md:h-8 text-white/70 group-hover:text-white group-hover:translate-x-2 transition-all" />
@@ -88,14 +88,14 @@ export default function LandingPage() {
 
           <Link href="/players" className="flex-1 group relative active:scale-95 transition-transform">
              <div className="relative h-full bg-slate-900/40 backdrop-blur-sm border border-slate-800 hover:border-slate-500 rounded-xl p-1 transition-all hover:bg-slate-800/60">
-               <div className="h-full rounded-lg p-5 md:p-6 flex items-center justify-between">
+               <div className="h-full rounded-lg p-4 md:p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                     <div className="bg-slate-800 p-3 rounded-full border border-slate-700 shadow-lg">
-                        <Users className="w-6 h-6 md:w-8 md:h-8 text-slate-300" />
+                     <div className="bg-slate-800 p-2.5 md:p-3 rounded-full border border-slate-700 shadow-lg">
+                        <Users className="w-5 h-5 md:w-8 md:h-8 text-slate-300" />
                      </div>
                      <div className="text-left">
                         <div className="text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-0.5">{t('landing.players_sub')}</div>
-                        <div className="text-3xl md:text-4xl font-heading font-bold italic text-slate-200">{t('common.players')}</div>
+                        <div className="text-2xl md:text-4xl font-heading font-bold italic text-slate-200">{t('common.players')}</div>
                      </div>
                   </div>
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity">
