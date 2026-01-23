@@ -2,10 +2,13 @@
 
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import { Sparkles } from "lucide-react"
+import { Sparkles, Trophy } from "lucide-react"
+import { usePathname } from "next/navigation" 
+import { Button } from "@/components/ui/button"
 
 export function Header() {
   const { t } = useLanguage()
+  const pathname = usePathname()
 
   return (
     <header className="bg-[#050505] border-b-4 border-nba-red relative z-40 shadow-2xl">
@@ -45,15 +48,35 @@ export function Header() {
                  </button>
                ))}
                
+               {/* SWISH Link */}
+               <Link href="/game">
+                   <Button 
+                       variant="ghost" 
+                       size="sm"
+                       className={`font-bold tracking-widest uppercase ${pathname === '/game' || pathname === '/' ? 'text-white bg-white/10' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                   >
+                       <Trophy className="w-4 h-4 mr-2 text-nba-blue" />
+                       {t('game.swish')}
+                   </Button>
+               </Link>
+
                {/* GEST Link */}
-               <Link href="/guess" className="px-4 py-2 text-sm font-bold uppercase text-orange-400 hover:text-orange-300 hover:bg-orange-950/50 transition-colors rounded-sm flex items-center gap-2 border border-transparent hover:border-orange-500/50">
-                  <Sparkles className="w-3 h-3" />
+               <Link href="/guess" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm flex items-center gap-2 border ${
+                   pathname === '/guess' 
+                   ? 'text-white bg-white/10 border-white/20' 
+                   : 'text-slate-400 hover:text-white hover:bg-slate-800 border-transparent'
+               }`}>
+                  <Sparkles className={`w-3 h-3 ${pathname === '/guess' ? 'text-white' : 'text-slate-400'}`} />
                   {t('game.gest')}
                </Link>
 
                {/* Players Link */}
-               <Link href="/players" className="px-4 py-2 text-sm font-bold uppercase text-white bg-slate-800 border border-slate-700 hover:bg-slate-700 hover:border-blue-500 transition-all rounded-sm shadow-sm flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+               <Link href="/players" className={`px-4 py-2 text-sm font-bold uppercase transition-all rounded-sm shadow-sm flex items-center gap-2 border ${
+                   pathname === '/players'
+                   ? 'text-white bg-slate-800 border-blue-500'
+                   : 'text-slate-400 bg-slate-900 border-slate-700 hover:bg-slate-800 hover:text-white'
+               }`}>
+                  <span className={`w-1.5 h-1.5 rounded-full ${pathname === '/players' ? 'bg-green-500 animate-pulse' : 'bg-slate-600'}`}></span>
                   {t('game.players_db')}
                </Link>
                

@@ -256,7 +256,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 5.2,
     apgCareer: 4.7,
     position: "SG",
-    nbaId: "977"
+    nbaId: "977",
+    active: false
   },
   {
     id: "michael-jordan",
@@ -278,7 +279,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 6.2,
     apgCareer: 5.3,
     position: "SG",
-    nbaId: "893"
+    nbaId: "893",
+    active: false
   },
   {
     id: "tim-duncan",
@@ -300,7 +302,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.8,
     apgCareer: 3.0,
     position: "PF",
-    nbaId: "1495"
+    nbaId: "1495",
+    active: false
   },
   {
     id: "shaquille-oneal",
@@ -322,7 +325,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.9,
     apgCareer: 2.5,
     position: "C",
-    nbaId: "406"
+    nbaId: "406",
+    active: false
   },
   {
     id: "dwyane-wade",
@@ -344,7 +348,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.7,
     apgCareer: 5.4,
     position: "SG",
-    nbaId: "2548"
+    nbaId: "2548",
+    active: false
   },
   {
     id: "dirk-nowitzki",
@@ -366,7 +371,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.5,
     apgCareer: 2.4,
     position: "PF",
-    nbaId: "1717"
+    nbaId: "1717",
+    active: false
   },
   {
     id: "chris-paul",
@@ -388,7 +394,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.5,
     apgCareer: 9.4,
     position: "PG",
-    nbaId: "101108"
+    nbaId: "101108",
+    active: true
   },
   {
     id: "russell-westbrook",
@@ -410,7 +417,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.3,
     apgCareer: 8.3,
     position: "PG",
-    nbaId: "201566"
+    nbaId: "201566",
+    active: true
   },
   {
     id: "anthony-davis",
@@ -432,7 +440,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.3,
     apgCareer: 2.4,
     position: "PF",
-    nbaId: "203076"
+    nbaId: "203076",
+    active: true
   },
   {
     id: "paul-george",
@@ -454,7 +463,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 6.4,
     apgCareer: 3.0,
     position: "SF",
-    nbaId: "202331"
+    nbaId: "202331",
+    active: true
   },
   {
     id: "kyrie-irving",
@@ -476,7 +486,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.9,
     apgCareer: 5.7,
     position: "PG",
-    nbaId: "202681"
+    nbaId: "202681",
+    active: true
   },
   {
     id: "jimmy-butler",
@@ -498,7 +509,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 5.3,
     apgCareer: 4.4,
     position: "SF",
-    nbaId: "202710"
+    nbaId: "202710",
+    active: true
   },
   {
     id: "jayson-tatum",
@@ -520,7 +532,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.2,
     apgCareer: 4.0,
     position: "SF",
-    nbaId: "1628369"
+    nbaId: "1628369",
+    active: true
   },
   {
     id: "joel-embiid",
@@ -542,7 +555,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 11.2,
     apgCareer: 3.4,
     position: "C",
-    nbaId: "203954"
+    nbaId: "203954",
+    active: true
   },
   {
     id: "damian-lillard",
@@ -564,7 +578,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.2,
     apgCareer: 6.7,
     position: "PG",
-    nbaId: "203081"
+    nbaId: "203081",
+    active: true
   },
   {
     id: "donovan-mitchell",
@@ -586,7 +601,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.2,
     apgCareer: 4.8,
     position: "SG",
-    nbaId: "1628378"
+    nbaId: "1628378",
+    active: true
   },
   {
     id: "devin-booker",
@@ -608,7 +624,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.0,
     apgCareer: 4.7,
     position: "SG",
-    nbaId: "1626164"
+    nbaId: "1626164",
+    active: true
   },
   {
     id: "trae-young",
@@ -630,7 +647,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.7,
     apgCareer: 9.5,
     position: "PG",
-    nbaId: "1629027"
+    nbaId: "1629027",
+    active: true
   },
   {
     id: "zion-williamson",
@@ -652,7 +670,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.0,
     apgCareer: 4.2,
     position: "PF",
-    nbaId: "1629627"
+    nbaId: "1629627",
+    active: true
   },
   {
     id: "ja-morant",
@@ -674,7 +693,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.5,
     apgCareer: 7.3,
     position: "PG",
-    nbaId: "1629630"
+    nbaId: "1629630",
+    active: true
   },
   {
     id: "allen-iverson",
@@ -696,7 +716,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.7,
     apgCareer: 6.2,
     position: "PG",
-    nbaId: "947"
+    nbaId: "947",
+    active: false
   },
   {
     id: "kevin-garnett",
@@ -718,7 +739,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.0,
     apgCareer: 3.7,
     position: "PF",
-    nbaId: "708"
+    nbaId: "708",
+    active: false
   },
   {
     id: "paul-pierce",
@@ -740,7 +762,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 5.6,
     apgCareer: 3.5,
     position: "SF",
-    nbaId: "1718"
+    nbaId: "1718",
+    active: false
   },
   {
     id: "ray-allen",
@@ -762,7 +785,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.1,
     apgCareer: 3.4,
     position: "SG",
-    nbaId: "951"
+    nbaId: "951",
+    active: false
   },
   {
     id: "tony-parker",
@@ -784,7 +808,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 2.7,
     apgCareer: 5.6,
     position: "PG",
-    nbaId: "2225"
+    nbaId: "2225",
+    active: false
   },
   {
     id: "manu-ginobili",
@@ -806,7 +831,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.5,
     apgCareer: 3.8,
     position: "SG",
-    nbaId: "1938"
+    nbaId: "1938",
+    active: false
   },
   {
     id: "steve-nash",
@@ -828,7 +854,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.0,
     apgCareer: 8.5,
     position: "PG",
-    nbaId: "959"
+    nbaId: "959",
+    active: false
   },
   {
     id: "vince-carter",
@@ -850,7 +877,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.3,
     apgCareer: 3.1,
     position: "SG",
-    nbaId: "1713"
+    nbaId: "1713",
+    active: false
   },
   {
     id: "tracy-mcgrady",
@@ -872,7 +900,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 5.6,
     apgCareer: 4.4,
     position: "SG",
-    nbaId: "1503"
+    nbaId: "1503",
+    active: false
   },
   {
     id: "dwight-howard",
@@ -894,7 +923,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 11.8,
     apgCareer: 1.3,
     position: "C",
-    nbaId: "2730"
+    nbaId: "2730",
+    active: false
   },
   {
     id: "carmelo-anthony",
@@ -916,7 +946,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 7.0,
     apgCareer: 3.3,
     position: "SF",
-    nbaId: "2546"
+    nbaId: "2546",
+    active: false
   },
   {
     id: "blake-griffin",
@@ -938,7 +969,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 8.1,
     apgCareer: 4.2,
     position: "PF",
-    nbaId: "201933"
+    nbaId: "201933",
+    active: false
   },
   {
     id: "deron-williams",
@@ -960,17 +992,18 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.1,
     apgCareer: 8.1,
     position: "PG",
-    nbaId: "101114"
+    nbaId: "101114",
+    active: false
   },
   {
     id: "shai-gilgeous-alexander",
     name: "Shai Gilgeous-Alexander",
     teams: ["LAC", "OKC"],
-    awards: [],
+    awards: ["Champion", "All-Star", "MVP", "Finals MVP"],
     allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
+    champion: true,
+    championYears: ["2025"],
+    mvp: true,
     dpoy: false,
     roy: false,
     allNBA: true,
@@ -982,7 +1015,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.8,
     apgCareer: 5.5,
     position: "PG",
-    nbaId: "1628983"
+    nbaId: "1628983",
+    active: true
   },
   {
     id: "victor-wembanyama",
@@ -1004,7 +1038,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.6,
     apgCareer: 3.9,
     position: "C",
-    nbaId: "1641705"
+    nbaId: "1641705",
+    active: true
   },
   {
     id: "bam-adebayo",
@@ -1026,7 +1061,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 8.8,
     apgCareer: 3.4,
     position: "C",
-    nbaId: "1628389"
+    nbaId: "1628389",
+    active: true
   },
   {
     id: "draymond-green",
@@ -1048,7 +1084,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 6.9,
     apgCareer: 5.5,
     position: "PF",
-    nbaId: "203110"
+    nbaId: "203110",
+    active: true
   },
   {
     id: "klay-thompson",
@@ -1070,7 +1107,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 3.5,
     apgCareer: 2.3,
     position: "SG",
-    nbaId: "202691"
+    nbaId: "202691",
+    active: true
   },
   {
     id: "andre-iguodala",
@@ -1092,7 +1130,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.9,
     apgCareer: 4.2,
     position: "SF",
-    nbaId: "2738"
+    nbaId: "2738",
+    active: false
   },
   {
     id: "rudy-gobert",
@@ -1114,7 +1153,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 11.7,
     apgCareer: 1.2,
     position: "C",
-    nbaId: "203497"
+    nbaId: "203497",
+    active: true
   },
   {
     id: "karl-anthony-towns",
@@ -1136,7 +1176,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 10.8,
     apgCareer: 3.2,
     position: "C",
-    nbaId: "1626157"
+    nbaId: "1626157",
+    active: true
   },
   {
     id: "pascal-siakam",
@@ -1158,7 +1199,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 6.7,
     apgCareer: 3.5,
     position: "PF",
-    nbaId: "1627783"
+    nbaId: "1627783",
+    active: true
   },
   {
     id: "kyle-lowry",
@@ -1180,7 +1222,8 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
     rpgCareer: 4.4,
     apgCareer: 5.9,
     position: "PG",
-    nbaId: "200768"
+    nbaId: "200768",
+    active: true
   }
 ]
 
