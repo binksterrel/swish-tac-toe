@@ -10,24 +10,6 @@ const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"], varia
 export const metadata: Metadata = {
   title: 'Swish Tac Toe - Official NBA Grid Game',
   description: 'The official-style NBA trivia game. Test your knowledge with the daily grid.',
-
-  icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
-  },
 }
 
 import { LanguageProvider } from '@/contexts/language-context'

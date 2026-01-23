@@ -117,6 +117,11 @@ export const translations = {
       load_more: "LOAD MORE PLAYERS",
       no_results: "NO PLAYERS FOUND",
       no_results_desc: "Try adjusting your filters or search term.",
+    },
+    notFound: {
+      title: "AIRBALL",
+      description: "You missed the rim completely. This page doesn't exist.",
+      button: "RETURN TO COURT"
     }
   },
   fr: {
@@ -236,6 +241,11 @@ export const translations = {
       load_more: "CHARGER PLUS",
       no_results: "AUCUN JOUEUR TROUVÉ",
       no_results_desc: "Essayez de modifier votre recherche ou vos filtres.",
+    },
+    notFound: {
+      title: "AIRBALL",
+      description: "Tu as complètement raté le cercle. Cette page n'existe pas.",
+      button: "RETOUR SUR LE PARQUET"
     }
   }
 }
