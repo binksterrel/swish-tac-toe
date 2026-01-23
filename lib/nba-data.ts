@@ -1305,6 +1305,7 @@ export type CriteriaType =
   | "rpg" 
   | "apg"
   | "position"
+  | "draft_pick_1"
 
 export interface Criteria {
   type: CriteriaType
@@ -1355,6 +1356,7 @@ export const AWARD_CRITERIA: Criteria[] = [
   { type: "allStar", value: "true", label: "All-Star" },
   { type: "allNBA", value: "true", label: "All-NBA" },
   { type: "allDefensive", value: "true", label: "All-Defensive" },
+  { type: "draft_pick_1", value: "true", label: "Picked 1st" },
 ]
 
 export const STAT_CRITERIA: Criteria[] = [
@@ -1386,6 +1388,14 @@ export const POSITION_CRITERIA: Criteria[] = [
   { type: "position", value: "C", label: "Pivot" },
 ]
 
+// List of First Overall Picks (User Provided)
+// Note: Includes "Akeem Olajuwon" which acts as "Hakeem Olajuwon" alias if needed, 
+// but we should probably support both or just normalize.
+// For now, simple includes check.
+const DRAFT_NUMBER_ONES = [
+  "Clifton McNeely", "Andy Tonkovich", "Howie Shannon", "Charlie Share", "Gene Melchiorre", "Mark Workman", "Ray Felix", "Frank Selvy", "Dick Ricketts", "Sihugo Green", "Rod Hundley", "Elgin Baylor", "Bob Boozer", "Oscar Robertson", "Walt Bellamy", "Bill McGill", "Art Heyman", "Jim Barnes", "Fred Hetzel", "Cazzie Russell", "Jimmy Walker", "Elvin Hayes", "Lew Alcindor", "Bob Lanier", "Austin Carr", "LaRue Martin", "Doug Collins", "Bill Walton", "David Thompson", "John Lucas", "Kent Benson", "Mychal Thompson", "Magic Johnson", "Joe Barry Carroll", "Mark Aguirre", "James Worthy", "Ralph Sampson", "Akeem Olajuwon", "Hakeem Olajuwon", "Patrick Ewing", "Brad Daugherty", "David Robinson", "Danny Manning", "Pervis Ellison", "Derrick Coleman", "Larry Johnson", "Shaquille O'Neal", "Chris Webber", "Glenn Robinson", "Joe Smith", "Allen Iverson", "Tim Duncan", "Michael Olowokandi", "Elton Brand", "Kenyon Martin", "Kwame Brown", "Yao Ming", "LeBron James", "Dwight Howard", "Andrew Bogut", "Andrea Bargnani", "Greg Oden", "Derrick Rose", "Blake Griffin", "John Wall", "Kyrie Irving", "Anthony Davis", "Anthony Bennett", "Andrew Wiggins", "Karl-Anthony Towns", "Ben Simmons", "Markelle Fultz", "Deandre Ayton", "Zion Williamson", "Anthony Edwards", "Cade Cunningham", "Paolo Banchero", "Victor Wembanyama", "Zaccharie Risacher", "Cooper Flagg" // Added Hakeem explicitly to safe
+].map(n => n.toLowerCase());
+
 // Check if player matches a criteria
 export function matchesCriteria(player: NBAPlayer, criteria: Criteria): boolean {
   switch (criteria.type) {
@@ -1405,6 +1415,10 @@ export function matchesCriteria(player: NBAPlayer, criteria: Criteria): boolean 
       return player.allNBA
     case "allDefensive":
       return player.allDefensive
+    case "draft_pick_1":
+      return DRAFT_NUMBER_ONES.includes(player.name.toLowerCase()) || 
+             (player.name === "Hakeem Olajuwon" && DRAFT_NUMBER_ONES.includes("akeem olajuwon")) || 
+             (player.name === "Kareem Abdul-Jabbar" && DRAFT_NUMBER_ONES.includes("lew alcindor"));
     case "decade":
       return player.decades.includes(criteria.value)
     case "country":
