@@ -22,6 +22,18 @@ L'objectif était de créer une expérience de jeu **sans latence** capable de v
 *   **🎨 UI/UX Premium** : Design System cohérent "Dark & Neon", animations fluides (Framer Motion / CSS), et responsive design mobile-first.
 *   **🌐 Internationalisation (i18n)** : Support complet FR/EN via React Context.
 
+## 🎮 Fonctionnalités de Jeu
+
+*   **Grille Interactive 3x3** : Sélectionnez des joueurs pour remplir les cases en fonction de critères dynamiques.
+*   **Base de Données Massive** : Comprend des milliers de joueurs NBA (actifs et retraités), alimentée par l'API officielle de la NBA et les données Wikipédia.
+*   **Validation en Temps Réel** : Feedback instantané pour savoir si un joueur correspond aux critères sélectionnés.
+*   **Modes de Difficulté** :
+    *   **Facile** : Critères standards d'équipes et de récompenses.
+    *   **Difficile** : Inclut des statistiques plus poussées, les joueurs internationaux et les décennies de jeu.
+*   **Mode Aveugle** : Les critères sont cachés jusqu'au lancement de la partie.
+*   **Recherche Intelligente** : Recherche de joueurs optimisée pour éviter les spoils (masquage des équipes/statuts).
+*   **Design Responsive** : Conçu pour être joué sur ordinateur et mobile grâce à Tailwind CSS.
+
 ## 🛠️ Stack Technique & Décisions d'Ingénierie
 
 ### Frontend
