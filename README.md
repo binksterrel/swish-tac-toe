@@ -7,7 +7,7 @@
 
 **Swish Tac Toe** est une application web interactive de type "Immaculate Grid" développée avec une architecture moderne et performante. Ce projet démontre l'intégration de données complexes (NBA Stats API) dans une interface utilisateur fluide et réactive.
 
-🔗 **Demo Live** : [swish-tac-toe.vercel.app](https://swish-tac-toe.vercel.app) *(insérer lien si dispo)*
+🔗 **Demo Live** : [swish-tac-toe.vercel.app](https://swish-tac-toe.vercel.app)
 
 ## 🎯 Vision du Projet
 
