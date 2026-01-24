@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { PlayerCard } from "@/components/players/player-card"
 import { useLanguage } from "@/contexts/language-context"
-import { NBATicker } from "@/components/nba-ticker"
-import { Header } from "@/components/header"
+import { NBATicker } from "@/components/layout/nba-ticker"
+import { Header } from "@/components/layout/header"
 
 export default function PlayersPage() {
   const { t } = useLanguage()

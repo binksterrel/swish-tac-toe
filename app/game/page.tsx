@@ -1,10 +1,10 @@
 "use client"
 
 import { NBAGame } from "@/components/game/nba-game"
-import { NBATicker } from "@/components/nba-ticker"
+import { NBATicker } from "@/components/layout/nba-ticker"
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import { Header } from "@/components/header"
+import { Header } from "@/components/layout/header"
 
 export default function Home() {
   const { t } = useLanguage()

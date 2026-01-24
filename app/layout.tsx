@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 import { LanguageProvider } from '@/contexts/language-context'
-import { LanguageToggle } from '@/components/language-toggle'
+import { LanguageToggle } from '@/components/layout/language-toggle'
 
 export default function RootLayout({
   children,

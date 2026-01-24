@@ -1,7 +1,7 @@
 "use client"
 
-import { NBATicker } from "@/components/nba-ticker"
-import { Header } from "@/components/header"
+import { NBATicker } from "@/components/layout/nba-ticker"
+import { Header } from "@/components/layout/header"
 import { useLanguage } from "@/contexts/language-context"
 import { Trophy, Clock, Frown, PartyPopper, History, Play } from "lucide-react"
 import { useState, useEffect } from "react"

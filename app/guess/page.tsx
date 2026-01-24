@@ -1,6 +1,6 @@
 import { GuessGame } from "@/components/guess/guess-game"
-import { Header } from "@/components/header"
-import { NBATicker } from "@/components/nba-ticker"
+import { Header } from "@/components/layout/header"
+import { NBATicker } from "@/components/layout/nba-ticker"
 
 export default function GuessPage() {
   return (

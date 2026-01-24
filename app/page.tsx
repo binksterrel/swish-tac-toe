@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { NBATicker } from "@/components/nba-ticker"
+import { NBATicker } from "@/components/layout/nba-ticker"
 import { Trophy, Grid3x3, Users, Play, Star, Sparkles, ChevronRight, Activity } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
