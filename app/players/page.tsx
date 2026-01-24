@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { NBAPlayer, ALL_NBA_PLAYERS } from "@/lib/nba-data"
+import { NBAPlayer, ALL_NBA_PLAYERS, TEAM_CRITERIA } from "@/lib/nba-data"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -21,8 +21,38 @@ export default function PlayersPage() {
   const [hasMore, setHasMore] = useState(true)
   const PLAYERS_PER_PAGE = 24
 
-  // Get unique teams for filter
-  const allTeams = Array.from(new Set(players.flatMap(p => p.teams))).sort()
+  const TEAM_NAMES: Record<string, string> = {
+    "ATL": "Atlanta Hawks",
+    "BOS": "Boston Celtics",
+    "BKN": "Brooklyn Nets",
+    "CHA": "Charlotte Hornets",
+    "CHI": "Chicago Bulls",
+    "CLE": "Cleveland Cavaliers",
+    "DAL": "Dallas Mavericks",
+    "DEN": "Denver Nuggets",
+    "DET": "Detroit Pistons",
+    "GSW": "Golden State Warriors",
+    "HOU": "Houston Rockets",
+    "IND": "Indiana Pacers",
+    "LAC": "Los Angeles Clippers",
+    "LAL": "Los Angeles Lakers",
+    "MEM": "Memphis Grizzlies",
+    "MIA": "Miami Heat",
+    "MIL": "Milwaukee Bucks",
+    "MIN": "Minnesota Timberwolves",
+    "NOP": "New Orleans Pelicans",
+    "NYK": "New York Knicks",
+    "OKC": "Oklahoma City Thunder",
+    "ORL": "Orlando Magic",
+    "PHI": "Philadelphia 76ers",
+    "PHX": "Phoenix Suns",
+    "POR": "Portland Trail Blazers",
+    "SAC": "Sacramento Kings",
+    "SAS": "San Antonio Spurs",
+    "TOR": "Toronto Raptors",
+    "UTA": "Utah Jazz",
+    "WAS": "Washington Wizards"
+  }
 
   useEffect(() => {
     // Load players client-side to avoid hydration issues with large data
@@ -93,8 +123,10 @@ export default function PlayersPage() {
                </SelectTrigger>
                <SelectContent>
                  <SelectItem value="ALL">{t('players.filter_all_teams')}</SelectItem>
-                 {allTeams.map(team => (
-                   <SelectItem key={team} value={team}>{team}</SelectItem>
+                 {TEAM_CRITERIA.sort((a, b) => (TEAM_NAMES[a.value] || a.value).localeCompare(TEAM_NAMES[b.value] || b.value)).map(team => (
+                   <SelectItem key={team.value} value={team.value}>
+                    {TEAM_NAMES[team.value] || `${team.value} - ${team.label}`}
+                   </SelectItem>
                  ))}
                </SelectContent>
              </Select>

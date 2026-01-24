@@ -42,42 +42,50 @@ export function Header() {
             {/* Navigation / Stats - Digital Look */}
             {/* MATCHS | STATS | CLASSEMENT | GEST | JOUEURS | CONNEXION */}
             <div className="hidden md:flex items-center gap-1 bg-gray-900/80 p-1 rounded-sm border border-gray-800">
-               {[t('game.games'), t('game.stats'), t('game.standings')].map(item => (
-                 <button key={item} className="px-4 py-2 text-sm font-bold uppercase text-gray-400 hover:text-white hover:bg-gray-800 transition-colors rounded-sm cursor-not-allowed opacity-50" title="Coming Soon">
-                   {item}
-                 </button>
-               ))}
+                {/* MATCHS */}
+               <Link href="/games" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
+                   pathname === '/games' ? 'text-white bg-gray-800' : 'text-gray-400'
+               }`}>
+                   {t('game.games')}
+               </Link>
+
+               {/* STATS */}
+               <Link href="/stats" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
+                   pathname === '/stats' ? 'text-white bg-gray-800' : 'text-gray-400'
+               }`}>
+                   {t('game.stats')}
+               </Link>
+
+               {/* CLASSEMENT (STANDINGS) - Still disabled or link to stats? Let's leave disabled or point to stats. Keeping disabled for now as user didn't ask for it explicitly */}
+               <button className="px-4 py-2 text-sm font-bold uppercase text-gray-400 hover:text-white hover:bg-gray-800 transition-colors rounded-sm cursor-not-allowed opacity-50" title="Coming Soon">
+                   {t('game.standings')}
+               </button>
                
                {/* SWISH Link */}
-               <Link href="/game">
-                   <Button 
-                       variant="ghost" 
-                       size="sm"
-                       className={`font-bold tracking-widest uppercase ${pathname === '/game' || pathname === '/' ? 'text-white bg-white/10' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
-                   >
-                       <Trophy className="w-4 h-4 mr-2 text-nba-blue" />
+               <Link href="/game" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
+                   pathname === '/game' || pathname === '/' ? 'text-white bg-gray-800' : 'text-gray-400'
+               }`}>
+                   <span className="flex items-center gap-2">
+                       <Trophy className="w-3 h-3" />
                        {t('game.swish')}
-                   </Button>
+                   </span>
                </Link>
 
                {/* GEST Link */}
-               <Link href="/guess" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm flex items-center gap-2 border ${
-                   pathname === '/guess' 
-                   ? 'text-white bg-white/10 border-white/20' 
-                   : 'text-slate-400 hover:text-white hover:bg-slate-800 border-transparent'
+               <Link href="/guess" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
+                   pathname === '/guess' ? 'text-white bg-gray-800' : 'text-gray-400'
                }`}>
-                  <Sparkles className={`w-3 h-3 ${pathname === '/guess' ? 'text-white' : 'text-slate-400'}`} />
-                  {t('game.gest')}
+                   <span className="flex items-center gap-2">
+                       <Sparkles className="w-3 h-3" />
+                       {t('game.gest')}
+                   </span>
                </Link>
 
                {/* Players Link */}
-               <Link href="/players" className={`px-4 py-2 text-sm font-bold uppercase transition-all rounded-sm shadow-sm flex items-center gap-2 border ${
-                   pathname === '/players'
-                   ? 'text-white bg-slate-800 border-blue-500'
-                   : 'text-slate-400 bg-slate-900 border-slate-700 hover:bg-slate-800 hover:text-white'
+               <Link href="/players" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
+                   pathname === '/players' ? 'text-white bg-gray-800' : 'text-gray-400'
                }`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${pathname === '/players' ? 'bg-green-500 animate-pulse' : 'bg-slate-600'}`}></span>
-                  {t('game.players_db')}
+                   {t('game.players_db')}
                </Link>
                
                <div className="w-px h-6 bg-gray-700 mx-2"></div>

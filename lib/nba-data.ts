@@ -1306,6 +1306,7 @@ export type CriteriaType =
   | "apg"
   | "position"
   | "draft_pick_1"
+  | "draft_top_3"
 
 export interface Criteria {
   type: CriteriaType
@@ -1357,6 +1358,7 @@ export const AWARD_CRITERIA: Criteria[] = [
   { type: "allNBA", value: "true", label: "All-NBA" },
   { type: "allDefensive", value: "true", label: "All-Defensive" },
   { type: "draft_pick_1", value: "true", label: "Picked 1st" },
+  { type: "draft_top_3", value: "true", label: "Top 3 Pick" },
 ]
 
 export const STAT_CRITERIA: Criteria[] = [
@@ -1396,6 +1398,43 @@ const DRAFT_NUMBER_ONES = [
   "Clifton McNeely", "Andy Tonkovich", "Howie Shannon", "Charlie Share", "Gene Melchiorre", "Mark Workman", "Ray Felix", "Frank Selvy", "Dick Ricketts", "Sihugo Green", "Rod Hundley", "Elgin Baylor", "Bob Boozer", "Oscar Robertson", "Walt Bellamy", "Bill McGill", "Art Heyman", "Jim Barnes", "Fred Hetzel", "Cazzie Russell", "Jimmy Walker", "Elvin Hayes", "Lew Alcindor", "Bob Lanier", "Austin Carr", "LaRue Martin", "Doug Collins", "Bill Walton", "David Thompson", "John Lucas", "Kent Benson", "Mychal Thompson", "Magic Johnson", "Joe Barry Carroll", "Mark Aguirre", "James Worthy", "Ralph Sampson", "Akeem Olajuwon", "Hakeem Olajuwon", "Patrick Ewing", "Brad Daugherty", "David Robinson", "Danny Manning", "Pervis Ellison", "Derrick Coleman", "Larry Johnson", "Shaquille O'Neal", "Chris Webber", "Glenn Robinson", "Joe Smith", "Allen Iverson", "Tim Duncan", "Michael Olowokandi", "Elton Brand", "Kenyon Martin", "Kwame Brown", "Yao Ming", "LeBron James", "Dwight Howard", "Andrew Bogut", "Andrea Bargnani", "Greg Oden", "Derrick Rose", "Blake Griffin", "John Wall", "Kyrie Irving", "Anthony Davis", "Anthony Bennett", "Andrew Wiggins", "Karl-Anthony Towns", "Ben Simmons", "Markelle Fultz", "Deandre Ayton", "Zion Williamson", "Anthony Edwards", "Cade Cunningham", "Paolo Banchero", "Victor Wembanyama", "Zaccharie Risacher", "Cooper Flagg" // Added Hakeem explicitly to safe
 ].map(n => n.toLowerCase());
 
+// List of Second Overall Picks (User Provided)
+const DRAFT_NUMBER_TWOS = [
+    // 2021-2025
+    "Jalen Green", "Chet Holmgren", "Brandon Miller", "Alex Sarr", "Dylan Harper",
+    // 2000-2020
+    "James Wiseman", "Ja Morant", "Marvin Bagley", "Lonzo Ball", "Brandon Ingram", "D'Angelo Russell", "Jabari Parker", "Victor Oladipo", "Michael Kidd-Gilchrist", "Derrick Williams", "Evan Turner",
+    "Hasheem Thabeet", "Michael Beasley", "Kevin Durant", "LaMarcus Aldridge", "Marvin Williams", "Emeka Okafor", "Darko Milicic", "Jay Williams", "Tyson Chandler", "Stromile Swift",
+    // 1980-1999
+    "Steve Francis", "Mike Bibby", "Keith Van Horn", "Marcus Camby", "Antonio McDyess", "Jason Kidd", "Shawn Bradley", "Alonzo Mourning", "Kenny Anderson", "Gary Payton",
+    "Danny Ferry", "Rik Smits", "Armon Gilliam", "Len Bias", "Wayman Tisdale", "Sam Bowie", "Steve Stipanovich", "Terry Cummings", "Isiah Thomas", "Darrell Griffith",
+    // 1960-1979
+    "David Greenwood", "Phil Ford", "Otis Birdsong", "Scott May", "David Meyers", "Marvin Barnes", "Jim Brewer", "Bob McAdoo", "Sidney Wicks", "Rudy Tomjanovich",
+    "Neal Walk", "Wes Unseld", "Earl Monroe", "Dave Bing", "Rick Barry", "Joe Caldwell", "Rod Thorn", "Paul Hogue", "Tom Stith", "Jerry West",
+    // 1950-1959
+    "Bailey Howell", "Archie Dees", "Charles Tyra", "Bill Russell", "Maurice Stokes", "Bob Pettit", "Bob Houbregs", "Jim Baechtold", "Mel Hutchins", "Don Rehfeldt"
+].map(n => n.toLowerCase());
+
+// List of Third Overall Picks (User Provided)
+const DRAFT_NUMBER_THREES = [
+    // 2020s
+    "V.J. Edgecombe", "Reed Sheppard", "Scoot Henderson", "Jabari Smith Jr.", "Evan Mobley", "LaMelo Ball",
+    // 2010s
+    "RJ Barrett", "Luka Dončić", "Jayson Tatum", "Jaylen Brown", "Jahlil Okafor", "Joel Embiid", "Otto Porter Jr.", "Bradley Beal", "Enes Kanter", "Derrick Favors",
+    // 2000s
+    "James Harden", "O.J. Mayo", "Al Horford", "Adam Morrison", "Deron Williams", "Ben Gordon", "Carmelo Anthony", "Mike Dunleavy Jr.", "Pau Gasol", "Darius Miles",
+    // 1990s
+    "Baron Davis", "Raef LaFrentz", "Chauncey Billups", "Shareef Abdur-Rahim", "Jerry Stackhouse", "Grant Hill", "Penny Hardaway", "Christian Laettner", "Billy Owens", "Chris Jackson", "Mahmoud Abdul-Rauf",
+    // 1980s
+    "Sean Elliott", "Charles Smith", "Dennis Hopson", "Chris Washburn", "Benoit Benjamin", "Michael Jordan", "Rodney McCray", "Dominique Wilkins", "Buck Williams", "Kevin McHale",
+    // 1970s
+    "Bill Cartwright", "Rick Robey", "Marques Johnson", "Richard Washington", "Marvin Webster", "Tommy Burleson", "Ernie DiGregorio", "Dwight Davis", "Elmore Smith", "Pete Maravich",
+    // 1960s
+    "Lucius Allen", "Bob Kauffman", "Clem Haskins", "Clyde Lee", "Dave Stallworth", "Gary Bradds", "Nate Thurmond", "Zelmo Beaty", "Larry Siegfried", "Darrall Imhoff",
+    // 1950s & Pre
+    "Wilt Chamberlain", "Mike Farmer", "Jim Krebs", "Jim Paxson Sr.", "Jim Loscutoff", "Gene Shue", "Jack Molinas", "Dick Groat", "Marc Freiberger", "Bob Cousy", "Fred Schaus", "George Hauptfuhrer", "Bulbs Ehlers"
+].map(n => n.toLowerCase());
+
 // Check if player matches a criteria
 export function matchesCriteria(player: NBAPlayer, criteria: Criteria): boolean {
   switch (criteria.type) {
@@ -1419,6 +1458,13 @@ export function matchesCriteria(player: NBAPlayer, criteria: Criteria): boolean 
       return DRAFT_NUMBER_ONES.includes(player.name.toLowerCase()) || 
              (player.name === "Hakeem Olajuwon" && DRAFT_NUMBER_ONES.includes("akeem olajuwon")) || 
              (player.name === "Kareem Abdul-Jabbar" && DRAFT_NUMBER_ONES.includes("lew alcindor"));
+    case "draft_top_3":
+      const name = player.name.toLowerCase();
+      return DRAFT_NUMBER_ONES.includes(name) || 
+             DRAFT_NUMBER_TWOS.includes(name) || 
+             DRAFT_NUMBER_THREES.includes(name) ||
+        	   (name === "hakeem olajuwon" && DRAFT_NUMBER_ONES.includes("akeem olajuwon")) || 
+             (name === "kareem abdul-jabbar" && DRAFT_NUMBER_ONES.includes("lew alcindor"));
     case "decade":
       return player.decades.includes(criteria.value)
     case "country":
@@ -1620,9 +1666,11 @@ export function generateGrid(
 
   // Fallback if retries exhausted (just return the last attempt)
   console.warn("Could not generate perfect grid after retries.");
+  // Shuffle one last time for the fallback to ensure variety
+  const fallbackShuffled = [...allCriteria].sort(() => Math.random() - 0.5);
   return { 
-      rows: allCriteria.slice(0, size), 
-      cols: allCriteria.slice(size, size * 2) 
+      rows: fallbackShuffled.slice(0, size), 
+      cols: fallbackShuffled.slice(size, size * 2) 
   }
 }
 

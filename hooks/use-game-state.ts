@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback, useEffect, useRef } from "react"
 import {
   type Criteria,
   type NBAPlayer,
@@ -96,6 +96,7 @@ export function useGameState() {
     setGameTime(0)
     setIsGameActive(false) 
     setIsLoading(false)
+    gameSavedRef.current = false
   }, [])
 
   const startGame = useCallback(() => {
@@ -298,6 +299,42 @@ export function useGameState() {
     },
     [gameState, gameTime]
   )
+
+  // History Saving Effect
+  const gameSavedRef = useRef(false)
+
+  useEffect(() => {
+      // If game just initialized (loading or no state), do nothing or reset ref?
+      // Ref reset is handled in initGame.
+      
+      if (gameState && gameState.gameOver && !gameSavedRef.current) {
+          gameSavedRef.current = true
+          
+          try {
+                const correct = gameState.grid.flat().filter(c => c.status === "correct").length
+                const mistakes = gameState.attempts - correct
+                
+                const historyItem = {
+                    date: new Date().toISOString(),
+                    score: gameState.score,
+                    correct,
+                    mistakes, 
+                    total: gameState.gridSize * gameState.gridSize,
+                    difficulty: gameState.difficulty,
+                    mode: gameState.mode,
+                    time: gameTime + (gameState.mode !== "time_attack" ? 0 : 0) // Approximation if needed, but gameTime is state
+                }
+                
+                const existingHistory = localStorage.getItem("nba-ttt-history")
+                const history = existingHistory ? JSON.parse(existingHistory) : []
+                history.unshift(historyItem)
+                localStorage.setItem("nba-ttt-history", JSON.stringify(history.slice(0, 50)))
+            } catch (err) {
+                console.error("Failed to save history:", err)
+            }
+      }
+  }, [gameState?.gameOver, gameState?.score, gameState?.grid, gameState?.difficulty, gameState?.mode, gameState?.gridSize, gameTime, gameState])
+
 
   return {
     gameState,

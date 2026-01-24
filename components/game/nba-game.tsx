@@ -159,6 +159,7 @@ export function NBAGame() {
           correctCells={correctCells}
           onNewGame={() => initGame(gameState.difficulty, gameState.mode, gameState.gridSize)}
           gridSize={gameState.gridSize}
+          gameTime={gameTime}
         />
       )}
     </div>

@@ -43,7 +43,7 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
       case "mvp": return "KIA MVP"
       case "champion": return "NBA CHAMP"
       case "allStar": return "ALL-STAR"
-      case "roy": return "R.O.Y"
+      case "roy": return "ROY"
       case "dpoy": return "DPOY"
       case "allNBA": return "ALL-NBA"
       case "allDefensive": return "ALL-DEFENSE"
@@ -53,6 +53,7 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
       case "apg": return "AST > 10"
       case "position": return criteria.label || criteria.value
       case "draft_pick_1": return "1ST PICK"
+      case "draft_top_3": return "TOP 3 PICK"
       // Country fallback label if image fails
       case "country": return criteria.label || criteria.value
       default: return criteria.value.toUpperCase()
@@ -116,7 +117,20 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
                          <div className="flex flex-col items-center justify-center mb-1 transition-all hover:scale-110">
                             <Crown className="w-8 h-8 md:w-10 md:h-10 text-amber-400 mb-1" strokeWidth={1.5} />
                             <span className="text-[8px] md:text-[10px] font-heading font-bold uppercase tracking-widest text-amber-500/80 leading-none">
-                                DRAFT
+                                1ST PICK
+                            </span>
+                         </div>
+                    )}
+
+                    {/* DRAFT TOP 3 */}
+                    {criteria.type === "draft_top_3" && (
+                         <div className="flex flex-col items-center justify-center mb-1 transition-all hover:scale-110">
+                            <div className="relative">
+                                <Crown className="w-8 h-8 md:w-10 md:h-10 text-slate-300 mb-1" strokeWidth={1.5} />
+                                <span className="absolute -top-1 -right-2 text-[10px] font-bold text-amber-400 bg-black/80 px-1 rounded-full border border-amber-400/50">3</span>
+                            </div>
+                            <span className="text-[8px] md:text-[10px] font-heading font-bold uppercase tracking-widest text-slate-400 leading-none">
+                                TOP 3 DRAFT
                             </span>
                          </div>
                     )}
@@ -133,7 +147,7 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
                     )}
 
                     {/* TEXT LABELS (For Awards, Stats, Decades, or Fallbacks) */}
-                    {!isTeam && !isCountry && criteria.type !== "draft_pick_1" && (criteria.type as string) !== "champion" && (
+                    {!isTeam && !isCountry && criteria.type !== "draft_pick_1" && criteria.type !== "draft_top_3" && (criteria.type as string) !== "champion" && (
                         <div className="flex flex-col items-center">
                             {/* Accent Line for awards */}
                             <div className={cn("w-8 h-1 mb-1", 

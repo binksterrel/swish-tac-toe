@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { Trophy, RotateCcw, Share2, Frown, PartyPopper } from "lucide-react"
+import { Trophy, RotateCcw, Share2, Frown, PartyPopper, Timer } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -11,6 +11,7 @@ interface GameOverModalProps {
   correctCells: number
   onNewGame: () => void
   gridSize?: number
+  gameTime?: number
 }
 
 export function GameOverModal({
@@ -19,6 +20,7 @@ export function GameOverModal({
   correctCells,
   onNewGame,
   gridSize = 3,
+  gameTime = 0,
 }: GameOverModalProps) {
   const { t } = useLanguage()
   const totalCells = gridSize * gridSize
@@ -39,11 +41,24 @@ export function GameOverModal({
   // @ts-ignore - dynamic keys
   const description = t(`game.result_desc_${tier}`)
 
+  // Format time
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, "0")}`
+  }
+
   const handleShare = () => {
-    const text = `NBA Tiki Taka Toe\n${title}\nScore : ${score}\nCases : ${correctCells}/${totalCells}\n\nJouez sur : ${window.location.href}`
+    const timeStr = gameTime > 0 ? `\nTemps : ${formatTime(gameTime)}` : ""
+    const text = `NBA Tiki Taka Toe\n${title}\nScore : ${score}\nCases : ${correctCells}/${totalCells}${timeStr}\n\nJouez sur : ${window.location.href}`
     
     if (navigator.share) {
-      navigator.share({ text })
+      navigator.share({ text }).catch((err) => {
+        // Ignore AbortError which happens if user cancels share
+        if (err.name !== 'AbortError') {
+            console.error('Share failed:', err)
+        }
+      })
     } else {
       navigator.clipboard.writeText(text)
     }
@@ -81,6 +96,18 @@ export function GameOverModal({
               {score}
             </span>
           </div>
+          
+          {/* Time Display */}
+          {gameTime > 0 && (
+             <div className="flex justify-between items-center">
+               <span className="text-muted-foreground">Temps</span>
+               <span className="text-lg font-semibold text-foreground flex items-center gap-2">
+                 <Timer className="w-4 h-4 text-muted-foreground" />
+                 {formatTime(gameTime)}
+               </span>
+             </div>
+          )}
+
           <div className="flex justify-between items-center">
             <span className="text-muted-foreground">{t('game.found')}</span>
             <span className="text-lg font-semibold text-foreground">
