@@ -153,7 +153,7 @@ export default function LandingPage() {
              <div className="h-px w-12 bg-white/20"></div>
          </div>
          <p className="text-[10px] uppercase tracking-widest text-slate-500 font-mono">
-            &copy; 2024 SWISH TAC TOE • {t('landing.footer')}
+            &copy; 2026 SWISH TAC TOE • {t('landing.footer')}
          </p>
       </footer>
 

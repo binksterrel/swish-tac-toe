@@ -41,7 +41,7 @@ export default function Home() {
             <a href="#" className="hover:text-white transition-colors">{t('game.help')}</a>
           </div>
           <p className="text-[10px] md:text-xs font-mono">
-            &copy; 2024 NBA MEDIA VENTURES, LLC. {t('game.rights')}
+            &copy; 2026 NBA MEDIA VENTURES, LLC. {t('game.rights')}
           </p>
         </div>
       </footer>
