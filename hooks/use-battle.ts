@@ -11,6 +11,22 @@ export function useBattle(code: string, initialPlayerName?: string) {
     const [myPlayerName, setMyPlayerName] = useState(initialPlayerName || "")
     const [error, setError] = useState<string | null>(null)
 
+    // Load Initial State from LocalStorage (for Host)
+    useEffect(() => {
+        if (!code) return
+        
+        // Try to load local state (Host persistence)
+        const saved = localStorage.getItem(`battle_state_${code}`)
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved)
+                setState(parsed)
+            } catch (e) {
+                console.error("Failed to load local state", e)
+            }
+        }
+    }, [code])
+
     // Pusher Subscription
     useEffect(() => {
         if (!code) return

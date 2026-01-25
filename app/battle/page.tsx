@@ -19,7 +19,11 @@ export default function BattlePage() {
             })
             const data = await res.json()
             if (data.code) {
-                // Redirect to room with state
+                // Save state to localStorage so we can load it in the room (since we don't have a DB)
+                // The Host becomes the "Source of Truth" for this session
+                localStorage.setItem(`battle_state_${data.code}`, JSON.stringify(data))
+                
+                // Redirect to room
                 router.push(`/battle/${data.code}?role=host&name=${encodeURIComponent(name)}`)
             } else {
                 console.error("Creation failed:", data)
