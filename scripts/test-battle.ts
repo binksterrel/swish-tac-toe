@@ -43,7 +43,18 @@ async function test() {
         await pusherServer.trigger('debug-channel', 'debug-event', { message: 'Ceci est un test' })
         console.log("✅ Connexion Pusher RÉUSSIE ! (Message envoyé)")
         
-        console.log("\n🎉 TOUT FONCTIONNE ! Le problème ne vient pas du serveur.")
+        // 4. Test Supabase
+        const { supabaseAdmin } = await import('../lib/supabase')
+        console.log("\n4️⃣ Test de Connexion Supabase...")
+        const { data, error } = await supabaseAdmin.from('battles').select('count').limit(1)
+        if (error) {
+            console.error("❌ Erreur Supabase:", error.message)
+            if (error.code === '42P01') console.error("   -> La table 'battles' n'existe pas ! Avez-vous exécuté le SQL ?")
+        } else {
+             console.log("✅ Connexion Supabase RÉUSSIE ! (Table 'battles' accessible)")
+        }
+
+        console.log("\n🎉 DIAGNOSTIC TERMINÉ")
     } catch (e: any) {
         console.error("\n❌ ÉCHEC DU TEST :", e)
         if (e.message) console.error("Message d'erreur :", e.message)
