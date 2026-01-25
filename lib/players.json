@@ -98134,36 +98134,6 @@
     "awards_checked": true
   },
   {
-    "id": "luka-dončić",
-    "name": "Luka Dončić",
-    "teams": [
-      "DAL",
-      "LAL"
-    ],
-    "awards": [
-      "All-Star",
-      "ROY"
-    ],
-    "allStar": true,
-    "champion": false,
-    "championYears": [],
-    "mvp": false,
-    "dpoy": false,
-    "roy": true,
-    "allNBA": true,
-    "allDefensive": false,
-    "college": "",
-    "country": "USA",
-    "decades": [],
-    "ppgCareer": 0,
-    "rpgCareer": 0,
-    "apgCareer": 0,
-    "position": "",
-    "nbaId": "1629029",
-    "active": true,
-    "awards_checked": true
-  },
-  {
     "id": "luka-garza",
     "name": "Luka Garza",
     "teams": [
