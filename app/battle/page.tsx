@@ -21,6 +21,9 @@ export default function BattlePage() {
             if (data.code) {
                 // Redirect to room with state
                 router.push(`/battle/${data.code}?role=host&name=${encodeURIComponent(name)}`)
+            } else {
+                console.error("Creation failed:", data)
+                setIsLoading(false)
             }
         } catch (e) {
             console.error(e)

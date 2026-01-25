@@ -37,6 +37,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json(initialState)
     } catch (e) {
-        return NextResponse.json({ error: 'Failed to create battle' }, { status: 500 })
+        console.error("Battle Create Error:", e)
+        return NextResponse.json({ error: 'Failed to create battle', details: String(e) }, { status: 500 })
     }
 }
