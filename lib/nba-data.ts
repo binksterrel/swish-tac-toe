@@ -653,7 +653,7 @@ const MANUAL_PLAYERS: NBAPlayer[] = [
   {
     id: "zion-williamson",
     name: "Zion Williamson",
-    teams: ["NOH"],
+    teams: ["NOP"],
     awards: [],
     allStar: true,
     champion: false,
