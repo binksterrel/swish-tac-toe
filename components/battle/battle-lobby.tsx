@@ -49,7 +49,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
                </div>
                
                <Button 
-                 onClick={() => setMode('create')} 
+                 onClick={handleCreate} 
                  className="w-full bg-nba-blue hover:bg-blue-700 h-14 text-lg font-bold uppercase tracking-widest disabled:opacity-50"
                  disabled={!name}
                >
@@ -66,19 +66,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
             </div>
           )}
 
-          {mode === 'create' && (
-             <div className="text-center animate-in fade-in">
-                <Spinner />
-                <p className="mt-4 text-sm text-slate-400">Creating stadium...</p>
-                {/* Actually this state is transient, usually we just fire onCreate */}
-                {/* But for UI flow, let's just trigger it immediately if button clicked above? 
-                    Ah, re-using button. Let's make it explicit. */}
-                 <div className="mt-4">
-                   <Button onClick={handleCreate} className="w-full bg-nba-blue h-12 font-bold uppercase">Start Hosting</Button>
-                   <Button onClick={() => setMode('menu')} variant="ghost" className="mt-2 w-full text-slate-500">Back</Button>
-                 </div>
-             </div>
-          )}
+          {/* Create Mode Removed - Direct Action */}
 
           {mode === 'join' && (
             <div className="space-y-4 animate-in slide-in-from-right-8">
