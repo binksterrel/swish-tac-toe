@@ -11,20 +11,27 @@ export function useBattle(code: string, initialPlayerName?: string) {
     const [myPlayerName, setMyPlayerName] = useState(initialPlayerName || "")
     const [error, setError] = useState<string | null>(null)
 
-    // Load Initial State from LocalStorage (for Host)
+    // Load Initial State from DB (Source of Truth)
     useEffect(() => {
         if (!code) return
         
-        // Try to load local state (Host persistence)
-        const saved = localStorage.getItem(`battle_state_${code}`)
-        if (saved) {
+        const fetchState = async () => {
             try {
-                const parsed = JSON.parse(saved)
-                setState(parsed)
+                const res = await fetch(`/api/battle/${code}`)
+                if (res.ok) {
+                    const data = await res.json()
+                    setState(data)
+                } else {
+                    console.error("Failed to load battle state")
+                    setError("Battle not found")
+                }
             } catch (e) {
-                console.error("Failed to load local state", e)
+                console.error(e)
+                setError("Connection error")
             }
         }
+
+        fetchState()
     }, [code])
 
     // Pusher Subscription

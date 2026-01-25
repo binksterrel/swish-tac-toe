@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { generateGrid } from '@/lib/nba-data'
 import { BattleState, GridCell } from '@/lib/battle-types'
+import { supabaseAdmin } from '@/lib/supabase'
 
 export const dynamic = 'force-dynamic'
 
@@ -16,26 +17,31 @@ export async function POST(req: Request) {
         const code = `NBA-${suffix}`
 
         // Generate Grid
-        const { rows, cols } = generateGrid('medium') // Default to Medium for Battle
+        const { rows, cols } = generateGrid('medium') 
         
-        // Initial Grid State (Empty)
+        // Initial Grid State
         const grid: GridCell[][] = Array(3).fill(null).map(() => 
             Array(3).fill(null).map(() => ({ player: null, status: 'empty' }))
         )
 
-        const initialState: BattleState = {
-            code,
-            grid,
-            criteria: { rows, cols },
-            players: {
-                host: { id: 'host-1', name: hostName, role: 'host' },
-                guest: null
-            },
-            currentTurn: 'host',
-            winner: null
+        // Insert into Supabase
+        const { error } = await supabaseAdmin
+            .from('battles')
+            .insert({
+                code,
+                grid,
+                criteria: { rows, cols },
+                host_name: hostName,
+                status: 'waiting',
+                current_turn: 'host'
+            })
+
+        if (error) {
+            console.error("Supabase Insert Error:", error)
+            throw error
         }
 
-        return NextResponse.json(initialState)
+        return NextResponse.json({ code })
     } catch (e) {
         console.error("Battle Create Error:", e)
         return NextResponse.json({ error: 'Failed to create battle', details: String(e) }, { status: 500 })
