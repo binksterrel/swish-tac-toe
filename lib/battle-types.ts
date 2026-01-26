@@ -35,6 +35,11 @@ export interface BattleState {
     host: boolean
     guest: boolean
   }
+  roundStatus?: 'playing' | 'round_over' | 'finished'
+  nextRoundReady?: {
+    host: boolean
+    guest: boolean
+  }
 }
 
 export interface BattleMove {

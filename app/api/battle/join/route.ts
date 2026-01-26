@@ -63,7 +63,9 @@ export async function POST(req: Request) {
             turnExpiry: updatedBattle.turn_expiry,
             roundNumber: updatedBattle.round_number || 1,
             scores: { host: updatedBattle.host_score || 0, guest: updatedBattle.guest_score || 0 },
-            skipVotes: updatedBattle.skip_votes
+            skipVotes: updatedBattle.skip_votes,
+            roundStatus: updatedBattle.round_status || 'playing',
+            nextRoundReady: updatedBattle.next_round_ready || { host: false, guest: false }
         }
 
         // Broadcast Full Sync (Ensures Host gets new Timer)

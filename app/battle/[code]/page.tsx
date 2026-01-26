@@ -17,7 +17,7 @@ export default function BattleRoom() {
     const roleParam = searchParams.get('role') as 'host' | 'guest'
     const nameParam = searchParams.get('name')
     
-    const { state, role, setRole, submitMove, voteSkip } = useBattle(code, nameParam || "")
+    const { state, role, setRole, submitMove, voteSkip, handleNextRound } = useBattle(code, nameParam || "")
     const [selectedCell, setSelectedCell] = useState<{row: number, col: number} | null>(null)
     const [copySuccess, setCopySuccess] = useState(false)
 
@@ -86,6 +86,7 @@ export default function BattleRoom() {
                     onCellClick={(r, c) => setSelectedCell({ row: r, col: c})}
                     selectedCell={selectedCell}
                     onVoteSkip={voteSkip}
+                    onNextRound={handleNextRound}
                 />
                 
                 {selectedCell && (

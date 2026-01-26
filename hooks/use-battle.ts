@@ -121,8 +121,18 @@ export function useBattle(code: string, initialPlayerName?: string) {
             
             if (!data.success) {
                 console.error("Move failed:", data.error)
-                // Revert on failure
-                setState(prevState)
+                // Provide visual feedback for "Invalid Move"
+                if (data.error && data.error.includes("Invalid")) {
+                     alert(data.error) // Simple alert for now, could be toast
+                }
+                
+                // If server sent a state (e.g. penalty), use it
+                if (data.state) {
+                    setState(data.state)
+                } else {
+                    // Otherwise revert locally
+                    setState(prevState)
+                }
             } else if (data.state) {
                 // Authoritative Update from Server
                 setState(data.state)
@@ -131,6 +141,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
             console.error(e)
             // Revert on Network Error
             setState(prevState)
+            alert("Network Error: Could not submit move.")
         }
     }
 
@@ -150,6 +161,22 @@ export function useBattle(code: string, initialPlayerName?: string) {
         })
     }
 
+    const handleNextRound = async (action: 'continue' | 'forfeit') => {
+        if (!code || !role) return
+        
+        try {
+            await fetch('/api/battle/next-round', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code, role, action })
+            })
+            // State update logic handles via Pusher sync usually, 
+            // but we could optimistic update "Ready" status if we wanted.
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
     return {
         state,
         setState,
@@ -157,6 +184,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
         setRole,
         submitMove,
         voteSkip,
+        handleNextRound,
         error
     }
 }

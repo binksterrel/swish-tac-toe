@@ -32,7 +32,9 @@ export async function GET(req: Request, { params }: { params: Promise<{ code: st
             turnExpiry: battle.turn_expiry,
             roundNumber: battle.round_number || 1,
             scores: { host: battle.host_score || 0, guest: battle.guest_score || 0 },
-            skipVotes: battle.skip_votes || { host: false, guest: false }
+            skipVotes: battle.skip_votes || { host: false, guest: false },
+            roundStatus: battle.round_status || 'playing',
+            nextRoundReady: battle.next_round_ready || { host: false, guest: false }
         }
 
         return NextResponse.json(state)

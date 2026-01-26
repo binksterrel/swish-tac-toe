@@ -31,7 +31,9 @@ export async function POST(req: Request) {
         const currentTurn = battle.current_turn
         const grid = battle.grid as GridCell[][]
         const criteria = battle.criteria
-        const { row, col, player, role } = move
+        const { row: rRaw, col: cRaw, player, role } = move
+        const row = parseInt(String(rRaw))
+        const col = parseInt(String(cRaw))
 
         // 2. Validate Turn
         if (currentTurn !== role) {
@@ -54,8 +56,10 @@ export async function POST(req: Request) {
         const colCriteria = criteria.cols[col]
         const validation = validatePlayerForCell(player, rowCriteria, colCriteria)
         
-        let newGrid = [...grid]
-        let nextTurn = role === 'host' ? 'guest' : 'host' // Swap turn by default?
+        // Deep copy grid to avoid reference issues
+        let newGrid: GridCell[][] = grid.map(row => row.map(cell => ({ ...cell })))
+        
+        let nextTurn = role === 'host' ? 'guest' : 'host'
         // Logic: Try -> If success -> Fill -> Check Winner -> Swap Turn
         // If fail -> Don't fill -> Swap Turn? Or Retry? Standard TicTacToe swaps turn on move.
         // Let's assume Valid Move = Success. Invalid = Rejected (No turn swap).
@@ -130,28 +134,17 @@ export async function POST(req: Request) {
              dbUpdate.guest_score = newGuestScore
              
              if (currentRound < 5) {
-                // NEXT ROUND
-                // Generate New Grid
-                const { generateGrid } = require('@/lib/nba-data') // Dynamic require to avoid circle if any
-                const { rows, cols } = generateGrid('medium')
-                const freshGrid = Array(3).fill(null).map(() => 
-                   Array(3).fill(null).map(() => ({ player: null, status: 'empty' }))
-                )
-
-                dbUpdate.round_number = currentRound + 1
-                dbUpdate.grid = freshGrid
-                dbUpdate.criteria = { rows, cols }
-                dbUpdate.winner = null // Reset winner for new round
-                dbUpdate.turn_expiry = Date.now() + 60000
-                dbUpdate.skip_votes = { host: false, guest: false }
-                // Winner starts next round? or Loser? Let's say Winner starts.
-                dbUpdate.current_turn = winner 
+                // ROUND OVER - WAIT FOR CONTINUE
+                dbUpdate.round_status = 'round_over'
+                // We keep the winner set so UI shows "Round Winner"
+                // DO NOT generate new grid yet. That happens in next-round API.
+                
+                // Stop the timer?
+                dbUpdate.turn_expiry = null 
              } else {
                 // GAME OVER (Final Round Finished)
-                // We keep winner set so UI shows "Round Winner", but maybe we need a "Game Winner" flag?
-                // The UI can deduce Game Over if round == 5 and winner != null.
-                // Or we can set a special status.
                 dbUpdate.status = 'finished'
+                dbUpdate.round_status = 'finished'
              }
         } else if (winner === 'draw') {
              // Draw Logic? 
@@ -159,19 +152,11 @@ export async function POST(req: Request) {
              // Let's go Next Round with no score change
              const currentRound = battle.round_number || 1
              if (currentRound < 5) {
-                const { generateGrid } = require('@/lib/nba-data')
-                const { rows, cols } = generateGrid('medium')
-                const freshGrid = Array(3).fill(null).map(() => 
-                   Array(3).fill(null).map(() => ({ player: null, status: 'empty' }))
-                )
-                dbUpdate.round_number = currentRound + 1
-                dbUpdate.grid = freshGrid
-                dbUpdate.criteria = { rows, cols }
-                dbUpdate.winner = null
-                dbUpdate.turn_expiry = Date.now() + 60000
-                dbUpdate.skip_votes = { host: false, guest: false }
+                dbUpdate.round_status = 'round_over'
+                dbUpdate.turn_expiry = null
              } else {
                  dbUpdate.status = 'finished'
+                 dbUpdate.round_status = 'finished'
              }
         }
 
@@ -198,7 +183,9 @@ export async function POST(req: Request) {
             scores: { 
                 host: dbUpdate.host_score !== undefined ? dbUpdate.host_score : (battle.host_score || 0), 
                 guest: dbUpdate.guest_score !== undefined ? dbUpdate.guest_score : (battle.guest_score || 0)
-            }
+            },
+            roundStatus: dbUpdate.round_status || battle.round_status || 'playing',
+            nextRoundReady: dbUpdate.next_round_ready || battle.next_round_ready || { host: false, guest: false }
         }
 
         // 8. Broadcast via Pusher (so clients refresh)
