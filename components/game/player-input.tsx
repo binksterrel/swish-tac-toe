@@ -124,6 +124,7 @@ export function PlayerInput({
           {suggestions.length > 0 && (
             <div className="mt-3 space-y-1">
               {suggestions.map((player, index) => {
+                const isUsed = usedPlayers.has(player.id)
                 return (
                   <button
                     key={player.id}
@@ -134,7 +135,8 @@ export function PlayerInput({
                       "flex items-center gap-3",
                       selectedIndex === index
                         ? "bg-primary text-primary-foreground"
-                        : "hover:bg-muted"
+                        : "hover:bg-muted",
+                      isUsed && "opacity-75" // Just slightly dim to show it's used, but clickable
                     )}
                   >
                     <div className="w-8 h-8 rounded-full bg-muted overflow-hidden flex-shrink-0 border border-border">
@@ -148,8 +150,14 @@ export function PlayerInput({
                       />
                     </div>
                     <div className="flex flex-col flex-1 min-w-0">
-                      <span className="font-medium truncate">{player.name}</span>
-
+                      <div className="flex justify-between items-center">
+                          <span className="font-medium truncate">{player.name}</span>
+                          {isUsed && (
+                              <span className="text-[10px] uppercase font-bold text-destructive border border-destructive px-1.5 rounded-sm">
+                                  Utilisé
+                              </span>
+                          )}
+                      </div>
                     </div>
                   </button>
                 )

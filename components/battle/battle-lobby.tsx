@@ -7,7 +7,7 @@ import { Trophy, Users, MoveRight, Loader2 } from "lucide-react"
 
 interface BattleLobbyProps {
   onJoin: (code: string, name: string) => Promise<void>
-  onCreate: (name: string) => Promise<void>
+  onCreate: (name: string, difficulty: string) => Promise<void>
   isLoading: boolean
 }
 
@@ -15,10 +15,11 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   const [name, setName] = useState("")
   const [code, setCode] = useState("")
   const [mode, setMode] = useState<'menu' | 'join' | 'create'>('menu')
+  const [difficulty, setDifficulty] = useState("medium")
 
-  const handleCreate = () => {
+  const handleCreateSubmit = () => {
     if (!name) return
-    onCreate(name)
+    onCreate(name, difficulty)
   }
 
   const handleJoin = () => {
@@ -49,7 +50,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
                </div>
                
                <Button 
-                 onClick={handleCreate} 
+                 onClick={() => setMode('create')} 
                  className="w-full bg-nba-blue hover:bg-blue-700 h-14 text-lg font-bold uppercase tracking-widest disabled:opacity-50"
                  disabled={!name}
                >
@@ -66,7 +67,38 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
             </div>
           )}
 
-          {/* Create Mode Removed - Direct Action */}
+          {mode === 'create' && (
+            <div className="space-y-6 animate-in slide-in-from-right-8">
+               <div>
+                  <label className="text-xs uppercase font-bold text-slate-500 mb-3 block">Select Difficulty</label>
+                  <div className="grid grid-cols-3 gap-2">
+                      {['easy', 'medium', 'hard'].map((d) => (
+                          <button
+                            key={d}
+                            onClick={() => setDifficulty(d)}
+                            className={`
+                                py-3 px-2 rounded-lg border-2 text-sm font-bold uppercase transition-all
+                                ${difficulty === d 
+                                    ? 'bg-white text-black border-white scale-105' 
+                                    : 'bg-transparent text-slate-500 border-slate-700 hover:border-slate-500'}
+                            `}
+                          >
+                              {d}
+                          </button>
+                      ))}
+                  </div>
+               </div>
+
+               <Button 
+                  onClick={handleCreateSubmit} 
+                  className="w-full bg-nba-red hover:bg-red-700 h-14 text-lg font-bold uppercase tracking-widest shadow-[0_0_20px_rgba(206,17,65,0.4)]"
+               >
+                 Start Battle
+               </Button>
+
+               <Button onClick={() => setMode('menu')} variant="ghost" className="w-full text-slate-500">Back</Button>
+            </div>
+          )}
 
           {mode === 'join' && (
             <div className="space-y-4 animate-in slide-in-from-right-8">
@@ -90,7 +122,9 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
       ) : (
         <div className="text-center py-12">
             <Loader2 className="w-8 h-8 text-nba-blue animate-spin mx-auto mb-4" />
-            <p className="uppercase font-bold tracking-widest text-sm">Connecting...</p>
+            <p className="uppercase font-bold tracking-widest text-sm animate-pulse">
+                {mode === 'create' ? 'Initializing Court...' : 'Entering Arena...'}
+            </p>
         </div>
       )}
     </div>

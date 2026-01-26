@@ -25,6 +25,16 @@ export interface BattleState {
   }
   currentTurn: 'host' | 'guest'
   winner: 'host' | 'guest' | 'draw' | null
+  turnExpiry?: number // Timestamp (ms)
+  roundNumber?: number
+  scores?: {
+    host: number
+    guest: number
+  }
+  skipVotes?: {
+    host: boolean
+    guest: boolean
+  }
 }
 
 export interface BattleMove {

@@ -33,19 +33,41 @@ export async function POST(req: Request) {
              .from('battles')
              .update({
                  guest_name: name,
-                 status: 'playing'
+                 status: 'playing',
+                 turn_expiry: Date.now() + 60000 // Reset timer for fresh start
              })
              .eq('code', code)
 
         if (updateError) throw updateError
 
-        // Trigger Event for Host (UI Update) via Pusher
-        // We still use Pusher for "Instant Notification" so Host doesn't need to poll DB
-        await pusherServer.trigger(`battle-${code}`, 'player-joined', {
-            name,
-            role: 'guest',
-            id: `guest-db`
-        })
+        // Fetch Updated Battle to get fresh Timer and State
+        const { data: updatedBattle, error: fetchUpdatedError } = await supabaseAdmin
+            .from('battles')
+            .select('*')
+            .eq('code', code)
+            .single()
+            
+        if (fetchUpdatedError || !updatedBattle) throw fetchUpdatedError
+
+        // Construct Full State
+        const newState = {
+            code: updatedBattle.code,
+            grid: updatedBattle.grid,
+            criteria: updatedBattle.criteria,
+            players: {
+                host: updatedBattle.host_name ? { id: 'h', name: updatedBattle.host_name, role: 'host' } : null,
+                guest: updatedBattle.guest_name ? { id: 'g', name: updatedBattle.guest_name, role: 'guest' } : null
+            },
+            currentTurn: updatedBattle.current_turn,
+            winner: updatedBattle.winner,
+            turnExpiry: updatedBattle.turn_expiry,
+            roundNumber: updatedBattle.round_number || 1,
+            scores: { host: updatedBattle.host_score || 0, guest: updatedBattle.guest_score || 0 },
+            skipVotes: updatedBattle.skip_votes
+        }
+
+        // Broadcast Full Sync (Ensures Host gets new Timer)
+        await pusherServer.trigger(`battle-${code}`, 'game-sync', newState)
 
         return NextResponse.json({ success: true, role: 'guest' })
     } catch (e) {

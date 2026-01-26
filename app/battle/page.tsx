@@ -9,13 +9,13 @@ export default function BattlePage() {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
 
-    const handleCreate = async (name: string) => {
+    const handleCreate = async (name: string, difficulty: string) => {
         setIsLoading(true)
         try {
             const res = await fetch('/api/battle/create', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ hostName: name })
+                body: JSON.stringify({ hostName: name, difficulty })
             })
             const data = await res.json()
             if (data.code) {

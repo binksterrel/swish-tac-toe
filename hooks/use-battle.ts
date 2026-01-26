@@ -86,8 +86,25 @@ export function useBattle(code: string, initialPlayerName?: string) {
     const submitMove = async (row: number, col: number, player: NBAPlayer) => {
         if (!state || !role) return
         
-        // Optimistic update? No, let's wait for server to validate to avoid desync
-        // Or simple local validation first?
+        // 1. Snapshot previous state for rollback
+        const prevState = { ...state }
+        
+        // 2. Optimistic Update
+        const nextGrid = state.grid.map(rowArr => [...rowArr])
+        nextGrid[row][col] = {
+            player: player,
+            status: 'correct',
+            owner: role
+        }
+        
+        // Optimistically swap turn (assuming success)
+        const nextTurn = role === 'host' ? 'guest' : 'host'
+        
+        setState({
+            ...state,
+            grid: nextGrid,
+            currentTurn: nextTurn
+        })
         
         try {
             const res = await fetch('/api/battle/move', {
@@ -95,19 +112,42 @@ export function useBattle(code: string, initialPlayerName?: string) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     code,
-                    state, // Pass current state for validation context
+                    state: prevState, // Send TRUE server state context, not optimistic one
                     move: { row, col, player, role }
                 })
             })
             
             const data = await res.json()
+            
             if (!data.success) {
                 console.error("Move failed:", data.error)
-                // Maybe show toast
+                // Revert on failure
+                setState(prevState)
+            } else if (data.state) {
+                // Authoritative Update from Server
+                setState(data.state)
             }
         } catch (e) {
             console.error(e)
+            // Revert on Network Error
+            setState(prevState)
         }
+    }
+
+    const voteSkip = () => {
+        if (!state || !role) return
+        
+        setState((prev) => {
+             if (!prev) return null
+             return {
+                ...prev,
+                skipVotes: {
+                    host: prev.skipVotes?.host || false,
+                    guest: prev.skipVotes?.guest || false,
+                    [role]: true
+                }
+             }
+        })
     }
 
     return {
@@ -116,6 +156,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
         role,
         setRole,
         submitMove,
+        voteSkip,
         error
     }
 }

@@ -28,7 +28,11 @@ export async function GET(req: Request, { params }: { params: Promise<{ code: st
                 guest: battle.guest_name ? { id: 'guest-db', name: battle.guest_name, role: 'guest' } : null
             },
             currentTurn: battle.current_turn as 'host' | 'guest',
-            winner: battle.winner as 'host' | 'guest' | 'draw' | null
+            winner: battle.winner as 'host' | 'guest' | 'draw' | null,
+            turnExpiry: battle.turn_expiry,
+            roundNumber: battle.round_number || 1,
+            scores: { host: battle.host_score || 0, guest: battle.guest_score || 0 },
+            skipVotes: battle.skip_votes || { host: false, guest: false }
         }
 
         return NextResponse.json(state)
