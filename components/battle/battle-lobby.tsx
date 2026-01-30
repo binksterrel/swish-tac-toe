@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Trophy, Loader2, ChevronRight, ChevronLeft } from "lucide-react"
+import { Trophy, Loader2, ChevronRight, ChevronLeft, Users, RefreshCw } from "lucide-react"
 import { NBA_TEAMS, getTeamLogoUrl } from "@/lib/nba-data"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
@@ -15,6 +15,13 @@ interface BattleLobbyProps {
   isLoading: boolean
 }
 
+interface OpenBattle {
+  code: string
+  host_name: string
+  difficulty: string
+  created_at: string
+}
+
 export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   const { t } = useLanguage()
   const [name, setName] = useState("")
@@ -22,8 +29,12 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   const [mode, setMode] = useState<'menu' | 'join' | 'create'>('menu')
   const [difficulty, setDifficulty] = useState("medium")
   const [selectedTeam, setSelectedTeam] = useState("LAL")
+  
+  // Public Battles
+  const [openBattles, setOpenBattles] = useState<OpenBattle[]>([])
+  const [loadingBattles, setLoadingBattles] = useState(false)
 
-  // Only include the 30 current NBA teams (exclude historical: SEA, NJN)
+  // Only include the 30 current NBA teams
   const CURRENT_NBA_TEAMS = [
     "ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
     "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOH", "NYK",
@@ -31,9 +42,30 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   ]
   const teamKeys = CURRENT_NBA_TEAMS.filter(t => NBA_TEAMS[t])
 
+  const fetchOpenBattles = async () => {
+    setLoadingBattles(true)
+    try {
+        const res = await fetch('/api/battle/list')
+        const data = await res.json()
+        if (data.battles) {
+            setOpenBattles(data.battles)
+        }
+    } catch (e) {
+        console.error("Failed to fetch battles", e)
+    } finally {
+        setLoadingBattles(false)
+    }
+  }
+
+  // Fetch when entering Join mode
+  useEffect(() => {
+    if (mode === 'join') {
+        fetchOpenBattles()
+    }
+  }, [mode])
+
   const handleCreateSubmit = () => {
     if (!name) return
-    // Encode Avatar in Name: "LAL|Nico"
     const fullName = `${selectedTeam}|${name}`
     onCreate(fullName, difficulty)
   }
@@ -42,6 +74,16 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
     if (!name || !code) return
     const fullName = `${selectedTeam}|${name}`
     onJoin(code, fullName)
+  }
+
+  const handleJoinOpenBattle = (battleCode: string) => {
+    if (!name) {
+        // Flash input or alert
+        alert(t('battle.enter_nickname'))
+        return
+    }
+    const fullName = `${selectedTeam}|${name}`
+    onJoin(battleCode, fullName)
   }
 
   return (
@@ -211,6 +253,46 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
                >
                  {t('battle.enter_arena')}
                </Button>
+               
+               {/* Open Battles List */}
+               <div className="pt-4 border-t border-white/10">
+                   <div className="flex items-center justify-between mb-3">
+                       <h3 className="text-xs uppercase font-bold text-slate-500 flex items-center gap-2">
+                           <Users className="w-3 h-3" />
+                           {t('battle.open_battles')}
+                       </h3>
+                       <Button variant="ghost" size="icon" className="h-6 w-6" onClick={fetchOpenBattles}>
+                           <RefreshCw className={cn("w-3 h-3 text-slate-500", loadingBattles && "animate-spin")} />
+                       </Button>
+                   </div>
+                   
+                   <div className="space-y-2 max-h-40 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-white/10">
+                       {loadingBattles ? (
+                           <div className="text-center py-4"><Loader2 className="w-4 h-4 animate-spin mx-auto text-slate-600" /></div>
+                       ) : openBattles.length > 0 ? (
+                           openBattles.map(battle => (
+                               <div key={battle.code} className="flex items-center justify-between bg-white/5 p-3 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
+                                   <div>
+                                       <p className="font-bold text-white text-sm">{battle.host_name.split('|')[1]}</p>
+                                       <p className="text-xs text-slate-500 uppercase">{battle.difficulty}</p>
+                                   </div>
+                                   <Button 
+                                       size="sm" 
+                                       className="bg-white/10 hover:bg-white/20 text-white text-xs uppercase font-bold"
+                                       onClick={() => handleJoinOpenBattle(battle.code)}
+                                   >
+                                       {t('battle.join_action')}
+                                   </Button>
+                               </div>
+                           ))
+                       ) : (
+                           <div className="text-center py-4 text-xs text-slate-600 italic">
+                               {t('battle.no_battles')}
+                           </div>
+                       )}
+                   </div>
+               </div>
+
                <Button onClick={() => setMode('menu')} variant="ghost" className="w-full text-slate-500 hover:text-white">{t('battle.back')}</Button>
             </motion.div>
           )}

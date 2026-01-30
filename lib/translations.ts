@@ -183,6 +183,10 @@ export const translations = {
       rematch_button: "Rematch",
       rematch_waiting: "Want to restart?",
       rematch_accepted: "Accepted",
+      open_battles: "Open Battles",
+      no_battles: "No open battles found.",
+      join_action: "Join",
+      refresh: "Refresh",
       chat: {
         live_chat: "Live Chat",
         say_something: "Say something...",
@@ -384,6 +388,10 @@ export const translations = {
       rematch_button: "Revanche",
       rematch_waiting: "Rejouer ?",
       rematch_accepted: "Accepté",
+      open_battles: "Parties Ouvertes",
+      no_battles: "Aucune partie ouverte.",
+      join_action: "Rejoindre",
+      refresh: "Actualiser",
       chat: {
         live_chat: "Chat en direct",
         say_something: "Dis quelque chose...",
