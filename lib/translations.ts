@@ -179,7 +179,26 @@ export const translations = {
       continue: "Continue",
       starting: "Starting...",
       waiting_opponent: "Waiting for opponent...",
-      round_over: "Round {n} Over"
+      round_over: "Round {n} Over",
+      rematch_button: "Rematch",
+      rematch_waiting: "Want to restart?",
+      rematch_accepted: "Accepted",
+      chat: {
+        live_chat: "Live Chat",
+        say_something: "Say something...",
+        send: "Send",
+        no_messages: "No messages yet. Start the trash talk! 🏀",
+        quick_chats: {
+          swish: "Swish!",
+          fire: "Fire!",
+          oof: "Oof...",
+          hmm: "Hmm...",
+          watching: "Watching",
+          hi: "Hi!",
+          nice: "Nice!",
+          haha: "Haha"
+        }
+      }
     }
   },
   fr: {
@@ -361,7 +380,26 @@ export const translations = {
       continue: "Continuer",
       starting: "Démarrage...",
       waiting_opponent: "En attente de l'adversaire...",
-      round_over: "Fin de la Manche {n}" 
+      round_over: "Fin de la Manche {n}",
+      rematch_button: "Revanche",
+      rematch_waiting: "Rejouer ?",
+      rematch_accepted: "Accepté",
+      chat: {
+        live_chat: "Chat en direct",
+        say_something: "Dis quelque chose...",
+        send: "Envoyer",
+        no_messages: "Aucun message. Lance le trash talk ! 🏀",
+        quick_chats: {
+          swish: "Swish !",
+          fire: "Chaud !",
+          oof: "Oups...",
+          hmm: "Mmm...",
+          watching: "À l'affût",
+          hi: "Salut !",
+          nice: "Bien joué !",
+          haha: "Haha"
+        }
+      }
     }
   }
 }

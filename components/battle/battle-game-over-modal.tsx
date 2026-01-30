@@ -1,12 +1,10 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { BattleState } from "@/lib/battle-types"
-import { Trophy, Home, Frown } from "lucide-react"
+import { Trophy, Home, Frown, RefreshCw } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
 // Import hooks
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/contexts/language-context"
 
 interface BattleGameOverModalProps {
@@ -18,6 +16,7 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
     const { t } = useLanguage()
     const router = useRouter()
     const effectRan = useRef(false)
+    const [isRematchLoading, setIsRematchLoading] = useState(false)
 
     // Calculate stats
     const myScore = state.scores?.[role] || 0
@@ -30,6 +29,10 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
     // Derived result
     const isWinner = state.winner === role
     const isDraw = state.winner === 'draw'
+
+    // Check rematch status
+    const hasVotedRematch = state.rematchVotes?.[role] || false
+    const opponentVotedRematch = state.rematchVotes?.[opponentRole] || false
 
     useEffect(() => {
         if (effectRan.current) return
@@ -65,6 +68,20 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
         saveHistory()
     }, [myScore, myCorrectCells]) // Dependencies are stable constants in this modal render context usually
     
+    const handleRematch = async () => {
+        setIsRematchLoading(true)
+        try {
+            await fetch('/api/battle/rematch', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: state.code, role })
+            })
+        } catch (e) {
+            console.error(e)
+            setIsRematchLoading(false)
+        }
+    }
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-in fade-in duration-500">
              <div className="max-w-md w-full bg-gray-900 border border-white/20 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
@@ -116,14 +133,30 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
                      </div>
 
                      <div className="space-y-3">
+                         {/* Rematch Button */}
+                         {!hasVotedRematch ? (
+                            <Button 
+                                onClick={handleRematch}
+                                disabled={isRematchLoading}
+                                className="w-full bg-nba-blue text-white hover:bg-blue-600 h-12 text-lg font-bold uppercase tracking-widest shadow-lg animate-pulse"
+                            >
+                                <RefreshCw className={cn("w-4 h-4 mr-2", isRematchLoading && "animate-spin")} />
+                                {t('battle.rematch_button')}
+                            </Button>
+                         ) : (
+                            <div className="w-full bg-gray-800 text-slate-300 h-12 flex items-center justify-center text-sm font-bold uppercase tracking-widest rounded-md border border-white/10">
+                                {opponentVotedRematch ? t('battle.starting') : t('battle.waiting_opponent')}
+                            </div>
+                         )}
+
                          <Button 
                              onClick={() => router.push('/')}
-                             className="w-full bg-white text-black hover:bg-gray-200 h-12 text-lg font-bold uppercase tracking-widest"
+                             variant="outline"
+                             className="w-full bg-transparent border-white/10 text-slate-400 hover:text-white hover:bg-white/5 h-12 text-sm font-bold uppercase tracking-widest"
                          >
                              <Home className="w-4 h-4 mr-2" />
                              {t('battle.return_home')}
                          </Button>
-                         {/* <Button variant="ghost" className="w-full text-slate-500 uppercase">View Stats (Coming Soon)</Button> */}
                      </div>
                  </div>
              </div>

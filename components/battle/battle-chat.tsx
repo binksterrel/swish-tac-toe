@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
 import { Send, MessageSquare, X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLanguage } from "@/contexts/language-context"
 
 interface ChatMessage {
   id: string
@@ -37,10 +38,22 @@ const QUICK_CHATS = [
 ]
 
 export function BattleChat({ code, role, playerName, opponentName, isOpen = false, onToggle }: BattleChatProps) {
+  const { t } = useLanguage()
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState("")
   const [open, setOpen] = useState(isOpen)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const QUICK_CHATS = [
+    { emoji: "🏀", key: "swish" },
+    { emoji: "🔥", key: "fire" },
+    { emoji: "🫣", key: "oof" },
+    { emoji: "🤔", key: "hmm" },
+    { emoji: "👀", key: "watching" },
+    { emoji: "👋", key: "hi" },
+    { emoji: "👏", key: "nice" },
+    { emoji: "😂", key: "haha" },
+  ]
 
   // Subscribe to chat channel
   useEffect(() => {
@@ -97,7 +110,19 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
     }
   }
 
-  const sendQuickChat = async (item: { emoji: string, label: string }) => {
+  const sendQuickChat = async (item: { emoji: string, key: string }) => {
+       const label = t(`battle.chat.quick_chats.${item.key}`)
+       
+       // Optimistic add for quick chat too
+       const message: ChatMessage = {
+        id: `${Date.now()}-${Math.random()}`,
+        player: role,
+        playerName,
+        text: `${item.emoji} ${label}`,
+        timestamp: Date.now()
+       }
+       setMessages(prev => [...prev, message])
+
        try {
           await fetch('/api/battle/chat', {
               method: 'POST',
@@ -106,7 +131,8 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
                   code, 
                   role,
                   emoji: item.emoji,
-                  message: item.label
+                  message: label,
+                  fullMessage: message // Pass full message to match manual send structure if needed by API
               })
           })
        } catch (e) {
@@ -126,9 +152,10 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
           <div className="flex gap-1 bg-black/50 p-1 rounded-full backdrop-blur-md border border-white/10 mb-2">
               {QUICK_CHATS.slice(0, 3).map(item => (
                   <button 
-                    key={item.label}
+                    key={item.key}
                     onClick={() => sendQuickChat(item)}
                     className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 flex items-center justify-center text-lg transition-colors"
+                    title={t(`battle.chat.quick_chats.${item.key}`)}
                   >
                       {item.emoji}
                   </button>
@@ -158,8 +185,8 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
       {/* Header */}
       <div className="flex items-center justify-between p-3 border-b border-gray-800 bg-black/50">
         <div>
-          <h3 className="text-sm font-bold uppercase">{playerName} vs {opponentName || 'Opponent'}</h3>
-          <p className="text-xs text-slate-400">Live Chat</p>
+          <h3 className="text-sm font-bold uppercase">{playerName} vs {opponentName || t('battle.opponent')}</h3>
+          <p className="text-xs text-slate-400">{t('battle.chat.live_chat')}</p>
         </div>
         <Button
           variant="ghost"
@@ -175,7 +202,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
       <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-black/20">
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center text-center">
-            <p className="text-xs text-slate-500 uppercase">No messages yet. Start the trash talk! 🏀</p>
+            <p className="text-xs text-slate-500 uppercase">{t('battle.chat.no_messages')}</p>
           </div>
         ) : (
           messages.map((msg) => (
@@ -217,12 +244,12 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
       <div className="p-2 bg-gray-900/50 border-t border-gray-800 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {QUICK_CHATS.map(item => (
               <button
-                key={item.label}
+                key={item.key}
                 onClick={() => sendQuickChat(item)}
                 className="flex-shrink-0 px-3 py-1 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 text-xs font-bold flex gap-1 items-center transition-colors"
               >
                   <span>{item.emoji}</span>
-                  <span className="text-slate-300">{item.label}</span>
+                  <span className="text-slate-300">{t(`battle.chat.quick_chats.${item.key}`)}</span>
               </button>
           ))}
       </div>
@@ -232,7 +259,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
         <div className="flex gap-2">
           <Input
             type="text"
-            placeholder="Say something..."
+            placeholder={t('battle.chat.say_something')}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="bg-gray-800 border-gray-700 text-white text-sm h-9"
@@ -243,6 +270,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
             disabled={!input.trim()}
             size="sm"
             className="bg-nba-blue hover:bg-blue-600 h-9 w-9 p-0"
+            title={t('battle.chat.send')}
           >
             <Send className="w-4 h-4" />
           </Button>

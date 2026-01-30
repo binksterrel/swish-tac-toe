@@ -41,6 +41,10 @@ export interface BattleState {
     host: boolean
     guest: boolean
   }
+  rematchVotes?: {
+    host: boolean
+    guest: boolean
+  }
 }
 
 export interface BattleMove {
