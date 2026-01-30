@@ -36,8 +36,7 @@ export async function POST(req: Request) {
             // Winner is opponent
             updateData = {
                 status: 'finished',
-                winner: opponent, // Explicit Game Winner (not round winner)
-                round_status: 'finished'
+                winner: opponent // Explicit Game Winner (not round winner)
             }
         } else if (action === 'continue') {
             // MARK READY
@@ -61,7 +60,6 @@ export async function POST(req: Request) {
                     current_turn: battle.winner || 'host', // Winner starts next round
                     turn_expiry: Date.now() + 60000,
                     skip_votes: { host: false, guest: false },
-                    round_status: 'playing',
                     next_round_ready: { host: false, guest: false }
                 }
             } else {

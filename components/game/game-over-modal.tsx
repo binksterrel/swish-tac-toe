@@ -50,7 +50,7 @@ export function GameOverModal({
 
   const handleShare = () => {
     const timeStr = gameTime > 0 ? `\nTemps : ${formatTime(gameTime)}` : ""
-    const text = `NBA Tiki Taka Toe\n${title}\nScore : ${score}\nCases : ${correctCells}/${totalCells}${timeStr}\n\nJouez sur : ${window.location.href}`
+    const text = `Swish Tac Toe\n${title}\nScore : ${score}\nCases : ${correctCells}/${totalCells}${timeStr}\n\nJouez sur : ${window.location.href}`
     
     if (navigator.share) {
       navigator.share({ text }).catch((err) => {

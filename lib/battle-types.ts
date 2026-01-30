@@ -10,6 +10,7 @@ export interface BattlePlayer {
   id: string
   name: string
   role: 'host' | 'guest'
+  avatar?: string // Team Code e.g. 'LAL'
 }
 
 export interface BattleState {

@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
-import { Sparkles, Trophy, Swords } from "lucide-react"
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
+import { Sparkles, Trophy, Swords, Menu } from "lucide-react"
 import { usePathname } from "next/navigation" 
 import { Button } from "@/components/ui/button"
 
@@ -13,7 +14,7 @@ export function Header() {
   return (
     <header className="bg-[#050505] border-b-4 border-nba-red relative z-40 shadow-2xl">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-row items-center justify-between gap-6 w-full">
             
             {/* Logo Section - Broadcaster Style */}
             <Link href="/" className="flex items-center gap-4 hover:opacity-90 transition-opacity">
@@ -103,6 +104,63 @@ export function Header() {
                <button className="px-6 py-2 bg-nba-blue text-white text-sm font-bold uppercase rounded-sm hover:bg-blue-700 transition-colors shadow-lg">
                  {t('game.sign_in')}
                </button>
+            </div>
+
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                    <Menu className="h-8 w-8" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="bg-[#050505] border-l-4 border-nba-red text-white p-6 w-[300px] sm:w-[350px]">
+                    <SheetHeader>
+                        <SheetTitle className="text-left text-2xl font-heading font-bold italic tracking-tighter text-white uppercase mb-6 border-b border-white/10 pb-4">Menu</SheetTitle>
+                    </SheetHeader>
+                    
+                    <div className="flex flex-col gap-2">
+                       <Link href="/games" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/games' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           {t('game.games')}
+                       </Link>
+
+                       <Link href="/stats" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/stats' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           {t('game.stats')}
+                       </Link>
+
+                       <Link href="/game" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/game' || pathname === '/' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           <span className="flex items-center gap-3">
+                               <Trophy className="w-5 h-5" />
+                               {t('game.swish')}
+                           </span>
+                       </Link>
+
+                       <Link href="/guess" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/guess' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           <span className="flex items-center gap-3">
+                               <Sparkles className="w-5 h-5" />
+                               {t('game.gest')}
+                           </span>
+                       </Link>
+
+                       <Link href="/battle" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname.startsWith('/battle') ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           <span className="flex items-center gap-3 text-amber-500">
+                               <Swords className="w-5 h-5" />
+                               BATTLE
+                           </span>
+                       </Link>
+
+                       <Link href="/players" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/players' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           {t('game.players_db')}
+                       </Link>
+                       
+                       <div className="h-px bg-gray-800 my-4"></div>
+                       
+                       <button className="w-full px-6 py-4 bg-nba-blue text-white text-lg font-bold uppercase rounded-sm hover:bg-blue-700 transition-colors shadow-lg">
+                         {t('game.sign_in')}
+                       </button>
+                    </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>

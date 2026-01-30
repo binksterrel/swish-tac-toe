@@ -1437,6 +1437,12 @@ const DRAFT_NUMBER_THREES = [
 
 // Check if player matches a criteria
 export function matchesCriteria(player: NBAPlayer, criteria: Criteria): boolean {
+  if (player.name === 'Kevin Durant' || player.name === "Shaquille O'Neal") {
+    console.log(`[Validation Debug] Checking KD against ${criteria.label} (${criteria.type})`)
+    if (criteria.type === 'team') console.log('Teams:', player.teams, 'Value:', criteria.value)
+    if (criteria.type === 'allStar') console.log('AllStar:', player.allStar)
+  }
+
   switch (criteria.type) {
     case "team":
       return player.teams.includes(criteria.value)

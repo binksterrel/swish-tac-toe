@@ -9,6 +9,35 @@ import { Search, X, AlertCircle, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
+// Helper to format criteria text grammatically
+function formatCriteriaText(label: string, type?: string): { prefix: string; text: string } {
+  const teamTypes = ['team']
+  const awardTypes = ['mvp', 'dpoy', 'roy', 'champion', 'allStar', 'allNBA', 'allDefensive', 'draft_pick_1', 'draft_top_3']
+  const statTypes = ['ppg', 'rpg', 'apg']
+  const otherTypes = ['decade', 'country', 'position']
+
+  if (!type) {
+    // Fallback: guess based on label
+    return { prefix: "correspond à", text: label }
+  }
+
+  if (teamTypes.includes(type)) {
+    return { prefix: "a joué pour les", text: label }
+  } else if (awardTypes.includes(type)) {
+    return { prefix: "est", text: label }
+  } else if (statTypes.includes(type)) {
+    return { prefix: "a une moyenne de", text: `${label}+` }
+  } else if (type === 'country') {
+    return { prefix: "vient de", text: label === 'International' ? "l'étranger" : label }
+  } else if (type === 'position') {
+    return { prefix: "joue", text: label }
+  } else if (type === 'decade') {
+    return { prefix: "a joué dans les", text: label }
+  }
+
+  return { prefix: "correspond à", text: label }
+}
+
 // Reverting to previous state without Hint System
 interface PlayerInputProps {
   onSubmit: (player: NBAPlayer) => void
@@ -17,6 +46,8 @@ interface PlayerInputProps {
   rowLabel: string
   colLabel: string
   hiddenLabels?: boolean
+  rowType?: string
+  colType?: string
 }
 
 export function PlayerInput({
@@ -26,6 +57,8 @@ export function PlayerInput({
   rowLabel,
   colLabel,
   hiddenLabels = false,
+  rowType,
+  colType,
 }: PlayerInputProps) {
   const [query, setQuery] = useState("")
   const [suggestions, setSuggestions] = useState<NBAPlayer[]>([])
@@ -91,8 +124,10 @@ export function PlayerInput({
             </p>
           ) : (
             <p className="text-sm text-muted-foreground">
-                Qui a joué pour <span className="text-primary font-semibold">{rowLabel}</span> et est{" "}
-                <span className="text-primary font-semibold">{colLabel}</span> ?
+                Qui {formatCriteriaText(rowLabel, rowType).prefix}{" "}
+                <span className="text-primary font-semibold">{formatCriteriaText(rowLabel, rowType).text}</span>
+                {" "}et {formatCriteriaText(colLabel, colType).prefix}{" "}
+                <span className="text-primary font-semibold">{formatCriteriaText(colLabel, colType).text}</span> ?
             </p>
           )}
         </div>

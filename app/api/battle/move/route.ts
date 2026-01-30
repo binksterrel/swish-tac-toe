@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { pusherServer } from '@/lib/pusher'
-import { validatePlayerForCell } from '@/lib/nba-data'
+import { validatePlayerForCell, ALL_NBA_PLAYERS } from '@/lib/nba-data'
 import { checkBattleWinner } from '@/lib/battle-logic'
 import { BattleState, GridCell } from '@/lib/battle-types'
 import { supabaseAdmin } from '@/lib/supabase'
@@ -54,31 +54,44 @@ export async function POST(req: Request) {
         // 4. Validate Logic
         const rowCriteria = criteria.rows[row]
         const colCriteria = criteria.cols[col]
-        const validation = validatePlayerForCell(player, rowCriteria, colCriteria)
+        
+        // DEBUG LOGGING
+        console.log("=== BATTLE MOVE DEBUG ===")
+        console.log("Row:", row, "Col:", col)
+        console.log("Row Criteria:", JSON.stringify(rowCriteria))
+        console.log("Col Criteria:", JSON.stringify(colCriteria))
+        console.log("Player from client:", player.name, player.id)
+        
+        // Security: Lookup authoritative player stats from server data
+        // Do NOT trust the client's player object for validation
+        const authPlayer = ALL_NBA_PLAYERS.find(p => p.id === player.id) || ALL_NBA_PLAYERS.find(p => p.name === player.name)
+        
+        if (!authPlayer) {
+             console.log("ERROR: Player not found in ALL_NBA_PLAYERS")
+             return NextResponse.json({ error: 'System Error: Player not found in database', valid: false }, { status: 200 })
+        }
+
+        console.log("Auth Player:", authPlayer.name, "Teams:", authPlayer.teams, "AllStar:", authPlayer.allStar, "MVP:", authPlayer.mvp)
+
+        const validation = validatePlayerForCell(authPlayer, rowCriteria, colCriteria)
+        console.log("Validation Result:", JSON.stringify(validation))
         
         // Deep copy grid to avoid reference issues
         let newGrid: GridCell[][] = grid.map(row => row.map(cell => ({ ...cell })))
         
         let nextTurn = role === 'host' ? 'guest' : 'host'
-        // Logic: Try -> If success -> Fill -> Check Winner -> Swap Turn
-        // If fail -> Don't fill -> Swap Turn? Or Retry? Standard TicTacToe swaps turn on move.
-        // Let's assume Valid Move = Success. Invalid = Rejected (No turn swap).
         
         if (validation.valid) {
             newGrid[row][col] = {
-                player,
+                player: authPlayer, // Use verified player data
                 status: 'correct',
                 owner: role
             }
-            // Swap turn only on success?
              nextTurn = role === 'host' ? 'guest' : 'host'
         } else {
              // PENALTY: Invalid move (wrong player) -> Swap turn immediately
-             // Mark cell as nothing? Or just consume turn.
-             // We return 'success: false' to UI but valid: false so it knows why.
-             
-             const nextTurn = role === 'host' ? 'guest' : 'host'
-             const nextExpiry = Date.now() + 60000
+             nextTurn = role === 'host' ? 'guest' : 'host'
+             const nextExpiry = Date.now() + 60000 
 
              // Update DB with turn swap (Penalty)
             await supabaseAdmin
@@ -88,8 +101,7 @@ export async function POST(req: Request) {
                     turn_expiry: nextExpiry
                 })
                 .eq('code', code)
-
-            // Broadcast Penalty
+            
             const penaltyState: BattleState = {
                 code,
                 grid: [...grid],
@@ -99,12 +111,25 @@ export async function POST(req: Request) {
                     guest: battle.guest_name ? { id: 'g', name: battle.guest_name, role: 'guest' } : null
                 },
                 currentTurn: nextTurn as 'host' | 'guest',
-                winner: null, // No winner on penalty
-                turnExpiry: nextExpiry
+                winner: null,
+                turnExpiry: nextExpiry,
+                roundNumber: battle.round_number || 1,
+                scores: { 
+                    host: battle.host_score || 0,
+                    guest: battle.guest_score || 0
+                },
+                skipVotes: battle.skip_votes
             }
+
+            // Broadcast Penalty
             await pusherServer.trigger(`battle-${code}`, 'move-made', penaltyState)
 
-            return NextResponse.json({ error: 'Invalid Player for this spot. Turn Lost!', valid: false, state: penaltyState }, { status: 200 }) 
+            // Return detailed reason
+            return NextResponse.json({ 
+                error: `Invalid Move: ${validation.reason || 'Player does not match criteria'}. Turn Lost!`, 
+                valid: false, 
+                state: penaltyState 
+            }, { status: 200 }) 
         }
 
         // 5. Check Winner
@@ -135,7 +160,7 @@ export async function POST(req: Request) {
              
              if (currentRound < 5) {
                 // ROUND OVER - WAIT FOR CONTINUE
-                dbUpdate.round_status = 'round_over'
+                // Note: round_status tracked client-side or via winner field
                 // We keep the winner set so UI shows "Round Winner"
                 // DO NOT generate new grid yet. That happens in next-round API.
                 
@@ -144,7 +169,7 @@ export async function POST(req: Request) {
              } else {
                 // GAME OVER (Final Round Finished)
                 dbUpdate.status = 'finished'
-                dbUpdate.round_status = 'finished'
+                // Note: game finished, status field handles this
              }
         } else if (winner === 'draw') {
              // Draw Logic? 
@@ -152,7 +177,7 @@ export async function POST(req: Request) {
              // Let's go Next Round with no score change
              const currentRound = battle.round_number || 1
              if (currentRound < 5) {
-                dbUpdate.round_status = 'round_over'
+                // Note: round_status tracked via winner field
                 dbUpdate.turn_expiry = null
              } else {
                  dbUpdate.status = 'finished'
@@ -193,8 +218,8 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ success: true, state: newState, valid: true })
 
-    } catch (e) {
-        console.error(e)
-        return NextResponse.json({ error: 'Move failed' }, { status: 500 })
+    } catch (e: any) {
+        console.error("BATTLE MOVE ERROR:", e)
+        return NextResponse.json({ error: 'Move failed: ' + (e?.message || String(e)) }, { status: 500 })
     }
 }
