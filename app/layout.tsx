@@ -10,6 +10,9 @@ const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"], varia
 export const metadata: Metadata = {
   title: 'Swish Tac Toe - Official NBA Grid Game',
   description: 'The official-style NBA trivia game. Test your knowledge with the daily grid.',
+  icons: {
+    icon: '/icon.svg',
+  },
 }
 
 import { LanguageProvider } from '@/contexts/language-context'
