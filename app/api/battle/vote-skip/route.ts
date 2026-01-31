@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { pusherServer } from '@/lib/pusher'
 import { supabaseAdmin } from '@/lib/supabase'
-import { BattleState, GridCell } from '@/lib/battle-types'
+import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'
 import { generateGrid } from '@/lib/nba-data'
 
 export const dynamic = 'force-dynamic'
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
         // 3. Check if Consensus reached
         const skipConfirmed = newSkipVotes.host && newSkipVotes.guest
 
-        let updateData: any = { skip_votes: newSkipVotes }
+        let updateData: BattleDbUpdate = { skip_votes: newSkipVotes }
         let newStateDetails: Partial<BattleState> = {}
 
         if (skipConfirmed) {
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
             const { rows, cols } = generateGrid('medium')
             
             const newGrid: GridCell[][] = Array(3).fill(null).map(() => 
-                Array(3).fill(null).map(() => ({ player: null, status: 'empty' }))
+                Array(3).fill(null).map(() => ({ player: null, status: 'empty' as const }))
             )
 
             updateData = {

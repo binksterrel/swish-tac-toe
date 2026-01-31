@@ -66,7 +66,6 @@ export function useBattle(code: string, initialPlayerName?: string) {
         const channel = pusherClient.subscribe(`battle-${code}`)
 
         channel.bind('player-joined', (data: { name: string, role: 'guest' }) => {
-            console.log("Player joined:", data)
             toast.info("Opponent Joined!", { description: "Get ready to battle." })
             
             setState(prev => {
@@ -89,12 +88,10 @@ export function useBattle(code: string, initialPlayerName?: string) {
         })
 
         channel.bind('game-sync', (syncedState: BattleState) => {
-            console.log("State synced:", syncedState)
             setState(parseState(syncedState))
         })
 
         channel.bind('move-made', (newState: BattleState) => {
-            console.log("Move received:", newState)
             setState(parseState(newState))
         })
         
@@ -113,7 +110,6 @@ export function useBattle(code: string, initialPlayerName?: string) {
 
         // Listen for timeout events from server
         channel.bind('timeout', (newState: BattleState) => {
-            console.log("Timeout received:", newState)
             toast.warning("Time's Up!", { 
                 description: `Turn passed to ${newState.currentTurn === 'host' ? 'Host' : 'Guest'}`,
                 duration: 3000 

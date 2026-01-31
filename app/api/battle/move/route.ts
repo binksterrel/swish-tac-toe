@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { pusherServer } from '@/lib/pusher'
 import { validatePlayerForCell, ALL_NBA_PLAYERS } from '@/lib/nba-data'
 import { checkBattleWinner } from '@/lib/battle-logic'
-import { BattleState, GridCell } from '@/lib/battle-types'
+import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'
 import { supabaseAdmin } from '@/lib/supabase'
 
 export const dynamic = 'force-dynamic'
@@ -55,26 +55,16 @@ export async function POST(req: Request) {
         const rowCriteria = criteria.rows[row]
         const colCriteria = criteria.cols[col]
         
-        // DEBUG LOGGING
-        console.log("=== BATTLE MOVE DEBUG ===")
-        console.log("Row:", row, "Col:", col)
-        console.log("Row Criteria:", JSON.stringify(rowCriteria))
-        console.log("Col Criteria:", JSON.stringify(colCriteria))
-        console.log("Player from client:", player.name, player.id)
-        
         // Security: Lookup authoritative player stats from server data
         // Do NOT trust the client's player object for validation
         const authPlayer = ALL_NBA_PLAYERS.find(p => p.id === player.id) || ALL_NBA_PLAYERS.find(p => p.name === player.name)
         
         if (!authPlayer) {
-             console.log("ERROR: Player not found in ALL_NBA_PLAYERS")
+             console.error("Player not found in ALL_NBA_PLAYERS:", player.id, player.name)
              return NextResponse.json({ error: 'System Error: Player not found in database', valid: false }, { status: 200 })
         }
 
-        console.log("Auth Player:", authPlayer.name, "Teams:", authPlayer.teams, "AllStar:", authPlayer.allStar, "MVP:", authPlayer.mvp)
-
         const validation = validatePlayerForCell(authPlayer, rowCriteria, colCriteria)
-        console.log("Validation Result:", JSON.stringify(validation))
         
         // Deep copy grid to avoid reference issues
         let newGrid: GridCell[][] = grid.map(row => row.map(cell => ({ ...cell })))
@@ -138,9 +128,9 @@ export async function POST(req: Request) {
         const nextExpiry = Date.now() + 60000 // 60s for next turn
 
         // 6. Update DB Logic with Rounds
-        let dbUpdate: any = {
+        let dbUpdate: BattleDbUpdate = {
              grid: newGrid,
-             current_turn: nextTurn,
+             current_turn: nextTurn as 'host' | 'guest',
              winner: winner,
              turn_expiry: nextExpiry
         }
@@ -160,24 +150,21 @@ export async function POST(req: Request) {
              
              if (currentRound < 5) {
                 // ROUND OVER - WAIT FOR CONTINUE
-                // Note: round_status tracked client-side or via winner field
-                // We keep the winner set so UI shows "Round Winner"
-                // DO NOT generate new grid yet. That happens in next-round API.
+                // Set round_status so UI knows to show round over modal
+                dbUpdate.round_status = 'round_over'
                 
-                // Stop the timer?
+                // Stop the timer
                 dbUpdate.turn_expiry = null 
              } else {
                 // GAME OVER (Final Round Finished)
                 dbUpdate.status = 'finished'
-                // Note: game finished, status field handles this
+                dbUpdate.round_status = 'finished'
              }
         } else if (winner === 'draw') {
-             // Draw Logic? 
-             // Retry round? Or split point? Or just next round with no score?
-             // Let's go Next Round with no score change
+             // Draw Logic - Next Round with no score change
              const currentRound = battle.round_number || 1
              if (currentRound < 5) {
-                // Note: round_status tracked via winner field
+                dbUpdate.round_status = 'round_over'
                 dbUpdate.turn_expiry = null
              } else {
                  dbUpdate.status = 'finished'
@@ -209,6 +196,7 @@ export async function POST(req: Request) {
                 host: dbUpdate.host_score !== undefined ? dbUpdate.host_score : (battle.host_score || 0), 
                 guest: dbUpdate.guest_score !== undefined ? dbUpdate.guest_score : (battle.guest_score || 0)
             },
+            skipVotes: dbUpdate.skip_votes || battle.skip_votes || { host: false, guest: false },
             roundStatus: dbUpdate.round_status || battle.round_status || 'playing',
             nextRoundReady: dbUpdate.next_round_ready || battle.next_round_ready || { host: false, guest: false }
         }
@@ -218,8 +206,19 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ success: true, state: newState, valid: true })
 
-    } catch (e: any) {
+    } catch (e: unknown) {
+        let errorMessage: string
+        if (e instanceof Error) {
+            errorMessage = e.message
+        } else if (typeof e === 'object' && e !== null && 'message' in e) {
+            // Supabase errors have a message property
+            errorMessage = (e as { message: string }).message
+        } else if (typeof e === 'object' && e !== null) {
+            errorMessage = JSON.stringify(e)
+        } else {
+            errorMessage = String(e)
+        }
         console.error("BATTLE MOVE ERROR:", e)
-        return NextResponse.json({ error: 'Move failed: ' + (e?.message || String(e)) }, { status: 500 })
+        return NextResponse.json({ error: 'Move failed: ' + errorMessage }, { status: 500 })
     }
 }

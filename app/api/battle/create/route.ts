@@ -33,6 +33,7 @@ export async function POST(req: Request) {
                 grid,
                 criteria: { rows, cols },
                 host_name: hostName,
+                difficulty,
                 status: 'waiting',
                 current_turn: 'host',
                 turn_expiry: Date.now() + 60000 // 1 min for Host first turn

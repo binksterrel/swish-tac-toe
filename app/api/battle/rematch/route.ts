@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { pusherServer } from '@/lib/pusher'
 import { supabaseAdmin } from '@/lib/supabase'
-import { BattleState } from '@/lib/battle-types'
+import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'
 import { generateGrid } from '@/lib/nba-data'
 
 export const dynamic = 'force-dynamic'
@@ -30,7 +30,7 @@ export async function POST(req: Request) {
         const currentVotes = battle.rematch_votes || { host: false, guest: false }
         const newVotes = { ...currentVotes, [role]: true }
 
-        let updateData: any = {}
+        let updateData: BattleDbUpdate = {}
         let isReset = false
 
         // 3. Check Consensus
@@ -38,8 +38,8 @@ export async function POST(req: Request) {
             // RESET GAME
             isReset = true
             const { rows, cols } = generateGrid('medium')
-            const freshGrid = Array(3).fill(null).map(() => 
-               Array(3).fill(null).map(() => ({ player: null, status: 'empty' }))
+            const freshGrid: GridCell[][] = Array(3).fill(null).map(() => 
+               Array(3).fill(null).map(() => ({ player: null, status: 'empty' as const }))
             )
 
             updateData = {
@@ -49,7 +49,6 @@ export async function POST(req: Request) {
                 winner: null,
                 current_turn: 'host', // Host always starts new game? Or random? Let's say Host.
                 turn_expiry: Date.now() + 60000,
-                scores: { host: 0, guest: 0 },
                 skip_votes: { host: false, guest: false },
                 next_round_ready: { host: false, guest: false },
                 rematch_votes: { host: false, guest: false }, // Reset votes

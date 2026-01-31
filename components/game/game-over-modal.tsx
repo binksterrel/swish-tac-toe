@@ -35,11 +35,18 @@ export function GameOverModal({
   else if (percentage >= 20) tier = 2 // Rookie
   else if (percentage >= 1) tier = 1 // G-League
   
-  // Dynamic title and description
-  // @ts-ignore - dynamic keys
-  const title = t(`game.result_title_${tier}`)
-  // @ts-ignore - dynamic keys
-  const description = t(`game.result_desc_${tier}`)
+  // Type-safe tier result keys
+  const titleKeys = [
+    'game.result_title_0', 'game.result_title_1', 'game.result_title_2',
+    'game.result_title_3', 'game.result_title_4', 'game.result_title_5', 'game.result_title_6'
+  ] as const
+  const descKeys = [
+    'game.result_desc_0', 'game.result_desc_1', 'game.result_desc_2',
+    'game.result_desc_3', 'game.result_desc_4', 'game.result_desc_5', 'game.result_desc_6'
+  ] as const
+  
+  const title = t(titleKeys[tier])
+  const description = t(descKeys[tier])
 
   // Format time
   const formatTime = (seconds: number) => {

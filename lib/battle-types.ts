@@ -53,3 +53,21 @@ export interface BattleMove {
   player: NBAPlayer
   role: 'host' | 'guest'
 }
+
+// Type for Supabase DB updates (partial updates to battles table)
+export interface BattleDbUpdate {
+  grid?: GridCell[][]
+  current_turn?: 'host' | 'guest'
+  winner?: 'host' | 'guest' | 'draw' | null
+  turn_expiry?: number | null
+  host_score?: number
+  guest_score?: number
+  round_number?: number
+  round_status?: 'playing' | 'round_over' | 'finished'
+  status?: 'waiting' | 'playing' | 'finished'
+  skip_votes?: { host: boolean; guest: boolean }
+  next_round_ready?: { host: boolean; guest: boolean }
+  rematch_votes?: { host: boolean; guest: boolean }
+  criteria?: { rows: Criteria[]; cols: Criteria[] }
+}
+

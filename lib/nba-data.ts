@@ -1566,7 +1566,8 @@ const FAMOUS_PLAYER_IDS = [
 
 export function generateGrid(
   difficulty: "easy" | "medium" | "hard" = "medium",
-  size: number = 3
+  size: number = 3,
+  excludeValues: string[] = [] // Values to exclude from new grid (e.g. previous criteria values)
 ): {
   rows: Criteria[]
   cols: Criteria[]
@@ -1608,8 +1609,13 @@ export function generateGrid(
 
   // Generation Loop (Retry until valid)
   for (let attempt = 0; attempt < RETRY_LIMIT; attempt++) {
+      // Filter out excluded values (from previous rounds)
+      const filteredCriteria = excludeValues.length > 0 
+        ? allCriteria.filter(c => !excludeValues.includes(c.value))
+        : allCriteria
+      
       // Shuffle and pick criteria
-      const shuffled = [...allCriteria].sort(() => Math.random() - 0.5)
+      const shuffled = [...filteredCriteria].sort(() => Math.random() - 0.5)
       
       const rows: Criteria[] = []
       const cols: Criteria[] = []

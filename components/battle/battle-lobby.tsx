@@ -273,8 +273,8 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
                            openBattles.map(battle => (
                                <div key={battle.code} className="flex items-center justify-between bg-white/5 p-3 rounded-lg border border-white/5 hover:bg-white/10 transition-colors">
                                    <div>
-                                       <p className="font-bold text-white text-sm">{battle.host_name.split('|')[1]}</p>
-                                       <p className="text-xs text-slate-500 uppercase">{battle.difficulty}</p>
+                                       <p className="font-bold text-white text-sm">{battle.host_name?.includes('|') ? battle.host_name.split('|')[1] : battle.host_name}</p>
+                                       <p className="text-xs text-slate-500 uppercase">{battle.difficulty || 'medium'}</p>
                                    </div>
                                    <Button 
                                        size="sm" 

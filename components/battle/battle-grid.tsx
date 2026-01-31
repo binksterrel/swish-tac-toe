@@ -5,7 +5,7 @@ import { Criteria, getTeamLogoUrl } from "@/lib/nba-data"
 import { CriteriaHeader } from "../game/criteria-header" // Reusing
 import { cn } from "@/lib/utils"
 import { getPlayerPhotoUrl } from "@/lib/nba-data"
-import { Check, X, Loader2 } from "lucide-react"
+import { Check, X, Loader2, SkipForward } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface BattleGridProps {
@@ -76,8 +76,9 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
 
   // Auto-Transition to Next Round (5 seconds countdown)
   const [nextRoundCountdown, setNextRoundCountdown] = useState<number | null>(null)
-  const isRoundOver = !!state.winner && (state.roundNumber || 1) < 5 // Round won, but not final round
-  const isFinalGameOver = !!state.winner && (state.roundNumber || 1) >= 5 // Final game is over
+  // Use roundStatus from server as source of truth
+  const isRoundOver = state.roundStatus === 'round_over' && (state.roundNumber || 1) < 5
+  const isFinalGameOver = state.roundStatus === 'finished' || ((state.roundNumber || 1) >= 5 && !!state.winner)
 
   useEffect(() => {
     if (isRoundOver && !isFinalGameOver) {
@@ -104,7 +105,7 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
     } else {
       setNextRoundCountdown(null)
     }
-  }, [isRoundOver, isFinalGameOver, state.code, role])
+  }, [isRoundOver, isFinalGameOver, state.code, role, state.roundStatus])
 
   return (
     <div className="w-full max-w-2xl mx-auto">
@@ -131,21 +132,41 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
           {/* Right: Vote Button */}
           <div className="text-right">
                <Button 
-                 variant={hasVotedSkip ? "secondary" : "outline"} 
+                 variant={hasVotedSkip ? "secondary" : "ghost"} 
                  size="sm"
                  onClick={handleSkip}
                  disabled={isSkipping || hasVotedSkip || isGameOver}
                  className={cn(
-                     "text-xs uppercase tracking-widest h-8 border-white/20 ml-auto",
-                     hasVotedSkip && "bg-yellow-500/20 text-yellow-500 border-yellow-500/50",
-                     opponentVoted && "animate-pulse border-yellow-500" // Highlight if opponent is waiting
+                     "text-xs uppercase tracking-widest h-9 px-4 ml-auto rounded-full transition-all duration-300",
+                     "border border-white/10 hover:border-white/30 hover:bg-white/5",
+                     hasVotedSkip && "bg-amber-500/20 text-amber-400 border-amber-500/50 hover:bg-amber-500/30",
+                     opponentVoted && !hasVotedSkip && "border-amber-500/50 text-amber-400 animate-pulse",
+                     !hasVotedSkip && !opponentVoted && "text-slate-400 hover:text-white"
                  )}
                >
-                 {isSkipping ? <Loader2 className="w-3 h-3 animate-spin" /> : 
-                  hasVotedSkip && opponentVoted ? t('battle.passing') :
-                  hasVotedSkip ? `${t('battle.en_attente')} (1/2)...` :
-                  opponentVoted ? `${t('battle.passer')} (1/2)` :
-                  t('battle.vote_skip')}
+                 {isSkipping ? (
+                   <Loader2 className="w-3 h-3 animate-spin" />
+                 ) : hasVotedSkip && opponentVoted ? (
+                   <span className="flex items-center gap-1.5">
+                     <Loader2 className="w-3 h-3 animate-spin" />
+                     {t('battle.passing')}
+                   </span>
+                 ) : hasVotedSkip ? (
+                   <span className="flex items-center gap-1.5">
+                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                     {t('battle.en_attente')}
+                   </span>
+                 ) : opponentVoted ? (
+                   <span className="flex items-center gap-1.5">
+                     <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                     {t('battle.passer')} ?
+                   </span>
+                 ) : (
+                   <span className="flex items-center gap-1.5">
+                     <SkipForward className="w-3.5 h-3.5" />
+                     {t('battle.vote_skip')}
+                   </span>
+                 )}
                </Button>
 
           </div>
@@ -157,8 +178,9 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
              
              {/* Host */}
              {(() => {
-               const rawName = state.players.host?.name || "En attente..."
-               const [teamCode, displayName] = rawName.includes('|') ? rawName.split('|') : [null, rawName]
+               const hostPlayer = state.players.host
+               const displayName = hostPlayer?.name || "En attente..."
+               const teamCode = hostPlayer?.avatar // Already parsed in use-battle.ts
                return (
                  <div className={cn("text-center transition-all z-10 flex items-center gap-2", state.currentTurn === 'host' ? "scale-110 opacity-100" : "opacity-40 scale-90")}>
                    {teamCode && (
@@ -182,8 +204,9 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
 
              {/* Guest */}
              {(() => {
-               const rawName = state.players.guest?.name || "En attente..."
-               const [teamCode, displayName] = rawName.includes('|') ? rawName.split('|') : [null, rawName]
+               const guestPlayer = state.players.guest
+               const displayName = guestPlayer?.name || "En attente..."
+               const teamCode = guestPlayer?.avatar // Already parsed in use-battle.ts
                return (
                  <div className={cn("text-center transition-all z-10 flex items-center gap-2", state.currentTurn === 'guest' ? "scale-110 opacity-100" : "opacity-40 scale-90")}>
                    <div>
@@ -214,7 +237,11 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
           </div>
       )}
 
-      <div className="grid grid-rows-[auto_1fr_1fr_1fr] gap-2">
+      {/* Grid - key on criteria to trigger clean re-render on round change */}
+      <div 
+        key={`grid-${criteria.rows.map(c => c.value).join('-')}-${criteria.cols.map(c => c.value).join('-')}`}
+        className="grid grid-rows-[auto_1fr_1fr_1fr] gap-2 animate-in fade-in duration-200"
+      >
         {/* Header Row */}
         <div className="grid grid-cols-[auto_1fr_1fr_1fr] gap-2">
            <div className="w-20 md:w-32"></div> {/* Top-Left Spacer */}
@@ -298,56 +325,125 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
 
 function RoundOverOverlay({ state, role, onNextRound }: { state: BattleState, role: 'host' | 'guest', onNextRound: (action: 'continue' | 'forfeit') => void }) {
     const { t } = useLanguage()
+    const [showModal, setShowModal] = useState(false)
+    const [countdown, setCountdown] = useState(5)
+    
+    // Delay showing the modal by 5 seconds so players can see the winning move
+    useEffect(() => {
+        if (state.roundStatus === 'round_over' && state.winner) {
+            setShowModal(false)
+            setCountdown(5)
+            
+            const timer = setInterval(() => {
+                setCountdown(prev => {
+                    if (prev <= 1) {
+                        clearInterval(timer)
+                        setShowModal(true)
+                        return 0
+                    }
+                    return prev - 1
+                })
+            }, 1000)
+            
+            return () => clearInterval(timer)
+        }
+    }, [state.roundStatus, state.winner])
+    
     if (state.roundStatus !== 'round_over' || !state.winner) return null
 
     const isDraw = state.winner === 'draw'
     const isWinner = state.winner === role
     const winnerName = isDraw ? t('battle.draw') : (state.players[state.winner as 'host' | 'guest']?.name || t('battle.opponent'))
     
-    // ... existing logic
     const amIReady = state.nextRoundReady?.[role] || false
     const opponentRole = role === 'host' ? 'guest' : 'host'
     const opponentReady = state.nextRoundReady?.[opponentRole] || false
+    
+    // Show countdown before modal
+    if (!showModal) {
+        return (
+            <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none animate-in fade-in zoom-in-95 duration-300">
+                <div className="bg-gradient-to-b from-black/90 to-black/70 backdrop-blur-lg px-10 py-8 rounded-3xl border border-white/10 shadow-2xl text-center">
+                    {/* Result Badge */}
+                    <div className={cn(
+                        "inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4",
+                        isDraw ? "bg-slate-700 text-slate-300" :
+                        isWinner ? "bg-green-500/20 text-green-400 border border-green-500/50" :
+                        "bg-red-500/20 text-red-400 border border-red-500/50"
+                    )}>
+                        {isDraw ? t('battle.draw') : isWinner ? t('battle.victory') : t('battle.defeat')}
+                    </div>
+                    
+                    {/* Winner Name */}
+                    <p className={cn(
+                        "text-4xl font-heading font-bold uppercase italic mb-3",
+                        state.winner === 'host' ? "text-nba-blue" : 
+                        state.winner === 'guest' ? "text-nba-red" : "text-white"
+                    )}>
+                        {winnerName}
+                    </p>
+                    <p className="text-slate-400 text-sm">{t('battle.wins_round')}</p>
+                    
+                    {/* Countdown */}
+                    <div className="mt-6 flex items-center justify-center gap-2">
+                        <div className="w-12 h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                            <span className="text-2xl font-bold text-white animate-pulse">{countdown}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in">
-             <div className="bg-gray-900 border border-white/20 p-8 rounded-2xl max-w-md w-full text-center shadow-2xl relative overflow-hidden">
-                {/* Background Glow */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md animate-in fade-in duration-300">
+             <div className="bg-gradient-to-b from-gray-900 to-gray-950 border border-white/10 p-8 rounded-3xl max-w-md w-full text-center shadow-2xl relative overflow-hidden animate-in zoom-in-95 duration-300">
+                {/* Top Accent Line */}
                 <div className={cn(
-                    "absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-white/50 to-transparent",
-                    state.winner === 'host' ? "via-nba-blue" : isDraw ? "via-gray-500" : "via-nba-red"
+                    "absolute top-0 left-0 right-0 h-1",
+                    state.winner === 'host' ? "bg-gradient-to-r from-transparent via-nba-blue to-transparent" : 
+                    state.winner === 'guest' ? "bg-gradient-to-r from-transparent via-nba-red to-transparent" :
+                    "bg-gradient-to-r from-transparent via-slate-500 to-transparent"
                 )} />
-
-                <h2 className="text-3xl font-heading font-bold uppercase italic mb-2">{t('battle.round_over').replace('{n}', (state.roundNumber || 1).toString())}</h2>
                 
-                <div className="py-6">
-                    <p className="text-slate-400 text-sm uppercase tracking-widest mb-2">{t('battle.result')}</p>
+                {/* Round Header */}
+                <p className="text-slate-500 text-xs uppercase tracking-[0.2em] mb-2">{t('battle.round_over').replace('{n}', '')}</p>
+                <h2 className="text-5xl font-heading font-bold mb-6">{state.roundNumber || 1}<span className="text-slate-600">/5</span></h2>
+                
+                {/* Result Section */}
+                <div className="py-6 px-4 bg-black/30 rounded-2xl border border-white/5 mb-6">
+                    <p className="text-slate-500 text-xs uppercase tracking-widest mb-3">{t('battle.result')}</p>
                     <p className={cn("text-4xl font-bold mb-4", 
                         state.winner === 'host' ? "text-nba-blue" : 
                         state.winner === 'guest' ? "text-nba-red" : "text-white"
                     )}>
                         {winnerName}
                     </p>
+                    
+                    {/* Points Badge */}
                     {isDraw ? (
-                         <div className="inline-block bg-slate-800 text-slate-400 px-3 py-1 rounded-full text-xs font-bold uppercase">
+                         <div className="inline-block bg-slate-800/50 text-slate-400 px-4 py-2 rounded-full text-sm font-bold uppercase border border-slate-700">
                             {t('battle.no_points')}
                         </div>
                     ) : isWinner ? (
-                        <div className="inline-block bg-yellow-500/20 text-yellow-500 px-3 py-1 rounded-full text-xs font-bold uppercase border border-yellow-500/50">
+                        <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-bold uppercase border border-green-500/50">
+                            <span className="w-2 h-2 rounded-full bg-green-400" />
                             {t('battle.point_won')}
                         </div>
                     ) : (
-                        <div className="inline-block bg-slate-800 text-slate-400 px-3 py-1 rounded-full text-xs font-bold uppercase">
+                        <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-bold uppercase border border-red-500/50">
+                            <span className="w-2 h-2 rounded-full bg-red-400" />
                             {t('battle.zero_points')}
                         </div>
                     )}
                 </div>
 
-                <div className="flex gap-4 mt-4">
+                {/* Action Buttons */}
+                <div className="flex gap-3">
                      <Button 
                         onClick={() => onNextRound('forfeit')}
                         variant="ghost" 
-                        className="flex-1 text-slate-500 hover:text-red-500"
+                        className="flex-1 h-12 text-slate-500 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 rounded-xl transition-all"
                         disabled={amIReady}
                      >
                         {t('battle.surrender')}
@@ -355,8 +451,10 @@ function RoundOverOverlay({ state, role, onNextRound }: { state: BattleState, ro
                      <Button 
                         onClick={() => onNextRound('continue')}
                         className={cn(
-                            "flex-1 h-12 text-lg font-bold uppercase tracking-widest",
-                            amIReady ? "bg-green-600/50 text-white cursor-default" : "bg-white text-black hover:bg-gray-200"
+                            "flex-1 h-12 text-lg font-bold uppercase tracking-wider rounded-xl transition-all",
+                            amIReady 
+                                ? "bg-green-600/30 text-green-400 border border-green-500/30 cursor-default" 
+                                : "bg-white text-black hover:bg-gray-100 shadow-lg shadow-white/20"
                         )}
                         disabled={amIReady}
                      >
@@ -367,7 +465,10 @@ function RoundOverOverlay({ state, role, onNextRound }: { state: BattleState, ro
                 </div>
                 
                 {amIReady && !opponentReady && (
-                    <p className="mt-4 text-xs text-slate-500 animate-pulse">{t('battle.waiting_opponent')}</p>
+                    <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
+                        <Loader2 className="w-3 h-3 animate-spin" />
+                        {t('battle.waiting_opponent')}
+                    </div>
                 )}
             </div>
         </div>

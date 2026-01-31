@@ -83,76 +83,123 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
     }
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md animate-in fade-in duration-500">
-             <div className="max-w-md w-full bg-gray-900 border border-white/20 rounded-2xl p-8 text-center relative overflow-hidden shadow-2xl">
-                 {/* Background Burst */}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-xl animate-in fade-in duration-500">
+             <div className="max-w-lg w-full mx-4 relative">
+                 {/* Glowing accent behind modal */}
                  <div className={cn(
-                     "absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))]",
-                     isWinner ? "from-yellow-500 via-transparent to-transparent" :
-                     isDraw ? "from-gray-500 via-transparent to-transparent" :
-                     "from-red-900 via-transparent to-transparent"
+                     "absolute -inset-4 rounded-[32px] opacity-30 blur-2xl",
+                     isWinner ? "bg-yellow-500" : isDraw ? "bg-slate-500" : "bg-red-900"
                  )} />
+                 
+                 <div className="relative bg-gradient-to-b from-gray-900 via-gray-950 to-black border border-white/10 rounded-3xl p-8 text-center shadow-2xl overflow-hidden">
+                     {/* Top accent line */}
+                     <div className={cn(
+                         "absolute top-0 left-0 right-0 h-1",
+                         isWinner ? "bg-gradient-to-r from-transparent via-yellow-500 to-transparent" :
+                         isDraw ? "bg-gradient-to-r from-transparent via-slate-400 to-transparent" :
+                         "bg-gradient-to-r from-transparent via-red-500 to-transparent"
+                     )} />
 
-                 <div className="relative z-10">
-                     <div className="mb-6">
+                     {/* Icon */}
+                     <div className="mb-8 mt-4">
                          {isWinner ? (
-                             <Trophy className="w-20 h-20 text-yellow-500 mx-auto drop-shadow-[0_0_20px_rgba(234,179,8,0.6)] animate-bounce" />
+                             <div className="relative inline-block">
+                                 <Trophy className="w-24 h-24 text-yellow-500 drop-shadow-[0_0_30px_rgba(234,179,8,0.7)]" />
+                                 <div className="absolute -inset-4 bg-yellow-500/20 rounded-full blur-xl animate-pulse" />
+                             </div>
                          ) : isDraw ? (
-                             <div className="text-6xl mx-auto mb-2">🤝</div>
+                             <div className="w-24 h-24 mx-auto rounded-full bg-slate-800 border-2 border-slate-600 flex items-center justify-center">
+                                 <span className="text-5xl">🤝</span>
+                             </div>
                          ) : (
-                             <Frown className="w-20 h-20 text-slate-600 mx-auto" />
+                             <div className="w-24 h-24 mx-auto rounded-full bg-red-950/50 border-2 border-red-900/50 flex items-center justify-center">
+                                 <Frown className="w-14 h-14 text-red-400/70" />
+                             </div>
                          )}
                      </div>
 
+                     {/* Result Text */}
                      <h1 className={cn(
-                         "text-4xl font-heading font-bold uppercase italic mb-2 tracking-tighter",
-                         isWinner ? "text-yellow-500" : isDraw ? "text-slate-200" : "text-slate-400"
+                         "text-5xl md:text-6xl font-heading font-black uppercase italic mb-3 tracking-tighter",
+                         isWinner ? "text-yellow-500" : isDraw ? "text-slate-200" : "text-red-400"
                      )}>
                          {isWinner ? t('battle.victory') : isDraw ? t('battle.draw') : t('battle.defeat')}
                      </h1>
 
-                     <p className="text-slate-400 mb-8 uppercase tracking-widest text-sm">
+                     <p className="text-slate-500 mb-10 uppercase tracking-[0.25em] text-xs">
                          {isWinner ? t('battle.win_msg') : isDraw ? t('battle.draw_msg') : t('battle.loss_msg')}
                      </p>
 
                      {/* Scoreboard */}
-                     <div className="flex items-center justify-center gap-8 mb-8 bg-black/30 p-4 rounded-xl border border-white/5">
-                         <div className="text-center">
-                             <p className="text-xs uppercase font-bold text-slate-500 mb-1">{t('battle.you')}</p>
-                             <div className={cn("text-4xl font-heading font-bold", isWinner ? "text-yellow-500" : "text-white")}>
+                     <div className="flex items-stretch justify-center gap-4 mb-10">
+                         {/* My Score */}
+                         <div className={cn(
+                             "flex-1 p-6 rounded-2xl border transition-all",
+                             isWinner 
+                                 ? "bg-yellow-500/10 border-yellow-500/30" 
+                                 : "bg-white/5 border-white/10"
+                         )}>
+                             <p className="text-xs uppercase font-bold text-slate-500 mb-2 tracking-widest">{t('battle.you')}</p>
+                             <div className={cn(
+                                 "text-5xl font-heading font-black",
+                                 isWinner ? "text-yellow-500" : "text-white"
+                             )}>
                                  {myScore}
                              </div>
                          </div>
-                         <div className="text-2xl text-slate-600 font-mono">VS</div>
-                         <div className="text-center">
-                             <p className="text-xs uppercase font-bold text-slate-500 mb-1">{t('battle.opponent')}</p>
-                             <div className="text-4xl font-heading font-bold text-white">
+                         
+                         {/* VS Divider */}
+                         <div className="flex items-center justify-center">
+                             <div className="w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center">
+                                 <span className="text-xs font-bold text-slate-600">VS</span>
+                             </div>
+                         </div>
+                         
+                         {/* Opponent Score */}
+                         <div className={cn(
+                             "flex-1 p-6 rounded-2xl border transition-all",
+                             !isWinner && !isDraw 
+                                 ? "bg-red-500/10 border-red-500/30" 
+                                 : "bg-white/5 border-white/10"
+                         )}>
+                             <p className="text-xs uppercase font-bold text-slate-500 mb-2 tracking-widest">{t('battle.opponent')}</p>
+                             <div className={cn(
+                                 "text-5xl font-heading font-black",
+                                 !isWinner && !isDraw ? "text-red-400" : "text-white"
+                             )}>
                                  {opponentScore}
                              </div>
                          </div>
                      </div>
 
+                     {/* Action Buttons */}
                      <div className="space-y-3">
                          {/* Rematch Button */}
                          {!hasVotedRematch ? (
                             <Button 
                                 onClick={handleRematch}
                                 disabled={isRematchLoading}
-                                className="w-full bg-nba-blue text-white hover:bg-blue-600 h-12 text-lg font-bold uppercase tracking-widest shadow-lg animate-pulse"
+                                className={cn(
+                                    "w-full h-14 text-lg font-bold uppercase tracking-wider rounded-xl shadow-lg transition-all",
+                                    isWinner 
+                                        ? "bg-yellow-500 hover:bg-yellow-400 text-black shadow-yellow-500/30" 
+                                        : "bg-white hover:bg-gray-100 text-black shadow-white/20"
+                                )}
                             >
-                                <RefreshCw className={cn("w-4 h-4 mr-2", isRematchLoading && "animate-spin")} />
+                                <RefreshCw className={cn("w-5 h-5 mr-2", isRematchLoading && "animate-spin")} />
                                 {t('battle.rematch_button')}
                             </Button>
                          ) : (
-                            <div className="w-full bg-gray-800 text-slate-300 h-12 flex items-center justify-center text-sm font-bold uppercase tracking-widest rounded-md border border-white/10">
+                            <div className="w-full bg-green-600/20 border border-green-500/30 text-green-400 h-14 flex items-center justify-center text-sm font-bold uppercase tracking-widest rounded-xl gap-2">
+                                <RefreshCw className="w-4 h-4 animate-spin" />
                                 {opponentVotedRematch ? t('battle.starting') : t('battle.waiting_opponent')}
                             </div>
                          )}
 
                          <Button 
                              onClick={() => router.push('/')}
-                             variant="outline"
-                             className="w-full bg-transparent border-white/10 text-slate-400 hover:text-white hover:bg-white/5 h-12 text-sm font-bold uppercase tracking-widest"
+                             variant="ghost"
+                             className="w-full h-12 text-slate-500 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 rounded-xl text-sm font-bold uppercase tracking-widest transition-all"
                          >
                              <Home className="w-4 h-4 mr-2" />
                              {t('battle.return_home')}

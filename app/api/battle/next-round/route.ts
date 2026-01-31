@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { pusherServer } from '@/lib/pusher'
 import { supabaseAdmin } from '@/lib/supabase'
-import { BattleState, GridCell } from '@/lib/battle-types'
+import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'
 import { generateGrid } from '@/lib/nba-data'
 
 export const dynamic = 'force-dynamic'
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Battle not found' }, { status: 404 })
         }
 
-        let updateData: any = {}
+        let updateData: BattleDbUpdate = {}
         let newStateDetails: Partial<BattleState> = {}
 
         if (action === 'forfeit') {
@@ -39,34 +39,39 @@ export async function POST(req: Request) {
                 winner: opponent // Explicit Game Winner (not round winner)
             }
         } else if (action === 'continue') {
-            // MARK READY
-            const currentReady = battle.next_round_ready || { host: false, guest: false }
-            const newReady = { ...currentReady, [role]: true }
+            // Start Next Round IMMEDIATELY on first request (to avoid sync issues)
+            
+            // Idempotency Check: If round is already playing (no winner), just return current state
+            if (!battle.winner && (!battle.round_status || battle.round_status === 'playing')) {
+                 return NextResponse.json({ success: true, state: { ...battle, ...newStateDetails } })
+            }
 
-            // CHECK CONSENSUS
-            if (newReady.host && newReady.guest) {
-                // START NEXT ROUND
-                const currentRound = battle.round_number || 1
-                const { rows, cols } = generateGrid('medium')
-                const freshGrid = Array(3).fill(null).map(() => 
-                   Array(3).fill(null).map(() => ({ player: null, status: 'empty' }))
-                )
+            // START NEXT ROUND
+            const currentRound = battle.round_number || 1
+            const difficulty = battle.difficulty || 'medium' // Persist difficulty
+            
+            // Extract previous criteria values to exclude from new grid
+            const prevCriteria = battle.criteria || { rows: [], cols: [] }
+            const excludeValues = [
+                ...prevCriteria.rows.map((c: { value: string }) => c.value),
+                ...prevCriteria.cols.map((c: { value: string }) => c.value)
+            ]
+            
+            const { rows, cols } = generateGrid(difficulty, 3, excludeValues)
+            const freshGrid: GridCell[][] = Array(3).fill(null).map(() => 
+                Array(3).fill(null).map(() => ({ player: null, status: 'empty' as const }))
+            )
 
-                updateData = {
-                    round_number: currentRound + 1,
-                    grid: freshGrid,
-                    criteria: { rows, cols },
-                    winner: null, // Reset round winner
-                    current_turn: battle.winner || 'host', // Winner starts next round
-                    turn_expiry: Date.now() + 60000,
-                    skip_votes: { host: false, guest: false },
-                    next_round_ready: { host: false, guest: false }
-                }
-            } else {
-                // JUST MARK READY
-                updateData = {
-                    next_round_ready: newReady
-                }
+            updateData = {
+                round_number: currentRound + 1,
+                grid: freshGrid,
+                criteria: { rows, cols },
+                winner: null, // Reset round winner
+                current_turn: battle.winner || 'host', // Winner starts next round
+                turn_expiry: Date.now() + 60000,
+                skip_votes: { host: false, guest: false },
+                next_round_ready: { host: false, guest: false }, // Reset ready flags
+                round_status: 'playing' // Explicitly reset status
             }
         }
 
