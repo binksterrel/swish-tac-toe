@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { GridCell, BattleState, Player } from '@/lib/battle-types'
+import { GridCell, BattleState, BattlePlayer } from '@/lib/battle-types'
 import { NBAPlayer, generateGrid, validatePlayerForCell } from '@/lib/nba-data'
 
 // Mock initial state
@@ -8,7 +8,7 @@ const INITIAL_GRID_SIZE = 3
 export function useLocalBattle() {
     // Game State
     const [state, setState] = useState<BattleState | null>(null)
-    const [players, setPlayers] = useState<{host: Player, guest: Player} | null>(null)
+    const [players, setPlayers] = useState<{host: BattlePlayer, guest: BattlePlayer} | null>(null)
     const [turnExpiry, setTurnExpiry] = useState<number | null>(null)
     const [messages, setMessages] = useState<any[]>([]) 
 
@@ -29,16 +29,14 @@ export function useLocalBattle() {
                 row: r,
                 col: c,
                 status: 'empty',
-                owner: null,
+                owner: undefined,
                 player: null
             }))
         )
 
         const newState: BattleState = {
-            id: 'local_match',
             code: 'LOCAL',
-            status: 'active',
-            roundStatus: 'active',
+            roundStatus: 'playing',
             roundNumber: 1,
             currentTurn: 'host', // P1 starts
             turnExpiry: Date.now() + 20000, // 20s per turn
@@ -47,7 +45,7 @@ export function useLocalBattle() {
             criteria: { rows, cols },
             scores: { host: 0, guest: 0 },
             winner: null,
-            createdAt: new Date().toISOString(),
+            // createdAt: new Date().toISOString(), // Removed as not in BattleState
             skipVotes: { host: false, guest: false },
             nextRoundReady: { host: false, guest: false }
         }
@@ -58,7 +56,7 @@ export function useLocalBattle() {
 
     // Timer Logic for auto-switch
     useEffect(() => {
-        if (!state || state.roundStatus !== 'active' || !turnExpiry) return
+        if (!state || state.roundStatus !== 'playing' || !turnExpiry) return
 
         const interval = setInterval(() => {
             if (Date.now() >= turnExpiry) {
@@ -82,7 +80,7 @@ export function useLocalBattle() {
     }
 
     const submitMove = (row: number, col: number, player: NBAPlayer) => {
-        if (!state || state.roundStatus !== 'active') return
+        if (!state || state.roundStatus !== 'playing') return
 
         const rowCrit = state.criteria.rows[row]
         const colCrit = state.criteria.cols[col]
@@ -99,11 +97,11 @@ export function useLocalBattle() {
                     ...newGrid[row][col],
                     status: 'correct',
                     owner: prev.currentTurn,
-                    player: { ...player, photoUrl: player.photoUrl } // Ensure photoUrl exists
+                    player: player // Just assign player, no extra props
                 }
                 
                 // Update Score
-                const newScores = { ...prev.scores }
+                const newScores = { ...prev.scores! } // Assume scores exist
                 newScores[prev.currentTurn]++
 
                 // Check Round Win (3 aligned or full grid)
@@ -130,10 +128,10 @@ export function useLocalBattle() {
                     ...prev,
                     grid: newGrid,
                     scores: newScores,
-                    roundStatus: winner ? 'round_over' : 'active',
+                    roundStatus: winner ? 'round_over' : 'playing',
                     winner: winner,
                     currentTurn: winner ? prev.currentTurn : (prev.currentTurn === 'host' ? 'guest' : 'host'),
-                    turnExpiry: winner ? null : Date.now() + 20000
+                    turnExpiry: winner ? undefined : Date.now() + 20000
                 }
             })
             if (!state.winner) setTurnExpiry(Date.now() + 20000) // Reset timer only if game continues
@@ -155,7 +153,7 @@ export function useLocalBattle() {
                     row: r,
                     col: c,
                     status: 'empty',
-                    owner: null,
+                    owner: undefined,
                     player: null
                 }))
             )
@@ -163,11 +161,11 @@ export function useLocalBattle() {
             return {
                 ...prev,
                 roundNumber: (prev.roundNumber || 1) + 1,
-                roundStatus: 'active',
+                roundStatus: 'playing',
                 winner: null,
                 grid: emptyGrid,
                 criteria: { rows, cols },
-                currentTurn: prev.roundNumber % 2 === 0 ? 'host' : 'guest', // Rotate starter
+                currentTurn: (prev.roundNumber || 1) % 2 === 0 ? 'host' : 'guest', // Rotate starter
                 turnExpiry: Date.now() + 20000
             }
         })

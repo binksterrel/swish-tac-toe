@@ -37,6 +37,10 @@ export async function POST(req: Request) {
              return NextResponse.json({ error: 'Turn not yet expired' }, { status: 400 })
         }
 
+        if (body.currentTurn && currentTurn !== body.currentTurn) {
+             return NextResponse.json({ error: 'Turn already changed', state: null }, { status: 200 })
+        }
+
         // 3. Swap Turn
         const nextTurn = currentTurn === 'host' ? 'guest' : 'host'
         const nextExpiry = Date.now() + 60000 // 60 seconds for next turn

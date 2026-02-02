@@ -11,6 +11,8 @@ import { Header } from "@/components/layout/header" // Adjusted import
 import { Loader2, AlertTriangle, Share2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { NBATicker } from "@/components/layout/nba-ticker"
+
 export default function BattleRoom() {
     const params = useParams()
     const searchParams = useSearchParams()
@@ -79,6 +81,7 @@ export default function BattleRoom() {
 
     return (
         <div className="min-h-screen bg-black text-white">
+            <NBATicker />
             <Header />
             <div className="container mx-auto px-4 py-8">
                 <BattleGrid 

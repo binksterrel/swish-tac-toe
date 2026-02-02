@@ -2,6 +2,7 @@
 
 import { GridCell, BattleState } from "@/lib/battle-types"
 import { Criteria, getTeamLogoUrl } from "@/lib/nba-data"
+import { motion, AnimatePresence } from "framer-motion"
 import { CriteriaHeader } from "../game/criteria-header" // Reusing
 import { cn } from "@/lib/utils"
 import { getPlayerPhotoUrl } from "@/lib/nba-data"
@@ -16,7 +17,7 @@ interface BattleGridProps {
   onVoteSkip?: () => void
 }
 
-import { useEffect, useState, useMemo } from "react"
+import { useEffect, useState, useMemo, useRef } from "react"
 import { GameTimer } from "../game/game-timer"
 import { BattleGameOverModal } from "./battle-game-over-modal"
 import { useLanguage } from "@/contexts/language-context"
@@ -44,7 +45,7 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
                fetch('/api/battle/timeout', {
                    method: 'POST', 
                    headers: { 'Content-Type': 'application/json' },
-                   body: JSON.stringify({ code: state.code, playerRole: role })
+                   body: JSON.stringify({ code: state.code, playerRole: role, currentTurn: state.currentTurn })
                }).catch(console.error)
           }
       }, 1000)
@@ -107,8 +108,49 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
     }
   }, [isRoundOver, isFinalGameOver, state.code, role, state.roundStatus])
 
+  // TURN FLASH LOGIC
+  const [showTurnFlash, setShowTurnFlash] = useState(false)
+  const prevTurn = useRef(state.currentTurn)
+
+  useEffect(() => {
+    // If it BECAME my turn (and wasn't before)
+    if (state.currentTurn === role && prevTurn.current !== role && !isGameOver) {
+        setShowTurnFlash(true)
+        const timer = setTimeout(() => setShowTurnFlash(false), 800)
+        return () => clearTimeout(timer)
+    }
+    prevTurn.current = state.currentTurn
+  }, [state.currentTurn, role, isGameOver])
+
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto relative">
+      {/* SCREEN FLASH EFFECT */}
+      <AnimatePresence>
+        {showTurnFlash && (
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.4 }}
+                exit={{ opacity: 0 }}
+                className={cn(
+                    "fixed inset-0 z-50 pointer-events-none mix-blend-overlay",
+                    role === 'host' ? "bg-nba-blue" : "bg-nba-red"
+                )}
+            />
+        )}
+      </AnimatePresence>
+      
+      {showTurnFlash && (
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1.5, opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none"
+          >
+             <h1 className="text-6xl md:text-8xl font-heading font-bold uppercase italic text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+                 A TOI !
+             </h1>
+          </motion.div>
+      )}
       {/* Scoreboard & Round Info - Grid Layout for perfect centering */}
       <div className="grid grid-cols-3 items-end mb-4 px-2">
           {/* Left: Round */}

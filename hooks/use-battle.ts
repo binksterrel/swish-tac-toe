@@ -36,7 +36,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
     const [myPlayerName, setMyPlayerName] = useState(initialPlayerName || "")
     const [error, setError] = useState<string | null>(null)
 
-    // Load Initial State from DB (Source of Truth)
+    // Load Initial State from DB (Source of Truth) or LocalStorage (Fallback)
     useEffect(() => {
         if (!code) return
         
@@ -47,11 +47,25 @@ export function useBattle(code: string, initialPlayerName?: string) {
                     const data = await res.json()
                     setState(parseState(data))
                 } else {
-                    console.error("Failed to load battle state")
-                    setError("Battle not found")
+                    console.warn(`API Load failed for ${code}, trying LocalStorage fallback...`)
+                    // Fallback to LocalStorage (useful for dev/offline or if DB is slow)
+                    const localData = localStorage.getItem(`battle_state_${code.toUpperCase()}`)
+                    if (localData) {
+                        try {
+                            const parsed = JSON.parse(localData)
+                            setState(parseState(parsed))
+                            console.log("Loaded state from LocalStorage")
+                        } catch (err) {
+                            console.error("Local storage parse error", err)
+                            setError("Battle not found")
+                        }
+                    } else {
+                         console.error("Failed to load battle state from API and LocalStorage")
+                         setError("Battle not found")
+                    }
                 }
             } catch (e) {
-                console.error(e)
+                console.error("Connection error loading state", e)
                 setError("Connection error")
             }
         }
