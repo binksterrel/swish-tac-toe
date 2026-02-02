@@ -88,11 +88,28 @@ export function useBattle(code: string, initialPlayerName?: string) {
         })
 
         channel.bind('game-sync', (syncedState: BattleState) => {
-            setState(parseState(syncedState))
+            const newState = parseState(syncedState)
+            setState(prev => {
+                if (JSON.stringify(prev) === JSON.stringify(newState)) return prev
+                return newState
+            })
         })
 
-        channel.bind('move-made', (newState: BattleState) => {
-            setState(parseState(newState))
+        channel.bind('move-made', (newStateRaw: BattleState) => {
+            const newState = parseState(newStateRaw)
+            setState(prev => {
+                // Ignore if move is effectively same (reduces echo jitter from own optimistic update)
+                // We check grid, currentTurn, and roundNumber primarily
+                if (prev && 
+                    prev.currentTurn === newState.currentTurn &&
+                    prev.roundNumber === newState.roundNumber &&
+                    JSON.stringify(prev.grid) === JSON.stringify(newState.grid) &&
+                    JSON.stringify(prev.players) === JSON.stringify(newState.players)
+                ) {
+                    return prev
+                }
+                return newState
+            })
         })
         
         channel.bind('quick-chat', (data: { role: string, message: string, emoji?: string }) => {

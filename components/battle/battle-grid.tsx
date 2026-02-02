@@ -16,7 +16,7 @@ interface BattleGridProps {
   onVoteSkip?: () => void
 }
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { GameTimer } from "../game/game-timer"
 import { BattleGameOverModal } from "./battle-game-over-modal"
 import { useLanguage } from "@/contexts/language-context"
@@ -237,82 +237,84 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
           </div>
       )}
 
-      {/* Grid - key on criteria to trigger clean re-render on round change */}
-      <div 
-        key={`grid-${criteria.rows.map(c => c.value).join('-')}-${criteria.cols.map(c => c.value).join('-')}`}
-        className="grid grid-rows-[auto_1fr_1fr_1fr] gap-2 animate-in fade-in duration-200"
-      >
-        {/* Header Row */}
-        <div className="grid grid-cols-[auto_1fr_1fr_1fr] gap-2">
-           <div className="w-20 md:w-32"></div> {/* Top-Left Spacer */}
-           {criteria.cols.map((crit, i) => (
-             <div key={`col-header-${i}`} className="w-full aspect-[4/3] flex items-center justify-center">
-               <CriteriaHeader criteria={crit} direction="col" />
-             </div>
-           ))}
-        </div>
-
-        {/* Rows */}
-        {grid.map((row, rIndex) => (
-          <div key={`row-${rIndex}`} className="grid grid-cols-[auto_1fr_1fr_1fr] gap-2">
-            
-            {/* Row Header */}
-            <div className="w-20 md:w-32 flex items-center justify-center">
-              <CriteriaHeader criteria={criteria.rows[rIndex]} direction="row" />
+      {/* Grid - Memoized to prevent re-renders on timer tick */}
+      {useMemo(() => (
+          <div 
+            key={`grid-${criteria.rows.map(c => c.value).join('-')}-${criteria.cols.map(c => c.value).join('-')}`}
+            className="grid grid-rows-[auto_1fr_1fr_1fr] gap-2 animate-in fade-in duration-200"
+          >
+            {/* Header Row */}
+            <div className="grid grid-cols-[auto_1fr_1fr_1fr] gap-2">
+               <div className="w-20 md:w-32"></div> {/* Top-Left Spacer */}
+               {criteria.cols.map((crit, i) => (
+                 <div key={`col-header-${i}`} className="w-full aspect-[4/3] flex items-center justify-center">
+                   <CriteriaHeader criteria={crit} direction="col" />
+                 </div>
+               ))}
             </div>
 
-            {/* Cells */}
-            {row.map((cell, cIndex) => {
-               const isSelected = selectedCell?.row === rIndex && selectedCell?.col === cIndex
-               const isDisabled = cell.status === 'correct' || !isMyTurn || isGameOver
-               
-               return (
-                 <div 
-                    key={`cell-${rIndex}-${cIndex}`}
-                    onClick={() => !isDisabled && onCellClick(rIndex, cIndex)}
-                    className={cn(
-                        "relative w-full aspect-square md:aspect-[4/3] rounded-lg border-2 transition-all flex items-center justify-center overflow-hidden cursor-pointer",
-                        // Ownership Colors
-                        cell.owner === 'host' ? "bg-nba-blue/20 border-nba-blue shadow-[0_0_15px_rgba(29,66,138,0.3)]" : 
-                        cell.owner === 'guest' ? "bg-nba-red/20 border-nba-red shadow-[0_0_15px_rgba(206,17,65,0.3)]" : 
-                        "bg-white/5 border-white/10 hover:bg-white/10",
-                        
-                        isSelected && "ring-4 ring-white ring-offset-2 ring-offset-black scale-105 z-10",
-                        isDisabled && !cell.player && "opacity-50 cursor-not-allowed",
-                        isDisabled && cell.player && "cursor-default"
-                    )}
-                 >
-                    {cell.player ? (
-                        <>
-                           <img 
-                              key={cell.player.id} 
-                              src={getPlayerPhotoUrl(cell.player)} 
-                              alt={cell.player.name}
-                              className="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity animate-in fade-in duration-300"
-                           />
-                           <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-2">
-                              <p className="text-[10px] md:text-xs font-bold text-center text-white leading-tight truncate">
-                                {cell.player.name}
-                              </p>
-                           </div>
-                           <div className={cn(
-                               "absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center border-2 border-white text-[10px] font-bold shadow-md",
-                               cell.owner === 'host' ? "bg-nba-blue text-white" : "bg-nba-red text-white"
-                           )}>
-                               {cell.owner === 'host' ? 'P1' : 'P2'}
-                           </div>
-                        </>
-                    ) : (
-                        <div className="opacity-0 hover:opacity-100 transition-opacity">
-                            {isMyTurn && !isGameOver && <div className="text-xs uppercase font-bold tracking-widest text-white/50">Select</div>}
-                        </div>
-                    )}
-                 </div>
-               )
-            })}
+            {/* Rows */}
+            {grid.map((row, rIndex) => (
+              <div key={`row-${rIndex}`} className="grid grid-cols-[auto_1fr_1fr_1fr] gap-2">
+                
+                {/* Row Header */}
+                <div className="w-20 md:w-32 flex items-center justify-center">
+                  <CriteriaHeader criteria={criteria.rows[rIndex]} direction="row" />
+                </div>
+
+                {/* Cells */}
+                {row.map((cell, cIndex) => {
+                   const isSelected = selectedCell?.row === rIndex && selectedCell?.col === cIndex
+                   const isDisabled = cell.status === 'correct' || !isMyTurn || isGameOver
+                   
+                   return (
+                     <div 
+                        key={`cell-${rIndex}-${cIndex}`}
+                        onClick={() => !isDisabled && onCellClick(rIndex, cIndex)}
+                        className={cn(
+                            "relative w-full aspect-square md:aspect-[4/3] rounded-lg border-2 transition-all flex items-center justify-center overflow-hidden cursor-pointer",
+                            // Ownership Colors
+                            cell.owner === 'host' ? "bg-nba-blue/20 border-nba-blue shadow-[0_0_15px_rgba(29,66,138,0.3)]" : 
+                            cell.owner === 'guest' ? "bg-nba-red/20 border-nba-red shadow-[0_0_15px_rgba(206,17,65,0.3)]" : 
+                            "bg-white/5 border-white/10 hover:bg-white/10",
+                            
+                            isSelected && "ring-4 ring-white ring-offset-2 ring-offset-black scale-105 z-10",
+                            isDisabled && !cell.player && "opacity-50 cursor-not-allowed",
+                            isDisabled && cell.player && "cursor-default"
+                        )}
+                     >
+                        {cell.player ? (
+                            <>
+                               <img 
+                                  key={cell.player.id} 
+                                  src={getPlayerPhotoUrl(cell.player)} 
+                                  alt={cell.player.name}
+                                  className="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity animate-in fade-in duration-300"
+                               />
+                               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-2">
+                                  <p className="text-[10px] md:text-xs font-bold text-center text-white leading-tight truncate">
+                                    {cell.player.name}
+                                  </p>
+                               </div>
+                               <div className={cn(
+                                   "absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center border-2 border-white text-[10px] font-bold shadow-md",
+                                   cell.owner === 'host' ? "bg-nba-blue text-white" : "bg-nba-red text-white"
+                               )}>
+                                   {cell.owner === 'host' ? 'P1' : 'P2'}
+                               </div>
+                            </>
+                        ) : (
+                            <div className="opacity-0 hover:opacity-100 transition-opacity">
+                                {isMyTurn && !isGameOver && <div className="text-xs uppercase font-bold tracking-widest text-white/50">Select</div>}
+                            </div>
+                        )}
+                     </div>
+                   )
+                })}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+      ), [grid, criteria, selectedCell, isMyTurn, isGameOver, onCellClick])}
       
       {/* Round Over Overlay */}
       {onNextRound && <RoundOverOverlay state={state} role={role} onNextRound={onNextRound} />}

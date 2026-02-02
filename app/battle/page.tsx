@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { BattleLobby } from "@/components/battle/battle-lobby"
 import { Header } from "@/components/layout/header"
+import { NBATicker } from "@/components/layout/nba-ticker"
+import { toast } from "sonner"
 
 export default function BattlePage() {
     const router = useRouter()
@@ -47,7 +49,7 @@ export default function BattlePage() {
             if (data.success) {
                  router.push(`/battle/${code}?role=guest&name=${encodeURIComponent(name)}`)
             } else {
-                alert("Failed to join") // Better UI later
+                toast.error("Impossible de rejoindre la partie. Code invalide ou partie pleine.") 
                 setIsLoading(false)
             }
         } catch (e) {
@@ -57,7 +59,8 @@ export default function BattlePage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white bg-[url('/grid-bg.svg')] bg-cover">
+        <div className="min-h-screen bg-black text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a0a] to-black">
+             <NBATicker />
              <Header />
              <div className="container mx-auto px-4 py-12 flex items-center justify-center min-h-[80vh]">
                  <BattleLobby 
