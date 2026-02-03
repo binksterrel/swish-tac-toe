@@ -138,7 +138,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
                 className="text-center mb-10"
             >
                 <h1 className="text-3xl md:text-4xl font-heading font-bold uppercase italic tracking-tighter text-white mb-2">
-                    {t('battle select mode') || "CHOISIS TON TERRAIN"}
+                    {t('battle.select_mode')}
                 </h1>
                 <p className="text-slate-400 text-xs md:text-sm uppercase tracking-widest font-medium">
                    Are you ready for the big stage?
@@ -283,7 +283,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
                             </div>
 
                             <Input 
-                                placeholder="TON BLAZE (PSEUDO)" 
+                                placeholder="PSEUDO" 
                                 className="bg-black/50 border-white/10 text-white text-center text-lg h-14 font-bold uppercase tracking-widest focus:border-nba-blue/50 focus:ring-1 focus:ring-nba-blue/50 transition-all rounded-lg placeholder:text-slate-600"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
