@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { NBATicker } from "@/components/layout/nba-ticker"
-import { Header } from "@/components/layout/header"
 import { Trophy, Grid3x3, Users, Play, Star, Sparkles, ChevronRight, Activity } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -12,9 +11,8 @@ export default function LandingPage() {
   return (
     <main className="min-h-screen bg-[#050505] text-white font-sans flex flex-col relative overflow-hidden selection:bg-nba-red selection:text-white">
       
-      {/* 1. Ticker & Header */}
+      {/* 1. Ticker */}
       <NBATicker />
-      <Header />
 
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

@@ -124,7 +124,7 @@ export const translations = {
       button: "RETURN TO COURT"
     },
     battle: {
-      title: "Battle Mode",
+      title: "Battle",
       subtitle: "Challenge a friend in real-time.",
       host: "Host",
       guest: "Guest",
@@ -331,7 +331,7 @@ export const translations = {
       button: "RETOUR SUR LE PARQUET"
     },
     battle: {
-      title: "Mode Bataille",
+      title: "Battle",
       subtitle: "Défie un ami en temps réel.",
       host: "Hôte",
       guest: "Invité",
