@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/co
 import { Sparkles, Trophy, Swords, Menu } from "lucide-react"
 import { usePathname } from "next/navigation" 
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 export function Header() {
   const { t } = useLanguage()
