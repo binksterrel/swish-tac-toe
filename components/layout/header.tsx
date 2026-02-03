@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from "@/components/ui/sheet"
-import { Sparkles, Trophy, Swords, Menu } from "lucide-react"
+import { Sparkles, Trophy, Swords, Menu, BarChart3, History } from "lucide-react"
 import { usePathname } from "next/navigation" 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -46,21 +46,23 @@ export function Header() {
             <div className="hidden md:flex items-center gap-1 bg-gray-900/40 p-1.5 rounded-lg border border-white/10 backdrop-blur-md">
                 {/* MATCHS */}
                 <Link href="/games" className={cn(
-                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border",
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
                     pathname === '/games' 
                     ? "text-white bg-slate-800 border-white/20 shadow-lg" 
                     : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
                 )}>
+                    <History className={cn("w-3.5 h-3.5", pathname === '/games' ? "text-white" : "text-slate-500")} />
                     {t('game.games')}
                 </Link>
 
                 {/* STATS */}
                 <Link href="/stats" className={cn(
-                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border",
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
                     pathname === '/stats' 
-                    ? "text-white bg-slate-800 border-white/20 shadow-lg" 
+                    ? "text-white bg-slate-800 border-nba-red shadow-[0_0_15px_rgba(201,8,42,0.2)]" 
                     : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
                 )}>
+                    <BarChart3 className={cn("w-3.5 h-3.5", pathname === '/stats' ? "text-nba-red" : "text-slate-500")} />
                     {t('game.stats')}
                 </Link>
 
@@ -129,11 +131,13 @@ export function Header() {
                     </SheetHeader>
                     
                     <div className="flex flex-col gap-2">
-                       <Link href="/games" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/games' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                       <Link href="/games" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 flex items-center gap-3 ${pathname === '/games' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           <History className="w-5 h-5" />
                            {t('game.games')}
                        </Link>
 
-                       <Link href="/stats" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname === '/stats' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                       <Link href="/stats" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 flex items-center gap-3 ${pathname === '/stats' ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
+                           <BarChart3 className="w-5 h-5" />
                            {t('game.stats')}
                        </Link>
 
