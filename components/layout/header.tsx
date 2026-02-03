@@ -91,9 +91,9 @@ export function Header() {
                     "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
                     pathname.startsWith('/battle')
                     ? "text-white bg-slate-800 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]" 
-                    : "text-amber-500 border-transparent hover:bg-amber-500/10"
+                    : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
                 )}>
-                    <Swords className={cn("w-3.5 h-3.5", pathname.startsWith('/battle') && "animate-pulse")} />
+                    <Swords className={cn("w-3.5 h-3.5", pathname.startsWith('/battle') ? "text-amber-500 animate-pulse" : "text-slate-500")} />
                     {t('battle.title')}
                 </Link>
 

@@ -10,9 +10,6 @@ export default function NotFound() {
 
   return (
     <div className="flex flex-col min-h-screen bg-[#050505] text-white font-sans selection:bg-nba-red selection:text-white overflow-hidden">
-      <NBATicker />
-      <Header />
-      
       <div className="flex-1 flex flex-col items-center justify-center px-4">
       
       {/* Background Elements */}
