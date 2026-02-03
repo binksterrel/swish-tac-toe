@@ -2,12 +2,18 @@
 
 import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
+import { Header } from "@/components/layout/header"
+import { NBATicker } from "@/components/layout/nba-ticker"
 
 export default function NotFound() {
   const { t } = useLanguage()
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#050505] text-white px-4 font-sans selection:bg-nba-red selection:text-white overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-[#050505] text-white font-sans selection:bg-nba-red selection:text-white overflow-hidden">
+      <NBATicker />
+      <Header />
+      
+      <div className="flex-1 flex flex-col items-center justify-center px-4">
       
       {/* Background Elements */}
       <div className="fixed inset-0 pointer-events-none">

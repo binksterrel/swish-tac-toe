@@ -42,68 +42,76 @@ export function Header() {
 
             {/* Navigation / Stats - Digital Look */}
             {/* MATCHS | STATS | CLASSEMENT | GEST | JOUEURS | CONNEXION */}
-            <div className="hidden md:flex items-center gap-1 bg-gray-900/80 p-1 rounded-sm border border-gray-800">
+            <div className="hidden md:flex items-center gap-1 bg-gray-900/40 p-1.5 rounded-lg border border-white/10 backdrop-blur-md">
                 {/* MATCHS */}
-               <Link href="/games" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
-                   pathname === '/games' ? 'text-white bg-gray-800' : 'text-gray-400'
-               }`}>
-                   {t('game.games')}
-               </Link>
+                <Link href="/games" className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border",
+                    pathname === '/games' 
+                    ? "text-white bg-slate-800 border-white/20 shadow-lg" 
+                    : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
+                )}>
+                    {t('game.games')}
+                </Link>
 
-               {/* STATS */}
-               <Link href="/stats" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
-                   pathname === '/stats' ? 'text-white bg-gray-800' : 'text-gray-400'
-               }`}>
-                   {t('game.stats')}
-               </Link>
+                {/* STATS */}
+                <Link href="/stats" className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border",
+                    pathname === '/stats' 
+                    ? "text-white bg-slate-800 border-white/20 shadow-lg" 
+                    : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
+                )}>
+                    {t('game.stats')}
+                </Link>
 
-               {/* CLASSEMENT (STANDINGS) - Still disabled or link to stats? Let's leave disabled or point to stats. Keeping disabled for now as user didn't ask for it explicitly */}
-               <button className="px-4 py-2 text-sm font-bold uppercase text-gray-400 hover:text-white hover:bg-gray-800 transition-colors rounded-sm cursor-not-allowed opacity-50" title="Coming Soon">
-                   {t('game.standings')}
-               </button>
-               
-               {/* SWISH Link */}
-               <Link href="/game" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
-                   pathname === '/game' || pathname === '/' ? 'text-white bg-gray-800' : 'text-gray-400'
-               }`}>
-                   <span className="flex items-center gap-2">
-                       <Trophy className="w-3 h-3" />
-                       {t('game.swish')}
-                   </span>
-               </Link>
+                {/* SWISH Link */}
+                <Link href="/game" className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
+                    pathname === '/game' || pathname === '/'
+                    ? "text-white bg-slate-800 border-nba-blue shadow-[0_0_15px_rgba(37,99,235,0.2)]" 
+                    : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
+                )}>
+                    <Trophy className={cn("w-3.5 h-3.5", (pathname === '/game' || pathname === '/') ? "text-nba-blue" : "text-slate-500")} />
+                    {t('game.swish')}
+                </Link>
 
-               {/* GEST Link */}
-               <Link href="/guess" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
-                   pathname === '/guess' ? 'text-white bg-gray-800' : 'text-gray-400'
-               }`}>
-                   <span className="flex items-center gap-2">
-                       <Sparkles className="w-3 h-3" />
-                       {t('game.gest')}
-                   </span>
-               </Link>
+                {/* GEST Link */}
+                <Link href="/guess" className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
+                    pathname === '/guess'
+                    ? "text-white bg-slate-800 border-purple-500 shadow-[0_0_15px_rgba(147,51,234,0.2)]" 
+                    : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
+                )}>
+                    <Sparkles className={cn("w-3.5 h-3.5", pathname === '/guess' ? "text-purple-400" : "text-slate-500")} />
+                    {t('game.gest')}
+                </Link>
 
-               {/* BATTLE Link */}
-               <Link href="/battle" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
-                   pathname.startsWith('/battle') ? 'text-white bg-gray-800' : 'text-gray-400'
-               }`}>
-                   <span className="flex items-center gap-2 text-amber-500 animate-pulse">
-                       <Swords className="w-3 h-3" />
-                       BATTLE
-                   </span>
-               </Link>
+                {/* BATTLE Link */}
+                <Link href="/battle" className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
+                    pathname.startsWith('/battle')
+                    ? "text-white bg-slate-800 border-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]" 
+                    : "text-amber-500 border-transparent hover:bg-amber-500/10"
+                )}>
+                    <Swords className={cn("w-3.5 h-3.5", pathname.startsWith('/battle') && "animate-pulse")} />
+                    {t('battle.title')}
+                </Link>
 
-               {/* Players Link */}
-               <Link href="/players" className={`px-4 py-2 text-sm font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${
-                   pathname === '/players' ? 'text-white bg-gray-800' : 'text-gray-400'
-               }`}>
-                   {t('game.players_db')}
-               </Link>
-               
-               <div className="w-px h-6 bg-gray-700 mx-2"></div>
-               
-               <button className="px-6 py-2 bg-nba-blue text-white text-sm font-bold uppercase rounded-sm hover:bg-blue-700 transition-colors shadow-lg">
-                 {t('game.sign_in')}
-               </button>
+                {/* Players Link */}
+                <Link href="/players" className={cn(
+                    "px-4 py-2 text-xs font-bold uppercase transition-all rounded-md border flex items-center gap-2",
+                    pathname === '/players'
+                    ? "text-white bg-slate-800 border-green-500 shadow-[0_0_15px_rgba(34,197,94,0.2)]" 
+                    : "text-slate-400 border-transparent hover:text-white hover:bg-white/5"
+                )}>
+                    <span className={cn("w-1.5 h-1.5 rounded-full", pathname === '/players' ? "bg-green-500 animate-pulse" : "bg-slate-600")} />
+                    {t('game.players_db')}
+                </Link>
+                
+                <div className="w-px h-6 bg-white/10 mx-2"></div>
+                
+                <button className="px-6 py-2 bg-nba-blue text-white text-xs font-black uppercase rounded-md hover:bg-blue-700 transition-all shadow-lg hover:scale-105 active:scale-95">
+                  {t('game.sign_in')}
+                </button>
             </div>
 
             {/* Mobile Menu */}
@@ -144,8 +152,8 @@ export function Header() {
 
                        <Link href="/battle" className={`px-4 py-3 text-lg font-bold uppercase transition-colors rounded-sm hover:text-white hover:bg-gray-800 ${pathname.startsWith('/battle') ? 'text-white bg-gray-800' : 'text-gray-400'}`}>
                            <span className="flex items-center gap-3 text-amber-500">
-                               <Swords className="w-5 h-5" />
-                               BATTLE
+                               <Swords className={cn("w-5 h-5", pathname.startsWith('/battle') && "animate-pulse")} />
+                               {t('battle.title')}
                            </span>
                        </Link>
 
