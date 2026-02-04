@@ -137,7 +137,8 @@ export const NBA_TEAMS: Record<string, { name: string; city: string; colors: str
   MIA: { name: "Heat", city: "Miami", colors: ["#98002E", "#F9A01B"] },
   MIL: { name: "Bucks", city: "Milwaukee", colors: ["#00471B", "#EEE1C6"] },
   MIN: { name: "Timberwolves", city: "Minnesota", colors: ["#0C2340", "#236192"] },
-  NOH: { name: "Pelicans", city: "New Orleans", colors: ["#0C2340", "#C8102E"] },
+  NOP: { name: "Pelicans", city: "New Orleans", colors: ["#0C2340", "#C8102E"] },
+  NOH: { name: "Hornets", city: "New Orleans", colors: ["#0C2340", "#C8102E"] }, // Legacy
   NYK: { name: "Knicks", city: "New York", colors: ["#006BB6", "#F58426"] },
   OKC: { name: "Thunder", city: "Oklahoma City", colors: ["#007AC1", "#EF3B24"] },
   ORL: { name: "Magic", city: "Orlando", colors: ["#0077C0", "#C4CED4"] },

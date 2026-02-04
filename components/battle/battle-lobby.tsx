@@ -42,7 +42,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   // Only include the 30 current NBA teams
   const CURRENT_NBA_TEAMS = [
     "ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
-    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOH", "NYK",
+    "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK",
     "OKC", "ORL", "PHI", "PHX", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"
   ]
   const teamKeys = CURRENT_NBA_TEAMS.filter(t => NBA_TEAMS[t])

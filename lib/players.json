@@ -465,7 +465,6 @@
       "TOR",
       "NOP",
       "CHI",
-      "NOH",
       "SAC"
     ],
     "awards": [],
@@ -621,7 +620,6 @@
     "id": "aaron-james",
     "name": "Aaron James",
     "teams": [
-      "NOJ",
       "UTA"
     ],
     "awards": [],
@@ -1070,7 +1068,6 @@
     "teams": [
       "ATL",
       "UTA",
-      "UTA",
       "GSW"
     ],
     "awards": [],
@@ -1473,7 +1470,6 @@
       "POR",
       "MIN",
       "LAL",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -1542,12 +1538,10 @@
       "LAC",
       "DAL",
       "UTA",
-      "UTA",
       "IND",
       "LAL",
       "MIL",
-      "DET",
-      "LAC"
+      "DET"
     ],
     "awards": [
       "ROY",
@@ -1584,8 +1578,7 @@
       "CHI",
       "HOU",
       "OKC",
-      "BOS",
-      "SEA"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -1716,7 +1709,6 @@
     "name": "Al Bianchi",
     "teams": [
       "PHL",
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -1831,7 +1823,6 @@
     "id": "al-cervi",
     "name": "Al Cervi",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -1890,9 +1881,7 @@
     "name": "Al Ferrari",
     "teams": [
       "ATL",
-      "STL",
-      "WAS",
-      "CHZ"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -1921,7 +1910,6 @@
     "id": "al-fleming",
     "name": "Al Fleming",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -2120,7 +2108,6 @@
     "id": "al-jackson",
     "name": "Al Jackson",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -2241,7 +2228,6 @@
     "teams": [
       "ATL",
       "MIH",
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -2499,7 +2485,6 @@
     "name": "Al-Farouq Aminu",
     "teams": [
       "LAC",
-      "NOH",
       "NOP",
       "DAL",
       "POR",
@@ -3998,7 +3983,6 @@
       "PHL",
       "DAL",
       "UTA",
-      "UTA",
       "PHI",
       "SAS",
       "SAN"
@@ -4359,8 +4343,6 @@
     "name": "Alonzo Mourning",
     "teams": [
       "CHA",
-      "NJN",
-      "CHH",
       "BKN",
       "MIA"
     ],
@@ -4438,7 +4420,6 @@
     "teams": [
       "PHL",
       "PHI",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -4501,8 +4482,7 @@
       "MIL",
       "OKC",
       "BOS",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -4567,8 +4547,7 @@
     "name": "Alvin Attles",
     "teams": [
       "PHW",
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -5224,7 +5203,6 @@
     "teams": [
       "OKC",
       "CHA",
-      "SEA",
       "MEM"
     ],
     "awards": [],
@@ -5460,8 +5438,7 @@
     "name": "Andre McCarter",
     "teams": [
       "SAC",
-      "WAS",
-      "KCK"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -6116,8 +6093,6 @@
     "teams": [
       "ATL",
       "MIH",
-      "SYR",
-      "ROC",
       "PHI",
       "SAC"
     ],
@@ -6877,7 +6852,6 @@
       "MEM",
       "MIL",
       "ORL",
-      "VAN",
       "LAC"
     ],
     "awards": [],
@@ -7134,10 +7108,8 @@
     "id": "anthony-davis",
     "name": "Anthony Davis",
     "teams": [
-      "NOH",
       "NOP",
-      "LAL",
-      "DAL"
+      "LAL"
     ],
     "awards": [
       "Champion",
@@ -7443,8 +7415,6 @@
       "MIA",
       "CHA",
       "MIL",
-      "NJN",
-      "CHH",
       "BKN"
     ],
     "awards": [
@@ -7515,7 +7485,6 @@
       "ATL",
       "CHI",
       "GSW",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -7832,7 +7801,6 @@
       "SAC",
       "SAN",
       "UTA",
-      "UTA",
       "HOU",
       "VAN"
     ],
@@ -8069,15 +8037,12 @@
     "name": "Antonio Daniels",
     "teams": [
       "WAS",
-      "SEA",
+      "OKC",
       "NOP",
       "MEM",
       "POR",
-      "NOH",
       "PHI",
-      "OKC",
-      "SAS",
-      "VAN"
+      "SAS"
     ],
     "awards": [
       "Champion"
@@ -8150,9 +8115,7 @@
       "POR",
       "ATL",
       "LAL",
-      "VAN",
       "OKC",
-      "SEA",
       "LAC"
     ],
     "awards": [],
@@ -8375,13 +8338,11 @@
     "teams": [
       "PHL",
       "WAS",
-      "CAP",
       "BLT",
       "LAL",
       "PHI",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [
       "All-Star"
@@ -8412,11 +8373,9 @@
     "id": "archie-dees",
     "name": "Archie Dees",
     "teams": [
-      "CHP",
-      "CIN",
+      "WAS",
       "SAC",
-      "DET",
-      "WAS"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -8574,7 +8533,6 @@
     "id": "arlen-bockhorn",
     "name": "Arlen Bockhorn",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -8721,8 +8679,6 @@
       "ATL",
       "MIL",
       "OKC",
-      "SDC",
-      "SEA",
       "LAC"
     ],
     "awards": [],
@@ -8811,7 +8767,6 @@
     "id": "arnie-ferrin",
     "name": "Arnie Ferrin",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -8879,9 +8834,8 @@
     "id": "arnie-risen",
     "name": "Arnie Risen",
     "teams": [
-      "ROC",
-      "BOS",
-      "SAC"
+      "SAC",
+      "BOS"
     ],
     "awards": [
       "All-Star",
@@ -9104,9 +9058,8 @@
     "teams": [
       "PHL",
       "NYK",
-      "CIN",
-      "PHI",
-      "SAC"
+      "SAC",
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -9170,8 +9123,7 @@
       "TOR",
       "PHI",
       "SAC",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -9376,8 +9328,7 @@
     "id": "arvydas-macijauskas",
     "name": "Arvydas Macijauskas",
     "teams": [
-      "NOP",
-      "NOK"
+      "NOP"
     ],
     "awards": [],
     "allStar": false,
@@ -9472,7 +9423,6 @@
     "name": "Ashraf Amaya",
     "teams": [
       "WAS",
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -9818,7 +9768,6 @@
     "id": "austin-rivers",
     "name": "Austin Rivers",
     "teams": [
-      "NOH",
       "NOP",
       "LAC",
       "WAS",
@@ -10030,7 +9979,6 @@
       "CHA",
       "CHI",
       "GSW",
-      "CHH",
       "ORL",
       "GOS"
     ],
@@ -10241,9 +10189,7 @@
       "CLE",
       "NOP",
       "CHA",
-      "NOH",
       "GSW",
-      "CHH",
       "LAC"
     ],
     "awards": [
@@ -10475,7 +10421,6 @@
     "id": "bato-govedarica",
     "name": "Bato Govedarica",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -11370,15 +11315,12 @@
     "teams": [
       "CLE",
       "TOR",
-      "SEA",
       "OKC",
       "MEM",
       "LAL",
       "MIL",
-      "NJN",
-      "PHI",
       "BKN",
-      "VAN",
+      "PHI",
       "LAC"
     ],
     "awards": [],
@@ -11768,12 +11710,10 @@
     "id": "bill-bridges",
     "name": "Bill Bridges",
     "teams": [
-      "PHL",
+      "GSW",
       "ATL",
-      "STL",
       "LAL",
       "PHI",
-      "GSW",
       "GOS"
     ],
     "awards": [
@@ -11873,8 +11813,7 @@
     "teams": [
       "NYK",
       "CHI",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [
       "All-Star",
@@ -11942,8 +11881,7 @@
       "AND",
       "PHW",
       "GSW",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -12033,9 +11971,8 @@
     "id": "bill-dinwiddie",
     "name": "Bill Dinwiddie",
     "teams": [
-      "CIN",
-      "MIL",
       "SAC",
+      "MIL",
       "BOS"
     ],
     "awards": [],
@@ -12237,8 +12174,7 @@
     "teams": [
       "ATL",
       "TCB",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -12298,8 +12234,7 @@
       "LAC",
       "CHI",
       "LAL",
-      "DET",
-      "LAC"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -12356,10 +12291,8 @@
     "id": "bill-kenville",
     "name": "Bill Kenville",
     "teams": [
-      "SYR",
       "PHI",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [
       "Champion"
@@ -12516,11 +12449,9 @@
     "name": "Bill McGill",
     "teams": [
       "NYK",
-      "CHZ",
+      "WAS",
       "ATL",
-      "STL",
-      "LAL",
-      "WAS"
+      "LAL"
     ],
     "awards": [],
     "allStar": false,
@@ -13181,7 +13112,6 @@
       "BAL",
       "ATL",
       "TCB",
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -13248,11 +13178,8 @@
     "teams": [
       "UTA",
       "DEN",
-      "UTA",
       "CHI",
       "SAC",
-      "SDC",
-      "KCK",
       "LAC"
     ],
     "awards": [],
@@ -13954,8 +13881,7 @@
     "id": "bob-allen",
     "name": "Bob Allen",
     "teams": [
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -14040,7 +13966,6 @@
     "id": "bob-arnzen",
     "name": "Bob Arnzen",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -14070,10 +13995,8 @@
     "name": "Bob Bigelow",
     "teams": [
       "SAC",
-      "SDC",
-      "BOS",
-      "KCK",
-      "LAC"
+      "LAC",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -14105,10 +14028,8 @@
       "OKC",
       "CHI",
       "LAL",
-      "CIN",
-      "MIL",
       "SAC",
-      "SEA"
+      "MIL"
     ],
     "awards": [
       "All-Star",
@@ -14428,7 +14349,6 @@
     "id": "bob-davies",
     "name": "Bob Davies",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [
@@ -14722,7 +14642,6 @@
     "teams": [
       "DET",
       "ATL",
-      "STL",
       "BLT",
       "WAS"
     ],
@@ -14754,7 +14673,6 @@
     "name": "Bob Fitzgerald",
     "teams": [
       "NYK",
-      "ROC",
       "SAC",
       "HUS"
     ],
@@ -14846,7 +14764,6 @@
     "name": "Bob Gross",
     "teams": [
       "POR",
-      "SDC",
       "LAC"
     ],
     "awards": [
@@ -14975,12 +14892,9 @@
     "name": "Bob Harrison",
     "teams": [
       "ATL",
-      "MNL",
-      "SYR",
-      "MIH",
-      "STL",
+      "LAL",
       "PHI",
-      "LAL"
+      "MIH"
     ],
     "awards": [
       "All-Star",
@@ -15044,7 +14958,6 @@
     "id": "bob-hopkins",
     "name": "Bob Hopkins",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -15074,7 +14987,6 @@
     "name": "Bob Houbregs",
     "teams": [
       "BAL",
-      "FTW",
       "DET"
     ],
     "awards": [],
@@ -15134,9 +15046,7 @@
       "LAC",
       "ATL",
       "CHI",
-      "OKC",
-      "SEA",
-      "LAC"
+      "OKC"
     ],
     "awards": [
       "All-Star"
@@ -15286,11 +15196,8 @@
     "id": "bob-leonard",
     "name": "Bob Leonard",
     "teams": [
-      "CHP",
-      "MNL",
-      "LAL",
-      "CHZ",
-      "WAS"
+      "WAS",
+      "LAL"
     ],
     "awards": [],
     "allStar": false,
@@ -15319,7 +15226,6 @@
     "id": "bob-lochmueller",
     "name": "Bob Lochmueller",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -15349,13 +15255,10 @@
     "name": "Bob Love",
     "teams": [
       "OKC",
-      "NYN",
-      "CHI",
-      "CIN",
-      "MIL",
-      "SAC",
       "BKN",
-      "SEA"
+      "CHI",
+      "SAC",
+      "MIL"
     ],
     "awards": [
       "All-Star"
@@ -15420,10 +15323,8 @@
       "BOS",
       "LAL",
       "PHI",
-      "NJN",
-      "DET",
       "BKN",
-      "LAC"
+      "DET"
     ],
     "awards": [
       "MVP",
@@ -16378,7 +16279,6 @@
     "teams": [
       "NOP",
       "HOU",
-      "NOH",
       "MIN",
       "SAC",
       "LAC"
@@ -16411,9 +16311,7 @@
     "name": "Bobby Cattage",
     "teams": [
       "UTA",
-      "BKN",
-      "UTA",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -16470,7 +16368,6 @@
     "name": "Bobby Hurley",
     "teams": [
       "SAC",
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -16501,10 +16398,8 @@
     "teams": [
       "DEN",
       "NOP",
-      "NOK",
       "MEM",
       "MIN",
-      "NOH",
       "SAC",
       "HOU"
     ],
@@ -16577,8 +16472,7 @@
     "name": "Bobby Lewis",
     "teams": [
       "CLE",
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -17138,7 +17032,6 @@
     "id": "boris-nachamkin",
     "name": "Boris Nachamkin",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -17167,12 +17060,9 @@
     "id": "bostjan-nachbar",
     "name": "Bostjan Nachbar",
     "teams": [
-      "NOH",
-      "HOU",
-      "NJN",
       "NOP",
-      "BKN",
-      "NOK"
+      "HOU",
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -17290,7 +17180,6 @@
     "teams": [
       "DAL",
       "UTA",
-      "UTA",
       "IND",
       "LAL"
     ],
@@ -17399,8 +17288,7 @@
       "CHI",
       "HOU",
       "MIN",
-      "SAC",
-      "CHH"
+      "SAC"
     ],
     "awards": [
       "All-Star"
@@ -17759,8 +17647,7 @@
     "id": "brandon-armstrong",
     "name": "Brandon Armstrong",
     "teams": [
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -17790,7 +17677,6 @@
     "teams": [
       "DAL",
       "NOP",
-      "NOK",
       "LAL",
       "ORL",
       "BOS",
@@ -18417,7 +18303,6 @@
       "HOU",
       "OKC",
       "SAS",
-      "SEA",
       "LAC"
     ],
     "awards": [
@@ -18757,9 +18642,8 @@
     "name": "Brian Evans",
     "teams": [
       "MIN",
-      "NJN",
-      "ORL",
-      "BKN"
+      "BKN",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -18878,7 +18762,6 @@
     "name": "Brian Martin",
     "teams": [
       "POR",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -18968,7 +18851,6 @@
     "id": "brian-roberts",
     "name": "Brian Roberts",
     "teams": [
-      "NOH",
       "NOP",
       "CHA",
       "POR"
@@ -19388,7 +19270,6 @@
     "id": "brook-lopez",
     "name": "Brook Lopez",
     "teams": [
-      "NJN",
       "BKN",
       "LAL",
       "MIL",
@@ -19880,7 +19761,6 @@
     "id": "bryant-reeves",
     "name": "Bryant Reeves",
     "teams": [
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -20000,9 +19880,7 @@
       "NOP",
       "CHA",
       "CHI",
-      "NOH",
-      "HOU",
-      "CHH"
+      "HOU"
     ],
     "awards": [],
     "allStar": false,
@@ -20294,7 +20172,6 @@
     "id": "bud-grant",
     "name": "Bud Grant",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -20463,8 +20340,7 @@
       "ATL",
       "GSW",
       "OKC",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [
       "All-Star",
@@ -20711,8 +20587,7 @@
       "SAC",
       "GSW",
       "OKC",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -21126,7 +21001,6 @@
       "ATL",
       "TCB",
       "MIH",
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -21156,8 +21030,7 @@
     "name": "Cal Ramsey",
     "teams": [
       "PHI",
-      "NYK",
-      "SYR"
+      "NYK"
     ],
     "awards": [],
     "allStar": false,
@@ -21429,8 +21302,7 @@
       "MIN",
       "PHI",
       "MIL",
-      "SAC",
-      "SEA"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -21488,7 +21360,6 @@
     "id": "calvin-murphy",
     "name": "Calvin Murphy",
     "teams": [
-      "SDR",
       "HOU"
     ],
     "awards": [
@@ -22144,8 +22015,7 @@
       "MEM",
       "HOU",
       "SAS",
-      "SAN",
-      "VAN"
+      "SAN"
     ],
     "awards": [
       "Champion"
@@ -22178,7 +22048,6 @@
     "id": "carl-kilpatrick",
     "name": "Carl Kilpatrick",
     "teams": [
-      "UTA",
       "UTA"
     ],
     "awards": [],
@@ -22905,9 +22774,8 @@
     "id": "casey-jacobsen",
     "name": "Casey Jacobsen",
     "teams": [
-      "NOH",
-      "PHX",
       "NOP",
+      "PHX",
       "MEM"
     ],
     "awards": [],
@@ -23373,7 +23241,6 @@
     "id": "cedric-hunter",
     "name": "Cedric Hunter",
     "teams": [
-      "CHH",
       "CHA"
     ],
     "awards": [],
@@ -23796,8 +23663,7 @@
     "id": "charles-acton",
     "name": "Charles Acton",
     "teams": [
-      "HOU",
-      "SDR"
+      "HOU"
     ],
     "awards": [],
     "allStar": false,
@@ -23929,7 +23795,6 @@
     "name": "Charles Bradley",
     "teams": [
       "BOS",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -24017,8 +23882,7 @@
       "CHI",
       "GSW",
       "OKC",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [
       "Champion"
@@ -24454,8 +24318,7 @@
       "ATL",
       "MIH",
       "DET",
-      "JET",
-      "FTW"
+      "JET"
     ],
     "awards": [],
     "allStar": false,
@@ -24519,7 +24382,6 @@
     "teams": [
       "ATL",
       "MIL",
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -25494,9 +25356,7 @@
       "DEN",
       "NOP",
       "MIA",
-      "NOK",
-      "MEM",
-      "NOH"
+      "MEM"
     ],
     "awards": [
       "Champion"
@@ -25704,7 +25564,6 @@
     "teams": [
       "NYK",
       "TOR",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -25886,7 +25745,6 @@
       "DAL",
       "CHA",
       "MIL",
-      "NJN",
       "BKN",
       "LAC"
     ],
@@ -25951,7 +25809,6 @@
       "CLE",
       "POR",
       "PHX",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -26329,7 +26186,6 @@
       "DAL",
       "NOP",
       "POR",
-      "NOH",
       "LAL",
       "LAC"
     ],
@@ -26612,9 +26468,7 @@
     "teams": [
       "PHX",
       "UTA",
-      "UTA",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -26679,7 +26533,6 @@
     "id": "chris-munk",
     "name": "Chris Munk",
     "teams": [
-      "UTA",
       "UTA"
     ],
     "awards": [],
@@ -26811,8 +26664,7 @@
       "CLE",
       "SAS",
       "BKN",
-      "MIA",
-      "NJN"
+      "MIA"
     ],
     "awards": [],
     "allStar": false,
@@ -27556,8 +27408,7 @@
       "PHW",
       "BOS",
       "PRO",
-      "WAS",
-      "BAL"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -27645,7 +27496,6 @@
     "id": "chuck-mencel",
     "name": "Chuck Mencel",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -27954,15 +27804,13 @@
       "HOU",
       "LAL",
       "MIL",
-      "NJN",
+      "BKN",
       "GSW",
       "SAC",
       "SAS",
-      "BKN",
       "DAL",
       "CHA",
-      "PHX",
-      "CHH"
+      "PHX"
     ],
     "awards": [
       "Champion"
@@ -28120,7 +27968,6 @@
     "teams": [
       "CLR",
       "HUS",
-      "BAL",
       "WAS",
       "CHS",
       "BOS",
@@ -28455,8 +28302,7 @@
     "id": "cleo-hill",
     "name": "Cleo Hill",
     "teams": [
-      "ATL",
-      "STL"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -29182,11 +29028,8 @@
     "id": "clyde-lovellette",
     "name": "Clyde Lovellette",
     "teams": [
-      "MNL",
-      "ATL",
-      "STL",
-      "CIN",
       "LAL",
+      "ATL",
       "SAC",
       "BOS"
     ],
@@ -29227,8 +29070,7 @@
       "LAC",
       "IND",
       "POR",
-      "MIL",
-      "LAC"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -29774,13 +29616,9 @@
     "id": "connie-dierking",
     "name": "Connie Dierking",
     "teams": [
-      "PHL",
-      "SYR",
-      "CIN",
       "GSW",
       "PHI",
-      "SAC",
-      "SFW"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -29972,9 +29810,8 @@
     "id": "corey-beck",
     "name": "Corey Beck",
     "teams": [
-      "CHH",
-      "DET",
-      "CHA"
+      "CHA",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -30074,7 +29911,6 @@
     "name": "Corey Crowder",
     "teams": [
       "SAN",
-      "UTA",
       "UTA",
       "SAS"
     ],
@@ -30484,7 +30320,6 @@
     "id": "cory-blackwell",
     "name": "Cory Blackwell",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -30724,7 +30559,6 @@
     "name": "Courtney Alexander",
     "teams": [
       "DAL",
-      "NOH",
       "NOP",
       "WAS"
     ],
@@ -30966,7 +30800,6 @@
       "CHI",
       "PHX",
       "MIL",
-      "SDC",
       "LAC"
     ],
     "awards": [
@@ -31238,7 +31071,6 @@
     "name": "Cuonzo Martin",
     "teams": [
       "MIL",
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -31710,7 +31542,6 @@
     "teams": [
       "DAL",
       "NOP",
-      "NOH",
       "LAL",
       "GSW"
     ],
@@ -32733,7 +32564,6 @@
     "id": "damion-james",
     "name": "Damion James",
     "teams": [
-      "NJN",
       "BKN",
       "SAS"
     ],
@@ -32927,7 +32757,6 @@
     "teams": [
       "TOR",
       "PHI",
-      "NJN",
       "BKN",
       "WAS"
     ],
@@ -32991,7 +32820,6 @@
       "NOP",
       "POR",
       "ATL",
-      "NOH",
       "BOS",
       "LAC"
     ],
@@ -33265,11 +33093,9 @@
     "teams": [
       "TOR",
       "UTA",
-      "UTA",
       "MIL",
-      "NJN",
-      "DET",
-      "BKN"
+      "BKN",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -33431,8 +33257,7 @@
       "BOS",
       "PHI",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [
       "All-Star"
@@ -34004,8 +33829,7 @@
       "DEN",
       "GSW",
       "OKC",
-      "BOS",
-      "SEA"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -34628,7 +34452,6 @@
     "id": "darius-miller",
     "name": "Darius Miller",
     "teams": [
-      "NOH",
       "NOP",
       "OKC"
     ],
@@ -34791,10 +34614,8 @@
       "IND",
       "GSW",
       "SAC",
-      "NJN",
       "BKN",
-      "GOS",
-      "KCK"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -34979,10 +34800,8 @@
       "DAL",
       "NOP",
       "IND",
-      "NOH",
-      "NJN",
-      "ORL",
-      "BKN"
+      "BKN",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -35098,7 +34917,6 @@
     "id": "darrell-griffith",
     "name": "Darrell Griffith",
     "teams": [
-      "UTA",
       "UTA"
     ],
     "awards": [
@@ -35261,7 +35079,6 @@
     "name": "Darren Morningstar",
     "teams": [
       "UTA",
-      "UTA",
       "DAL"
     ],
     "awards": [],
@@ -35323,7 +35140,6 @@
       "MEM",
       "MIN",
       "SAC",
-      "VAN",
       "LAC"
     ],
     "awards": [],
@@ -35415,11 +35231,9 @@
     "teams": [
       "PHL",
       "UTA",
-      "UTA",
       "PHI",
-      "NJN",
-      "DET",
-      "BKN"
+      "BKN",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -35838,8 +35652,7 @@
     "id": "dave-fedor",
     "name": "Dave Fedor",
     "teams": [
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -35869,7 +35682,6 @@
     "teams": [
       "HOU",
       "GSW",
-      "NJN",
       "BKN",
       "GOS",
       "WAS"
@@ -35995,13 +35807,10 @@
     "id": "dave-hoppen",
     "name": "Dave Hoppen",
     "teams": [
-      "PHL",
+      "GSW",
       "CHA",
       "PHI",
       "MIL",
-      "NJN",
-      "CHH",
-      "GSW",
       "BKN",
       "GOS"
     ],
@@ -36033,8 +35842,6 @@
     "name": "Dave Jamerson",
     "teams": [
       "HOU",
-      "UTA",
-      "NJN",
       "UTA",
       "BKN"
     ],
@@ -36540,10 +36347,9 @@
     "id": "david-andersen",
     "name": "David Andersen",
     "teams": [
-      "NOH",
+      "NOP",
       "HOU",
-      "TOR",
-      "NOP"
+      "TOR"
     ],
     "awards": [],
     "allStar": false,
@@ -36574,9 +36380,7 @@
     "teams": [
       "UTA",
       "ORL",
-      "UTA",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -38050,7 +37854,6 @@
       "CLE",
       "DAL",
       "CHA",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -38583,10 +38386,8 @@
       "CLE",
       "TOR",
       "UTA",
-      "UTA",
       "CHA",
-      "MIL",
-      "CHH"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -38906,8 +38707,7 @@
       "PHX",
       "PHI",
       "OKC",
-      "BOS",
-      "SEA"
+      "BOS"
     ],
     "awards": [
       "Champion"
@@ -39056,7 +38856,6 @@
     "teams": [
       "CHI",
       "SAC",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -39672,7 +39471,6 @@
     "id": "derek-hood",
     "name": "Derek Hood",
     "teams": [
-      "CHH",
       "CHA"
     ],
     "awards": [],
@@ -39854,7 +39652,6 @@
     "name": "Deron Williams",
     "teams": [
       "UTA",
-      "NJN",
       "BKN",
       "DAL",
       "CLE"
@@ -40105,10 +39902,9 @@
     "name": "Derrick Dial",
     "teams": [
       "TOR",
-      "NJN",
+      "BKN",
       "ORL",
-      "SAS",
-      "BKN"
+      "SAS"
     ],
     "awards": [],
     "allStar": false,
@@ -40244,8 +40040,7 @@
     "teams": [
       "PHI",
       "OKC",
-      "IND",
-      "SEA"
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -40595,11 +40390,9 @@
     "name": "Desmond Mason",
     "teams": [
       "NOP",
-      "NOK",
       "SAC",
       "MIL",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -40766,9 +40559,7 @@
       "UTA",
       "DEN",
       "NOP",
-      "NOK",
       "CHI",
-      "NOH",
       "SAS"
     ],
     "awards": [
@@ -41576,9 +41367,8 @@
     "name": "Dick Barnett",
     "teams": [
       "NYK",
-      "SYR",
-      "LAL",
-      "PHI"
+      "PHI",
+      "LAL"
     ],
     "awards": [
       "All-Star",
@@ -41704,7 +41494,6 @@
     "id": "dick-duckett",
     "name": "Dick Duckett",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -41761,9 +41550,8 @@
     "id": "dick-farley",
     "name": "Dick Farley",
     "teams": [
-      "SYR",
-      "DET",
-      "PHI"
+      "PHI",
+      "DET"
     ],
     "awards": [
       "Champion"
@@ -41884,8 +41672,7 @@
     "id": "dick-groat",
     "name": "Dick Groat",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -42036,8 +41823,7 @@
       "ATL",
       "MIH",
       "WAT",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -42067,8 +41853,7 @@
     "name": "Dick Miller",
     "teams": [
       "UTA",
-      "IND",
-      "UTA"
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -42154,8 +41939,6 @@
     "id": "dick-ricketts",
     "name": "Dick Ricketts",
     "teams": [
-      "ROC",
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -42551,7 +42334,6 @@
       "ATL",
       "HOU",
       "PHI",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -42589,8 +42371,7 @@
       "MIH",
       "NJN",
       "DN ",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -43026,7 +42807,6 @@
       "NOP",
       "IND",
       "CHA",
-      "NOH",
       "GSW",
       "SAC",
       "WAS"
@@ -43188,9 +42968,7 @@
       "ATL",
       "LAC",
       "DET",
-      "HOU",
-      "LAC",
-      "SDR"
+      "HOU"
     ],
     "awards": [],
     "allStar": false,
@@ -43305,8 +43083,7 @@
     "id": "don-bielke",
     "name": "Don Bielke",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -43337,8 +43114,7 @@
       "ATL",
       "MIH",
       "WAT",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -43620,7 +43396,6 @@
     "name": "Don Henriksen",
     "teams": [
       "BAL",
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -43718,9 +43493,7 @@
       "MIA",
       "PHX",
       "PHI",
-      "NJN",
-      "BKN",
-      "SEA"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -43783,9 +43556,7 @@
       "LAC",
       "ATL",
       "PHI",
-      "SAC",
-      "KCK",
-      "LAC"
+      "SAC"
     ],
     "awards": [
       "Champion"
@@ -43818,11 +43589,8 @@
     "id": "don-meineke",
     "name": "Don Meineke",
     "teams": [
-      "CIN",
-      "ROC",
       "SAC",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [
       "ROY"
@@ -43891,7 +43659,6 @@
     "teams": [
       "DET",
       "ATL",
-      "STL",
       "BLT",
       "WAS"
     ],
@@ -44215,7 +43982,6 @@
     "id": "donald-hodge",
     "name": "Donald Hodge",
     "teams": [
-      "CHH",
       "CHA",
       "DAL"
     ],
@@ -44451,9 +44217,8 @@
       "DAL",
       "DEN",
       "PHX",
-      "NJN",
-      "ORL",
-      "BKN"
+      "BKN",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -44538,7 +44303,6 @@
     "id": "donnie-forman",
     "name": "Donnie Forman",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -44600,8 +44364,7 @@
     "name": "Donny Marshall",
     "teams": [
       "CLE",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -44986,8 +44749,7 @@
       "GSW",
       "PHI",
       "OKC",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -45091,8 +44853,7 @@
       "BLT",
       "POR",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -45780,8 +45541,7 @@
     "teams": [
       "ATL",
       "GSW",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -46211,7 +45971,6 @@
       "CHI",
       "PHX",
       "MIL",
-      "NJN",
       "BKN",
       "WAS"
     ],
@@ -46740,8 +46499,7 @@
     "name": "Dwight Morrison",
     "teams": [
       "ATL",
-      "BOS",
-      "STL"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -47211,9 +46969,8 @@
       "HOU",
       "GSW",
       "MIL",
-      "NJN",
-      "ORL",
       "BKN",
+      "ORL",
       "WAS",
       "LAC",
       "DEN",
@@ -47287,7 +47044,6 @@
       "CHI",
       "HOU",
       "PHI",
-      "CHH",
       "DET",
       "LAC"
     ],
@@ -47441,7 +47197,6 @@
     "id": "earl-lloyd",
     "name": "Earl Lloyd",
     "teams": [
-      "SYR",
       "PHI",
       "DET",
       "WAS"
@@ -47870,8 +47625,6 @@
     "name": "Ed Fleming",
     "teams": [
       "LAL",
-      "MNL",
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -47984,7 +47737,6 @@
     "id": "ed-kalafat",
     "name": "Ed Kalafat",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -48099,7 +47851,6 @@
     "name": "Ed Macauley",
     "teams": [
       "ATL",
-      "STL",
       "BOM",
       "BOS"
     ],
@@ -48198,10 +47949,9 @@
     "teams": [
       "INO",
       "PHW",
-      "ROC",
+      "SAC",
       "CHS",
       "GSW",
-      "SAC",
       "BOS"
     ],
     "awards": [],
@@ -48261,8 +48011,7 @@
     "name": "Ed O'Bannon",
     "teams": [
       "DAL",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -48673,9 +48422,8 @@
       "PHX",
       "SAC",
       "MIL",
-      "NJN",
-      "BOS",
       "BKN",
+      "BOS",
       "LAC"
     ],
     "awards": [
@@ -48710,7 +48458,6 @@
     "name": "Eddie Hughes",
     "teams": [
       "DEN",
-      "UTA",
       "UTA"
     ],
     "awards": [],
@@ -48816,7 +48563,6 @@
       "CLE",
       "POR",
       "LAL",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -49186,7 +48932,6 @@
       "DEN",
       "CHA",
       "GSW",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -49245,7 +48990,6 @@
     "name": "Edwin Kachan",
     "teams": [
       "LAL",
-      "MNL",
       "CHS"
     ],
     "awards": [
@@ -49488,8 +49232,7 @@
       "HOU",
       "ATL",
       "CHA",
-      "LAC",
-      "CHH"
+      "LAC"
     ],
     "awards": [],
     "allStar": false,
@@ -49553,7 +49296,6 @@
     "id": "elgin-baylor",
     "name": "Elgin Baylor",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -50074,10 +49816,8 @@
     "id": "elvin-hayes",
     "name": "Elvin Hayes",
     "teams": [
-      "SDR",
       "HOU",
       "BLT",
-      "CAP",
       "WAS"
     ],
     "awards": [
@@ -50116,8 +49856,7 @@
     "teams": [
       "ATL",
       "HOU",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -50240,9 +49979,8 @@
     "name": "Emeka Okafor",
     "teams": [
       "CHA",
-      "NOH",
-      "WAS",
-      "NOP"
+      "NOP",
+      "WAS"
     ],
     "awards": [
       "ROY"
@@ -50432,12 +50170,9 @@
     "name": "Enoch Olsen",
     "teams": [
       "OKC",
-      "SFW",
-      "CIN",
       "GSW",
       "SAC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -50619,7 +50354,6 @@
     "name": "Eric Gordon",
     "teams": [
       "LAC",
-      "NOH",
       "NOP",
       "HOU",
       "PHX",
@@ -50843,8 +50577,7 @@
     "name": "Eric Mobley",
     "teams": [
       "MEM",
-      "MIL",
-      "VAN"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -50874,9 +50607,8 @@
     "teams": [
       "PHL",
       "PHI",
-      "NJN",
-      "DET",
-      "BKN"
+      "BKN",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -50909,9 +50641,8 @@
       "BOS",
       "DAL",
       "PHI",
-      "NJN",
-      "DET",
-      "BKN"
+      "BKN",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -50977,13 +50708,10 @@
     "teams": [
       "UTA",
       "DEN",
-      "UTA",
       "MIA",
       "MEM",
       "MIL",
-      "NJN",
       "BKN",
-      "VAN",
       "LAC"
     ],
     "awards": [],
@@ -51485,8 +51213,7 @@
     "teams": [
       "GSW",
       "ATL",
-      "PHW",
-      "STL"
+      "PHW"
     ],
     "awards": [
       "Champion"
@@ -51549,8 +51276,7 @@
     "teams": [
       "LAC",
       "LAL",
-      "BOS",
-      "LAC"
+      "BOS"
     ],
     "awards": [
       "ROY"
@@ -51740,8 +51466,7 @@
       "CHI",
       "LAL",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -52323,9 +52048,8 @@
     "name": "Felipe Lopez",
     "teams": [
       "MIN",
-      "VAN",
-      "WAS",
-      "MEM"
+      "MEM",
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -52539,8 +52263,7 @@
       "CHI",
       "MIL",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -52664,8 +52387,7 @@
     "id": "forest-able",
     "name": "Forest Able",
     "teams": [
-      "PHI",
-      "SYR"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -52750,7 +52472,6 @@
     "id": "fran-curran",
     "name": "Fran Curran",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -52937,8 +52658,7 @@
       "AND",
       "ATL",
       "TCB",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [
       "All-Star"
@@ -52975,9 +52695,7 @@
       "LAL",
       "MIL",
       "OKC",
-      "CHH",
-      "SAN",
-      "SEA"
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -53335,7 +53053,6 @@
     "id": "frank-oleynick",
     "name": "Frank Oleynick",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -53432,7 +53149,6 @@
     "id": "frank-reddout",
     "name": "Frank Reddout",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -53774,9 +53490,8 @@
     "name": "Fred Boyd",
     "teams": [
       "PHL",
-      "NOJ",
-      "PHI",
-      "UTA"
+      "UTA",
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -53804,7 +53519,6 @@
     "id": "fred-brown",
     "name": "Fred Brown",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [
@@ -53992,14 +53706,11 @@
     "id": "fred-hetzel",
     "name": "Fred Hetzel",
     "teams": [
-      "PHL",
-      "SFW",
+      "GSW",
       "LAL",
       "MIL",
-      "CIN",
       "SAC",
-      "PHI",
-      "GSW"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -54028,7 +53739,6 @@
     "id": "fred-hilton",
     "name": "Fred Hilton",
     "teams": [
-      "LAC",
       "LAC"
     ],
     "awards": [],
@@ -54242,7 +53952,6 @@
       "SAS",
       "UTA",
       "BOS",
-      "UTA",
       "MIL",
       "DAL"
     ],
@@ -54462,8 +54171,7 @@
       "LAC",
       "LAL",
       "MIL",
-      "PHI",
-      "LAC"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -54522,7 +54230,6 @@
     "name": "Freddie Lewis",
     "teams": [
       "IND",
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -55030,10 +54737,7 @@
       "LAC",
       "CHI",
       "PHX",
-      "OKC",
-      "SDC",
-      "SEA",
-      "LAC"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -55436,8 +55140,7 @@
     "teams": [
       "CLE",
       "LAC",
-      "MIL",
-      "LAC"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -55618,7 +55321,6 @@
     "id": "gary-gray",
     "name": "Gary Gray",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -55721,8 +55423,7 @@
     "teams": [
       "WAS",
       "BLT",
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -56847,7 +56548,6 @@
     "id": "george-brown",
     "name": "George Brown",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -56905,9 +56605,8 @@
     "name": "George Dempsey",
     "teams": [
       "GSW",
-      "SYR",
-      "PHW",
-      "PHI"
+      "PHI",
+      "PHW"
     ],
     "awards": [
       "Champion"
@@ -57060,7 +56759,6 @@
     "id": "george-h-bon-salle",
     "name": "George H. Bon Salle",
     "teams": [
-      "CHP",
       "WAS"
     ],
     "awards": [],
@@ -57287,7 +56985,6 @@
     "id": "george-lehmann",
     "name": "George Lehmann",
     "teams": [
-      "STL",
       "ATL"
     ],
     "awards": [],
@@ -57319,11 +57016,8 @@
       "NOP",
       "CHA",
       "MEM",
-      "NOH",
       "PHI",
-      "LAL",
-      "CHH",
-      "VAN"
+      "LAL"
     ],
     "awards": [],
     "allStar": false,
@@ -57476,7 +57170,6 @@
     "id": "george-mikan",
     "name": "George Mikan",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -57633,8 +57326,7 @@
     "teams": [
       "PHI",
       "MIH",
-      "ATL",
-      "SYR"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -58103,9 +57795,8 @@
       "HOU",
       "MIN",
       "PHX",
-      "NJN",
-      "BOS",
-      "BKN"
+      "BKN",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -58143,8 +57834,7 @@
       "OKC",
       "PHI",
       "PHL",
-      "POR",
-      "SEA"
+      "POR"
     ],
     "awards": [
       "Champion"
@@ -58211,9 +57901,8 @@
     "teams": [
       "NYK",
       "CLE",
-      "SEA",
-      "IND",
       "OKC",
+      "IND",
       "WAS"
     ],
     "awards": [],
@@ -58423,8 +58112,7 @@
     "name": "Gheorghe Muresan",
     "teams": [
       "BKN",
-      "WAS",
-      "NJN"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -58579,7 +58267,6 @@
     "id": "gil-mcgregor",
     "name": "Gil McGregor",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -58736,7 +58423,6 @@
     "name": "Glen Rice",
     "teams": [
       "CHA",
-      "CHH",
       "HOU",
       "LAC",
       "LAL",
@@ -59450,7 +59136,6 @@
       "MIA",
       "ATL",
       "DET",
-      "VAN",
       "MEM",
       "BOS"
     ],
@@ -59621,12 +59306,11 @@
     "teams": [
       "SAN",
       "DEN",
-      "NJN",
+      "BKN",
       "ATL",
       "MIL",
       "SAS",
-      "DET",
-      "BKN"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -59657,13 +59341,11 @@
     "name": "Greg Anthony",
     "teams": [
       "NYK",
-      "SEA",
+      "OKC",
       "MEM",
       "POR",
       "CHI",
-      "MIL",
-      "OKC",
-      "VAN"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -59694,7 +59376,6 @@
     "name": "Greg Ballard",
     "teams": [
       "GSW",
-      "SEA",
       "OKC",
       "GOS",
       "WAS"
@@ -59850,7 +59531,6 @@
     "id": "greg-deane",
     "name": "Greg Deane",
     "teams": [
-      "UTA",
       "UTA"
     ],
     "awards": [],
@@ -59983,9 +59663,7 @@
       "CLE",
       "OKC",
       "PHI",
-      "NJN",
-      "BKN",
-      "SEA"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -60019,7 +59697,6 @@
       "CHA",
       "PHX",
       "PHI",
-      "CHH",
       "WAS"
     ],
     "awards": [],
@@ -60106,7 +59783,6 @@
     "id": "greg-hyder",
     "name": "Greg Hyder",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -60166,10 +59842,8 @@
     "teams": [
       "IND",
       "OKC",
-      "SDC",
-      "DET",
-      "SEA",
-      "LAC"
+      "LAC",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -60355,7 +60029,6 @@
     "id": "greg-ostertag",
     "name": "Greg Ostertag",
     "teams": [
-      "UTA",
       "UTA",
       "SAC"
     ],
@@ -60694,7 +60367,6 @@
     "name": "Gus Bailey",
     "teams": [
       "HOU",
-      "NOJ",
       "UTA",
       "WAS"
     ],
@@ -60822,7 +60494,6 @@
     "teams": [
       "NOP",
       "ATL",
-      "NOH",
       "MIL",
       "ORL"
     ],
@@ -61098,7 +60769,6 @@
     "name": "Hal Greer",
     "teams": [
       "PHL",
-      "SYR",
       "PHI"
     ],
     "awards": [
@@ -61370,7 +61040,6 @@
     "teams": [
       "HOU",
       "LAL",
-      "SDR",
       "BOS"
     ],
     "awards": [
@@ -61436,9 +61105,8 @@
       "HOU",
       "GSW",
       "MIL",
-      "SDC",
-      "GOS",
-      "LAC"
+      "LAC",
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -61920,8 +61588,7 @@
     "id": "harry-barnes",
     "name": "Harry Barnes",
     "teams": [
-      "HOU",
-      "SDR"
+      "HOU"
     ],
     "awards": [],
     "allStar": false,
@@ -62165,7 +61832,6 @@
       "PHL",
       "PHI",
       "MIL",
-      "NJN",
       "BKN",
       "LAC"
     ],
@@ -62314,7 +61980,6 @@
     "name": "Hassan Adams",
     "teams": [
       "BKN",
-      "NJN",
       "TOR"
     ],
     "awards": [],
@@ -62521,8 +62186,7 @@
     "name": "Henry Akin",
     "teams": [
       "NYK",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -62553,9 +62217,7 @@
       "PHL",
       "NYK",
       "UTA",
-      "NOJ",
       "PHI",
-      "SDC",
       "LAC"
     ],
     "awards": [
@@ -62680,7 +62342,6 @@
     "name": "Henry James",
     "teams": [
       "CLE",
-      "UTA",
       "UTA",
       "ATL",
       "HOU",
@@ -63224,9 +62885,7 @@
       "CHA",
       "CHI",
       "PHI",
-      "OKC",
-      "CHH",
-      "SEA"
+      "OKC"
     ],
     "awards": [
       "All-Star"
@@ -63260,10 +62919,8 @@
     "name": "Hilton Armstrong",
     "teams": [
       "NOP",
-      "NOK",
       "ATL",
       "HOU",
-      "NOH",
       "SAC",
       "GSW",
       "WAS"
@@ -63383,8 +63040,7 @@
       "CHI",
       "LAL",
       "OKC",
-      "ORL",
-      "SEA"
+      "ORL"
     ],
     "awards": [
       "All-Star",
@@ -63953,8 +63609,7 @@
     "id": "howie-montgomery",
     "name": "Howie Montgomery",
     "teams": [
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -64072,12 +63727,10 @@
     "id": "hub-reed",
     "name": "Hub Reed",
     "teams": [
-      "STL",
+      "ATL",
       "LAL",
       "SAC",
-      "ATL",
-      "DET",
-      "CIN"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -64109,9 +63762,8 @@
       "NYK",
       "TOR",
       "DAL",
-      "NJN",
-      "DET",
       "BKN",
+      "DET",
       "WAS"
     ],
     "awards": [],
@@ -64554,11 +64206,9 @@
     "teams": [
       "PHL",
       "UTA",
-      "UTA",
       "MIA",
       "MEM",
       "PHI",
-      "VAN",
       "ORL",
       "WAS",
       "LAC"
@@ -64846,8 +64496,7 @@
     "name": "Irv Bemoras",
     "teams": [
       "ATL",
-      "MIH",
-      "STL"
+      "MIH"
     ],
     "awards": [],
     "allStar": false,
@@ -66257,7 +65906,6 @@
     "id": "jr-henderson",
     "name": "J.R. Henderson",
     "teams": [
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -66292,8 +65940,7 @@
       "CLE",
       "SAS",
       "CHA",
-      "MIL",
-      "CHH"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -67313,8 +66960,7 @@
       "BAL",
       "ATL",
       "TCB",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -67343,8 +66989,7 @@
     "id": "jack-kiley",
     "name": "Jack Kiley",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -67404,8 +67049,7 @@
       "BLT",
       "CHI",
       "HOU",
-      "WAS",
-      "LAC"
+      "WAS"
     ],
     "awards": [
       "All-Star"
@@ -67466,8 +67110,6 @@
     "name": "Jack McMahon",
     "teams": [
       "ATL",
-      "STL",
-      "ROC",
       "SAC"
     ],
     "awards": [
@@ -67528,8 +67170,7 @@
     "id": "jack-molinas",
     "name": "Jack Molinas",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [
       "All-Star"
@@ -68180,8 +67821,7 @@
       "DEN",
       "POR",
       "HOU",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -68929,8 +68569,7 @@
     "id": "jake-fendley",
     "name": "Jake Fendley",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -68958,7 +68597,6 @@
     "id": "jake-ford",
     "name": "Jake Ford",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -69847,10 +69485,7 @@
       "MIA",
       "CHA",
       "POR",
-      "NOH",
       "MIL",
-      "NJN",
-      "CHH",
       "BKN"
     ],
     "awards": [
@@ -70029,9 +69664,7 @@
       "DAL",
       "NOP",
       "MIA",
-      "CHA",
-      "NOH",
-      "CHH"
+      "CHA"
     ],
     "awards": [
       "All-Star"
@@ -70453,9 +70086,7 @@
       "OKC",
       "PHX",
       "HOU",
-      "NJN",
-      "BKN",
-      "SEA"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -70485,9 +70116,8 @@
     "id": "james-blackwell",
     "name": "James Blackwell",
     "teams": [
-      "CHH",
-      "BOS",
-      "CHA"
+      "CHA",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -70599,7 +70229,6 @@
     "id": "james-davis",
     "name": "James Davis",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -70631,10 +70260,7 @@
       "NYK",
       "DAL",
       "UTA",
-      "UTA",
       "OKC",
-      "SDC",
-      "SEA",
       "LAC"
     ],
     "awards": [
@@ -70791,7 +70417,6 @@
     "id": "james-hardy",
     "name": "James Hardy",
     "teams": [
-      "NOJ",
       "UTA"
     ],
     "awards": [],
@@ -71488,10 +71113,8 @@
     "teams": [
       "CHA",
       "MIL",
-      "NJN",
-      "CHH",
-      "SAS",
-      "BKN"
+      "BKN",
+      "SAS"
     ],
     "awards": [],
     "allStar": false,
@@ -71793,10 +71416,8 @@
       "TOR",
       "NOP",
       "CHA",
-      "NOK",
       "ATL",
       "CHI",
-      "NOH",
       "LAL",
       "WAS"
     ],
@@ -72241,13 +71862,11 @@
     "id": "jaren-jackson",
     "name": "Jaren Jackson",
     "teams": [
-      "PHL",
+      "GSW",
       "BKN",
       "POR",
       "HOU",
-      "GSW",
       "PHI",
-      "NJN",
       "ORL",
       "SAS",
       "GOS",
@@ -72528,11 +72147,10 @@
       "POR",
       "IND",
       "TOR",
-      "NOH",
+      "NOP",
       "GSW",
       "CLE",
       "BKN",
-      "NOP",
       "NYK"
     ],
     "awards": [],
@@ -72650,9 +72268,8 @@
     "id": "jarvis-hayes",
     "name": "Jarvis Hayes",
     "teams": [
-      "NJN",
-      "DET",
       "BKN",
+      "DET",
       "WAS"
     ],
     "awards": [],
@@ -72809,13 +72426,12 @@
     "id": "jason-collins",
     "name": "Jason Collins",
     "teams": [
-      "NJN",
+      "BKN",
       "MEM",
       "MIN",
       "ATL",
       "BOS",
-      "WAS",
-      "BKN"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -72849,7 +72465,6 @@
       "NOP",
       "CHA",
       "MIN",
-      "NOH",
       "SAC",
       "MIL",
       "SAS",
@@ -72922,7 +72537,6 @@
       "NYK",
       "DAL",
       "PHX",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -73631,7 +73245,6 @@
     "id": "jay-arnette",
     "name": "Jay Arnette",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -73785,7 +73398,6 @@
     "name": "Jay Humphries",
     "teams": [
       "UTA",
-      "UTA",
       "PHX",
       "MIL",
       "BOS"
@@ -73819,7 +73431,6 @@
     "name": "Jay Miller",
     "teams": [
       "ATL",
-      "STL",
       "MIL"
     ],
     "awards": [],
@@ -74729,12 +74340,10 @@
     "id": "jeff-grayer",
     "name": "Jeff Grayer",
     "teams": [
-      "PHL",
+      "GSW",
       "CHA",
       "SAC",
       "MIL",
-      "GSW",
-      "CHH",
       "PHI",
       "GOS"
     ],
@@ -74765,7 +74374,6 @@
     "id": "jeff-green",
     "name": "Jeff Green",
     "teams": [
-      "SEA",
       "OKC",
       "BOS",
       "MEM",
@@ -74850,7 +74458,6 @@
       "PHL",
       "PHX",
       "PHI",
-      "UTA",
       "UTA"
     ],
     "awards": [
@@ -74884,7 +74491,6 @@
     "name": "Jeff Judkins",
     "teams": [
       "BOS",
-      "UTA",
       "UTA",
       "POR",
       "DET"
@@ -74977,7 +74583,6 @@
     "teams": [
       "PHL",
       "UTA",
-      "UTA",
       "MIA",
       "PHI",
       "WAS"
@@ -75044,7 +74649,6 @@
       "DEN",
       "CHA",
       "POR",
-      "NJN",
       "BKN",
       "WAS",
       "LAC"
@@ -75077,10 +74681,8 @@
     "name": "Jeff Mullins",
     "teams": [
       "ATL",
-      "STL",
       "GSW",
-      "GOS",
-      "SFW"
+      "GOS"
     ],
     "awards": [
       "All-Star",
@@ -75569,8 +75171,7 @@
       "DEN",
       "ATL",
       "LAL",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -76463,8 +76064,7 @@
     "teams": [
       "NYK",
       "SAC",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -76528,8 +76128,7 @@
       "MIL",
       "GSW",
       "SAS",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [
       "Champion"
@@ -76600,11 +76199,8 @@
       "TOR",
       "NOP",
       "CHA",
-      "NOH",
-      "NJN",
-      "CHH",
-      "BOS",
-      "BKN"
+      "BKN",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -76838,8 +76434,7 @@
       "LAC",
       "ATL",
       "PHX",
-      "LAL",
-      "LAC"
+      "LAL"
     ],
     "awards": [],
     "allStar": false,
@@ -77046,10 +76641,8 @@
     "name": "Jerry Lucas",
     "teams": [
       "NYK",
-      "CIN",
-      "GSW",
       "SAC",
-      "SFW"
+      "GSW"
     ],
     "awards": [
       "ROY",
@@ -77085,8 +76678,7 @@
     "id": "jerry-nagel",
     "name": "Jerry Nagel",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -77144,8 +76736,7 @@
     "teams": [
       "OKC",
       "MIL",
-      "ORL",
-      "SEA"
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -77373,7 +76964,6 @@
       "NOP",
       "MEM",
       "POR",
-      "NOH",
       "MIN",
       "PHI",
       "MIL",
@@ -77434,8 +77024,7 @@
     "id": "jesse-arnelle",
     "name": "Jesse Arnelle",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -77726,13 +77315,10 @@
     "name": "Jim Barnett",
     "teams": [
       "NYK",
-      "PHL",
+      "GSW",
       "UTA",
       "POR",
-      "NOJ",
       "HOU",
-      "GSW",
-      "SDR",
       "PHI",
       "BOS",
       "GOS"
@@ -77794,7 +77380,6 @@
     "teams": [
       "ATL",
       "MIH",
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -77859,7 +77444,6 @@
     "id": "jim-brogan",
     "name": "Jim Brogan",
     "teams": [
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -78072,7 +77656,6 @@
     "id": "jim-davis",
     "name": "Jim Davis",
     "teams": [
-      "STL",
       "ATL",
       "HOU",
       "DET"
@@ -78138,10 +77721,8 @@
       "DAL",
       "UTA",
       "DEN",
-      "UTA",
       "PHI",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -78290,10 +77871,8 @@
     "id": "jim-holstein",
     "name": "Jim Holstein",
     "teams": [
-      "MNL",
-      "DET",
       "LAL",
-      "FTW"
+      "DET"
     ],
     "awards": [
       "Champion"
@@ -78332,10 +77911,9 @@
       "HOU",
       "GSW",
       "PHI",
-      "NJN",
+      "BKN",
       "SAC",
       "LAL",
-      "BKN",
       "DAL",
       "MIA",
       "PHX"
@@ -78485,7 +78063,6 @@
     "name": "Jim Les",
     "teams": [
       "UTA",
-      "UTA",
       "ATL",
       "SAC",
       "LAC"
@@ -78613,9 +78190,7 @@
     "teams": [
       "LAC",
       "LAL",
-      "OKC",
-      "SEA",
-      "LAC"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -78644,7 +78219,6 @@
     "name": "Jim McElroy",
     "teams": [
       "ATL",
-      "NOJ",
       "UTA",
       "DET"
     ],
@@ -78675,8 +78249,6 @@
     "id": "jim-mcilvaine",
     "name": "Jim McIlvaine",
     "teams": [
-      "SEA",
-      "NJN",
       "OKC",
       "BKN",
       "WAS"
@@ -78712,8 +78284,7 @@
       "NYK",
       "LAC",
       "POR",
-      "LAL",
-      "LAC"
+      "LAL"
     ],
     "awards": [
       "Champion"
@@ -78859,7 +78430,6 @@
     "name": "Jim Palmer",
     "teams": [
       "NYK",
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -79055,8 +78625,7 @@
     "id": "jim-ray",
     "name": "Jim Ray",
     "teams": [
-      "PHI",
-      "SYR"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -79113,8 +78682,7 @@
     "id": "jim-riffey",
     "name": "Jim Riffey",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -79673,8 +79241,7 @@
     "id": "jimmy-darrow",
     "name": "Jimmy Darrow",
     "teams": [
-      "ATL",
-      "STL"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -80235,7 +79802,6 @@
     "id": "joe-buckhalter",
     "name": "Joe Buckhalter",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -80265,7 +79831,6 @@
     "name": "Joe Caldwell",
     "teams": [
       "DET",
-      "STL",
       "ATL"
     ],
     "awards": [
@@ -80659,11 +80224,10 @@
     "id": "joe-graboski",
     "name": "Joe Graboski",
     "teams": [
-      "SYR",
+      "PHI",
       "INO",
       "PHW",
       "CHS",
-      "PHI",
       "GSW"
     ],
     "awards": [
@@ -80758,9 +80322,8 @@
     "id": "joe-holup",
     "name": "Joe Holup",
     "teams": [
-      "SYR",
-      "DET",
-      "PHI"
+      "PHI",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -80788,7 +80351,6 @@
     "id": "joe-hutton",
     "name": "Joe Hutton",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -80899,7 +80461,6 @@
     "id": "joe-kennedy",
     "name": "Joe Kennedy",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -80987,7 +80548,6 @@
     "name": "Joe McNamee",
     "teams": [
       "BAL",
-      "ROC",
       "SAC"
     ],
     "awards": [
@@ -81024,9 +80584,7 @@
       "UTA",
       "ATL",
       "HOU",
-      "NOJ",
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -81144,8 +80702,7 @@
     "id": "joe-roberts",
     "name": "Joe Roberts",
     "teams": [
-      "PHI",
-      "SYR"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -81592,7 +81149,6 @@
     "id": "joel-ingram",
     "name": "Joel Ingram",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -81749,8 +81305,7 @@
       "IND",
       "GSW",
       "OKC",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [
       "Champion"
@@ -81966,9 +81521,8 @@
     "teams": [
       "CLE",
       "ATL",
-      "NJN",
-      "BOS",
-      "BKN"
+      "BKN",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -81997,8 +81551,7 @@
     "id": "john-barber",
     "name": "John Barber",
     "teams": [
-      "ATL",
-      "STL"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -82029,8 +81582,6 @@
       "BLT",
       "ATL",
       "HOU",
-      "STL",
-      "SDR",
       "DET",
       "WAS"
     ],
@@ -82121,14 +81672,11 @@
       "PHL",
       "UTA",
       "CHI",
-      "NOJ",
       "HOU",
       "LAL",
       "MIL",
-      "SDR",
       "SAC",
-      "PHI",
-      "KCK"
+      "PHI"
     ],
     "awards": [
       "All-Star"
@@ -82159,7 +81707,6 @@
     "id": "john-brisker",
     "name": "John Brisker",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -82190,7 +81737,6 @@
     "teams": [
       "ATL",
       "CHI",
-      "UTA",
       "UTA"
     ],
     "awards": [],
@@ -82310,8 +81856,7 @@
       "CLE",
       "POR",
       "CHI",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -82470,12 +82015,10 @@
       "CLE",
       "UTA",
       "DEN",
-      "UTA",
       "MIA",
       "POR",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -82532,7 +82075,6 @@
     "id": "john-douglas",
     "name": "John Douglas",
     "teams": [
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -82562,7 +82104,6 @@
     "name": "John Drew",
     "teams": [
       "ATL",
-      "UTA",
       "UTA"
     ],
     "awards": [
@@ -82742,7 +82283,6 @@
     "id": "john-greig",
     "name": "John Greig",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -82904,9 +82444,7 @@
     "teams": [
       "CHI",
       "LAC",
-      "OKC",
-      "SEA",
-      "LAC"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -83196,12 +82734,11 @@
     "id": "john-lucas",
     "name": "John Lucas",
     "teams": [
-      "SEA",
+      "OKC",
       "SAS",
       "HOU",
       "GSW",
       "MIL",
-      "OKC",
       "SAN",
       "GOS",
       "WAS"
@@ -83268,15 +82805,13 @@
     "id": "john-mahnken",
     "name": "John Mahnken",
     "teams": [
-      "BAL",
+      "WAS",
       "DET",
       "ATL",
       "TCB",
       "INO",
       "BOS",
-      "JET",
-      "WAS",
-      "FTW"
+      "JET"
     ],
     "awards": [],
     "allStar": false,
@@ -83305,10 +82840,9 @@
     "id": "john-mandic",
     "name": "John Mandic",
     "teams": [
-      "BAL",
+      "WAS",
       null,
-      "JET",
-      "WAS"
+      "JET"
     ],
     "awards": [],
     "allStar": false,
@@ -83394,12 +82928,10 @@
     "name": "John Mengelt",
     "teams": [
       "CHI",
-      "CIN",
-      "GSW",
       "SAC",
+      "GSW",
       "DET",
-      "GOS",
-      "KCK"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -83573,7 +83105,6 @@
     "id": "john-olive",
     "name": "John Olive",
     "teams": [
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -84976,11 +84507,8 @@
       "WAS",
       "BLT",
       "HOU",
-      "CIN",
-      "SDR",
       "SAC",
-      "PHI",
-      "KCK"
+      "PHI"
     ],
     "awards": [
       "All-Star"
@@ -85041,7 +84569,6 @@
     "id": "johnny-horan",
     "name": "Johnny Horan",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -85104,7 +84631,6 @@
     "teams": [
       "BAL",
       "LAL",
-      "MNL",
       "CHS"
     ],
     "awards": [
@@ -85174,7 +84700,6 @@
     "name": "Johnny Kerr",
     "teams": [
       "PHL",
-      "SYR",
       "PHI",
       "BLT",
       "WAS"
@@ -85242,7 +84767,6 @@
     "id": "johnny-macknowski",
     "name": "Johnny Macknowski",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -85273,9 +84797,6 @@
     "name": "Johnny McCarthy",
     "teams": [
       "ATL",
-      "STL",
-      "ROC",
-      "CIN",
       "SAC",
       "BOS"
     ],
@@ -85312,8 +84833,7 @@
     "teams": [
       "SAS",
       "SAN",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -85465,8 +84985,7 @@
     "id": "johnny-oldham",
     "name": "Johnny Oldham",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -85868,10 +85387,8 @@
     "name": "Jon McGlocklin",
     "teams": [
       "HOU",
-      "CIN",
-      "MIL",
-      "SDR",
-      "SAC"
+      "SAC",
+      "MIL"
     ],
     "awards": [
       "All-Star",
@@ -86528,7 +86045,6 @@
       "MEM",
       "LAL",
       "SAC",
-      "NJN",
       "BKN",
       "LAC"
     ],
@@ -87314,7 +86830,6 @@
     "name": "Joseph Forte",
     "teams": [
       "BOS",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -87343,7 +86858,6 @@
     "id": "joseph-reiser",
     "name": "Joseph Reiser",
     "teams": [
-      "BAL",
       "WAS"
     ],
     "awards": [
@@ -87404,8 +86918,7 @@
     "id": "josh-boone",
     "name": "Josh Boone",
     "teams": [
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -90633,7 +90146,6 @@
       "MIL",
       "SAS",
       "CHI",
-      "NJN",
       "BKN",
       "BOS"
     ],
@@ -91474,10 +90986,9 @@
     "id": "kelvin-ransey",
     "name": "Kelvin Ransey",
     "teams": [
-      "NJN",
+      "BKN",
       "DAL",
-      "POR",
-      "BKN"
+      "POR"
     ],
     "awards": [],
     "allStar": false,
@@ -91627,7 +91138,6 @@
     "id": "ken-boyd",
     "name": "Ken Boyd",
     "teams": [
-      "NOJ",
       "UTA"
     ],
     "awards": [],
@@ -91657,7 +91167,6 @@
     "name": "Ken Charles",
     "teams": [
       "ATL",
-      "LAC",
       "LAC"
     ],
     "awards": [],
@@ -91917,8 +91426,7 @@
     "teams": [
       "DET",
       "PHW",
-      "GSW",
-      "FTW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -92345,12 +91853,8 @@
       "CHA",
       "POR",
       "ATL",
-      "NOH",
-      "NJN",
-      "CHH",
-      "BOS",
       "BKN",
-      "SEA",
+      "BOS",
       "LAC"
     ],
     "awards": [
@@ -92449,8 +91953,7 @@
     "name": "Kenny Dennard",
     "teams": [
       "DEN",
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -92625,7 +92128,6 @@
     "name": "Kenny McIntosh",
     "teams": [
       "CHI",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -93027,7 +92529,6 @@
     "teams": [
       "CLE",
       "UTA",
-      "UTA",
       "MIL",
       "DET"
     ],
@@ -93139,7 +92640,6 @@
       "UTA",
       "DEN",
       "MIL",
-      "NJN",
       "BKN",
       "LAC"
     ],
@@ -93901,10 +93401,8 @@
     "id": "kevin-loder",
     "name": "Kevin Loder",
     "teams": [
-      "SDC",
-      "SAC",
-      "KCK",
-      "LAC"
+      "LAC",
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -94010,7 +93508,6 @@
     "id": "kevin-lynch",
     "name": "Kevin Lynch",
     "teams": [
-      "CHH",
       "CHA"
     ],
     "awards": [],
@@ -94146,7 +93643,6 @@
     "teams": [
       "IND",
       "LAL",
-      "NJN",
       "BKN",
       "WAS"
     ],
@@ -94205,7 +93701,6 @@
     "name": "Kevin O'Shea",
     "teams": [
       "BAL",
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -94240,13 +93735,11 @@
       "MIN",
       "PHI",
       "SAC",
-      "NJN",
+      "BKN",
       "MIL",
       "ORL",
-      "BKN",
-      "SEA",
-      "DAL",
-      "OKC"
+      "OKC",
+      "DAL"
     ],
     "awards": [],
     "allStar": false,
@@ -94380,8 +93873,7 @@
       "PHI",
       "MIA",
       "BOS",
-      "GOS",
-      "PHL"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -94413,8 +93905,7 @@
       "SAC",
       "CLE",
       "SAS",
-      "MIL",
-      "KCK"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -94728,10 +94219,9 @@
       "MIA",
       "MEM",
       "MIL",
-      "NJN",
+      "BKN",
       "ORL",
       "BOS",
-      "BKN",
       "LAC"
     ],
     "awards": [],
@@ -94857,8 +94347,6 @@
       "BKN",
       "MIA",
       "CHA",
-      "NJN",
-      "CHH",
       "DAL",
       "DET"
     ],
@@ -95172,11 +94660,9 @@
     "id": "kim-hughes",
     "name": "Kim Hughes",
     "teams": [
-      "NYN",
+      "BKN",
       "CLE",
-      "NJN",
-      "DEN",
-      "BKN"
+      "DEN"
     ],
     "awards": [],
     "allStar": false,
@@ -95236,10 +94722,8 @@
     "id": "kirk-haston",
     "name": "Kirk Haston",
     "teams": [
-      "CHH",
-      "NOP",
-      "NOH",
-      "CHA"
+      "CHA",
+      "NOP"
     ],
     "awards": [],
     "allStar": false,
@@ -95904,7 +95388,6 @@
       "UTA",
       "TOR",
       "DAL",
-      "NJN",
       "BKN",
       "BOS",
       "WAS",
@@ -96114,8 +95597,7 @@
       "LAL",
       "SAC",
       "CHA",
-      "PHX",
-      "CHH"
+      "PHX"
     ],
     "awards": [
       "Champion"
@@ -97082,7 +96564,6 @@
     "name": "Lamar Green",
     "teams": [
       "PHX",
-      "NOJ",
       "UTA"
     ],
     "awards": [],
@@ -97211,7 +96692,6 @@
     "teams": [
       "CLE",
       "TOR",
-      "NJN",
       "BKN",
       "LAC"
     ],
@@ -97781,7 +97261,6 @@
     "name": "Larry Drew",
     "teams": [
       "DET",
-      "KCK",
       "SAC",
       "LAC",
       "LAL"
@@ -98138,14 +97617,11 @@
     "name": "Larry McNeill",
     "teams": [
       "LAC",
-      "NYN",
+      "BKN",
       "GSW",
       "SAC",
-      "BKN",
       "DET",
-      "GOS",
-      "KCK",
-      "LAC"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -98175,8 +97651,7 @@
     "teams": [
       "HOU",
       "SAC",
-      "MIL",
-      "KCK"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -98335,9 +97810,8 @@
     "id": "larry-owens",
     "name": "Larry Owens",
     "teams": [
-      "NJN",
-      "SAS",
       "BKN",
+      "SAS",
       "WAS"
     ],
     "awards": [],
@@ -98928,7 +98402,6 @@
     "name": "Lawrence Moten",
     "teams": [
       "WAS",
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -99040,7 +98513,6 @@
     "id": "lazaro-borrell",
     "name": "Lazaro Borrell",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -99328,8 +98800,7 @@
     "name": "Lee Mayberry",
     "teams": [
       "MEM",
-      "MIL",
-      "VAN"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -99362,9 +98833,7 @@
       "NOP",
       "CHA",
       "ATL",
-      "NOH",
       "PHI",
-      "CHH",
       "ORL"
     ],
     "awards": [],
@@ -99482,14 +98951,12 @@
     "teams": [
       "PHL",
       "NYK",
-      "SYR",
+      "PHI",
       "CLE",
       "ATL",
       "CHI",
-      "CIN",
-      "MIL",
-      "PHI",
       "SAC",
+      "MIL",
       "DET"
     ],
     "awards": [
@@ -99645,8 +99112,7 @@
     "teams": [
       "INO",
       "DET",
-      "CHS",
-      "FTW"
+      "CHS"
     ],
     "awards": [
       "All-Star"
@@ -99795,8 +99261,7 @@
       "HUS",
       "CLR",
       "DET",
-      "JET",
-      "FTW"
+      "JET"
     ],
     "awards": [],
     "allStar": false,
@@ -99940,8 +99405,7 @@
     "name": "Leon Douglas",
     "teams": [
       "DET",
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -100063,7 +99527,6 @@
     "name": "Leonard Gray",
     "teams": [
       "WAS",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -100155,7 +99618,6 @@
     "id": "leroy-chollet",
     "name": "Leroy Chollet",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -100436,8 +99898,7 @@
     "id": "levi-fontaine",
     "name": "Levi Fontaine",
     "teams": [
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -100466,11 +99927,10 @@
     "name": "Lew Hitch",
     "teams": [
       "ATL",
-      "MNL",
+      "LAL",
       "MIH",
       "PHW",
-      "GSW",
-      "LAL"
+      "GSW"
     ],
     "awards": [
       "Champion"
@@ -100531,10 +99991,9 @@
     "id": "lewis-lloyd",
     "name": "Lewis Lloyd",
     "teams": [
-      "PHL",
+      "GSW",
       "HOU",
       "PHI",
-      "GSW",
       "GOS"
     ],
     "awards": [],
@@ -100883,9 +100342,8 @@
       "POR",
       "HOU",
       "PHI",
-      "SDC",
-      "DET",
-      "LAC"
+      "LAC",
+      "DET"
     ],
     "awards": [
       "All-Star",
@@ -100921,7 +100379,6 @@
     "name": "Lionel Malamed",
     "teams": [
       "JET",
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -101014,10 +100471,9 @@
       "SAS",
       "LAL",
       "SAC",
-      "NJN",
+      "BKN",
       "PHI",
-      "SAN",
-      "BKN"
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -101292,7 +100748,6 @@
       "CHA",
       "CHI",
       "HOU",
-      "NOH",
       "WAS"
     ],
     "awards": [],
@@ -101572,7 +101027,6 @@
       "IND",
       "MIN",
       "CHI",
-      "NOH",
       "NOP",
       "CLE",
       "NYK"
@@ -101633,7 +101087,6 @@
     "id": "lou-hudson",
     "name": "Lou Hudson",
     "teams": [
-      "STL",
       "ATL",
       "LAL"
     ],
@@ -101875,8 +101328,6 @@
     "name": "Lowes Moore",
     "teams": [
       "CLE",
-      "NJN",
-      "SDC",
       "BKN",
       "LAC"
     ],
@@ -102185,12 +101636,10 @@
     "id": "lucius-allen",
     "name": "Lucius Allen",
     "teams": [
-      "SEA",
       "OKC",
       "LAL",
       "MIL",
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [
       "Champion"
@@ -102611,7 +102060,6 @@
       "SAC",
       "CLE",
       "PHI",
-      "CIN",
       "PHL"
     ],
     "awards": [],
@@ -102643,7 +102091,6 @@
     "teams": [
       "ORL",
       "MIN",
-      "SEA",
       "OKC",
       "CHA",
       "MIL"
@@ -103365,8 +102812,7 @@
     "teams": [
       "DEN",
       "MEM",
-      "SAC",
-      "VAN"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -103425,7 +102871,6 @@
     "id": "makhtar-ndiaye",
     "name": "Makhtar N'diaye",
     "teams": [
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -103891,9 +103336,8 @@
       "MIA",
       "CHI",
       "MIL",
-      "NJN",
-      "ORL",
-      "BKN"
+      "BKN",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -104340,10 +103784,9 @@
     "id": "manute-bol",
     "name": "Manute Bol",
     "teams": [
-      "PHL",
+      "GSW",
       "MIA",
       "PHI",
-      "GSW",
       "GOS",
       "WAS"
     ],
@@ -104433,7 +103876,6 @@
     "id": "marshon-brooks",
     "name": "MarShon Brooks",
     "teams": [
-      "NJN",
       "BKN",
       "BOS",
       "GSW",
@@ -104508,7 +103950,6 @@
       "PHL",
       "UTA",
       "PHI",
-      "UTA",
       "SAS",
       "SAN"
     ],
@@ -104543,11 +103984,9 @@
     "name": "Marc Jackson",
     "teams": [
       "NOP",
-      "NOK",
       "MIN",
       "PHI",
       "GSW",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -104642,7 +104081,6 @@
       "CHA",
       "ATL",
       "CHI",
-      "NOH",
       "GSW",
       "SAC",
       "PHI",
@@ -104865,8 +104303,7 @@
     "teams": [
       "CHI",
       "MIL",
-      "NOP",
-      "NOK"
+      "NOP"
     ],
     "awards": [],
     "allStar": false,
@@ -105829,8 +105266,7 @@
     "id": "mark-crow",
     "name": "Mark Crow",
     "teams": [
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -105927,7 +105363,6 @@
       "CLE",
       "PHI",
       "SAC",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -106132,8 +105567,7 @@
       "PHI",
       "SAC",
       "ORL",
-      "SAN",
-      "KCK"
+      "SAN"
     ],
     "awards": [
       "Champion"
@@ -106197,8 +105631,7 @@
       "CHI",
       "SAC",
       "SAS",
-      "SAN",
-      "KCK"
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -106293,8 +105726,7 @@
     "id": "mark-radford",
     "name": "Mark Radford",
     "teams": [
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -106924,9 +106356,8 @@
     "name": "Marlon Redmond",
     "teams": [
       "PHI",
-      "KCK",
-      "PHL",
-      "SAC"
+      "SAC",
+      "PHL"
     ],
     "awards": [],
     "allStar": false,
@@ -107659,9 +107090,7 @@
     "teams": [
       "LAC",
       "BOS",
-      "SDC",
-      "DET",
-      "LAC"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -107862,8 +107291,7 @@
       "CLE",
       "SAC",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -108192,7 +107620,6 @@
       "CHI",
       "CIN",
       "HOU",
-      "KCK",
       "PHL",
       "PHW"
     ],
@@ -108699,8 +108126,7 @@
     "teams": [
       "BKN",
       "DAL",
-      "MIN",
-      "NJN"
+      "MIN"
     ],
     "awards": [],
     "allStar": false,
@@ -108759,7 +108185,6 @@
     "name": "Maurice Carter",
     "teams": [
       "NOP",
-      "NOH",
       "LAL"
     ],
     "awards": [],
@@ -108793,9 +108218,8 @@
       "SAS",
       "ATL",
       "PHI",
-      "NJN",
-      "SAN",
-      "BKN"
+      "BKN",
+      "SAN"
     ],
     "awards": [
       "All-Star",
@@ -108905,9 +108329,7 @@
       "POR",
       "PHX",
       "LAL",
-      "NJN",
-      "BKN",
-      "SEA"
+      "BKN"
     ],
     "awards": [
       "All-Star",
@@ -109347,11 +108769,10 @@
     "name": "Mccoy McLemore",
     "teams": [
       "CLE",
-      "SFW",
+      "GSW",
       "CHI",
       "PHX",
       "HOU",
-      "GSW",
       "MIL",
       "DET"
     ],
@@ -109415,9 +108836,7 @@
     "name": "Medford Park",
     "teams": [
       "ATL",
-      "STL",
-      "SAC",
-      "CIN"
+      "SAC"
     ],
     "awards": [
       "Champion"
@@ -109450,9 +108869,8 @@
     "name": "Mehmet Okur",
     "teams": [
       "UTA",
-      "NJN",
-      "DET",
-      "BKN"
+      "BKN",
+      "DET"
     ],
     "awards": [
       "All-Star",
@@ -109487,7 +108905,6 @@
     "name": "Mel Bennett",
     "teams": [
       "CLE",
-      "UTA",
       "UTA",
       "IND"
     ],
@@ -109557,7 +108974,6 @@
     "id": "mel-daniels",
     "name": "Mel Daniels",
     "teams": [
-      "NYN",
       "BKN"
     ],
     "awards": [],
@@ -109587,7 +109003,6 @@
     "name": "Mel Davis",
     "teams": [
       "NYK",
-      "NYN",
       "BKN"
     ],
     "awards": [],
@@ -109675,8 +109090,7 @@
       "NYK",
       "MIH",
       "ATL",
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [
       "All-Star"
@@ -110286,7 +109700,6 @@
     "name": "Michael Adams",
     "teams": [
       "CHA",
-      "CHH",
       "DEN",
       "SAC",
       "WAS"
@@ -110352,9 +109765,8 @@
     "teams": [
       "PHL",
       "PHI",
-      "CHH",
-      "ORL",
-      "CHA"
+      "CHA",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -110451,9 +109863,8 @@
     "name": "Michael Brooks",
     "teams": [
       "DEN",
-      "SDC",
-      "IND",
-      "LAC"
+      "LAC",
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -110653,7 +110064,6 @@
     "name": "Michael Dickerson",
     "teams": [
       "HOU",
-      "VAN",
       "MEM"
     ],
     "awards": [],
@@ -110845,7 +110255,6 @@
       "CLE",
       "CHA",
       "SAC",
-      "CHH",
       "BOS"
     ],
     "awards": [],
@@ -110878,8 +110287,7 @@
       "CHA",
       "POR",
       "CHI",
-      "PHX",
-      "CHH"
+      "PHX"
     ],
     "awards": [],
     "allStar": false,
@@ -111378,9 +110786,8 @@
     "teams": [
       "NYK",
       "GOS",
-      "NJN",
-      "GSW",
-      "BKN"
+      "BKN",
+      "GSW"
     ],
     "awards": [
       "All-Star"
@@ -111666,12 +111073,10 @@
     "teams": [
       "PHL",
       "IND",
-      "NYN",
+      "BKN",
       "PHX",
       "PHI",
-      "OKC",
-      "BKN",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -111700,8 +111105,7 @@
     "id": "mike-barr",
     "name": "Mike Barr",
     "teams": [
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -111762,7 +111166,6 @@
       "MEM",
       "ATL",
       "SAC",
-      "VAN",
       "WAS"
     ],
     "awards": [],
@@ -111795,9 +111198,8 @@
     "name": "Mike Bloom",
     "teams": [
       "BAL",
-      "MNL",
-      "CHS",
       "LAL",
+      "CHS",
       "BOS"
     ],
     "awards": [],
@@ -111952,7 +111354,6 @@
     "id": "mike-champion",
     "name": "Mike Champion",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -112026,7 +111427,6 @@
     "teams": [
       "SAN",
       "SAC",
-      "KCK",
       "SAS"
     ],
     "awards": [],
@@ -112057,8 +111457,7 @@
     "teams": [
       "BLT",
       "LAC",
-      "WAS",
-      "LAC"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -112159,8 +111558,6 @@
     "teams": [
       "NYK",
       "ATL",
-      "STL",
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -112338,11 +111735,9 @@
     "name": "Mike Green",
     "teams": [
       "SAC",
-      "SEA",
-      "SAS",
       "OKC",
-      "SAN",
-      "KCK"
+      "SAS",
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -112549,8 +111944,7 @@
     "name": "Mike Lynn",
     "teams": [
       "LAC",
-      "LAL",
-      "LAC"
+      "LAL"
     ],
     "awards": [],
     "allStar": false,
@@ -112579,7 +111973,6 @@
     "id": "mike-macaluso",
     "name": "Mike Macaluso",
     "teams": [
-      "LAC",
       "LAC"
     ],
     "awards": [],
@@ -112642,7 +112035,6 @@
       "PHX",
       "LAL",
       "SAC",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -112904,8 +112296,7 @@
     "name": "Mike O'Koren",
     "teams": [
       "BKN",
-      "WAS",
-      "NJN"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -113079,7 +112470,6 @@
     "id": "mike-ratliff",
     "name": "Mike Ratliff",
     "teams": [
-      "KCK",
       "SAC"
     ],
     "awards": [],
@@ -113110,7 +112500,6 @@
     "teams": [
       "NYK",
       "BLT",
-      "CAP",
       "WAS"
     ],
     "awards": [
@@ -113502,10 +112891,8 @@
       "ATL",
       "SAC",
       "GSW",
-      "NJN",
-      "DET",
       "BKN",
-      "SEA",
+      "DET",
       "LAC"
     ],
     "awards": [],
@@ -113536,8 +112923,7 @@
     "id": "mile-ilic",
     "name": "Mile Ilic",
     "teams": [
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -113853,8 +113239,7 @@
       "UTA",
       "MEM",
       "PHX",
-      "BOS",
-      "VAN"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -114220,8 +113605,7 @@
     "teams": [
       "PHL",
       "UTA",
-      "PHI",
-      "UTA"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -114446,7 +113830,6 @@
     "name": "Mo Howard",
     "teams": [
       "CLE",
-      "NOJ",
       "UTA"
     ],
     "awards": [],
@@ -114864,7 +114247,6 @@
     "teams": [
       "ATL",
       "GSW",
-      "NJN",
       "BKN"
     ],
     "awards": [
@@ -115070,8 +114452,7 @@
       "MIL",
       "SAS",
       "SAN",
-      "WAS",
-      "LAC"
+      "WAS"
     ],
     "awards": [
       "MVP",
@@ -115347,7 +114728,6 @@
       "TOR",
       "CHA",
       "GSW",
-      "CHH",
       "WAS"
     ],
     "awards": [],
@@ -116031,13 +115411,10 @@
     "id": "nate-archibald",
     "name": "Nate Archibald",
     "teams": [
-      "NYN",
-      "CIN",
-      "MIL",
-      "SAC",
-      "BOS",
       "BKN",
-      "KCK"
+      "SAC",
+      "MIL",
+      "BOS"
     ],
     "awards": [
       "All-Star",
@@ -116103,7 +115480,6 @@
     "teams": [
       "NYK",
       "CHI",
-      "LAC",
       "LAC"
     ],
     "awards": [
@@ -116338,7 +115714,6 @@
     "id": "nate-mcmillan",
     "name": "Nate McMillan",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -117162,7 +116537,6 @@
     "id": "nick-collison",
     "name": "Nick Collison",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -117251,9 +116625,7 @@
     "teams": [
       "HOU",
       "GSW",
-      "SDR",
-      "GOS",
-      "SFW"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -117282,10 +116654,8 @@
     "id": "nick-mantis",
     "name": "Nick Mantis",
     "teams": [
-      "MNL",
       "LAL",
-      "WAS",
-      "CHZ"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -118309,9 +117679,8 @@
     "id": "noble-jorgensen",
     "name": "Noble Jorgensen",
     "teams": [
-      "SYR",
-      "PIT",
       "PHI",
+      "PIT",
       "SHE"
     ],
     "awards": [],
@@ -118341,7 +117710,6 @@
     "id": "noel-felix",
     "name": "Noel Felix",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -118892,7 +118260,6 @@
     "id": "norton-barnhill",
     "name": "Norton Barnhill",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -119533,7 +118900,6 @@
     "name": "Olumide Oyedeji",
     "teams": [
       "ORL",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -119807,9 +119173,8 @@
     "teams": [
       "IND",
       "SAC",
-      "NJN",
-      "BOS",
-      "BKN"
+      "BKN",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -119965,7 +119330,6 @@
     "id": "oscar-robertson",
     "name": "Oscar Robertson",
     "teams": [
-      "CIN",
       "SAC",
       "MIL"
     ],
@@ -120290,10 +119654,8 @@
     "name": "Otis Birdsong",
     "teams": [
       "SAC",
-      "NJN",
-      "BOS",
       "BKN",
-      "KCK"
+      "BOS"
     ],
     "awards": [
       "All-Star"
@@ -120420,11 +119782,9 @@
     "teams": [
       "UTA",
       "HOU",
-      "NOJ",
       "PHX",
       "SAC",
-      "DET",
-      "KCK"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -120866,11 +120226,9 @@
     "name": "Pace Mannion",
     "teams": [
       "UTA",
-      "UTA",
       "ATL",
       "GSW",
       "MIL",
-      "NJN",
       "BKN",
       "DET",
       "GOS"
@@ -121174,7 +120532,6 @@
       "NYK",
       "DAL",
       "UTA",
-      "UTA",
       "MIA",
       "MIL"
     ],
@@ -121322,8 +120679,7 @@
     "teams": [
       "HOU",
       "LAL",
-      "PHX",
-      "SDR"
+      "PHX"
     ],
     "awards": [
       "Champion"
@@ -121549,8 +120905,7 @@
     "teams": [
       "NYK",
       "OKC",
-      "ORL",
-      "SEA"
+      "ORL"
     ],
     "awards": [
       "ROY",
@@ -121584,8 +120939,7 @@
     "id": "patrick-ewing-jr",
     "name": "Patrick Ewing Jr.",
     "teams": [
-      "NOP",
-      "NOH"
+      "NOP"
     ],
     "awards": [],
     "allStar": false,
@@ -121862,8 +121216,7 @@
     "id": "paul-armstrong",
     "name": "Paul Armstrong",
     "teams": [
-      "DET",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -121950,7 +121303,6 @@
     "id": "paul-dawkins",
     "name": "Paul Dawkins",
     "teams": [
-      "UTA",
       "UTA"
     ],
     "awards": [],
@@ -122106,9 +121458,8 @@
     "id": "paul-griffin",
     "name": "Paul Griffin",
     "teams": [
-      "NOJ",
-      "SAN",
       "UTA",
+      "SAN",
       "SAS"
     ],
     "awards": [],
@@ -123184,7 +122535,6 @@
     "id": "perry-moss",
     "name": "Perry Moss",
     "teams": [
-      "PHL",
       "GSW",
       "PHI",
       "GOS",
@@ -123340,7 +122690,6 @@
       "HOU",
       "SAC",
       "DET",
-      "VAN",
       "LAC"
     ],
     "awards": [
@@ -123373,9 +122722,7 @@
     "id": "pete-cross",
     "name": "Pete Cross",
     "teams": [
-      "KCK",
       "SAC",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -123433,8 +122780,6 @@
     "name": "Pete Maravich",
     "teams": [
       "ATL",
-      "NOJ",
-      "UTA",
       "UTA",
       "BOS"
     ],
@@ -123474,10 +122819,8 @@
       "CHA",
       "CHI",
       "PHI",
-      "NJN",
-      "CHH",
-      "SAN",
-      "BKN"
+      "BKN",
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -123869,10 +123212,9 @@
     "teams": [
       "GOS",
       "GSW",
-      "CAP",
+      "WAS",
       "BLT",
-      "IND",
-      "WAS"
+      "IND"
     ],
     "awards": [
       "All-Star"
@@ -123937,9 +123279,7 @@
       "HOU",
       "SAC",
       "MIL",
-      "NJN",
-      "BKN",
-      "KCK"
+      "BKN"
     ],
     "awards": [
       "ROY"
@@ -124064,8 +123404,7 @@
     "name": "Phil Jackson",
     "teams": [
       "NYK",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [
       "Champion"
@@ -124100,8 +123439,6 @@
     "teams": [
       "NYK",
       "ATL",
-      "STL",
-      "CIN",
       "SAC",
       "DET"
     ],
@@ -124428,7 +123765,6 @@
     "id": "plummer-lott",
     "name": "Plummer Lott",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -124554,7 +123890,6 @@
       "TOR",
       "DAL",
       "NOP",
-      "NOH",
       "HOU",
       "SAS"
     ],
@@ -124585,7 +123920,6 @@
     "id": "porter-meriwether",
     "name": "Porter Meriwether",
     "teams": [
-      "SYR",
       "PHI"
     ],
     "awards": [],
@@ -124655,7 +123989,6 @@
     "teams": [
       "ATL",
       "OKC",
-      "SEA",
       "LAC"
     ],
     "awards": [],
@@ -124712,9 +124045,8 @@
     "id": "price-brookfield",
     "name": "Price Brookfield",
     "teams": [
-      "ROC",
-      "JET",
-      "SAC"
+      "SAC",
+      "JET"
     ],
     "awards": [],
     "allStar": false,
@@ -125267,7 +124599,6 @@
     "teams": [
       "CHI",
       "OKC",
-      "SEA",
       "LAC"
     ],
     "awards": [],
@@ -125602,9 +124933,7 @@
     "teams": [
       "BKN",
       "CHA",
-      "CHH",
       "DET",
-      "NJN",
       "PHX"
     ],
     "awards": [],
@@ -125667,9 +124996,8 @@
       "MIA",
       "HOU",
       "MIL",
-      "NJN",
-      "ORL",
-      "BKN"
+      "BKN",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -125866,9 +125194,7 @@
     "id": "ralph-davis",
     "name": "Ralph Davis",
     "teams": [
-      "CHP",
       "WAS",
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -126016,9 +125342,8 @@
     "id": "ralph-lewis",
     "name": "Ralph Lewis",
     "teams": [
-      "CHH",
-      "DET",
-      "CHA"
+      "CHA",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -126046,8 +125371,7 @@
     "id": "ralph-ogden",
     "name": "Ralph Ogden",
     "teams": [
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -126353,8 +125677,7 @@
       "CLE",
       "CHA",
       "LAL",
-      "MIL",
-      "CHH"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -126609,9 +125932,7 @@
       "HOU",
       "PHX",
       "GSW",
-      "NOH",
       "OKC",
-      "SEA",
       "LAC"
     ],
     "awards": [],
@@ -126817,9 +126138,8 @@
     "id": "rashard-lewis",
     "name": "Rashard Lewis",
     "teams": [
-      "SEA",
-      "MIA",
       "OKC",
+      "MIA",
       "ORL",
       "WAS"
     ],
@@ -126992,7 +126312,6 @@
     "teams": [
       "MIA",
       "NOK",
-      "NOH",
       "LAC",
       "CHI",
       "TOR",
@@ -127328,7 +126647,6 @@
     "teams": [
       "BAL",
       "NYK",
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -127507,7 +126825,6 @@
     "id": "ray-ragelis",
     "name": "Ray Ragelis",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -127938,7 +127255,6 @@
     "teams": [
       "ATL",
       "MIH",
-      "ROC",
       "SAC"
     ],
     "awards": [
@@ -128171,7 +127487,6 @@
       "SAC",
       "OKC",
       "BKN",
-      "SEA",
       "LAC"
     ],
     "awards": [],
@@ -128725,7 +128040,6 @@
       "MIA",
       "CHA",
       "PHX",
-      "CHH",
       "WAS"
     ],
     "awards": [],
@@ -128844,7 +128158,6 @@
     "id": "rich-jones",
     "name": "Rich Jones",
     "teams": [
-      "NYN",
       "BKN"
     ],
     "awards": [],
@@ -128875,11 +128188,8 @@
     "teams": [
       "UTA",
       "DEN",
-      "UTA",
-      "NOJ",
       "PHX",
       "SAC",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -128997,8 +128307,7 @@
     "name": "Rich Rinaldi",
     "teams": [
       "BLT",
-      "WAS",
-      "CAP"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -129058,8 +128367,6 @@
       "CHA",
       "POR",
       "HOU",
-      "CHH",
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -129217,9 +128524,8 @@
       "DEN",
       "GSW",
       "MIL",
-      "NJN",
-      "SAS",
-      "BKN"
+      "BKN",
+      "SAS"
     ],
     "awards": [
       "Champion"
@@ -129253,7 +128559,6 @@
     "name": "Richard Manning",
     "teams": [
       "MEM",
-      "VAN",
       "LAC"
     ],
     "awards": [],
@@ -129464,7 +128769,6 @@
     "name": "Richie Guerin",
     "teams": [
       "NYK",
-      "STL",
       "ATL"
     ],
     "awards": [
@@ -129496,8 +128800,6 @@
     "id": "richie-regan",
     "name": "Richie Regan",
     "teams": [
-      "ROC",
-      "CIN",
       "SAC"
     ],
     "awards": [
@@ -129530,12 +128832,9 @@
     "teams": [
       "CHI",
       "HOU",
-      "KCK",
-      "NOJ",
-      "POR",
       "SAC",
-      "SDR",
-      "UTA"
+      "UTA",
+      "POR"
     ],
     "awards": [],
     "allStar": false,
@@ -129566,8 +128865,7 @@
     "teams": [
       "HOU",
       "GSW",
-      "GOS",
-      "SFW"
+      "GOS"
     ],
     "awards": [
       "ROY",
@@ -129769,9 +129067,8 @@
     "teams": [
       "PHL",
       "PHI",
-      "NJN",
-      "DET",
       "BKN",
+      "DET",
       "WAS"
     ],
     "awards": [
@@ -129807,11 +129104,9 @@
     "name": "Rick Roberson",
     "teams": [
       "LAL",
-      "NOJ",
+      "UTA",
       "SAC",
       "CLE",
-      "UTA",
-      "KCK",
       "POR"
     ],
     "awards": [],
@@ -129965,16 +129260,13 @@
     "id": "rickey-green",
     "name": "Rickey Green",
     "teams": [
-      "PHL",
+      "GSW",
       "BOS",
-      "UTA",
       "UTA",
       "IND",
       "CHA",
-      "GSW",
       "MIL",
       "PHI",
-      "CHH",
       "DET",
       "GOS"
     ],
@@ -130153,7 +129445,6 @@
       "MIA",
       "CHA",
       "MIN",
-      "CHH",
       "BOS",
       "LAC"
     ],
@@ -130736,10 +130027,8 @@
     "id": "robert-hawkins",
     "name": "Robert Hawkins",
     "teams": [
-      "NYN",
-      "GSW",
-      "NJN",
       "BKN",
+      "GSW",
       "DET",
       "GOS"
     ],
@@ -130903,8 +130192,6 @@
       "NOP",
       "POR",
       "MIN",
-      "NOH",
-      "NJN",
       "BKN",
       "WAS"
     ],
@@ -130938,7 +130225,6 @@
       "CHA",
       "CHI",
       "GSW",
-      "CHH",
       "BOS",
       "GOS"
     ],
@@ -130982,7 +130268,6 @@
       "HOU",
       "PHI",
       "CHA",
-      "CHH",
       "POR",
       "PHL"
     ],
@@ -131454,7 +130739,6 @@
     "id": "rod-derline",
     "name": "Rod Derline",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -131545,11 +130829,9 @@
       "CHI",
       "SAC",
       "GSW",
-      "NJN",
       "BKN",
       "SAN",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -131578,7 +130860,6 @@
     "id": "rod-hundley",
     "name": "Rod Hundley",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [
@@ -132045,8 +131326,7 @@
     "teams": [
       "HOU",
       "MEM",
-      "DAL",
-      "VAN"
+      "DAL"
     ],
     "awards": [],
     "allStar": false,
@@ -132198,7 +131478,6 @@
       "NOP",
       "MIA",
       "CHI",
-      "NOH",
       "SAS",
       "WAS"
     ],
@@ -132552,7 +131831,6 @@
       "CLE",
       "IND",
       "PHI",
-      "NJN",
       "BKN",
       "WAS"
     ],
@@ -132618,10 +131896,8 @@
       "IND",
       "ATL",
       "HOU",
-      "NOJ",
       "SAC",
-      "DET",
-      "KCK"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -132684,9 +131960,7 @@
     "teams": [
       "LAL",
       "SAC",
-      "UTA",
-      "UTA",
-      "KCK"
+      "UTA"
     ],
     "awards": [],
     "allStar": false,
@@ -132721,7 +131995,6 @@
       "POR",
       "CHI",
       "GSW",
-      "NJN",
       "BKN",
       "SAN",
       "GOS"
@@ -132783,8 +132056,7 @@
     "name": "Ron Cavenall",
     "teams": [
       "NYK",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -132843,7 +132115,6 @@
     "name": "Ron Davis",
     "teams": [
       "ATL",
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -132873,7 +132144,6 @@
     "id": "ron-feiereisel",
     "name": "Ron Feiereisel",
     "teams": [
-      "MNL",
       "LAL"
     ],
     "awards": [],
@@ -133012,8 +132282,7 @@
     "name": "Ron Horn",
     "teams": [
       "LAL",
-      "ATL",
-      "STL"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -133162,10 +132431,9 @@
       "DEN",
       "IND",
       "CHI",
-      "NJN",
+      "BKN",
       "ORL",
-      "BOS",
-      "BKN"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -133252,7 +132520,6 @@
     "name": "Ron Riley",
     "teams": [
       "HOU",
-      "KCK",
       "SAC"
     ],
     "awards": [],
@@ -133609,7 +132876,6 @@
       "MIA",
       "CHA",
       "ATL",
-      "CHH",
       "BOS"
     ],
     "awards": [],
@@ -133983,7 +133249,6 @@
       "PHL",
       "CLE",
       "PHI",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -134072,9 +133337,8 @@
     "id": "roy-pugh",
     "name": "Roy Pugh",
     "teams": [
-      "FTW",
-      "GSW",
       "DET",
+      "GSW",
       "PHW",
       "JET"
     ],
@@ -134982,11 +134246,9 @@
       "NOP",
       "MIA",
       "HOU",
-      "NOH",
       "PHX",
-      "NJN",
-      "ORL",
-      "BKN"
+      "BKN",
+      "ORL"
     ],
     "awards": [],
     "allStar": false,
@@ -135048,7 +134310,6 @@
     "teams": [
       "DEN",
       "NOP",
-      "NOH",
       "HOU",
       "OKC"
     ],
@@ -135614,7 +134875,6 @@
     "teams": [
       "POR",
       "LAL",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -135650,9 +134910,8 @@
       "PHX",
       "MIN",
       "MIL",
-      "NJN",
-      "BOS",
       "BKN",
+      "BOS",
       "LAC"
     ],
     "awards": [
@@ -135876,8 +135135,7 @@
       "HOU",
       "GSW",
       "SAS",
-      "SAN",
-      "VAN"
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -136042,7 +135300,6 @@
     "id": "sam-ranzino",
     "name": "Sam Ranzino",
     "teams": [
-      "ROC",
       "SAC"
     ],
     "awards": [],
@@ -136505,8 +135762,7 @@
       "SAC",
       "GSW",
       "OKC",
-      "GOS",
-      "SEA"
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -136746,7 +136002,6 @@
     "name": "Scooter McCray",
     "teams": [
       "CLE",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -137009,9 +136264,7 @@
       "LAC",
       "DAL",
       "CHI",
-      "MIL",
-      "SDC",
-      "LAC"
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -137100,7 +136353,6 @@
     "id": "scott-meents",
     "name": "Scott Meents",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -137133,7 +136385,6 @@
       "UTA",
       "MEM",
       "HOU",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -137560,7 +136811,6 @@
       "PHL",
       "PHI",
       "UTA",
-      "UTA",
       "IND"
     ],
     "awards": [],
@@ -137589,13 +136839,11 @@
     "id": "sean-higgins",
     "name": "Sean Higgins",
     "teams": [
-      "PHL",
+      "GSW",
       "SAS",
       "BKN",
       "POR",
       "PHI",
-      "GSW",
-      "NJN",
       "ORL",
       "SAN",
       "GOS"
@@ -137692,7 +136940,6 @@
       "NOP",
       "MIA",
       "POR",
-      "NOH",
       "PHX",
       "SAS"
     ],
@@ -138914,8 +138161,7 @@
       "ATL",
       "MEM",
       "POR",
-      "SAC",
-      "VAN"
+      "SAC"
     ],
     "awards": [
       "All-Star"
@@ -139117,8 +138363,7 @@
       "PHL",
       "PHI",
       "DAL",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -139151,8 +138396,7 @@
       "CLE",
       "POR",
       "OKC",
-      "ORL",
-      "SEA"
+      "ORL"
     ],
     "awards": [
       "All-Star"
@@ -139459,8 +138703,7 @@
     "name": "Shellie McMillon",
     "teams": [
       "ATL",
-      "DET",
-      "STL"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -139489,9 +138732,8 @@
     "id": "shelton-jones",
     "name": "Shelton Jones",
     "teams": [
-      "PHL",
-      "PHI",
       "GSW",
+      "PHI",
       "SAS",
       "SAN",
       "GOS"
@@ -139556,7 +138798,6 @@
     "id": "sherell-ford",
     "name": "Sherell Ford",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -139587,9 +138828,8 @@
     "teams": [
       "MIA",
       "MIL",
-      "NJN",
-      "BOS",
       "BKN",
+      "BOS",
       "LAC"
     ],
     "awards": [],
@@ -139676,15 +138916,11 @@
     "id": "si-green",
     "name": "Si Green",
     "teams": [
-      "CHP",
-      "ROC",
-      "CHZ",
+      "WAS",
+      "SAC",
       "BLT",
       "ATL",
-      "STL",
-      "SAC",
-      "BOS",
-      "WAS"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -139713,7 +138949,6 @@
     "id": "sid-catlett",
     "name": "Sid Catlett",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -139775,7 +139010,6 @@
       "CHA",
       "CHI",
       "SAS",
-      "CHH",
       "ORL",
       "DET"
     ],
@@ -139842,7 +139076,6 @@
       "CHA",
       "ATL",
       "MIN",
-      "CHH",
       "DET"
     ],
     "awards": [],
@@ -140233,9 +139466,7 @@
     "name": "Slater Martin",
     "teams": [
       "LAL",
-      "ATL",
-      "MNL",
-      "STL"
+      "ATL"
     ],
     "awards": [
       "All-Star",
@@ -140337,7 +139568,6 @@
       "SAS",
       "HOU",
       "GSW",
-      "NJN",
       "BKN",
       "SAN",
       "GOS"
@@ -140528,7 +139758,6 @@
       "NOP",
       "IND",
       "ATL",
-      "NOH",
       "ORL",
       "LAC"
     ],
@@ -140648,9 +139877,7 @@
     "name": "Speedy Claxton",
     "teams": [
       "NOP",
-      "NOK",
       "ATL",
-      "NOH",
       "GSW",
       "PHI",
       "SAS"
@@ -140755,11 +139982,9 @@
     "name": "Spencer Haywood",
     "teams": [
       "NYK",
-      "SEA",
-      "UTA",
-      "NOJ",
-      "LAL",
       "OKC",
+      "UTA",
+      "LAL",
       "WAS"
     ],
     "awards": [
@@ -140860,8 +140085,7 @@
     "id": "stacey-arceneaux",
     "name": "Stacey Arceneaux",
     "teams": [
-      "ATL",
-      "STL"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -140893,8 +140117,6 @@
       "CHA",
       "POR",
       "ATL",
-      "NOH",
-      "CHH",
       "ORL",
       "DET"
     ],
@@ -141608,7 +140830,6 @@
       "POR",
       "CHI",
       "HOU",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -141673,9 +140894,8 @@
       "ATL",
       "GSW",
       "MIL",
-      "NJN",
-      "SAS",
       "BKN",
+      "SAS",
       "LAC"
     ],
     "awards": [
@@ -141807,9 +141027,8 @@
       "NYK",
       "MIN",
       "PHX",
-      "NJN",
-      "BOS",
-      "BKN"
+      "BKN",
+      "BOS"
     ],
     "awards": [
       "All-Star"
@@ -142311,8 +141530,7 @@
       "POR",
       "ATL",
       "HOU",
-      "OKC",
-      "SEA"
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -142346,11 +141564,9 @@
       "SAN",
       "UTA",
       "SAS",
-      "UTA",
       "PHI",
       "OKC",
-      "DET",
-      "SEA"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -142382,7 +141598,6 @@
       "POR",
       "ATL",
       "MIL",
-      "CHH",
       "DET"
     ],
     "awards": [],
@@ -142584,10 +141799,9 @@
     "id": "steve-malovic",
     "name": "Steve Malovic",
     "teams": [
-      "SDC",
+      "LAC",
       "DET",
-      "WAS",
-      "LAC"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -143126,7 +142340,6 @@
     "teams": [
       "NYK",
       "CHA",
-      "CHH",
       "IND"
     ],
     "awards": [],
@@ -144234,8 +143447,7 @@
     "name": "Ted Luckenbill",
     "teams": [
       "PHW",
-      "GSW",
-      "SFW"
+      "GSW"
     ],
     "awards": [],
     "allStar": false,
@@ -144263,8 +143475,7 @@
     "id": "ted-manakas",
     "name": "Ted Manakas",
     "teams": [
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -144296,8 +143507,7 @@
       "LAC",
       "DEN",
       "PHX",
-      "PHI",
-      "LAC"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -144570,7 +143780,6 @@
     "name": "Terrel Harris",
     "teams": [
       "NOP",
-      "NOH",
       "MIA"
     ],
     "awards": [
@@ -144850,8 +144059,7 @@
     "id": "terry-crosby",
     "name": "Terry Crosby",
     "teams": [
-      "SAC",
-      "KCK"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -144885,10 +144093,8 @@
       "PHI",
       "MIL",
       "GSW",
-      "SDC",
-      "SAN",
-      "SEA",
-      "LAC"
+      "LAC",
+      "SAN"
     ],
     "awards": [
       "ROY",
@@ -144955,7 +144161,6 @@
     "teams": [
       "SAC",
       "MEM",
-      "VAN",
       "LAC"
     ],
     "awards": [],
@@ -144986,9 +144191,8 @@
     "teams": [
       "POR",
       "BLT",
-      "CHZ",
-      "DET",
-      "WAS"
+      "WAS",
+      "DET"
     ],
     "awards": [
       "ROY",
@@ -145020,7 +144224,6 @@
     "id": "terry-dozier",
     "name": "Terry Dozier",
     "teams": [
-      "CHH",
       "CHA"
     ],
     "awards": [],
@@ -145151,9 +144354,8 @@
       "DEN",
       "IND",
       "MIA",
-      "NJN",
-      "DET",
-      "BKN"
+      "BKN",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -145670,7 +144872,6 @@
     "id": "thomas-barr",
     "name": "Thomas Barr",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -146054,8 +145255,7 @@
     "name": "Thurl Bailey",
     "teams": [
       "UTA",
-      "MIN",
-      "UTA"
+      "MIN"
     ],
     "awards": [],
     "allStar": false,
@@ -146212,11 +145412,9 @@
     "id": "tim-bassett",
     "name": "Tim Bassett",
     "teams": [
-      "NYN",
-      "NJN",
+      "BKN",
       "SAS",
-      "SAN",
-      "BKN"
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -146432,7 +145630,6 @@
     "teams": [
       "CHA",
       "PHI",
-      "CHH",
       "MIA"
     ],
     "awards": [],
@@ -146468,7 +145665,6 @@
       "CHA",
       "ATL",
       "PHX",
-      "CHH",
       "ORL",
       "SAS",
       "LAC"
@@ -146541,9 +145737,7 @@
       "ATL",
       "HOU",
       "PHI",
-      "NJN",
-      "BKN",
-      "SEA"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -146947,14 +146141,11 @@
     "teams": [
       "PHL",
       "UTA",
-      "NOJ",
       "HOU",
       "PHI",
       "MIL",
-      "SDR",
       "SAC",
-      "BOS",
-      "KCK"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -147144,8 +146335,7 @@
     "name": "Todd MacCulloch",
     "teams": [
       "BKN",
-      "PHI",
-      "NJN"
+      "PHI"
     ],
     "awards": [],
     "allStar": false,
@@ -147233,9 +146423,8 @@
     "id": "togo-palazzi",
     "name": "Togo Palazzi",
     "teams": [
-      "SYR",
-      "BOS",
-      "PHI"
+      "PHI",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -147363,8 +146552,6 @@
     "name": "Tom Black",
     "teams": [
       "SAC",
-      "CIN",
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -147422,7 +146609,6 @@
     "id": "tom-boswell",
     "name": "Tom Boswell",
     "teams": [
-      "UTA",
       "UTA",
       "DEN",
       "BOS"
@@ -147548,14 +146734,10 @@
     "name": "Tom Chambers",
     "teams": [
       "UTA",
-      "UTA",
       "CHA",
       "PHX",
       "PHI",
       "OKC",
-      "CHH",
-      "SDC",
-      "SEA",
       "LAC"
     ],
     "awards": [
@@ -147750,9 +146932,7 @@
     "id": "tom-hawkins",
     "name": "Tom Hawkins",
     "teams": [
-      "MNL",
       "LAL",
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -147861,8 +147041,7 @@
     "name": "Tom Hoover",
     "teams": [
       "NYK",
-      "ATL",
-      "STL"
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -148120,9 +147299,7 @@
     "id": "tom-marshall",
     "name": "Tom Marshall",
     "teams": [
-      "ROC",
-      "SAC",
-      "CIN"
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -148153,8 +147330,7 @@
       "NYK",
       "LAC",
       "ATL",
-      "WAS",
-      "LAC"
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -148185,9 +147361,7 @@
     "teams": [
       "PHW",
       "GSW",
-      "SEA",
-      "OKC",
-      "SFW"
+      "OKC"
     ],
     "awards": [
       "All-Star"
@@ -148630,7 +147804,6 @@
     "id": "tommy-green",
     "name": "Tommy Green",
     "teams": [
-      "NOJ",
       "UTA"
     ],
     "awards": [],
@@ -148855,10 +148028,9 @@
       "CLE",
       "DEN",
       "PHI",
-      "NJN",
+      "BKN",
       "ORL",
-      "BOS",
-      "BKN"
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -148889,7 +148061,6 @@
     "id": "tony-bennett",
     "name": "Tony Bennett",
     "teams": [
-      "CHH",
       "CHA"
     ],
     "awards": [],
@@ -149098,7 +148269,6 @@
       "PHX",
       "GSW",
       "SAC",
-      "CHH",
       "BOS"
     ],
     "awards": [],
@@ -149158,7 +148328,6 @@
     "id": "tony-farmer",
     "name": "Tony Farmer",
     "teams": [
-      "CHH",
       "CHA",
       "GSW"
     ],
@@ -149303,7 +148472,6 @@
     "name": "Tony Jaros",
     "teams": [
       "LAL",
-      "MNL",
       "CHS"
     ],
     "awards": [
@@ -149401,20 +148569,16 @@
       "HOU",
       "SAC",
       "GSW",
-      "NJN",
+      "BKN",
       "PHI",
       "BOS",
       "SAS",
       "SAN",
       "LAC",
-      "BKN",
-      "PHL",
       "TOR",
       "CHA",
       "MEM",
-      "CHH",
-      "GOS",
-      "VAN"
+      "GOS"
     ],
     "awards": [
       "Champion"
@@ -149514,7 +148678,6 @@
     "id": "tony-price",
     "name": "Tony Price",
     "teams": [
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -150171,7 +149334,6 @@
       "IND",
       "MIA",
       "CHI",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -150838,7 +150000,6 @@
       "DAL",
       "CHI",
       "MIN",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -151842,9 +151003,8 @@
       "IND",
       "LAL",
       "GSW",
-      "NJN",
-      "BOS",
-      "BKN"
+      "BKN",
+      "BOS"
     ],
     "awards": [],
     "allStar": false,
@@ -152793,8 +151953,7 @@
     "id": "tyrone-britt",
     "name": "Tyrone Britt",
     "teams": [
-      "HOU",
-      "SDR"
+      "HOU"
     ],
     "awards": [],
     "allStar": false,
@@ -153058,9 +152217,7 @@
       "DAL",
       "NOP",
       "CHA",
-      "NOK",
       "CHI",
-      "NOH",
       "PHX",
       "LAL",
       "HOU"
@@ -153540,8 +152697,7 @@
     "name": "Vern Fleming",
     "teams": [
       "BKN",
-      "IND",
-      "NJN"
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -153601,8 +152757,7 @@
     "teams": [
       "GSW",
       "ATL",
-      "PHW",
-      "STL"
+      "PHW"
     ],
     "awards": [],
     "allStar": false,
@@ -153733,10 +152888,8 @@
       "SAC",
       "PHI",
       "SAS",
-      "CHH",
       "ORL",
-      "SAN",
-      "SEA"
+      "SAN"
     ],
     "awards": [
       "Champion"
@@ -153771,7 +152924,6 @@
     "id": "vester-marshall",
     "name": "Vester Marshall",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -154054,7 +153206,6 @@
       "MIL",
       "OKC",
       "BOS",
-      "SEA",
       "LAC"
     ],
     "awards": [
@@ -154220,18 +153371,15 @@
     "id": "vincent-askew",
     "name": "Vincent Askew",
     "teams": [
-      "PHL",
+      "GSW",
       "DEN",
       "OKC",
       "IND",
       "POR",
       "SAC",
-      "GSW",
-      "NJN",
-      "PHI",
       "BKN",
-      "GOS",
-      "SEA"
+      "PHI",
+      "GOS"
     ],
     "awards": [],
     "allStar": false,
@@ -154564,7 +153712,6 @@
     "teams": [
       "LAL",
       "SAC",
-      "CHH",
       "CHA"
     ],
     "awards": [
@@ -154602,7 +153749,6 @@
       "LAL",
       "GSW",
       "ATL",
-      "SEA",
       "OKC",
       "CHA",
       "LAC"
@@ -155107,7 +154253,6 @@
     "id": "wally-anderzunas",
     "name": "Wally Anderzunas",
     "teams": [
-      "CIN",
       "SAC"
     ],
     "awards": [],
@@ -155168,7 +154313,6 @@
     "id": "wally-rank",
     "name": "Wally Rank",
     "teams": [
-      "SDC",
       "LAC"
     ],
     "awards": [],
@@ -155262,15 +154406,12 @@
     "id": "walt-bellamy",
     "name": "Walt Bellamy",
     "teams": [
-      "CHP",
+      "WAS",
       "NYK",
-      "CHZ",
       "UTA",
       "BLT",
       "ATL",
-      "NOJ",
-      "DET",
-      "WAS"
+      "DET"
     ],
     "awards": [
       "ROY",
@@ -155406,9 +154547,7 @@
       "LAL",
       "GSW",
       "OKC",
-      "GOS",
-      "SEA",
-      "LAC"
+      "GOS"
     ],
     "awards": [
       "All-Star"
@@ -155614,9 +154753,8 @@
       "SAS",
       "POR",
       "HOU",
-      "NJN",
-      "SAN",
-      "BKN"
+      "BKN",
+      "SAN"
     ],
     "awards": [],
     "allStar": false,
@@ -155644,7 +154782,6 @@
     "id": "walter-bond",
     "name": "Walter Bond",
     "teams": [
-      "UTA",
       "UTA",
       "DAL",
       "DET"
@@ -155769,10 +154906,8 @@
     "id": "walter-devlin",
     "name": "Walter Devlin",
     "teams": [
-      "MNL",
-      "DET",
       "LAL",
-      "FTW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -155923,7 +155058,6 @@
     "name": "Walter Palmer",
     "teams": [
       "UTA",
-      "UTA",
       "DAL"
     ],
     "awards": [],
@@ -156064,7 +155198,6 @@
     "id": "wardell-jackson",
     "name": "Wardell Jackson",
     "teams": [
-      "SEA",
       "OKC"
     ],
     "awards": [],
@@ -156376,8 +155509,7 @@
       "BLT",
       "GSW",
       "WAS",
-      "DET",
-      "SFW"
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -157138,8 +156270,7 @@
     "name": "Wil Jones",
     "teams": [
       "LAC",
-      "IND",
-      "LAC"
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -157629,9 +156760,7 @@
     "name": "William Averitt",
     "teams": [
       "LAC",
-      "LAC",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -157756,7 +156885,6 @@
       "TOR",
       "UTA",
       "PHI",
-      "NJN",
       "BKN"
     ],
     "awards": [],
@@ -157969,7 +157097,6 @@
     "teams": [
       "NOP",
       "ATL",
-      "NOH",
       "PHI",
       "ORL",
       "LAC"
@@ -158002,8 +157129,7 @@
     "name": "Willie Jones",
     "teams": [
       "DET",
-      "LAC",
-      "SDC"
+      "LAC"
     ],
     "awards": [],
     "allStar": false,
@@ -158397,7 +157523,6 @@
     "name": "Wilmer Hosket",
     "teams": [
       "NYK",
-      "LAC",
       "LAC"
     ],
     "awards": [
@@ -158492,12 +157617,10 @@
     "id": "wilt-chamberlain",
     "name": "Wilt Chamberlain",
     "teams": [
-      "PHL",
+      "GSW",
       "PHW",
       "LAL",
-      "PHI",
-      "GSW",
-      "SFW"
+      "PHI"
     ],
     "awards": [
       "MVP",
@@ -158571,8 +157694,7 @@
     "name": "Winford Boynes",
     "teams": [
       "DAL",
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -158877,9 +157999,8 @@
     "id": "xavier-henry",
     "name": "Xavier Henry",
     "teams": [
-      "NOH",
-      "LAL",
       "NOP",
+      "LAL",
       "MEM"
     ],
     "awards": [],
@@ -158911,10 +158032,8 @@
       "NYK",
       "OKC",
       "PHX",
-      "NJN",
-      "BOS",
       "BKN",
-      "SEA"
+      "BOS"
     ],
     "awards": [
       "All-Star"
@@ -159340,8 +158459,7 @@
     "id": "yinka-dare",
     "name": "Yinka Dare",
     "teams": [
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -159673,8 +158791,7 @@
     "id": "yvon-joseph",
     "name": "Yvon Joseph",
     "teams": [
-      "BKN",
-      "NJN"
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -160002,13 +159119,10 @@
     "teams": [
       "BOS",
       "LAC",
-      "CIN",
-      "HOU",
-      "LAC",
-      "MIL",
-      "OKC",
       "SAC",
-      "SEA"
+      "HOU",
+      "MIL",
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -160292,7 +159406,6 @@
     "id": "zelmo-beaty",
     "name": "Zelmo Beaty",
     "teams": [
-      "STL",
       "ATL",
       "LAL"
     ],
