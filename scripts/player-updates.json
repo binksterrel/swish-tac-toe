@@ -1,0 +1,22 @@
+[
+  { "name": "Aaron Henry", "active": false },
+  { "name": "Ade Murkey", "active": false },
+  { "name": "Ahmad Caver", "active": false },
+  { "name": "Aleem Ford", "active": false },
+  { "name": "Alex Antetokounmpo", "active": false },
+  { "name": "Cameron McGriff", "active": false },
+  { "name": "Cameron Oliver", "active": false },
+  { "name": "Cat Barber", "active": false },
+  { "name": "Chance Comanche", "active": false },
+  { "name": "Chaundee Brown Jr.", "active": false },
+  { "name": "Craig Sword", "active": false },
+  { "name": "D'Moi Hodge", "teams": ["DAL"], "active": true },
+  { "name": "Dakota Mathias", "active": false },
+  { "name": "DeJon Jarreau", "teams": ["MEM"], "active": true },
+  { "name": "Dexter Dennis", "active": false },
+  { "name": "Dmytro Skapintsev", "active": false },
+  { "name": "Emanuel Terry", "active": false },
+  { "name": "Filip Petrusev", "active": false },
+  { "name": "Georgios Kalaitzakis", "active": false },
+  { "name": "Greg Whittington", "active": false }
+]

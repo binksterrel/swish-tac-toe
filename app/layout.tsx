@@ -1,7 +1,10 @@
 import React from "react"
 import type { Metadata } from 'next'
 import { Oswald, Roboto } from 'next/font/google'
-
+import { LanguageProvider } from '@/contexts/language-context'
+import { AuthProvider } from '@/contexts/auth-context'
+import { LanguageToggle } from '@/components/layout/language-toggle'
+import { Toaster } from "sonner"
 import './globals.css'
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-heading" });
@@ -15,13 +18,6 @@ export const metadata: Metadata = {
   },
 }
 
-import { LanguageProvider } from '@/contexts/language-context'
-import { LanguageToggle } from '@/components/layout/language-toggle'
-
-import { Toaster } from "sonner" // Ensure this is imported
-
-// ...
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,15 +26,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${oswald.variable} ${roboto.variable} font-sans antialiased dark bg-[#000000]`}>
-        <LanguageProvider>
-          {children}
-          <Toaster richColors position="top-center" closeButton />
-          
-          {/* Global Language Toggle (Bottom Right) */}
-          <div className="fixed bottom-4 right-4 z-[9999]">
-             <LanguageToggle />
-          </div>
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            {children}
+            <Toaster richColors position="top-center" closeButton />
+            
+            {/* Global Language Toggle (Bottom Right) */}
+            <div className="fixed bottom-4 right-4 z-[9999]">
+               <LanguageToggle />
+            </div>
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   )

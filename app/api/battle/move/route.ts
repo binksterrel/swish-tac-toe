@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { pusherServer } from '@/lib/pusher'
-import { validatePlayerForCell, ALL_NBA_PLAYERS } from '@/lib/nba-data'
+import { validatePlayerForCell, ALL_NBA_PLAYERS, PLAYER_MAP, PLAYER_NAME_MAP } from '@/lib/nba-data'
 import { checkBattleWinner } from '@/lib/battle-logic'
 import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'
 import { supabaseAdmin } from '@/lib/supabase'
@@ -57,10 +57,11 @@ export async function POST(req: Request) {
         
         // Security: Lookup authoritative player stats from server data
         // Do NOT trust the client's player object for validation
-        const authPlayer = ALL_NBA_PLAYERS.find(p => p.id === player.id) || ALL_NBA_PLAYERS.find(p => p.name === player.name)
+        // OPTIMIZATION: Use O(1) Map lookup instead of O(N) Find
+        const authPlayer = PLAYER_MAP.get(player.id) || PLAYER_NAME_MAP.get(player.name)
         
         if (!authPlayer) {
-             console.error("Player not found in ALL_NBA_PLAYERS:", player.id, player.name)
+             console.error("Player not found in PLAYER_MAP:", player.id, player.name)
              return NextResponse.json({ error: 'System Error: Player not found in database', valid: false }, { status: 200 })
         }
 

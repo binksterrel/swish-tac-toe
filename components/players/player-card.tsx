@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NBAPlayer, getTeamLogoUrl } from '@/lib/nba-data';
+import { NBAPlayer, getTeamLogoUrl, getModernTeam } from '@/lib/nba-data';
 
 interface PlayerCardProps {
   player: NBAPlayer;
@@ -58,7 +58,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         </h3>
         
         <div className="flex items-center gap-2 text-xs text-slate-400 mt-1 mb-3">
-             <span>{player.position || 'N/A'}</span>
+             <span>{(player.position || 'N/A').split(/[-/]/)[0]}</span>
              <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
              <span>{player.active ? 'Active' : 'Retired'}</span>
              {player.country && player.country !== 'USA' && (
@@ -73,7 +73,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         <div className="mt-auto">
             <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Career History</div>
             <div className="flex flex-wrap gap-1">
-                {player.teams.map((team) => (
+                {Array.from(new Set(player.teams.map(t => getModernTeam(t)))).map((team) => (
                     <div key={team} className="w-6 h-6 bg-white p-0.5 rounded-sm flex items-center justify-center border border-slate-300" title={team}>
                          {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img 

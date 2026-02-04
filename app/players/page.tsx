@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { NBAPlayer, ALL_NBA_PLAYERS, TEAM_CRITERIA } from "@/lib/nba-data"
+import { NBAPlayer, ALL_NBA_PLAYERS, TEAM_CRITERIA, POSITION_CRITERIA, FAMOUS_PLAYER_IDS } from "@/lib/nba-data"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -16,6 +16,7 @@ export default function PlayersPage() {
   const [filteredPlayers, setFilteredPlayers] = useState<NBAPlayer[]>([])
   const [search, setSearch] = useState("")
   const [teamFilter, setTeamFilter] = useState("ALL")
+  const [positionFilter, setPositionFilter] = useState("ALL")
   const [activeFilter, setActiveFilter] = useState("ALL") // ALL, ACTIVE, RETIRED
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
@@ -57,8 +58,27 @@ export default function PlayersPage() {
   useEffect(() => {
     // Load players client-side to avoid hydration issues with large data
     // In a real app this would be an API call
-    setPlayers(ALL_NBA_PLAYERS)
-    setFilteredPlayers(ALL_NBA_PLAYERS)
+    const sorted = [...ALL_NBA_PLAYERS].sort((a, b) => {
+      const indexA = FAMOUS_PLAYER_IDS.indexOf(a.id);
+      const indexB = FAMOUS_PLAYER_IDS.indexOf(b.id);
+
+      // 1. Famous players first (in specific order)
+      if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+      if (indexA !== -1) return -1;
+      if (indexB !== -1) return 1;
+
+      // 2. Players with photos (nbaId) first
+      const hasPhotoA = !!a.nbaId;
+      const hasPhotoB = !!b.nbaId;
+      if (hasPhotoA && !hasPhotoB) return -1;
+      if (!hasPhotoA && hasPhotoB) return 1;
+
+      // 3. Alphabetical
+      return a.name.localeCompare(b.name);
+    });
+
+    setPlayers(sorted)
+    setFilteredPlayers(sorted)
   }, [])
 
   useEffect(() => {
@@ -75,6 +95,11 @@ export default function PlayersPage() {
       result = result.filter(p => p.teams.includes(teamFilter))
     }
 
+    // Position filter (Loose Match: "PG" matches "PG" and "PG-SG")
+    if (positionFilter !== "ALL") {
+        result = result.filter(p => p.position && p.position.includes(positionFilter))
+    }
+
     // Decade filter
     if (activeFilter !== "ALL") {
       result = result.filter(p => p.decades && p.decades.includes(activeFilter))
@@ -83,7 +108,7 @@ export default function PlayersPage() {
     setFilteredPlayers(result)
     setPage(1)
     setHasMore(result.length > PLAYERS_PER_PAGE)
-  }, [search, teamFilter, activeFilter, players])
+  }, [search, teamFilter, positionFilter, activeFilter, players])
 
   const displayedPlayers = filteredPlayers.slice(0, page * PLAYERS_PER_PAGE)
 
@@ -109,40 +134,54 @@ export default function PlayersPage() {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
-             <Input 
-               placeholder={t('players.search_placeholder')}
-               value={search}
-               onChange={(e) => setSearch(e.target.value)}
-               className="bg-gray-900 border-gray-700 w-full md:w-64"
-             />
+             <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+                <Input 
+                  placeholder={t('players.search_placeholder')}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="bg-gray-900 border-gray-700 w-full md:w-64"
+                />
 
-             <Select value={teamFilter} onValueChange={setTeamFilter}>
-               <SelectTrigger className="w-full md:w-48 bg-gray-900 border-gray-700">
-                 <SelectValue placeholder={t('players.filter_all_teams')} />
-               </SelectTrigger>
-               <SelectContent>
-                 <SelectItem value="ALL">{t('players.filter_all_teams')}</SelectItem>
-                 {TEAM_CRITERIA.sort((a, b) => (TEAM_NAMES[a.value] || a.value).localeCompare(TEAM_NAMES[b.value] || b.value)).map(team => (
-                   <SelectItem key={team.value} value={team.value}>
-                    {TEAM_NAMES[team.value] || `${team.value} - ${team.label}`}
-                   </SelectItem>
-                 ))}
-               </SelectContent>
-             </Select>
+                <Select value={teamFilter} onValueChange={setTeamFilter}>
+                  <SelectTrigger className="w-full md:w-48 bg-gray-900 border-gray-700">
+                    <SelectValue placeholder={t('players.filter_all_teams')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ALL">{t('players.filter_all_teams')}</SelectItem>
+                    {TEAM_CRITERIA.sort((a, b) => (TEAM_NAMES[a.value] || a.value).localeCompare(TEAM_NAMES[b.value] || b.value)).map(team => (
+                      <SelectItem key={team.value} value={team.value}>
+                       {TEAM_NAMES[team.value] || `${team.value} - ${team.label}`}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-             <div className="bg-gray-900 p-1 rounded-md border border-gray-700 flex">
-                {["ALL", "2020s", "2010s", "2000s", "1990s", "1980s"].map((decade) => (
-                  <button 
-                    key={decade}
-                    onClick={() => setActiveFilter(decade)}
-                    className={`px-3 py-1.5 text-xs font-bold rounded-sm transition-colors uppercase ${activeFilter === decade ? 'bg-nba-blue text-white' : 'text-gray-400 hover:text-white'}`}
-                  >
-                    {decade === "ALL" ? t('players.filter_all') : decade}
-                  </button>
-                ))}
+                <Select value={positionFilter} onValueChange={setPositionFilter}>
+                  <SelectTrigger className="w-full md:w-32 bg-gray-900 border-gray-700">
+                    <SelectValue placeholder="Position" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ALL">Positions</SelectItem>
+                    {POSITION_CRITERIA.map(pos => (
+                      <SelectItem key={pos.value} value={pos.value}>
+                        {pos.label} ({pos.value})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+
+                <div className="bg-gray-900 p-1 rounded-md border border-gray-700 flex">
+                   {["ALL", "2020s", "2010s", "2000s", "1990s", "1980s"].map((decade) => (
+                     <button 
+                       key={decade}
+                       onClick={() => setActiveFilter(decade)}
+                       className={`px-3 py-1.5 text-xs font-bold rounded-sm transition-colors uppercase ${activeFilter === decade ? 'bg-nba-blue text-white' : 'text-gray-400 hover:text-white'}`}
+                     >
+                       {decade === "ALL" ? t('players.filter_all') : decade}
+                     </button>
+                   ))}
+                </div>
              </div>
-          </div>
         </div>
 
         {displayedPlayers.length > 0 ? (

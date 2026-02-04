@@ -23,24 +23,73 @@ export interface NBAPlayer {
   active?: boolean
 }
 
+// Helper to map historical/legacy teams to modern franchises
+export function getModernTeam(abbreviation: string): string {
+  const mapping: Record<string, string> = {
+    // OKC Franchise
+    "SEA": "OKC",
+    // BKN Franchise
+    "NJN": "BKN",
+    "NYN": "BKN",
+    // LAC Franchise
+    "SDC": "LAC",
+    "BUF": "LAC",
+    // SAC Franchise
+    "KCK": "SAC",
+    "KCO": "SAC",
+    "CIN": "SAC",
+    "ROC": "SAC",
+    // PHI Franchise
+    "SYR": "PHI",
+    // GSW Franchise
+    "SFW": "GSW",
+    "PHL": "GSW",
+    // ATL Franchise
+    "STL": "ATL",
+    "MLH": "ATL",
+    "TRI": "ATL",
+    // DET Franchise
+    "FTW": "DET",
+    // LAL Franchise
+    "MNL": "LAL",
+    // NOP Franchise
+    "NOH": "NOP",
+    "NOK": "NOP",
+    "CHA": "CHA", 
+    "CHH": "CHA", 
+    // WAS Franchise
+    "WSB": "WAS",
+    "CAP": "WAS",
+    "BAL": "WAS",
+    "CHZ": "WAS",
+    "CHP": "WAS",
+    // HOU Franchise
+    "SDR": "HOU",
+    // UTA Franchise
+    "NOJ": "UTA",
+    // MEM Franchise
+    "VAN": "MEM",
+  };
+  return mapping[abbreviation] || abbreviation;
+}
+
 export function getTeamLogoUrl(abbreviation: string): string {
+  const modernTeam = getModernTeam(abbreviation);
   // Mapping standard NBA codes to ESPN image codes
   const mapping: Record<string, string> = {
     "UTA": "utah",
     "NOP": "no",
-    "NOH": "no",
     "NYK": "ny",
     "SAS": "sa",
     "GSW": "gs",
-    "PHX": "phx", // is phx
+    "PHX": "phx",
     "BKN": "bkn",
-    "NJN": "bkn", // Fallback
-    "SEA": "sea", // or okc fallback? SEA logo exists usually
-    "WAS": "wsh"  // Check this one, often wsh
+    "WAS": "wsh"
   }
-  const code = mapping[abbreviation] || abbreviation
+  const code = mapping[modernTeam] || modernTeam
   return `https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/${code.toLowerCase()}.png`
 }
+
 
 export function getPlayerPhotoUrl(player: NBAPlayer): string {
   if (player.nbaId) {
@@ -51,1205 +100,21 @@ export function getPlayerPhotoUrl(player: NBAPlayer): string {
   // Note: herokuapp might be down, so maybe just a nice avatar.
 }
 
-const MANUAL_PLAYERS: NBAPlayer[] = [
-  {
-    id: "lebron-james",
-    name: "LeBron James",
-    teams: ["CLE", "MIA", "LAL"],
-    awards: ["MVP", "Finals MVP", "All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2012", "2013", "2016", "2020"],
-    mvp: true,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 27.1,
-    rpgCareer: 7.5,
-    apgCareer: 7.4,
-    position: "SF",
-    nbaId: "2544",
-    active: true
-  },
-  {
-    id: "stephen-curry",
-    name: "Stephen Curry",
-    teams: ["GSW"],
-    awards: ["MVP", "Finals MVP", "All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2015", "2017", "2018", "2022"],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Davidson",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 24.8,
-    rpgCareer: 4.7,
-    apgCareer: 6.4,
-    position: "PG",
-    nbaId: "201939",
-    active: true
-  },
-  {
-    id: "kevin-durant",
-    name: "Kevin Durant",
-    teams: ["SEA", "OKC", "GSW", "BKN", "PHX", "HOU"],
-    awards: ["MVP", "Finals MVP", "All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2017", "2018"],
-    mvp: true,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Texas",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 27.3,
-    rpgCareer: 7.0,
-    apgCareer: 4.4,
-    position: "SF",
-    nbaId: "201142",
-    active: true
-  },
-  {
-    id: "giannis-antetokounmpo",
-    name: "Giannis Antetokounmpo",
-    teams: ["MIL"],
-    awards: ["MVP", "Finals MVP", "DPOY"],
-    allStar: true,
-    champion: true,
-    championYears: ["2021"],
-    mvp: true,
-    dpoy: true,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "Greece",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 22.6,
-    rpgCareer: 9.6,
-    apgCareer: 4.7,
-    position: "PF",
-    nbaId: "203507",
-    active: true
-  },
-  {
-    id: "kawhi-leonard",
-    name: "Kawhi Leonard",
-    teams: ["SAS", "TOR", "LAC"],
-    awards: ["Finals MVP", "DPOY"],
-    allStar: true,
-    champion: true,
-    championYears: ["2014", "2019"],
-    mvp: false,
-    dpoy: true,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "San Diego State",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 19.9,
-    rpgCareer: 6.5,
-    apgCareer: 3.0,
-    position: "SF",
-    nbaId: "202695",
-    active: true
-  },
-  {
-    id: "james-harden",
-    name: "James Harden",
-    teams: ["OKC", "HOU", "BKN", "PHI", "LAC"],
-    awards: ["MVP"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Arizona State",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 24.1,
-    rpgCareer: 5.6,
-    apgCareer: 7.1,
-    position: "SG",
-    nbaId: "201935",
-    active: true
-  },
-  {
-    id: "nikola-jokic",
-    name: "Nikola Jokic",
-    teams: ["DEN"],
-    awards: ["MVP", "Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2023"],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "None",
-    country: "Serbia",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 20.2,
-    rpgCareer: 10.5,
-    apgCareer: 6.6,
-    position: "C",
-    nbaId: "203999",
-    active: true
-  },
-  {
-    id: "luka-doncic",
-    name: "Luka Doncic",
-    teams: ["DAL", "LAL"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "None",
-    country: "Slovenia",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 27.6,
-    rpgCareer: 8.6,
-    apgCareer: 8.0,
-    position: "PG",
-    nbaId: "1629029",
-    active: true
-  },
-  {
-    id: "kobe-bryant",
-    name: "Kobe Bryant",
-    teams: ["LAL"],
-    awards: ["MVP", "Finals MVP", "All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2000", "2001", "2002", "2009", "2010"],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 25.0,
-    rpgCareer: 5.2,
-    apgCareer: 4.7,
-    position: "SG",
-    nbaId: "977",
-    active: false
-  },
-  {
-    id: "michael-jordan",
-    name: "Michael Jordan",
-    teams: ["CHI", "WAS"],
-    awards: ["MVP", "Finals MVP", "DPOY", "All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["1991", "1992", "1993", "1996", "1997", "1998"],
-    mvp: true,
-    dpoy: true,
-    roy: true,
-    allNBA: true,
-    allDefensive: true,
-    college: "North Carolina",
-    country: "USA",
-    decades: ["1980s", "1990s", "2000s"],
-    ppgCareer: 30.1,
-    rpgCareer: 6.2,
-    apgCareer: 5.3,
-    position: "SG",
-    nbaId: "893",
-    active: false
-  },
-  {
-    id: "tim-duncan",
-    name: "Tim Duncan",
-    teams: ["SAS"],
-    awards: ["MVP", "Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["1999", "2003", "2005", "2007", "2014"],
-    mvp: true,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: true,
-    college: "Wake Forest",
-    country: "U.S. Virgin Islands",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 19.0,
-    rpgCareer: 10.8,
-    apgCareer: 3.0,
-    position: "PF",
-    nbaId: "1495",
-    active: false
-  },
-  {
-    id: "shaquille-oneal",
-    name: "Shaquille O'Neal",
-    teams: ["ORL", "LAL", "MIA", "PHX", "CLE", "BOS"],
-    awards: ["MVP", "Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2000", "2001", "2002", "2006"],
-    mvp: true,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "LSU",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 23.7,
-    rpgCareer: 10.9,
-    apgCareer: 2.5,
-    position: "C",
-    nbaId: "406",
-    active: false
-  },
-  {
-    id: "dwyane-wade",
-    name: "Dwyane Wade",
-    teams: ["MIA", "CHI", "CLE"],
-    awards: ["Finals MVP", "All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2006", "2012", "2013"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Marquette",
-    country: "USA",
-    decades: ["2000s", "2010s"],
-    ppgCareer: 22.0,
-    rpgCareer: 4.7,
-    apgCareer: 5.4,
-    position: "SG",
-    nbaId: "2548",
-    active: false
-  },
-  {
-    id: "dirk-nowitzki",
-    name: "Dirk Nowitzki",
-    teams: ["DAL"],
-    awards: ["MVP", "Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2011"],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "None",
-    country: "Germany",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 20.7,
-    rpgCareer: 7.5,
-    apgCareer: 2.4,
-    position: "PF",
-    nbaId: "1717",
-    active: false
-  },
-  {
-    id: "chris-paul",
-    name: "Chris Paul",
-    teams: ["NOH", "LAC", "HOU", "OKC", "PHX", "GSW", "SAS"],
-    awards: ["ROY", "All-Star MVP"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: true,
-    college: "Wake Forest",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 17.5,
-    rpgCareer: 4.5,
-    apgCareer: 9.4,
-    position: "PG",
-    nbaId: "101108",
-    active: true
-  },
-  {
-    id: "russell-westbrook",
-    name: "Russell Westbrook",
-    teams: ["OKC", "HOU", "WAS", "LAL", "LAC", "DEN","SAC"],
-    awards: ["MVP", "All-Star MVP"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "UCLA",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 22.0,
-    rpgCareer: 7.3,
-    apgCareer: 8.3,
-    position: "PG",
-    nbaId: "201566",
-    active: true
-  },
-  {
-    id: "anthony-davis",
-    name: "Anthony Davis",
-    teams: ["NOH", "LAL", "DAL"],
-    awards: ["All-Star MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2020"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Kentucky",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 23.8,
-    rpgCareer: 10.3,
-    apgCareer: 2.4,
-    position: "PF",
-    nbaId: "203076",
-    active: true
-  },
-  {
-    id: "paul-george",
-    name: "Paul George",
-    teams: ["IND", "OKC", "LAC", "PHI"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Fresno State",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 20.0,
-    rpgCareer: 6.4,
-    apgCareer: 3.0,
-    position: "SF",
-    nbaId: "202331",
-    active: true
-  },
-  {
-    id: "kyrie-irving",
-    name: "Kyrie Irving",
-    teams: ["CLE", "BOS", "BKN", "DAL"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: true,
-    championYears: ["2016"],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Duke",
-    country: "Australia",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 23.6,
-    rpgCareer: 3.9,
-    apgCareer: 5.7,
-    position: "PG",
-    nbaId: "202681",
-    active: true
-  },
-  {
-    id: "jimmy-butler",
-    name: "Jimmy Butler",
-    teams: ["CHI", "MIN", "PHI", "MIA", "GSW"],
-    awards: ["MIP", "All-Star"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Marquette",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 18.2,
-    rpgCareer: 5.3,
-    apgCareer: 4.4,
-    position: "SF",
-    nbaId: "202710",
-    active: true
-  },
-  {
-    id: "jayson-tatum",
-    name: "Jayson Tatum",
-    teams: ["BOS"],
-    awards: [],
-    allStar: true,
-    champion: true,
-    championYears: ["2024"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Duke",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 23.1,
-    rpgCareer: 7.2,
-    apgCareer: 4.0,
-    position: "SF",
-    nbaId: "1628369",
-    active: true
-  },
-  {
-    id: "joel-embiid",
-    name: "Joel Embiid",
-    teams: ["PHI"],
-    awards: ["MVP"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Kansas",
-    country: "Cameroon",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 27.2,
-    rpgCareer: 11.2,
-    apgCareer: 3.4,
-    position: "C",
-    nbaId: "203954",
-    active: true
-  },
-  {
-    id: "damian-lillard",
-    name: "Damian Lillard",
-    teams: ["POR", "MIL"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Weber State",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 25.1,
-    rpgCareer: 4.2,
-    apgCareer: 6.7,
-    position: "PG",
-    nbaId: "203081",
-    active: true
-  },
-  {
-    id: "donovan-mitchell",
-    name: "Donovan Mitchell",
-    teams: ["UTA", "CLE"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Louisville",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 24.5,
-    rpgCareer: 4.2,
-    apgCareer: 4.8,
-    position: "SG",
-    nbaId: "1628378",
-    active: true
-  },
-  {
-    id: "devin-booker",
-    name: "Devin Booker",
-    teams: ["PHX"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Kentucky",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 23.5,
-    rpgCareer: 4.0,
-    apgCareer: 4.7,
-    position: "SG",
-    nbaId: "1626164",
-    active: true
-  },
-  {
-    id: "trae-young",
-    name: "Trae Young",
-    teams: ["ATL"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Oklahoma",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 25.3,
-    rpgCareer: 3.7,
-    apgCareer: 9.5,
-    position: "PG",
-    nbaId: "1629027",
-    active: true
-  },
-  {
-    id: "zion-williamson",
-    name: "Zion Williamson",
-    teams: ["NOP"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Duke",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 25.0,
-    rpgCareer: 7.0,
-    apgCareer: 4.2,
-    position: "PF",
-    nbaId: "1629627",
-    active: true
-  },
-  {
-    id: "ja-morant",
-    name: "Ja Morant",
-    teams: ["MEM"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Murray State",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 22.5,
-    rpgCareer: 4.5,
-    apgCareer: 7.3,
-    position: "PG",
-    nbaId: "1629630",
-    active: true
-  },
-  {
-    id: "allen-iverson",
-    name: "Allen Iverson",
-    teams: ["PHI", "DEN", "DET", "MEM"],
-    awards: ["MVP", "All-Star MVP"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: true,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Georgetown",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 26.7,
-    rpgCareer: 3.7,
-    apgCareer: 6.2,
-    position: "PG",
-    nbaId: "947",
-    active: false
-  },
-  {
-    id: "kevin-garnett",
-    name: "Kevin Garnett",
-    teams: ["MIN", "BOS", "BKN"],
-    awards: ["MVP", "DPOY"],
-    allStar: true,
-    champion: true,
-    championYears: ["2008"],
-    mvp: true,
-    dpoy: true,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 17.8,
-    rpgCareer: 10.0,
-    apgCareer: 3.7,
-    position: "PF",
-    nbaId: "708",
-    active: false
-  },
-  {
-    id: "paul-pierce",
-    name: "Paul Pierce",
-    teams: ["BOS", "BKN", "WAS", "LAC"],
-    awards: ["Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2008"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Kansas",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 19.7,
-    rpgCareer: 5.6,
-    apgCareer: 3.5,
-    position: "SF",
-    nbaId: "1718",
-    active: false
-  },
-  {
-    id: "ray-allen",
-    name: "Ray Allen",
-    teams: ["MIL", "SEA", "BOS", "MIA"],
-    awards: [],
-    allStar: true,
-    champion: true,
-    championYears: ["2008", "2013"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Connecticut",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 18.9,
-    rpgCareer: 4.1,
-    apgCareer: 3.4,
-    position: "SG",
-    nbaId: "951",
-    active: false
-  },
-  {
-    id: "tony-parker",
-    name: "Tony Parker",
-    teams: ["SAS", "CHA"],
-    awards: ["Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2003", "2005", "2007", "2014"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "None",
-    country: "France",
-    decades: ["2000s", "2010s"],
-    ppgCareer: 15.5,
-    rpgCareer: 2.7,
-    apgCareer: 5.6,
-    position: "PG",
-    nbaId: "2225",
-    active: false
-  },
-  {
-    id: "manu-ginobili",
-    name: "Manu Ginobili",
-    teams: ["SAS"],
-    awards: [],
-    allStar: true,
-    champion: true,
-    championYears: ["2003", "2005", "2007", "2014"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "None",
-    country: "Argentina",
-    decades: ["2000s", "2010s"],
-    ppgCareer: 13.3,
-    rpgCareer: 3.5,
-    apgCareer: 3.8,
-    position: "SG",
-    nbaId: "1938",
-    active: false
-  },
-  {
-    id: "steve-nash",
-    name: "Steve Nash",
-    teams: ["PHX", "DAL", "LAL"],
-    awards: ["MVP"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Santa Clara",
-    country: "Canada",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 14.3,
-    rpgCareer: 3.0,
-    apgCareer: 8.5,
-    position: "PG",
-    nbaId: "959",
-    active: false
-  },
-  {
-    id: "vince-carter",
-    name: "Vince Carter",
-    teams: ["TOR", "NJN", "ORL", "PHX", "DAL", "MEM", "SAC", "ATL"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "North Carolina",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s", "2020s"],
-    ppgCareer: 16.7,
-    rpgCareer: 4.3,
-    apgCareer: 3.1,
-    position: "SG",
-    nbaId: "1713",
-    active: false
-  },
-  {
-    id: "tracy-mcgrady",
-    name: "Tracy McGrady",
-    teams: ["TOR", "ORL", "HOU", "NYK", "DET", "ATL", "SAS"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "None",
-    country: "USA",
-    decades: ["1990s", "2000s", "2010s"],
-    ppgCareer: 19.6,
-    rpgCareer: 5.6,
-    apgCareer: 4.4,
-    position: "SG",
-    nbaId: "1503",
-    active: false
-  },
-  {
-    id: "dwight-howard",
-    name: "Dwight Howard",
-    teams: ["ORL", "LAL", "HOU", "ATL", "CHA", "WAS", "PHI", "TAI"],
-    awards: ["DPOY"],
-    allStar: true,
-    champion: true,
-    championYears: ["2020"],
-    mvp: false,
-    dpoy: true,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 15.7,
-    rpgCareer: 11.8,
-    apgCareer: 1.3,
-    position: "C",
-    nbaId: "2730",
-    active: false
-  },
-  {
-    id: "carmelo-anthony",
-    name: "Carmelo Anthony",
-    teams: ["DEN", "NYK", "OKC", "HOU", "POR", "LAL"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Syracuse",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 22.5,
-    rpgCareer: 7.0,
-    apgCareer: 3.3,
-    position: "SF",
-    nbaId: "2546",
-    active: false
-  },
-  {
-    id: "blake-griffin",
-    name: "Blake Griffin",
-    teams: ["LAC", "DET", "BKN", "BOS"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Oklahoma",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 19.8,
-    rpgCareer: 8.1,
-    apgCareer: 4.2,
-    position: "PF",
-    nbaId: "201933",
-    active: false
-  },
-  {
-    id: "deron-williams",
-    name: "Deron Williams",
-    teams: ["UTA", "NJN", "DAL", "CLE"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Illinois",
-    country: "USA",
-    decades: ["2000s", "2010s"],
-    ppgCareer: 16.3,
-    rpgCareer: 3.1,
-    apgCareer: 8.1,
-    position: "PG",
-    nbaId: "101114",
-    active: false
-  },
-  {
-    id: "shai-gilgeous-alexander",
-    name: "Shai Gilgeous-Alexander",
-    teams: ["LAC", "OKC"],
-    awards: ["Champion", "All-Star", "MVP", "Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2025"],
-    mvp: true,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Kentucky",
-    country: "Canada",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 23.0,
-    rpgCareer: 4.8,
-    apgCareer: 5.5,
-    position: "PG",
-    nbaId: "1628983",
-    active: true
-  },
-  {
-    id: "victor-wembanyama",
-    name: "Victor Wembanyama",
-    teams: ["SAS"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "France",
-    decades: ["2020s"],
-    ppgCareer: 21.4,
-    rpgCareer: 10.6,
-    apgCareer: 3.9,
-    position: "C",
-    nbaId: "1641705",
-    active: true
-  },
-  {
-    id: "bam-adebayo",
-    name: "Bam Adebayo",
-    teams: ["MIA"],
-    awards: [],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Kentucky",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 14.8,
-    rpgCareer: 8.8,
-    apgCareer: 3.4,
-    position: "C",
-    nbaId: "1628389",
-    active: true
-  },
-  {
-    id: "draymond-green",
-    name: "Draymond Green",
-    teams: ["GSW"],
-    awards: ["DPOY"],
-    allStar: true,
-    champion: true,
-    championYears: ["2015", "2017", "2018", "2022"],
-    mvp: false,
-    dpoy: true,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Michigan State",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 8.7,
-    rpgCareer: 6.9,
-    apgCareer: 5.5,
-    position: "PF",
-    nbaId: "203110",
-    active: true
-  },
-  {
-    id: "klay-thompson",
-    name: "Klay Thompson",
-    teams: ["GSW", "DAL"],
-    awards: [],
-    allStar: true,
-    champion: true,
-    championYears: ["2015", "2017", "2018", "2022"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "Washington State",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 19.6,
-    rpgCareer: 3.5,
-    apgCareer: 2.3,
-    position: "SG",
-    nbaId: "202691",
-    active: true
-  },
-  {
-    id: "andre-iguodala",
-    name: "Andre Iguodala",
-    teams: ["PHI", "DEN", "GSW", "MIA"],
-    awards: ["Finals MVP"],
-    allStar: true,
-    champion: true,
-    championYears: ["2015", "2017", "2018", "2022"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: false,
-    allDefensive: true,
-    college: "Arizona",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 11.3,
-    rpgCareer: 4.9,
-    apgCareer: 4.2,
-    position: "SF",
-    nbaId: "2738",
-    active: false
-  },
-  {
-    id: "rudy-gobert",
-    name: "Rudy Gobert",
-    teams: ["UTA", "MIN"],
-    awards: ["DPOY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: true,
-    roy: false,
-    allNBA: true,
-    allDefensive: true,
-    college: "None",
-    country: "France",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 11.7,
-    rpgCareer: 11.7,
-    apgCareer: 1.2,
-    position: "C",
-    nbaId: "203497",
-    active: true
-  },
-  {
-    id: "karl-anthony-towns",
-    name: "Karl-Anthony Towns",
-    teams: ["MIN", "NYK"],
-    awards: ["ROY"],
-    allStar: true,
-    champion: false,
-    championYears: [],
-    mvp: false,
-    dpoy: false,
-    roy: true,
-    allNBA: true,
-    allDefensive: false,
-    college: "Kentucky",
-    country: "USA",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 22.8,
-    rpgCareer: 10.8,
-    apgCareer: 3.2,
-    position: "C",
-    nbaId: "1626157",
-    active: true
-  },
-  {
-    id: "pascal-siakam",
-    name: "Pascal Siakam",
-    teams: ["TOR", "IND"],
-    awards: [],
-    allStar: true,
-    champion: true,
-    championYears: ["2019"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "New Mexico State",
-    country: "Cameroon",
-    decades: ["2010s", "2020s"],
-    ppgCareer: 17.0,
-    rpgCareer: 6.7,
-    apgCareer: 3.5,
-    position: "PF",
-    nbaId: "1627783",
-    active: true
-  },
-  {
-    id: "kyle-lowry",
-    name: "Kyle Lowry",
-    teams: ["MEM", "HOU", "TOR", "MIA", "PHI"],
-    awards: [],
-    allStar: true,
-    champion: true,
-    championYears: ["2019"],
-    mvp: false,
-    dpoy: false,
-    roy: false,
-    allNBA: true,
-    allDefensive: false,
-    college: "Villanova",
-    country: "USA",
-    decades: ["2000s", "2010s", "2020s"],
-    ppgCareer: 14.2,
-    rpgCareer: 4.4,
-    apgCareer: 5.9,
-    position: "PG",
-    nbaId: "200768",
-    active: true
-  }
-]
-
-// Import additional players and merge
-import { ADDITIONAL_NBA_PLAYERS } from './additional-nba-data'
 import importedPlayers from './players.json'
 
-// Helper to remove duplicates (prefer Manual > Imported > Additional)
+export const ALL_NBA_PLAYERS = importedPlayers as unknown as NBAPlayer[];
 
-const manualIds = new Set(MANUAL_PLAYERS.map(p => p.id));
-const manualNames = new Set(MANUAL_PLAYERS.map(p => p.name));
+// Optimization: Create Maps for O(1) access
+export const PLAYER_MAP = new Map<string, NBAPlayer>();
+export const PLAYER_NAME_MAP = new Map<string, NBAPlayer>();
 
-const importedArray = importedPlayers as unknown as NBAPlayer[];
-const importedIds = new Set(importedArray.map(p => p.id));
-const importedNames = new Set(importedArray.map(p => p.name));
-
-// 1. Keep imported players that aren't in manual list (check ID and Name)
-const uniqueImported = importedArray.filter(p => !manualIds.has(p.id) && !manualNames.has(p.name));
-
-// 2. Keep additional players ONLY if they aren't in manual OR imported list (check ID and Name)
-const uniqueAdditional = ADDITIONAL_NBA_PLAYERS.filter(p => 
-  !manualIds.has(p.id) && !manualNames.has(p.name) &&
-  !importedIds.has(p.id) && !importedNames.has(p.name)
-);
-
-export const ALL_NBA_PLAYERS = [...MANUAL_PLAYERS, ...uniqueImported, ...uniqueAdditional]
+ALL_NBA_PLAYERS.forEach(p => {
+  PLAYER_MAP.set(p.id, p);
+  PLAYER_NAME_MAP.set(p.name, p);
+  // Also map lowercase name for case-insensitive lookup if needed, 
+  // but strictly we usually use exact name or ID.
+  // We can add a normalized map if needed for search.
+});
 export const NBA_PLAYERS = ALL_NBA_PLAYERS // Backward compatibility
 
 // Team info for display
@@ -1445,7 +310,10 @@ export function matchesCriteria(player: NBAPlayer, criteria: Criteria): boolean 
 
   switch (criteria.type) {
     case "team":
-      return player.teams.includes(criteria.value)
+      // Consolidate both player's teams and the criteria team
+      const modernCriteriaTeam = getModernTeam(criteria.value);
+      return player.teams.some(t => getModernTeam(t) === modernCriteriaTeam);
+
     case "mvp":
       return player.mvp
     case "dpoy":
@@ -1545,23 +413,28 @@ export function validatePlayerForCell(
 
 // Generate a random grid with valid solutions
 // Top ~100 Famous Players for Easy Mode
-const FAMOUS_PLAYER_IDS = [
-  "lebron-james", "michael-jordan", "kobe-bryant", "stephen-curry", "kevin-durant", "shaquille-oneal",
-  "magic-johnson", "larry-bird", "wilt-chamberlain", "kareem-abdul-jabbar", "bill-russell",
-  "tim-duncan", "hakeem-olajuwon", "oscar-robertson", "jerry-west", "julius-erving",
-  "moses-malone", "karl-malone", "charles-barkley", "john-stockton", "david-robinson",
-  "scottie-pippen", "dwyane-wade", "dirk-nowitzki", "kevin-garnett", "allen-iverson",
-  "steve-nash", "giannis-antetokounmpo", "nikola-jokic", "luka-doncic", "jayson-tatum",
-  "joel-embiid", "kawhi-leonard", "james-harden", "russell-westbrook", "chris-paul",
-  "carmelo-anthony", "dwight-howard", "anthony-davis", "kyrie-irving", "damian-lillard",
-  "paul-pierce", "ray-allen", "reggie-miller", "patrick-ewing", "dominique-wilkins",
-  "isiah-thomas", "clyde-drexler", "james-worthy", "kevin-mchale", "robert-parish",
-  "dennis-rodman", "pau-gasol", "tony-parker", "manu-ginobili", "vince-carter",
-  "tracy-mcgrady", "grant-hill", "jason-kidd", "gary-payton", "dikembe-mutombo",
-  "alonzo-mourning", "chris-bosh", "klay-thompson", "draymond-green", "jimmy-butler",
-  "paul-george", "devin-booker", "anthony-edwards", "victor-wembanyama", "zion-williamson",
-  "ja-morant", "trae-young", "donovan-mitchell", "shai-gilgeous-alexander", "tyrese-haliburton",
-  "jalen-brunson", "bam-adebayo", "jaylen-brown", "domantas-sabonis", "de-aaron-fox"
+export const FAMOUS_PLAYER_IDS = [
+  // Tier 1: Recent Superstars (User Priority)
+  "lebron-james", "stephen-curry", "kevin-durant", "giannis-antetokounmpo", "nikola-jokic", 
+  "luka-doncic", "jayson-tatum", "joel-embiid", "anthony-edwards", "victor-wembanyama", 
+  "ja-morant", "shai-gilgeous-alexander", "devin-booker", "jimmy-butler", "kawhi-leonard",
+  "james-harden", "russell-westbrook", "chris-paul", "damian-lillard", "kyrie-irving",
+  "anthony-davis", "paul-george", "jaylen-brown", "trae-young", "donovan-mitchell",
+  "tyrese-haliburton", "jalen-brunson", "bam-adebayo", "domantas-sabonis", "de-aaron-fox",
+  
+  // Tier 2: Absolute Legends (Must Keep)
+  "michael-jordan", "kobe-bryant", "shaquille-oneal", "tim-duncan", "magic-johnson", 
+  "larry-bird", "wilt-chamberlain", "kareem-abdul-jabbar", "bill-russell", "hakeem-olajuwon",
+  
+  // Tier 3: Other Legends & Stars
+  "dirk-nowitzki", "dwyane-wade", "kevin-garnett", "allen-iverson", "steve-nash",
+  "charles-barkley", "scottie-pippen", "david-robinson", "john-stockton", "karl-malone",
+  "oscar-robertson", "jerry-west", "julius-erving", "moses-malone",
+  "carmelo-anthony", "dwight-howard", "paul-pierce", "ray-allen", "reggie-miller", 
+  "patrick-ewing", "dominique-wilkins", "isiah-thomas", "clyde-drexler", "james-worthy", 
+  "kevin-mchale", "robert-parish", "dennis-rodman", "pau-gasol", "tony-parker", "manu-ginobili", 
+  "vince-carter", "tracy-mcgrady", "grant-hill", "jason-kidd", "gary-payton", "dikembe-mutombo",
+  "alonzo-mourning", "chris-bosh", "klay-thompson", "draymond-green"
 ];
 
 export function generateGrid(
@@ -1698,14 +571,64 @@ export function findValidPlayersForCell(
   )
 }
 
-// Get player suggestions based on partial name
+// Get player suggestions based on partial name with Smart Ranking
 export function getPlayerSuggestions(query: string, limit = 5): NBAPlayer[] {
   if (!query || query.length < 2) return []
   
-  const normalizedQuery = query.toLowerCase()
-  return ALL_NBA_PLAYERS
-    .filter((p) => p.name.toLowerCase().includes(normalizedQuery))
-    .slice(0, limit)
+  const normalizedQuery = query.toLowerCase().trim()
+  
+  // 1. Filter candidates (must match at least loosely)
+  const candidates = ALL_NBA_PLAYERS.filter(p => 
+      p.name.toLowerCase().includes(normalizedQuery)
+  );
+
+  // 2. Score candidates
+  const scoredCandidates = candidates.map(player => {
+      let score = 0;
+      const normalizedName = player.name.toLowerCase();
+      
+      // A. Relevance Matches
+      if (normalizedName === normalizedQuery) {
+          score += 100; // Perfect match
+      } else if (normalizedName.startsWith(normalizedQuery)) {
+          score += 75; // Prefix match (e.g. "Leb" -> "LeBron")
+      } else if (normalizedName.includes(" " + normalizedQuery)) {
+          score += 60; // Start of last name (e.g. "Jam" -> "LeBron James")
+      } else {
+          score += 10; // Simple substring match (e.g. "ron" -> "LeBron")
+      }
+      
+      // B. Fame / Quality Boosts
+      if (FAMOUS_PLAYER_IDS.includes(player.id)) {
+          score += 50; // Huge boost for superstars
+      }
+      
+      // Active player small boost (current players are often searched more)
+      if (player.active) {
+          score += 5;
+      }
+      
+      // All-Star boost (if data available, currently boolean)
+      if (player.allStar) {
+          score += 20;
+      }
+      
+      // MVP boost
+      if (player.mvp) {
+          score += 30;
+      }
+
+      // Tie-breaker: Short names often strictly clearer or Alphabetical
+      // Handled by sort stability or secondary sort
+
+      return { player, score };
+  });
+
+  // 3. Sort by Score Descending
+  scoredCandidates.sort((a, b) => b.score - a.score);
+
+  // 4. Return top N
+  return scoredCandidates.slice(0, limit).map(sc => sc.player);
 }
 
 // Get a random notable player for the "Guessing Game"

@@ -86,7 +86,7 @@ export function GuessGame() {
                 <div>
                     <div className="text-[10px] text-slate-400 uppercase font-bold tracking-widest mb-0.5">{t('gest.streak')}</div>
                     <div className="text-3xl font-heading font-bold text-white leading-none">
-                       {streak} <span className="text-sm text-slate-600 font-sans font-medium normal-case">victoires d'affilée</span>
+                       {streak} <span className="text-sm text-slate-600 font-sans font-medium normal-case">victoires d&apos;affilée</span>
                     </div>
                 </div>
              </div>
