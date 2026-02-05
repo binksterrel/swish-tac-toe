@@ -1,18 +1,16 @@
 "use client"
 
 import { useAuth } from "@/contexts/auth-context"
-import { useLanguage } from "@/contexts/language-context"
 import { Button } from "@/components/ui/button"
-import { NBATicker } from "@/components/layout/nba-ticker"
 import { ArrowRight, Loader2, Mail, Lock, User as UserIcon, AlertCircle } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { motion, AnimatePresence } from "framer-motion"
 
 export default function LoginPage() {
   const { signInWithEmail, signUpWithEmail, isLoading: isAuthLoading, user } = useAuth()
-  const { t } = useLanguage()
   const router = useRouter()
   
   const [isSignUp, setIsSignUp] = useState(false)
@@ -24,15 +22,13 @@ export default function LoginPage() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [username, setUsername] = useState("")
   
-  // Computed Avatar URL for preview
   const previewAvatarUrl = username.length > 0 
     ? `https://api.dicebear.com/7.x/initials/svg?seed=${username}&backgroundColor=000000,b81d24,041e42&textColor=ffffff`
     : `https://api.dicebear.com/7.x/initials/svg?seed=Baller&backgroundColor=333333`;
 
-  // Redirect if already logged in
   useEffect(() => {
     if (user && !isAuthLoading) {
-      // router.push('/games')
+      router.push('/game')
     }
   }, [user, isAuthLoading, router])
 
@@ -45,11 +41,7 @@ export default function LoginPage() {
           if (isSignUp) {
               if (username.length < 3) throw new Error("Username must be at least 3 characters")
               if (password !== confirmPassword) throw new Error("Passwords do not match")
-              
               await signUpWithEmail(email, password, username, previewAvatarUrl)
-              
-              // Auto sign in or show success message? Supabase usually requires email confirmation or auto-signs in.
-              // Assuming auto-sign in or we can prompt. 
           } else {
               await signInWithEmail(email, password)
           }
@@ -61,184 +53,235 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans flex flex-col relative overflow-hidden selection:bg-nba-red selection:text-white">
-        <NBATicker />
+    <div className="min-h-screen bg-[#050505] text-white font-sans flex flex-col items-center justify-center p-4 relative overflow-hidden selection:bg-nba-red selection:text-white">
         
-        {/* Animated Background Elements */}
+        {/* Background Glows */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-nba-blue/20 rounded-full blur-[120px] animate-pulse"></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-nba-red/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+            {/* Blue Glow - Left */}
+            <div className="absolute top-0 left-[-10%] w-[500px] h-[500px] bg-nba-blue/20 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
+            {/* Red Glow - Right */}
+            <div className="absolute bottom-0 right-[-10%] w-[500px] h-[500px] bg-nba-red/20 rounded-full blur-[120px] mix-blend-screen animate-pulse delay-1000" />
+            {/* Central Mesh */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-nba-blue/5 via-transparent to-transparent opacity-50" />
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center p-4 relative z-10">
+        {/* Main Content */}
+        <div className="w-full max-w-md relative z-10 flex flex-col items-center">
             
-            {/* Logo / Brand */}
-            <Link href="/" className="mb-8 flex flex-col items-center hover:opacity-90 transition-opacity">
-              <h1 className="text-4xl md:text-5xl font-heading font-bold italic tracking-tighter text-white uppercase leading-[0.85] drop-shadow-lg text-center">
-                SWISH
-                <br/>
-                <span className="text-nba-blue">TAC</span><span className="text-nba-red">TOE</span>
-              </h1>
-            </Link>
+            {/* Minimalist Logo */}
+            <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-12 text-center"
+            >
+                <Link href="/" className="inline-block group">
+                    <h1 className="text-4xl font-heading font-black italic tracking-tighter text-white uppercase leading-none transition-opacity group-hover:opacity-90">
+                        SWISH<span className="text-nba-blue">TAC</span><span className="text-nba-red">TOE</span>
+                    </h1>
+                </Link>
+                <p className="text-xs text-white/40 uppercase tracking-[0.3em] mt-2 font-medium">The Ultimate NBA Grid Battle</p>
+            </motion.div>
 
-            {/* Login Card */}
-            <div className={cn(
-                "w-full bg-gray-900/80 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl transition-all duration-500",
-                isSignUp ? "max-w-2xl" : "max-w-sm"
-            )}>
-                
-                {/* Header Toggle */}
-                <div className="flex border-b border-white/10">
-                    <button 
-                        onClick={() => setIsSignUp(false)}
-                        className={cn(
-                            "flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-colors",
-                            !isSignUp ? "bg-white/5 text-white border-b-2 border-nba-blue" : "text-gray-500 hover:text-gray-300"
-                        )}
-                    >
-                        Sign In
-                    </button>
-                    <button 
-                        onClick={() => setIsSignUp(true)}
-                        className={cn(
-                            "flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-colors",
-                            isSignUp ? "bg-white/5 text-white border-b-2 border-nba-red" : "text-gray-500 hover:text-gray-300"
-                        )}
-                    >
-                        Sign Up
-                    </button>
-                </div>
+            {/* Glass Card */}
+            <motion.div 
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className="w-full bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl relative"
+            >
+                {/* Decorative Top Border */}
+                <div className={cn(
+                    "absolute top-0 left-0 w-full h-[1px] transition-colors duration-500",
+                    isSignUp ? "bg-gradient-to-r from-transparent via-nba-red to-transparent" : "bg-gradient-to-r from-transparent via-nba-blue to-transparent"
+                )} />
 
                 <div className="p-8">
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold uppercase tracking-wide text-center mb-2">
-                            {isSignUp ? "🏀 Join the League" : "Welcome Back, MVP"}
-                        </h2>
-                        <p className="text-xs text-gray-400 text-center">
-                            {isSignUp 
-                                ? "Prove your NBA knowledge. Compete globally. Claim your crown."
-                                : "Ready to defend your title?"
-                            }
-                        </p>
+                    {/* Header Tabs */}
+                    <div className="flex gap-8 mb-8 justify-center">
+                        <button 
+                            onClick={() => setIsSignUp(false)}
+                            className={cn(
+                                "text-sm font-bold uppercase tracking-wider transition-colors relative py-2",
+                                !isSignUp ? "text-white" : "text-white/30 hover:text-white/60"
+                            )}
+                        >
+                            Sign In
+                            {!isSignUp && (
+                                <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 w-full h-[2px] bg-nba-blue shadow-[0_0_10px_var(--color-nba-blue)]" />
+                            )}
+                        </button>
+                        <button 
+                            onClick={() => setIsSignUp(true)}
+                            className={cn(
+                                "text-sm font-bold uppercase tracking-wider transition-colors relative py-2",
+                                isSignUp ? "text-white" : "text-white/30 hover:text-white/60"
+                            )}
+                        >
+                            Sign Up
+                            {isSignUp && (
+                                <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 w-full h-[2px] bg-nba-red shadow-[0_0_10px_var(--color-nba-red)]" />
+                            )}
+                        </button>
                     </div>
 
-                    {error && (
-                        <div className="mb-6 p-3 bg-red-500/10 border border-red-500/20 rounded flex items-start gap-2 text-xs text-red-200">
-                             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
-                             <span>{error}</span>
-                        </div>
-                    )}
-                    
-                    <div className={cn("flex gap-8", !isSignUp && "flex-col")}>
-                        
-                        <form onSubmit={handleSubmit} className={cn("flex flex-col gap-4", isSignUp ? "flex-1" : "w-full")}>
-                        
-                        {isSignUp && (
-                            <div className="space-y-1 animate-in fade-in duration-300">
-                                <label className="text-xs uppercase font-bold text-gray-500 ml-1">Your Court Name</label>
-                                <div className="flex gap-4">
-                                     <div className="relative flex-1">
-                                        <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                                        <input 
-                                            type="text" 
-                                            required 
-                                            placeholder="e.g., GOAT_Spotter"
-                                            value={username}
-                                            onChange={(e) => setUsername(e.target.value)}
-                                            className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-600 focus:outline-none focus:border-nba-red transition-colors"
-                                        />
-                                    </div>
-                                    <div className="w-12 h-12 rounded-full border border-white/20 overflow-hidden bg-gray-800 shrink-0 flex-shrink-0">
-                                        <img 
-                                            src={previewAvatarUrl}
-                                            alt="Preview"
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
+                    <AnimatePresence mode="wait">
+                        {error && (
+                            <motion.div 
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="mb-6 overflow-hidden"
+                            >
+                                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg flex items-start gap-3 text-xs text-red-200">
+                                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-500" />
+                                    <span>{error}</span>
                                 </div>
-                                <p className="text-xs text-gray-500 mt-2">Your avatar updates instantly</p>
-                            </div>
+                            </motion.div>
                         )}
+                    </AnimatePresence>
+                    
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                        <AnimatePresence mode="popLayout">
+                            {isSignUp && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: -10, height: 0 }}
+                                    animate={{ opacity: 1, y: 0, height: "auto" }}
+                                    exit={{ opacity: 0, y: -10, height: 0 }}
+                                    className="space-y-4 overflow-hidden"
+                                >
+                                    <div className="space-y-4">
+                                        
+                                        {/* Avatar Preview - Centered Above */}
+                                        <div className="flex justify-center mb-2">
+                                            <div className="w-20 h-20 rounded-full border-2 border-white/10 overflow-hidden bg-white/5 shadow-2xl relative group">
+                                                <div className="absolute inset-0 bg-gradient-to-tr from-nba-blue/20 to-nba-red/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                                <img 
+                                                    src={previewAvatarUrl}
+                                                    alt="Preview"
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                        </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs uppercase font-bold text-gray-500 ml-1">Email</label>
+                                        <div className="space-y-1.5">
+                                            <label className="text-[10px] uppercase font-bold text-white/40 tracking-wider ml-1">USERNAME</label>
+                                            <div className="relative group">
+                                                <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-white/60 transition-colors" />
+                                                <input 
+                                                    type="text" 
+                                                    required 
+                                                    placeholder="Username"
+                                                    value={username}
+                                                    onChange={(e) => setUsername(e.target.value)}
+                                                    className="w-full bg-white/5 border border-white/5 rounded-lg py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-nba-red/50 focus:bg-white/10 transition-all font-medium"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
+                        <div className="space-y-1.5 group">
+                            <label className="text-[10px] uppercase font-bold text-white/40 tracking-wider ml-1">Email</label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-white/60 transition-colors" />
                                 <input 
                                     type="email" 
                                     required 
-                                    placeholder="lebron@lakers.com"
+                                    placeholder="your@email.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-blue transition-colors"
+                                    className={cn(
+                                        "w-full bg-white/5 border border-white/5 rounded-lg py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:bg-white/10 transition-all font-medium",
+                                        isSignUp ? "focus:border-nba-red/50" : "focus:border-nba-blue/50"
+                                    )}
                                 />
                             </div>
                         </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs uppercase font-bold text-gray-500 ml-1">Password</label>
+                        <div className="space-y-1.5 group">
+                            <label className="text-[10px] uppercase font-bold text-white/40 tracking-wider ml-1">Password</label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-white/60 transition-colors" />
                                 <input 
                                     type="password" 
                                     required 
                                     placeholder="••••••••"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-blue transition-colors"
+                                    className={cn(
+                                        "w-full bg-white/5 border border-white/5 rounded-lg py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:bg-white/10 transition-all font-medium",
+                                        isSignUp ? "focus:border-nba-red/50" : "focus:border-nba-blue/50"
+                                    )}
                                 />
                             </div>
                         </div>
 
-                        {isSignUp && (
-                            <div className="space-y-1 animate-in slide-in-from-top-2 fade-in duration-300">
-                                <label className="text-xs uppercase font-bold text-gray-500 ml-1">Confirm Password</label>
-                                <div className="relative">
-                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                                    <input 
-                                        type="password" 
-                                        required 
-                                        placeholder="••••••••"
-                                        value={confirmPassword}
-                                        onChange={(e) => setConfirmPassword(e.target.value)}
-                                        className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-red transition-colors"
-                                    />
-                                </div>
-                            </div>
-                        )}
+                        <AnimatePresence mode="popLayout">
+                            {isSignUp && (
+                                <motion.div 
+                                    initial={{ opacity: 0, y: -10, height: 0 }}
+                                    animate={{ opacity: 1, y: 0, height: "auto" }}
+                                    exit={{ opacity: 0, y: -10, height: 0 }}
+                                    className="space-y-1.5 overflow-hidden group"
+                                >
+                                    <label className="text-[10px] uppercase font-bold text-white/40 tracking-wider ml-1">Confirm Password</label>
+                                    <div className="relative">
+                                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20 group-focus-within:text-white/60 transition-colors" />
+                                        <input 
+                                            type="password" 
+                                            required 
+                                            placeholder="••••••••"
+                                            value={confirmPassword}
+                                            onChange={(e) => setConfirmPassword(e.target.value)}
+                                            className="w-full bg-white/5 border border-white/5 rounded-lg py-3 pl-10 pr-4 text-sm text-white placeholder:text-white/20 focus:outline-none focus:border-nba-red/50 focus:bg-white/10 transition-all font-medium"
+                                        />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
                         <Button 
                             type="submit"
                             disabled={loading}
                             className={cn(
-                                "w-full py-6 font-bold uppercase tracking-wider text-base mt-4 transition-all hover:scale-[1.02] active:scale-[0.98]",
-                                isSignUp ? "bg-nba-red hover:bg-red-700" : "bg-nba-blue hover:bg-blue-700"
+                                "w-full py-6 font-bold uppercase tracking-wider text-sm mt-2 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg border border-transparent",
+                                isSignUp 
+                                    ? "bg-nba-red hover:bg-[#A00520] shadow-[0_4px_20px_rgba(201,8,42,0.3)]" 
+                                    : "bg-nba-blue hover:bg-[#0E2B6B] shadow-[0_4px_20px_rgba(23,64,139,0.3)]"
                             )}
                         >
                             {loading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
                             ) : (
-                                isSignUp ? "🏆 Claim Your Crown" : "Get Back in the Game"
+                                isSignUp ? "Create Account" : "Enter Arena"
                             )}
                         </Button>
                     </form>
-                    </div>
 
-                    <div className="mt-6 pt-6 border-t border-white/5 flex justify-center">
+                    <div className="mt-8 pt-6 border-t border-white/5 flex justify-center">
                         <Link href="/game">
-                            <button className="text-xs text-gray-500 hover:text-gray-200 uppercase tracking-wider flex items-center gap-2 transition-colors">
-                                <span>🎮 Jump In as Guest</span> <ArrowRight className="w-3 h-3" />
+                            <button className="text-[11px] font-bold text-white/30 hover:text-white uppercase tracking-widest flex items-center gap-2 transition-colors">
+                                <span>Continue as Guest</span> <ArrowRight className="w-3 h-3" />
                             </button>
                         </Link>
                     </div>
-                    
-                    {isSignUp && (
-                        <div className="mt-6 text-center text-xs text-gray-500 space-y-2">
-                        </div>
-                    )}
                 </div>
-            </div>
-            
+            </motion.div>
+
+            {/* Footer */}
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="mt-8 text-center"
+            >
+                <p className="text-[10px] text-white/20 uppercase tracking-widest">
+                    &copy; 2026 Swish Tac Toe
+                </p>
+            </motion.div>
         </div>
     </div>
   )
