@@ -13,6 +13,7 @@ interface AuthContextType {
   signUpWithEmail: (email: string, password: string, username: string, avatarUrl?: string) => Promise<void>
   signInWithEmail: (email: string, password: string) => Promise<void>
   signOut: () => Promise<void>
+  supabase: typeof supabasePublic
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -82,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, session, isLoading, signInWithGoogle, signUpWithEmail, signInWithEmail, signOut }}>
+    <AuthContext.Provider value={{ user, session, isLoading, signInWithGoogle, signUpWithEmail, signInWithEmail, signOut, supabase: supabasePublic }}>
       {children}
     </AuthContext.Provider>
   )

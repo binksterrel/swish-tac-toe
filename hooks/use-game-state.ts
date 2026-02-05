@@ -42,6 +42,7 @@ export function useGameState() {
   // Timer State
   const [gameTime, setGameTime] = useState(0)
   const [isGameActive, setIsGameActive] = useState(false)
+  const gameSavedRef = useRef(false)
 
   // Initialize game
   const initGame = useCallback((
@@ -301,19 +302,23 @@ export function useGameState() {
   )
 
   // History Saving Effect
-  const gameSavedRef = useRef(false)
+  
+  // Note: DB Sync is handled via fetch API using cookie auth.
+
+
+  // The server/route.ts checks `supabase.auth.getSession()` which verifies the cookie. 
+  // So I don't strictly need `useAuth` here! The API handles auth.
 
   useEffect(() => {
-      // If game just initialized (loading or no state), do nothing or reset ref?
-      // Ref reset is handled in initGame.
-      
       if (gameState && gameState.gameOver && !gameSavedRef.current) {
           gameSavedRef.current = true
           
           try {
                 const correct = gameState.grid.flat().filter(c => c.status === "correct").length
                 const mistakes = gameState.attempts - correct
+                const result = gameState.won ? 'WIN' : 'LOSS' // No draw in solo really, unless specific criteria? Assuming Loss if not Won.
                 
+                // 1. Local Storage
                 const historyItem = {
                     date: new Date().toISOString(),
                     score: gameState.score,
@@ -322,13 +327,34 @@ export function useGameState() {
                     total: gameState.gridSize * gameState.gridSize,
                     difficulty: gameState.difficulty,
                     mode: gameState.mode,
-                    time: gameTime + (gameState.mode !== "time_attack" ? 0 : 0) // Approximation if needed, but gameTime is state
+                    time: gameTime
                 }
                 
                 const existingHistory = localStorage.getItem("nba-ttt-history")
                 const history = existingHistory ? JSON.parse(existingHistory) : []
                 history.unshift(historyItem)
                 localStorage.setItem("nba-ttt-history", JSON.stringify(history.slice(0, 50)))
+
+                // 2. Database Sync (Fire & Forget)
+                // The API reads the HttpOnly cookie, so we don't need to pass a token explicitly if we are logged in.
+                fetch('/api/match/record', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        mode: 'GUESS', 
+                        result,
+                        score: gameState.score,
+                        details: {
+                            subMode: gameState.mode.toUpperCase(), // 'CLASSIC', 'TIME_ATTACK', etc.
+                            difficulty: gameState.difficulty,
+                            gridSize: gameState.gridSize,
+                            time: gameTime,
+                            correct,
+                            mistakes
+                        }
+                    })
+                }).catch(err => console.error("DB Sync failed", err))
+
             } catch (err) {
                 console.error("Failed to save history:", err)
             }

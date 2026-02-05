@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils"
 // Import hooks
 import { useEffect, useRef, useState } from "react"
 import { useLanguage } from "@/contexts/language-context"
+import { useAuth } from "@/contexts/auth-context"
 
 interface BattleGameOverModalProps {
     state: BattleState
@@ -14,6 +15,7 @@ interface BattleGameOverModalProps {
 
 export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
     const { t } = useLanguage()
+    const { user } = useAuth()
     const router = useRouter()
     const effectRan = useRef(false)
     const [isRematchLoading, setIsRematchLoading] = useState(false)
@@ -66,6 +68,25 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
         }
         
         saveHistory()
+
+        // Sync to DB if logged in
+        if (user) {
+            fetch('/api/match/record', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    mode: 'BATTLE',
+                    result: isWinner ? 'WIN' : isDraw ? 'DRAW' : 'LOSS',
+                    score: myScore,
+                    details: {
+                        code: state.code,
+                        opponent: role === 'host' ? state.players.guest?.name : state.players.host?.name,
+                        correct: myCorrectCells,
+                        total_rounds: state.roundNumber
+                    }
+                })
+            }).catch(e => console.error("DB Sync failed", e))
+        }
     }, [myScore, myCorrectCells]) // Dependencies are stable constants in this modal render context usually
     
     const handleRematch = async () => {

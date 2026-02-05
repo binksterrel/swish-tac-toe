@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useLanguage } from "@/contexts/language-context"
 import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet"
-import { Sparkles, Trophy, Swords, Menu, BarChart3, History, LogOut } from "lucide-react"
+import { Sparkles, Trophy, Swords, Menu, BarChart3, History, LogOut, User } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
@@ -123,21 +123,14 @@ export function Header() {
                 {isLoading ? (
                   <div className="size-7 rounded-full bg-gray-700 animate-pulse" />
                 ) : user ? (
-                  <div className="flex items-center gap-1.5">
-                    <Avatar className="size-7">
+                  <Link href="/profile" className="flex items-center gap-2 px-2 py-1 rounded-full hover:bg-white/10 transition-colors group">
+                    <Avatar className="size-8 border border-white/10 group-hover:border-white/30 transition-colors">
                       <AvatarImage src={avatarUrl} alt={displayName} />
                       <AvatarFallback className="bg-gray-800 text-white text-[10px] font-bold">
                         {displayName.slice(0, 2).toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <button
-                      onClick={() => signOut()}
-                      className="p-1 text-gray-500 hover:text-red-400 rounded transition-colors"
-                      title={t('game.sign_out')}
-                    >
-                      <LogOut className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                  </Link>
                 ) : (
                   <Link href="/login" className="px-3 py-1.5 text-xs font-bold uppercase text-slate-400 hover:text-white transition-colors">
                     {t('game.sign_in')}
@@ -212,23 +205,25 @@ export function Header() {
                        {isLoading ? (
                          <div className="size-8 rounded-full bg-gray-700 animate-pulse mx-4" />
                        ) : user ? (
-                         <div className="flex items-center justify-between px-4 py-3">
-                           <div className="flex items-center gap-3 min-w-0">
-                             <Avatar className="size-8 shrink-0">
-                               <AvatarImage src={avatarUrl} alt={displayName} />
-                               <AvatarFallback className="bg-gray-800 text-white text-xs font-bold">
-                                 {displayName.slice(0, 2).toUpperCase()}
-                               </AvatarFallback>
-                             </Avatar>
-                             <span className="text-sm font-bold text-white uppercase truncate">{displayName}</span>
-                           </div>
-                           <button
-                             onClick={() => { signOut(); setSheetOpen(false) }}
-                             className="p-2 text-gray-500 hover:text-red-400 rounded transition-colors"
-                           >
-                             <LogOut className="w-4 h-4" />
-                           </button>
-                         </div>
+                         <SheetClose asChild>
+                             <Link href="/profile" className="flex items-center justify-between px-4 py-3 hover:bg-white/5 transition-colors group">
+                               <div className="flex items-center gap-3 min-w-0">
+                                 <Avatar className="size-8 shrink-0 border border-white/10">
+                                   <AvatarImage src={avatarUrl} alt={displayName} />
+                                   <AvatarFallback className="bg-gray-800 text-white text-xs font-bold">
+                                     {displayName.slice(0, 2).toUpperCase()}
+                                   </AvatarFallback>
+                                 </Avatar>
+                                 <div className="flex flex-col">
+                                    <span className="text-sm font-bold text-white uppercase truncate group-hover:text-nba-blue transition-colors">{displayName}</span>
+                                    <span className="text-[10px] text-gray-500 uppercase tracking-widest">View Profile</span>
+                                 </div>
+                               </div>
+                               <div className="p-2 text-gray-500 group-hover:text-white transition-colors">
+                                 <User className="w-4 h-4" />
+                               </div>
+                             </Link>
+                         </SheetClose>
                        ) : (
                          <SheetClose asChild>
                            <Link href="/login" className="px-4 py-3 text-lg font-bold uppercase text-gray-400 hover:text-white transition-colors">

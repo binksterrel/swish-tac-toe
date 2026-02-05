@@ -10,7 +10,10 @@ import { useLanguage } from "@/contexts/language-context"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
+import { useAuth } from "@/contexts/auth-context"
+
 export function GuessGame() {
+  const { user } = useAuth()
   const { t } = useLanguage()
   const [targetPlayer, setTargetPlayer] = useState<NBAPlayer | null>(null)
   const [guess, setGuess] = useState("")
@@ -20,11 +23,57 @@ export function GuessGame() {
   const [mounted, setMounted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  // Initialization
+  // Initialization & Stats Sync
   useEffect(() => {
     setMounted(true)
     startNewGame()
-  }, [])
+    
+    // Fetch initial streak from DB if logged in
+    if (user) {
+        fetch(`/api/user/stats?userId=${user.id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.stats) {
+                    setStreak(data.stats.current_streak)
+                }
+            })
+            .catch(err => console.error("Failed to fetch stats:", err))
+    }
+  }, [user])
+
+  const recordMatchResult = async (result: 'WIN' | 'LOSS', score: number = 0) => {
+    if (!user) return // Only record for logged-in users
+
+    try {
+        await fetch('/api/match/record', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                mode: 'GUESS',
+                result,
+                score,
+                details: {
+                    targetPlayer: targetPlayer?.name,
+                    attempts: 0 // Could track attempts if we wanted
+                }
+            })
+        })
+    } catch (error) {
+        console.error("Failed to record match:", error)
+    }
+  }
+
+  const saveToLocalStorage = (score: number, correct: number, total: number) => {
+      try {
+          const historyItem = { score, correct, total, date: new Date().toISOString() }
+          const saved = localStorage.getItem("nba-ttt-history")
+          const history = saved ? JSON.parse(saved) : []
+          const newHistory = [historyItem, ...history].slice(0, 50) // Keep last 50
+          localStorage.setItem("nba-ttt-history", JSON.stringify(newHistory))
+      } catch (e) {
+          console.error("Failed to save to local storage", e)
+      }
+  }
 
   const startNewGame = () => {
     const newPlayer = getRandomNotablePlayer()
@@ -51,6 +100,8 @@ export function GuessGame() {
       setStatus("won")
       setStreak(s => s + 1)
       setErrorMessage(null)
+      recordMatchResult('WIN', 1)
+      saveToLocalStorage(100, 1, 1) // 100 pts for win, 1/1 correct
     } else {
       setErrorMessage(t('gest.error_incorrect').replace('{name}', player.name))
       setGuess("") 
@@ -62,6 +113,8 @@ export function GuessGame() {
   const handleGiveUp = () => {
     setStatus("lost")
     setStreak(0)
+    recordMatchResult('LOSS', 0)
+    saveToLocalStorage(0, 0, 1) // 0 pts, 0/1 correct
   }
 
   if (!mounted || !targetPlayer) return <div className="p-10 text-center text-slate-500 font-mono animate-pulse">{t('gest.loading')}</div>

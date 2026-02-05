@@ -173,6 +173,58 @@ export async function POST(req: Request) {
              }
         }
 
+        // SAVE TO HISTORY IF FINISHED
+        if (dbUpdate.status === 'finished') {
+             const hostNameParts = (battle.host_name || '').split('|')
+             const guestNameParts = (battle.guest_name || '').split('|') // Guest name might be missing if forfeit?
+             
+             const hostId = hostNameParts.length > 2 ? hostNameParts[2] : null
+             // guest_name logic needs care. If user joined via our new lobby, it has 3 parts.
+             const guestId = guestNameParts.length > 2 ? guestNameParts[2] : null
+             
+             if (hostId || guestId) {
+                  const finalHostScore = dbUpdate.host_score ?? (battle.host_score || 0)
+                  const finalGuestScore = dbUpdate.guest_score ?? (battle.guest_score || 0)
+                  
+                  let rLine = 'DRAW'
+                  if (finalHostScore > finalGuestScore) rLine = 'HOST_WIN'
+                  else if (finalGuestScore > finalHostScore) rLine = 'GUEST_WIN'
+                  
+                  // Insert match
+                  const { data: matchData } = await supabaseAdmin.from('matches').insert({
+                      mode: 'BATTLE',
+                      data: { 
+                          code, 
+                          host_name: hostNameParts[1] || 'Host',
+                          guest_name: guestNameParts[1] || 'Guest',
+                          host_score: finalHostScore,
+                          guest_score: finalGuestScore,
+                          subMode: '1v1'
+                      }
+                  }).select().single()
+                  
+                  if (matchData) {
+                      const participants = []
+                      if (hostId) participants.push({ 
+                          match_id: matchData.id, 
+                          user_id: hostId, 
+                          result: rLine === 'HOST_WIN' ? 'WIN' : (rLine === 'DRAW' ? 'DRAW' : 'LOSS'), 
+                          score: finalHostScore 
+                      })
+                      if (guestId) participants.push({ 
+                          match_id: matchData.id, 
+                          user_id: guestId, 
+                          result: rLine === 'GUEST_WIN' ? 'WIN' : (rLine === 'DRAW' ? 'DRAW' : 'LOSS'), 
+                          score: finalGuestScore 
+                      })
+                      
+                      if (participants.length > 0) {
+                          await supabaseAdmin.from('match_participants').insert(participants)
+                      }
+                  }
+             }
+        }
+
         const { error: updateError } = await supabaseAdmin
             .from('battles')
             .update(dbUpdate)
