@@ -10,10 +10,7 @@ import { useLanguage } from "@/contexts/language-context"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-import { useAuth } from "@/contexts/auth-context"
-
 export function GuessGame() {
-  const { user } = useAuth()
   const { t } = useLanguage()
   const [targetPlayer, setTargetPlayer] = useState<NBAPlayer | null>(null)
   const [guess, setGuess] = useState("")
@@ -23,49 +20,26 @@ export function GuessGame() {
   const [mounted, setMounted] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  // Initialization & Stats Sync
+  // Initialization - GUESS mode is casual, streak is session-only
   useEffect(() => {
     setMounted(true)
     startNewGame()
-    
-    // Fetch initial streak from DB if logged in
-    if (user) {
-        fetch(`/api/user/stats?userId=${user.id}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.stats) {
-                    setStreak(data.stats.current_streak)
-                }
-            })
-            .catch(err => console.error("Failed to fetch stats:", err))
-    }
-  }, [user])
+    // Note: Streak starts at 0 for each session (casual mode, not affecting OVR rating)
+  }, [])
 
-  const recordMatchResult = async (result: 'WIN' | 'LOSS', score: number = 0) => {
-    if (!user) return // Only record for logged-in users
-
-    try {
-        await fetch('/api/match/record', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                mode: 'GUESS',
-                result,
-                score,
-                details: {
-                    targetPlayer: targetPlayer?.name,
-                    attempts: 0 // Could track attempts if we wanted
-                }
-            })
-        })
-    } catch (error) {
-        console.error("Failed to record match:", error)
-    }
-  }
+  // Note: GUESS mode does NOT record to database - it doesn't affect OVR rating/stats
+  // Only saves to localStorage for history display
 
   const saveToLocalStorage = (score: number, correct: number, total: number) => {
       try {
-          const historyItem = { score, correct, total, date: new Date().toISOString() }
+          const historyItem = {
+              score,
+              correct,
+              total,
+              date: new Date().toISOString(),
+              mode: 'GUESS', // Identify as Guess the Player game
+              targetPlayer: targetPlayer?.name // For legacy detection
+          }
           const saved = localStorage.getItem("nba-ttt-history")
           const history = saved ? JSON.parse(saved) : []
           const newHistory = [historyItem, ...history].slice(0, 50) // Keep last 50
@@ -100,11 +74,10 @@ export function GuessGame() {
       setStatus("won")
       setStreak(s => s + 1)
       setErrorMessage(null)
-      recordMatchResult('WIN', 1)
       saveToLocalStorage(100, 1, 1) // 100 pts for win, 1/1 correct
     } else {
       setErrorMessage(t('gest.error_incorrect').replace('{name}', player.name))
-      setGuess("") 
+      setGuess("")
       setSuggestions([])
       setTimeout(() => setErrorMessage(null), 2000)
     }
@@ -113,7 +86,6 @@ export function GuessGame() {
   const handleGiveUp = () => {
     setStatus("lost")
     setStreak(0)
-    recordMatchResult('LOSS', 0)
     saveToLocalStorage(0, 0, 1) // 0 pts, 0/1 correct
   }
 

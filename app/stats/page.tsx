@@ -11,117 +11,19 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { LoginRequired } from "@/components/auth/login-required"
-import { calculateXP, getRank } from "@/lib/ranking"
+import { calculateXPByMode, getRank, XP_MULTIPLIERS } from "@/lib/ranking"
 import { RankBadge } from "@/components/ranking/rank-badge"
+
+import { OvrBadge } from "@/components/ranking/ovr-badge"
+
+import { useUserStats } from "@/hooks/use-user-stats"
 
 export default function StatsPage() {
   const { t } = useLanguage()
   const { user, isLoading: authLoading } = useAuth()
-  const [isLoading, setIsLoading] = useState(true)
-  const [rawHistory, setRawHistory] = useState<any[]>([])
-
-  // --- Data Fetching ---
-  useEffect(() => {
-    async function loadStats() {
-        setIsLoading(true)
-        let historyData: any[] = []
-
-        if (user) {
-            try {
-                const res = await fetch('/api/user/matches?limit=50') // Fetch more for charts
-                const data = await res.json()
-                if (data.history) {
-                     historyData = data.history.map((h: any) => ({
-                         ...h,
-                         date: new Date(h.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
-                         fullDate: new Date(h.date),
-                         correct: h.details?.correct || 0,
-                         total: h.details?.total || h.details?.total_rounds || 9 
-                     })).reverse() // Oldest first for charts
-                }
-            } catch (e) { console.error("DB fetch failed", e) }
-        } 
-        
-        // Fallback or Merge if needed (keeping simple: DB > Local)
-        if (historyData.length === 0) {
-            const saved = localStorage.getItem("nba-ttt-history")
-            if (saved) {
-                try {
-                    const local: any[] = JSON.parse(saved)
-                    historyData = local.map(h => ({
-                        ...h,
-                        date: new Date(h.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
-                         fullDate: new Date(h.date),
-                        details: { correct: h.correct, total: h.total }
-                    })).reverse()
-                } catch(e) {}
-            }
-        }
-
-        setRawHistory(historyData)
-        setIsLoading(false)
-    }
-    
-    loadStats()
-  }, [user])
-
-  // --- Derived Stats (Memoized) ---
-  const stats = useMemo(() => {
-      if (!rawHistory.length) return null
-
-      const gamesPlayed = rawHistory.length
-      const totalScore = rawHistory.reduce((acc, curr) => acc + curr.score, 0)
-      const avgScore = Math.round(totalScore / gamesPlayed)
-      const bestScore = Math.max(...rawHistory.map(h => h.score))
-      
-      const totalCorrect = rawHistory.reduce((acc, curr) => acc + (curr.correct || 0), 0)
-      const totalPossible = rawHistory.reduce((acc, curr) => acc + (curr.total || 0), 0)
-      const accuracy = totalPossible > 0 ? Math.round((totalCorrect / totalPossible) * 100) : 0
-      
-      const wins = rawHistory.filter(h => h.result === 'WIN' || h.correct === h.total).length
-      const winRate = Math.round((wins / gamesPlayed) * 100)
-      
-      // Streak Calculation (simulated from history since we reversed it)
-      let currentStreak = 0
-      for (let i = rawHistory.length - 1; i >= 0; i--) {
-          if (rawHistory[i].result === 'WIN' || rawHistory[i].correct === rawHistory[i].total) {
-              currentStreak++
-          } else {
-              break
-          }
-      }
-
-      // Mode Split
-      const guessCount = rawHistory.filter(h => h.mode === 'GUESS').length
-      const battleCount = rawHistory.filter(h => h.mode === 'BATTLE').length
-      const modeData = [
-          { name: 'Guess', value: guessCount, color: '#8b5cf6' }, // Purple
-          { name: 'Battle', value: battleCount, color: '#f59e0b' } // Amber
-      ]
-
-      // Ranking Logic
-      // We assume losses if not win or perfect.
-      // Simplify: use rawHistory.length as total matches.
-      const xp = calculateXP({ 
-          wins, 
-          draws: rawHistory.filter(h => h.result === 'DRAW').length, 
-          losses: gamesPlayed - wins - rawHistory.filter(h => h.result === 'DRAW').length, 
-          total_matches: gamesPlayed 
-      })
-      const rankData = getRank(xp)
-
-      return {
-          gamesPlayed,
-          avgScore,
-          bestScore,
-          accuracy,
-          winRate,
-          currentStreak,
-          modeData,
-          xp,
-          rankData
-      }
-  }, [rawHistory])
+  
+  const { stats, isLoading } = useUserStats()
+  const rawHistory = stats?.rawHistory || []
 
   // --- Custom Tooltip for Charts ---
   const CustomTooltip = ({ active, payload, label }: any) => {
@@ -234,12 +136,8 @@ export default function StatsPage() {
                 </div>
 
                 {/* OVR Rating Box (FIFA Style) */}
-                <div className="bg-gradient-to-b from-gray-800 to-black border border-white/20 p-4 rounded-lg shadow-2xl flex flex-col items-center w-full md:w-auto min-w-[120px]">
-                    <span className="text-xs text-nba-blue font-bold uppercase tracking-widest mb-1">OVR Rating</span>
-                    <div className="text-6xl font-heading font-bold italic text-transparent bg-clip-text bg-gradient-to-r from-nba-blue via-white to-nba-red drop-shadow-sm">
-                        {stats ? Math.min(99, Math.floor(stats.winRate * 0.4 + stats.accuracy * 0.4 + (Math.min(stats.gamesPlayed, 100)) * 0.2)) : 60}
-                    </div>
-                </div>
+                {/* OVR Rating Badge (Dashboard Style) */}
+                <OvrBadge rating={stats ? Math.min(99, Math.floor(stats.winRate * 0.4 + stats.accuracy * 0.4 + (Math.min(stats.gamesPlayed, 100)) * 0.2)) : 60} />
             </motion.div>
         </div>
 
@@ -394,3 +292,7 @@ function EmptyState({ message }: { message: string }) {
         </div>
     )
 }
+
+
+
+

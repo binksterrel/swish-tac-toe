@@ -11,6 +11,7 @@ import { pusherClient } from "@/lib/pusher"
 import { motion, AnimatePresence, Variants } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/auth-context"
 
 interface BattleLobbyProps {
   onJoin: (code: string, name: string) => Promise<void>
@@ -27,13 +28,31 @@ interface OpenBattle {
 
 export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   const { t } = useLanguage()
+  const { user } = useAuth()
   const router = useRouter()
+  
   const [view, setView] = useState<'selection' | 'online'>('selection')
-  const [name, setName] = useState("")
+  
+  // Initialize with user preferences if available
+  const [name, setName] = useState(() => {
+    return user?.user_metadata?.username || user?.user_metadata?.full_name || ""
+  })
+  
   const [code, setCode] = useState("")
   const [mode, setMode] = useState<'menu' | 'join' | 'create'>('menu')
   const [difficulty, setDifficulty] = useState("medium")
-  const [selectedTeam, setSelectedTeam] = useState("LAL")
+  
+  const [selectedTeam, setSelectedTeam] = useState(() => {
+    return user?.user_metadata?.favorite_team || "LAL"
+  })
+
+  // Update when user changes (though it shouldn't change mid-session usually)
+  useEffect(() => {
+    if (user) {
+        if (!name) setName(user.user_metadata?.username || user.user_metadata?.full_name || "")
+        if (user.user_metadata?.favorite_team) setSelectedTeam(user.user_metadata?.favorite_team)
+    }
+  }, [user])
   
   // Public Battles
   const [openBattles, setOpenBattles] = useState<OpenBattle[]>([])

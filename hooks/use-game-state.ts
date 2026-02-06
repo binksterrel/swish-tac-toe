@@ -323,10 +323,11 @@ export function useGameState() {
                     date: new Date().toISOString(),
                     score: gameState.score,
                     correct,
-                    mistakes, 
+                    mistakes,
                     total: gameState.gridSize * gameState.gridSize,
                     difficulty: gameState.difficulty,
-                    mode: gameState.mode,
+                    mode: 'SWISH', // Grid game mode identifier
+                    subMode: gameState.mode.toUpperCase(), // 'CLASSIC', 'TIME_ATTACK', etc.
                     time: gameTime
                 }
                 
@@ -341,7 +342,7 @@ export function useGameState() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        mode: 'GUESS', 
+                        mode: 'SWISH',
                         result,
                         score: gameState.score,
                         details: {

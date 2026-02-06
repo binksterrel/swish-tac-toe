@@ -40,8 +40,11 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
         if (effectRan.current) return
         effectRan.current = true
 
-        // Save to History
+        // Save to History (only for online battles, not local)
         const saveHistory = () => {
+            // Skip saving for local battles
+            if (state.code === 'LOCAL') return
+
             const historyItem = {
                 date: new Date().toISOString(),
                 score: myScore,
@@ -49,8 +52,9 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
                 mistakes: 0,
                 total: 9,
                 difficulty: 'Battle',
-                mode: 'Battle',
-                time: 0 // Ideally we track duration
+                mode: 'BATTLE', // Uppercase for consistency
+                result: isWinner ? 'WIN' : isDraw ? 'DRAW' : 'LOSS',
+                time: 0
             }
 
             try {
@@ -69,8 +73,8 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
         
         saveHistory()
 
-        // Sync to DB if logged in
-        if (user) {
+        // Sync to DB if logged in (skip local battles)
+        if (user && state.code !== 'LOCAL') {
             fetch('/api/match/record', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -87,7 +91,7 @@ export function BattleGameOverModal({ state, role }: BattleGameOverModalProps) {
                 })
             }).catch(e => console.error("DB Sync failed", e))
         }
-    }, [myScore, myCorrectCells]) // Dependencies are stable constants in this modal render context usually
+    }, [myScore, myCorrectCells, state.code, user, isWinner, isDraw, role, state.players, state.roundNumber]) // Dependencies are stable constants in this modal render context usually
     
     const handleRematch = async () => {
         setIsRematchLoading(true)

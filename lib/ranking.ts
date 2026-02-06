@@ -63,9 +63,26 @@ export const RANKS: Record<RankTier, RankInfo> = {
     }
 }
 
+// XP multipliers by game mode
+export const XP_MULTIPLIERS = {
+    SWISH: 1,      // Base XP
+    BATTLE: 2.5,   // 2.5x XP for competitive multiplayer
+    GUESS: 0       // Casual mode, no XP
+}
+
 export function calculateXP(stats: { wins: number, draws: number, losses: number, total_matches: number }): number {
     if (!stats) return 0
-    return (stats.wins * 100) + (stats.draws * 25) + (stats.losses * 10) + ((stats.total_matches * 5)) // Approx for correct cells
+    return (stats.wins * 100) + (stats.draws * 25) + (stats.losses * 10) + ((stats.total_matches * 5))
+}
+
+// Enhanced XP calculation with mode-specific multipliers
+export function calculateXPByMode(
+    swishStats: { wins: number, draws: number, losses: number, total: number },
+    battleStats: { wins: number, draws: number, losses: number, total: number }
+): number {
+    const swishXP = ((swishStats.wins * 100) + (swishStats.draws * 25) + (swishStats.losses * 10) + (swishStats.total * 5)) * XP_MULTIPLIERS.SWISH
+    const battleXP = ((battleStats.wins * 100) + (battleStats.draws * 25) + (battleStats.losses * 10) + (battleStats.total * 5)) * XP_MULTIPLIERS.BATTLE
+    return Math.round(swishXP + battleXP)
 }
 
 export function getRank(xp: number) {
