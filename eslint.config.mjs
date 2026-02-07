@@ -7,7 +7,9 @@ const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({ baseDirectory: __dirname });
 
-export default [
-  { ignores: [".next/**", "node_modules/**"] },
+const config = [
+  { ignores: [".next/**", "node_modules/**", ".history/**"] },
   ...compat.extends("next/core-web-vitals"),
 ];
+
+export default config;

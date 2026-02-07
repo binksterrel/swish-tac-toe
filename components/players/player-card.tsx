@@ -1,6 +1,8 @@
 
 import React from 'react';
-import { NBAPlayer, getTeamLogoUrl, getModernTeam } from '@/lib/nba-data';
+import { NBAPlayer, getModernTeam } from '@/lib/nba-data';
+import { TeamLogo } from '@/components/common/team-logo';
+import { PlayerPhoto } from '@/components/common/player-photo';
 
 interface PlayerCardProps {
   player: NBAPlayer;
@@ -22,24 +24,20 @@ export function PlayerCard({ player }: PlayerCardProps) {
          {/* Background Team Logo Pattern (Optional nice touch) */}
          <div className="absolute inset-0 opacity-5 flex flex-wrap justify-center items-center content-center pointer-events-none">
             {player.teams[0] && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={getTeamLogoUrl(player.teams[0])} alt="" className="w-32 h-32 grayscale" />
+                <TeamLogo teamId={player.teams[0]} size={128} className="grayscale opacity-80" />
             )}
          </div>
 
         {/* Player Headshot */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`https://cdn.nba.com/headshots/nba/latest/1040x760/${player.nbaId || player.id}.png`}
-          onError={(e) => {
-            // Fallback for missing photos (legacy players)
-            // Use their first team logo as fallback or a silhouette
-            e.currentTarget.src = getTeamLogoUrl(player.teams[0] || 'NBA'); 
-            e.currentTarget.className = "w-24 h-24 object-contain opacity-80"
-          }}
-          alt={player.name}
-          className="relative z-10 h-full w-auto object-contain drop-shadow-xl transition-transform group-hover:scale-105"
-        />
+        <div className="relative z-10 h-full w-full flex items-center justify-center">
+          <div className="relative h-full w-full">
+            <PlayerPhoto
+              player={player}
+              fill
+              className="object-contain drop-shadow-xl transition-transform group-hover:scale-105"
+            />
+          </div>
+        </div>
         
         {/* Badges Overlay */}
         <div className="absolute top-2 right-2 flex flex-col gap-1 z-20">
@@ -75,12 +73,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
             <div className="flex flex-wrap gap-1">
                 {Array.from(new Set(player.teams.map(t => getModernTeam(t)))).map((team) => (
                     <div key={team} className="w-6 h-6 bg-white p-0.5 rounded-sm flex items-center justify-center border border-slate-300" title={team}>
-                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img 
-                            src={getTeamLogoUrl(team)} 
-                            alt={team} 
-                            className="w-full h-full object-contain"
-                        />
+                        <TeamLogo teamId={team} size={24} className="w-full h-full" />
                     </div>
                 ))}
             </div>

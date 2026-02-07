@@ -1,13 +1,14 @@
 "use client"
 
 import { GridCell, BattleState } from "@/lib/battle-types"
-import { Criteria, getTeamLogoUrl } from "@/lib/nba-data"
+import { Criteria } from "@/lib/nba-data"
 import { motion, AnimatePresence } from "framer-motion"
 import { CriteriaHeader } from "../game/criteria-header" // Reusing
 import { cn } from "@/lib/utils"
-import { getPlayerPhotoUrl } from "@/lib/nba-data"
 import { Check, X, Loader2, SkipForward } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { TeamLogo } from "@/components/common/team-logo"
+import { PlayerPhoto } from "@/components/common/player-photo"
 
 interface BattleGridProps {
   state: BattleState
@@ -51,7 +52,7 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
       }, 1000)
       
       return () => clearInterval(interval)
-  }, [turnExpiry, isMyTurn, isGameOver, state.code, role])
+  }, [turnExpiry, isMyTurn, isGameOver, state.code, role, state.currentTurn])
 
   // Skip Vote Logic
   const [isSkipping, setIsSkipping] = useState(false)
@@ -226,7 +227,7 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
                return (
                  <div className={cn("text-center transition-all z-10 flex items-center gap-2", state.currentTurn === 'host' ? "scale-110 opacity-100" : "opacity-40 scale-90")}>
                    {teamCode && (
-                     <img src={getTeamLogoUrl(teamCode)} alt={teamCode} className="w-10 h-10 object-contain" />
+                     <TeamLogo teamId={teamCode} size={40} />
                    )}
                    <div>
                      <div className="text-xs uppercase font-bold text-nba-blue mb-1">{t('battle.host')}</div>
@@ -256,7 +257,7 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
                      <div className="text-lg font-bold text-white truncate max-w-[80px] md:max-w-[120px]">{displayName}</div>
                    </div>
                    {teamCode && (
-                     <img src={getTeamLogoUrl(teamCode)} alt={teamCode} className="w-10 h-10 object-contain" />
+                     <TeamLogo teamId={teamCode} size={40} />
                    )}
                  </div>
                )
@@ -327,12 +328,13 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
                      >
                         {cell.player ? (
                             <>
-                               <img 
-                                  key={cell.player.id} 
-                                  src={getPlayerPhotoUrl(cell.player)} 
-                                  alt={cell.player.name}
-                                  className="absolute inset-0 w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity animate-in fade-in duration-300"
-                               />
+                               <div className="absolute inset-0">
+                                  <PlayerPhoto
+                                    player={cell.player}
+                                    fill
+                                    className="object-cover object-top scale-110 translate-y-2 opacity-80 hover:opacity-100 transition-opacity animate-in fade-in duration-300"
+                                  />
+                               </div>
                                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-2">
                                   <p className="text-[10px] md:text-xs font-bold text-center text-white leading-tight truncate">
                                     {cell.player.name}

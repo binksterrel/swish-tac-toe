@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { BattleGrid } from "@/components/battle/battle-grid"
 import { Header } from "@/components/layout/header"
@@ -9,21 +9,45 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useLocalBattle } from "@/hooks/use-local-battle"
 import { PlayerInput } from "@/components/game/player-input"
-import { NBAPlayer, NBA_TEAMS, getTeamLogoUrl } from "@/lib/nba-data"
+import { NBAPlayer, NBA_TEAMS } from "@/lib/nba-data"
+import { TeamLogo } from "@/components/common/team-logo"
 import { Trophy, Users, ChevronLeft, ChevronRight, Swords, ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { useAuth } from "@/contexts/auth-context"
 
 export default function LocalBattlePage() {
     const router = useRouter()
+    const { user, supabase } = useAuth()
     const { state, initLocalGame, submitMove, handleNextRound } = useLocalBattle()
     const [selectedCell, setSelectedCell] = useState<{row: number, col: number} | null>(null)
-    
-    // Setup State
-    const [p1Name, setP1Name] = useState("")
+
+    // Setup State — P1 defaults from user profile
+    const [p1Name, setP1Name] = useState(() =>
+        user?.user_metadata?.username || user?.user_metadata?.full_name || ""
+    )
     const [p2Name, setP2Name] = useState("")
-    const [p1Team, setP1Team] = useState("LAL")
+    const [p1Team, setP1Team] = useState(() =>
+        user?.user_metadata?.favorite_team || "LAL"
+    )
     const [p2Team, setP2Team] = useState("BOS")
+
+    // Hydrate P1 prefs from Supabase profile (fallback if metadata not yet loaded)
+    useEffect(() => {
+        if (!user) return
+        let mounted = true
+        supabase
+            .from('profiles')
+            .select('favorite_team, username')
+            .eq('id', user.id)
+            .single()
+            .then(({ data }) => {
+                if (!mounted || !data) return
+                setP1Name((prev: string) => prev || data.username || "")
+                setP1Team((prev: string) => (prev === "LAL" && data.favorite_team) ? data.favorite_team : prev)
+            })
+        return () => { mounted = false }
+    }, [user, supabase])
     const [difficulty, setDifficulty] = useState("medium")
 
     const teamKeys = Object.keys(NBA_TEAMS)
@@ -83,7 +107,7 @@ export default function LocalBattlePage() {
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p1Team); setP1Team(teamKeys[i-1] || teamKeys[teamKeys.length-1])
                                     }}><ChevronLeft className="w-4 h-4" /></Button>
-                                    <img src={getTeamLogoUrl(p1Team)} className="w-16 h-16 object-contain drop-shadow-md" />
+                                    <TeamLogo teamId={p1Team} size={64} className="drop-shadow-md" />
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p1Team); setP1Team(teamKeys[i+1] || teamKeys[0])
                                     }}><ChevronRight className="w-4 h-4" /></Button>
@@ -105,7 +129,7 @@ export default function LocalBattlePage() {
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p2Team); setP2Team(teamKeys[i-1] || teamKeys[teamKeys.length-1])
                                     }}><ChevronLeft className="w-4 h-4" /></Button>
-                                    <img src={getTeamLogoUrl(p2Team)} className="w-16 h-16 object-contain drop-shadow-md" />
+                                    <TeamLogo teamId={p2Team} size={64} className="drop-shadow-md" />
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p2Team); setP2Team(teamKeys[i+1] || teamKeys[0])
                                     }}><ChevronRight className="w-4 h-4" /></Button>

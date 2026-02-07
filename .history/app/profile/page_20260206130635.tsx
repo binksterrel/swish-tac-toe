@@ -3,12 +3,13 @@
 import { NBATicker } from "@/components/layout/nba-ticker"
 import { Header } from "@/components/layout/header"
 import { useAuth } from "@/contexts/auth-context"
+import { useLanguage } from "@/contexts/language-context"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Loader2, User, Lock, LogOut, Save, CheckCircle2, AlertCircle, Shield, Sparkles, CalendarDays, Trophy, Medal, Star, Crown, Flame, Zap, Swords, Eye } from "lucide-react"
+import { Loader2, User, Lock, LogOut, Save, CheckCircle2, AlertCircle, Shield, Sparkles, CalendarDays, Trophy, Medal, Star, Crown, Flame, Zap, Swords, Eye, type LucideProps } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { OvrBadge } from "@/components/ranking/ovr-badge"
@@ -17,7 +18,7 @@ import { TeamSelector } from "@/components/profile/team-selector"
 import { TeamLogo } from "@/components/common/team-logo"
 
 import { useUserStats } from "@/hooks/use-user-stats"
-import { evaluateTrophies, buildTrophyContext, TROPHY_CATEGORIES } from "@/lib/trophies"
+import { evaluateTrophies, buildTrophyContext, TROPHY_CATEGORIES, type EvaluatedTrophy } from "@/lib/trophies"
 
 export default function ProfilePage() {
     const { user, isLoading: authLoading, signOut, supabase } = useAuth()
@@ -62,7 +63,7 @@ export default function ProfilePage() {
             })
             if (authError) throw authError
 
-            // Sync public profile (best-effort — auth metadata is the primary source)
+            // Sync public profile (persist favorite franchise + identity)
             const { error: profileError } = await supabase
                 .from('profiles')
                 .update({
@@ -72,10 +73,8 @@ export default function ProfilePage() {
                 })
                 .eq('id', user?.id)
 
-            if (profileError) {
-                console.warn("Profile sync failed:", profileError.message || profileError)
-            }
-
+            if (profileError) throw profileError
+            
             setMessage({ type: 'success', text: "Manager details updated successfully." })
         } catch (error: any) {
             setMessage({ type: 'error', text: error.message || "Failed to update profile." })
@@ -145,27 +144,12 @@ export default function ProfilePage() {
             <div className="container mx-auto px-4 py-8 md:py-12 relative z-10 max-w-6xl">
                 
                 {/* PAGE HEADER */}
-                <div className="mb-12 relative">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-nba-blue to-nba-red opacity-20 blur-xl rounded-full w-2/3 h-2/3 -z-10" />
-                    <div className="border-b border-white/5 pb-8">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="flex items-center gap-3 mb-2"
-                        >
-                            <div className="p-2 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
-                                <User className="w-5 h-5 text-gray-300" />
-                            </div>
-                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400">Manager Office</span>
-                        </motion.div>
-                        <motion.h1
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 }}
-                            className="text-5xl md:text-7xl font-heading font-bold uppercase italic tracking-tighter text-white drop-shadow-2xl pr-4 pb-2"
-                        >
+                <div className="mb-8 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h1 className="text-4xl md:text-6xl font-heading font-bold italic tracking-tighter text-white uppercase drop-shadow-2xl">
                             Profil
-                        </motion.h1>
+                        </h1>
+                        <div className="h-1.5 w-32 bg-gradient-to-r from-white/20 to-transparent mt-2 rounded-full" />
                     </div>
                 </div>
 

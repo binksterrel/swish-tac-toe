@@ -124,7 +124,7 @@ export function useGameState() {
       }, 1000)
     }
     return () => clearInterval(interval)
-  }, [isGameActive, gameState?.gameOver])
+  }, [isGameActive, gameState])
 
   // Load saved game or start new one
   useEffect(() => {

@@ -165,7 +165,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
                  body: JSON.stringify({ code, state })
              }).catch(console.error)
         }
-    }, [state?.players.guest, role, code])
+    }, [state, role, code])
 
     const submitMove = async (row: number, col: number, player: NBAPlayer) => {
         if (!state || !role) return

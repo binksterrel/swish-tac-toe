@@ -65,7 +65,7 @@ export function useLocalBattle() {
             }
         }, 500)
         return () => clearInterval(interval)
-    }, [turnExpiry, state?.roundStatus, state?.currentTurn])
+    }, [turnExpiry, state])
 
     const switchTurn = (nextTurn: 'host' | 'guest') => {
         setState(prev => {

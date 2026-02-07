@@ -24,7 +24,7 @@ export const RANKS: Record<RankTier, RankInfo> = {
     SEMI_PRO: {
         id: 'SEMI_PRO',
         label: 'Semi-Pro',
-        minXP: 500,
+        minXP: 1500,
         color: 'text-emerald-400',
         gradient: 'from-emerald-400 to-teal-600',
         icon: Zap
@@ -32,7 +32,7 @@ export const RANKS: Record<RankTier, RankInfo> = {
     PRO: {
         id: 'PRO',
         label: 'Pro',
-        minXP: 1500,
+        minXP: 6000,
         color: 'text-blue-400',
         gradient: 'from-blue-400 to-indigo-600',
         icon: Star
@@ -40,7 +40,7 @@ export const RANKS: Record<RankTier, RankInfo> = {
     ALL_STAR: {
         id: 'ALL_STAR',
         label: 'All-Star',
-        minXP: 4000,
+        minXP: 20000,
         color: 'text-purple-400',
         gradient: 'from-purple-400 to-pink-600',
         icon: Star
@@ -48,7 +48,7 @@ export const RANKS: Record<RankTier, RankInfo> = {
     SUPERSTAR: {
         id: 'SUPERSTAR',
         label: 'Superstar',
-        minXP: 10000,
+        minXP: 50000,
         color: 'text-orange-400',
         gradient: 'from-orange-400 to-red-600',
         icon: Flame
@@ -56,7 +56,7 @@ export const RANKS: Record<RankTier, RankInfo> = {
     HOF: {
         id: 'HOF',
         label: 'Hall of Fame',
-        minXP: 25000,
+        minXP: 85000,
         color: 'text-yellow-400',
         gradient: 'from-yellow-400 to-amber-600',
         icon: Crown
@@ -70,12 +70,24 @@ export const XP_MULTIPLIERS = {
     GUESS: 0       // Casual mode, no XP
 }
 
+// Difficulty multipliers (applies to both Swish and Battle)
+export const DIFFICULTY_MULTIPLIERS: Record<string, number> = {
+    easy: 0.5,
+    medium: 1,
+    hard: 2,
+}
+
+export function getDifficultyMultiplier(difficulty?: string): number {
+    if (!difficulty) return 1
+    return DIFFICULTY_MULTIPLIERS[difficulty.toLowerCase()] ?? 1
+}
+
 export function calculateXP(stats: { wins: number, draws: number, losses: number, total_matches: number }): number {
     if (!stats) return 0
     return (stats.wins * 100) + (stats.draws * 25) + (stats.losses * 10) + ((stats.total_matches * 5))
 }
 
-// Enhanced XP calculation with mode-specific multipliers
+// Legacy aggregate XP (kept for backwards compat, but prefer calculateXPFromHistory)
 export function calculateXPByMode(
     swishStats: { wins: number, draws: number, losses: number, total: number },
     battleStats: { wins: number, draws: number, losses: number, total: number }
@@ -83,6 +95,28 @@ export function calculateXPByMode(
     const swishXP = ((swishStats.wins * 100) + (swishStats.draws * 25) + (swishStats.losses * 10) + (swishStats.total * 5)) * XP_MULTIPLIERS.SWISH
     const battleXP = ((battleStats.wins * 100) + (battleStats.draws * 25) + (battleStats.losses * 10) + (battleStats.total * 5)) * XP_MULTIPLIERS.BATTLE
     return Math.round(swishXP + battleXP)
+}
+
+// Per-game XP with difficulty scaling
+// Base: WIN=100, DRAW=25, LOSS=10, participation=5
+// Final = (base + 5) * difficultyMult * modeMult
+export function calculateXPFromHistory(
+    games: { result?: string; correct?: number; total?: number; difficulty?: string; mode?: string }[],
+    getCategory: (g: { mode?: string; difficulty?: string; subMode?: string; time?: number }) => 'SWISH' | 'BATTLE' | 'GUESS'
+): number {
+    let totalXP = 0
+    for (const game of games) {
+        const category = getCategory(game)
+        const modeMult = XP_MULTIPLIERS[category] ?? 0
+        if (modeMult === 0) continue
+
+        const diffMult = getDifficultyMultiplier(game.difficulty)
+        const isWin = game.result === 'WIN' || (game.correct != null && game.total != null && game.correct === game.total)
+        const isDraw = game.result === 'DRAW'
+        const baseXP = isWin ? 100 : isDraw ? 25 : 10
+        totalXP += (baseXP + 5) * diffMult * modeMult
+    }
+    return Math.round(totalXP)
 }
 
 export function getRank(xp: number) {

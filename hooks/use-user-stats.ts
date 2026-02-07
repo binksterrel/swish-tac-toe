@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react"
 import { useAuth } from "@/contexts/auth-context"
-import { calculateXPByMode, getRank, XP_MULTIPLIERS } from "@/lib/ranking"
+import { calculateXPFromHistory, getRank, XP_MULTIPLIERS } from "@/lib/ranking"
 
 export interface GameHistoryItem {
     id?: string
@@ -42,7 +42,9 @@ export function useUserStats() {
                              date: new Date(h.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
                              fullDate: new Date(h.date),
                              correct: h.details?.correct || 0,
-                             total: h.details?.total || h.details?.total_rounds || 9 
+                             total: h.details?.total || h.details?.total_rounds || 9,
+                             difficulty: h.details?.difficulty || h.difficulty,
+                             subMode: h.details?.subMode || h.subMode,
                          })).reverse() // Oldest first
                     }
                 } catch (e) { console.error("DB fetch failed", e) }
@@ -94,19 +96,9 @@ export function useUserStats() {
         const battleGames = rawHistory.filter(h => getGameCategory(h) === 'BATTLE')
         const guessGames = rawHistory.filter(h => getGameCategory(h) === 'GUESS')
 
-        const swishWins = swishGames.filter(h => h.result === 'WIN' || h.correct === h.total).length
-        const swishDraws = swishGames.filter(h => h.result === 'DRAW').length
-        const swishLosses = swishGames.length - swishWins - swishDraws
-
-        const battleWins = battleGames.filter(h => h.result === 'WIN').length
-        const battleDraws = battleGames.filter(h => h.result === 'DRAW').length
-        const battleLosses = battleGames.length - battleWins - battleDraws
-
-        // XP
-        const xp = calculateXPByMode(
-            { wins: swishWins, draws: swishDraws, losses: swishLosses, total: swishGames.length },
-            { wins: battleWins, draws: battleDraws, losses: battleLosses, total: battleGames.length }
-        )
+        // XP — per-game calculation with difficulty multipliers
+        // Easy x0.5, Medium x1, Hard x2 (stacks with mode multiplier)
+        const xp = calculateXPFromHistory(rawHistory, getGameCategory)
 
         // OVR (Rated Games Only)
         const ratedHistory = rawHistory.filter(h => getGameCategory(h) !== 'GUESS')

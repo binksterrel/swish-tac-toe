@@ -12,6 +12,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
+import { TeamLogo } from "@/components/common/team-logo"
 
 interface BattleLobbyProps {
   onJoin: (code: string, name: string) => Promise<void>
@@ -28,10 +29,11 @@ interface OpenBattle {
 
 export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   const { t } = useLanguage()
-  const { user } = useAuth()
+  const { user, supabase } = useAuth()
   const router = useRouter()
   
   const [view, setView] = useState<'selection' | 'online'>('selection')
+  const DEFAULT_TEAM = "LAL"
   
   // Initialize with user preferences if available
   const [name, setName] = useState(() => {
@@ -43,16 +45,42 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
   const [difficulty, setDifficulty] = useState("medium")
   
   const [selectedTeam, setSelectedTeam] = useState(() => {
-    return user?.user_metadata?.favorite_team || "LAL"
+    return user?.user_metadata?.favorite_team || DEFAULT_TEAM
   })
+  const [prefsLoaded, setPrefsLoaded] = useState(false)
 
   // Update when user changes (though it shouldn't change mid-session usually)
   useEffect(() => {
     if (user) {
-        if (!name) setName(user.user_metadata?.username || user.user_metadata?.full_name || "")
-        if (user.user_metadata?.favorite_team) setSelectedTeam(user.user_metadata?.favorite_team)
+        setName((prev: string) => prev || user.user_metadata?.username || user.user_metadata?.full_name || "")
+        setSelectedTeam((prev: string) => user.user_metadata?.favorite_team || prev || DEFAULT_TEAM)
     }
   }, [user])
+
+  // Hydrate defaults from Supabase profile (persists favorite team & username)
+  useEffect(() => {
+    let isMounted = true
+    const loadProfilePrefs = async () => {
+        if (!user || prefsLoaded) return
+        const { data, error } = await supabase
+            .from('profiles')
+            .select('favorite_team, username')
+            .eq('id', user.id)
+            .single()
+
+        if (!isMounted) return
+        if (!error && data) {
+            setSelectedTeam((prev: string) => {
+                const preferred = data.favorite_team || prev || DEFAULT_TEAM
+                return (prev === DEFAULT_TEAM || !prev) ? preferred : prev
+            })
+            setName((prev: string) => prev || data.username || "")
+        }
+        setPrefsLoaded(true)
+    }
+    loadProfilePrefs()
+    return () => { isMounted = false }
+  }, [user, supabase, prefsLoaded])
   
   // Public Battles
   const [openBattles, setOpenBattles] = useState<OpenBattle[]>([])
@@ -270,10 +298,10 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
 
                                     <div className="relative w-32 h-32 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
                                         <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full" />
-                                        <img 
-                                            src={getTeamLogoUrl(selectedTeam)}
-                                            alt={NBA_TEAMS[selectedTeam].name}
-                                            className="w-full h-full object-contain relative z-10 drop-shadow-2xl"
+                                        <TeamLogo 
+                                            teamId={selectedTeam} 
+                                            size={128} 
+                                            className="relative z-10 drop-shadow-2xl w-full h-full"
                                         />
                                     </div>
 

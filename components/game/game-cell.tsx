@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import type { CellState } from "@/hooks/use-game-state"
-import { getPlayerPhotoUrl } from "@/lib/nba-data"
+import { PlayerPhoto } from "@/components/common/player-photo"
 import { Check, X, Plus } from "lucide-react"
 
 interface GameCellProps {
@@ -65,13 +65,10 @@ export function GameCell({ cell, isSelected, onClick, disabled }: GameCellProps)
         <>
           {/* Full Background Image */}
           <div className="absolute inset-0 bg-[#0a0a0a]">
-             <img
-              src={getPlayerPhotoUrl(cell.player)}
-              alt={cell.player.name}
-              className="w-full h-full object-cover object-top scale-110 translate-y-2 filter brightness-110"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
+             <PlayerPhoto
+              player={cell.player}
+              fill
+              className="object-cover object-top scale-110 translate-y-2 filter brightness-110"
             />
           </div>
           

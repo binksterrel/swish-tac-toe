@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { getTeamLogoUrl } from "@/lib/nba-data"
+import { TeamLogo } from "@/components/common/team-logo"
 
 const TEAMS = [
   "ATL", "BOS", "BKN", "CHA", "CHI", "CLE", "DAL", "DEN", "DET", "GSW",
@@ -26,11 +26,7 @@ export function NBATicker() {
             key={`${team}-${index}`} 
             className="flex items-center justify-center w-12 h-12 flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 transform hover:scale-110 cursor-pointer opacity-70 hover:opacity-100"
           >
-            <img 
-              src={getTeamLogoUrl(team)} 
-              alt={team} 
-              className="w-full h-full object-contain"
-            />
+            <TeamLogo teamId={team} size={48} className="w-full h-full" />
           </div>
         ))}
       </div>

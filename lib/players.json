@@ -314,7 +314,8 @@
     "name": "AJ Johnson",
     "teams": [
       "MIL",
-      "WAS"
+      "WAS",
+      "DAL"
     ],
     "awards": [],
     "allStar": false,
@@ -5008,7 +5009,8 @@
     "name": "Amir Coffey",
     "teams": [
       "LAC",
-      "MIL"
+      "MIL",
+      "PHX"
     ],
     "awards": [],
     "allStar": false,
@@ -6655,7 +6657,8 @@
     "name": "Anfernee Simons",
     "teams": [
       "POR",
-      "BOS"
+      "BOS",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -7109,7 +7112,8 @@
     "name": "Anthony Davis",
     "teams": [
       "NOP",
-      "LAL"
+      "LAL",
+      "WAS"
     ],
     "awards": [
       "Champion",
@@ -9940,7 +9944,8 @@
     "id": "ayo-dosunmu",
     "name": "Ayo Dosunmu",
     "teams": [
-      "CHI"
+      "CHI",
+      "MIN"
     ],
     "awards": [],
     "allStar": false,
@@ -11210,7 +11215,8 @@
     "id": "bennedict-mathurin",
     "name": "Bennedict Mathurin",
     "teams": [
-      "IND"
+      "IND",
+      "LAC"
     ],
     "awards": [],
     "allStar": false,
@@ -20265,7 +20271,8 @@
       "SAC",
       "IND",
       "PHI",
-      "GSW"
+      "GSW",
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -25486,7 +25493,8 @@
     "teams": [
       "GSW",
       "TOR",
-      "BOS"
+      "BOS",
+      "UTA"
     ],
     "awards": [
       "Champion"
@@ -26595,7 +26603,8 @@
       "OKC",
       "PHX",
       "GSW",
-      "SAS"
+      "SAS",
+      "TOR"
     ],
     "awards": [
       "All-Star",
@@ -29159,7 +29168,8 @@
     "id": "coby-white",
     "name": "Coby White",
     "teams": [
-      "CHI"
+      "CHI",
+      "CHA"
     ],
     "awards": [],
     "allStar": false,
@@ -29374,7 +29384,8 @@
     "name": "Cole Anthony",
     "teams": [
       "ORL",
-      "MIL"
+      "MIL",
+      "PHX"
     ],
     "awards": [],
     "allStar": false,
@@ -29547,7 +29558,8 @@
     "teams": [
       "CLE",
       "UTA",
-      "CHA"
+      "CHA",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -31316,7 +31328,8 @@
       "BKN",
       "GSW",
       "MIN",
-      "DAL"
+      "DAL",
+      "WAS"
     ],
     "awards": [
       "All-Star"
@@ -32276,7 +32289,16 @@
     "id": "dalen-terry",
     "name": "Dalen Terry",
     "teams": [
-      "CHI"
+      "CHI",
+      "NOP",
+      "NYK",
+      "NOP",
+      "NYK",
+      "NOP",
+      "NYK",
+      "NOP",
+      "NYK",
+      "NOP"
     ],
     "awards": [],
     "allStar": false,
@@ -34130,7 +34152,8 @@
     "teams": [
       "UTA",
       "CLE",
-      "DAL"
+      "DAL",
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -34227,7 +34250,9 @@
       "OKC",
       "GSW",
       "DEN",
-      "SAC"
+      "SAC",
+      "CHI",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -37368,7 +37393,8 @@
     "name": "De'Andre Hunter",
     "teams": [
       "ATL",
-      "CLE"
+      "CLE",
+      "SAC"
     ],
     "awards": [],
     "allStar": false,
@@ -39068,7 +39094,8 @@
       "BKN",
       "GSW",
       "DET",
-      "SAC"
+      "SAC",
+      "CLE"
     ],
     "awards": [],
     "allStar": false,
@@ -46068,7 +46095,8 @@
     "id": "duop-reath",
     "name": "Duop Reath",
     "teams": [
-      "POR"
+      "POR",
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -50357,7 +50385,8 @@
       "NOP",
       "HOU",
       "PHX",
-      "PHI"
+      "PHI",
+      "MEM"
     ],
     "awards": [],
     "allStar": false,
@@ -54491,7 +54520,8 @@
     "name": "Gabe Vincent",
     "teams": [
       "MIA",
-      "LAL"
+      "LAL",
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -57591,7 +57621,8 @@
       "UTA",
       "PHI",
       "CLE",
-      "ATL"
+      "ATL",
+      "MEM"
     ],
     "awards": [],
     "allStar": false,
@@ -60237,7 +60268,8 @@
     "teams": [
       "BOS",
       "PHI",
-      "NYK"
+      "NYK",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -63927,7 +63959,8 @@
     "id": "hunter-tyson",
     "name": "Hunter Tyson",
     "teams": [
-      "DEN"
+      "DEN",
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -65004,7 +65037,8 @@
     "id": "isaiah-jackson",
     "name": "Isaiah Jackson",
     "teams": [
-      "IND"
+      "IND",
+      "LAC"
     ],
     "awards": [],
     "allStar": false,
@@ -65719,7 +65753,8 @@
     "name": "Ivica Zubac",
     "teams": [
       "LAL",
-      "LAC"
+      "LAC",
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -68033,7 +68068,8 @@
     "id": "jaden-hardy",
     "name": "Jaden Hardy",
     "teams": [
-      "DAL"
+      "DAL",
+      "WAS"
     ],
     "awards": [],
     "allStar": false,
@@ -68069,7 +68105,8 @@
     "id": "jaden-ivey",
     "name": "Jaden Ivey",
     "teams": [
-      "DET"
+      "DET",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -71651,7 +71688,8 @@
     "id": "jared-mccain",
     "name": "Jared McCain",
     "teams": [
-      "PHI"
+      "PHI",
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -79547,7 +79585,15 @@
       "SAS",
       "PHX",
       "HOU",
-      "MEM"
+      "MEM",
+      "UTA",
+      "ATL",
+      "UTA",
+      "ATL",
+      "UTA",
+      "ATL",
+      "UTA",
+      "ATL"
     ],
     "awards": [],
     "allStar": false,
@@ -82571,7 +82617,8 @@
     "id": "john-konchar",
     "name": "John Konchar",
     "teams": [
-      "MEM"
+      "MEM",
+      "UTA"
     ],
     "awards": [],
     "allStar": false,
@@ -85707,7 +85754,8 @@
     "id": "jonathan-kuminga",
     "name": "Jonathan Kuminga",
     "teams": [
-      "GSW"
+      "GSW",
+      "ATL"
     ],
     "awards": [
       "Champion"
@@ -86702,7 +86750,8 @@
     "id": "jose-alvarado",
     "name": "Jose Alvarado",
     "teams": [
-      "NOP"
+      "NOP",
+      "NYK"
     ],
     "awards": [],
     "allStar": false,
@@ -87429,7 +87478,8 @@
     "name": "Josh Minott",
     "teams": [
       "MIN",
-      "BOS"
+      "BOS",
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -88008,7 +88058,8 @@
     "id": "julian-phillips",
     "name": "Julian Phillips",
     "teams": [
-      "CHI"
+      "CHI",
+      "MIN"
     ],
     "awards": [],
     "allStar": false,
@@ -92706,7 +92757,8 @@
     "id": "keon-ellis",
     "name": "Keon Ellis",
     "teams": [
-      "SAC"
+      "SAC",
+      "CLE"
     ],
     "awards": [],
     "allStar": false,
@@ -93237,7 +93289,8 @@
     "teams": [
       "ATL",
       "SAC",
-      "CHI"
+      "CHI",
+      "DET"
     ],
     "awards": [],
     "allStar": false,
@@ -94443,7 +94496,8 @@
     "teams": [
       "DET",
       "MIL",
-      "WAS"
+      "WAS",
+      "DAL"
     ],
     "awards": [
       "Champion",
@@ -94911,7 +94965,8 @@
     "id": "kobe-brown",
     "name": "Kobe Brown",
     "teams": [
-      "LAC"
+      "LAC",
+      "IND"
     ],
     "awards": [],
     "allStar": false,
@@ -95490,7 +95545,8 @@
       "DAL",
       "WAS",
       "BOS",
-      "ATL"
+      "ATL",
+      "GSW"
     ],
     "awards": [
       "Champion",
@@ -95759,7 +95815,8 @@
       "MIN",
       "GSW",
       "MIA",
-      "UTA"
+      "UTA",
+      "MEM"
     ],
     "awards": [],
     "allStar": false,
@@ -99555,7 +99612,8 @@
     "id": "leonard-miller",
     "name": "Leonard Miller",
     "teams": [
-      "MIN"
+      "MIN",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -100779,7 +100837,8 @@
       "LAL",
       "NOP",
       "CHI",
-      "CLE"
+      "CLE",
+      "UTA"
     ],
     "awards": [],
     "allStar": false,
@@ -101972,7 +102031,8 @@
       "DET",
       "LAC",
       "MEM",
-      "ATL"
+      "ATL",
+      "LAL"
     ],
     "awards": [],
     "allStar": false,
@@ -103022,7 +103082,16 @@
     "name": "Malaki Branham",
     "teams": [
       "SAS",
-      "WAS"
+      "WAS",
+      "CHA",
+      "DAL",
+      "CHA",
+      "DAL",
+      "CHA",
+      "DAL",
+      "CHA",
+      "DAL",
+      "CHA"
     ],
     "awards": [],
     "allStar": false,
@@ -107051,7 +107120,8 @@
       "SAC",
       "DET",
       "WAS",
-      "MEM"
+      "MEM",
+      "DAL"
     ],
     "awards": [],
     "allStar": false,
@@ -107214,7 +107284,8 @@
       "DET",
       "CHA",
       "LAC",
-      "PHX"
+      "PHX",
+      "OKC"
     ],
     "awards": [],
     "allStar": false,
@@ -111384,7 +111455,15 @@
     "teams": [
       "MEM",
       "UTA",
-      "MIN"
+      "MIN",
+      "CHI",
+      "CHA",
+      "CHI",
+      "CHA",
+      "CHI",
+      "CHA",
+      "CHI",
+      "CHA"
     ],
     "awards": [
       "All-Star"
@@ -116685,7 +116764,8 @@
     "name": "Nick Richards",
     "teams": [
       "CHA",
-      "PHX"
+      "PHX",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -117107,7 +117187,8 @@
       "LAL",
       "TOR",
       "SAC",
-      "PHX"
+      "PHX",
+      "MIL"
     ],
     "awards": [],
     "allStar": false,
@@ -117404,7 +117485,8 @@
     "teams": [
       "PHI",
       "ORL",
-      "CHI"
+      "CHI",
+      "BOS"
     ],
     "awards": [
       "All-Star"
@@ -118465,7 +118547,8 @@
     "name": "Ochai Agbaji",
     "teams": [
       "UTA",
-      "TOR"
+      "TOR",
+      "BKN"
     ],
     "awards": [],
     "allStar": false,
@@ -119878,7 +119961,16 @@
     "id": "ousmane-dieng",
     "name": "Ousmane Dieng",
     "teams": [
-      "OKC"
+      "OKC",
+      "MIL",
+      "CHI",
+      "MIL",
+      "CHI",
+      "MIL",
+      "CHI",
+      "MIL",
+      "CHI",
+      "MIL"
     ],
     "awards": [
       "Champion"
@@ -129728,7 +129820,8 @@
     "id": "rob-dillingham",
     "name": "Rob Dillingham",
     "teams": [
-      "MIN"
+      "MIN",
+      "CHI"
     ],
     "awards": [],
     "allStar": false,
@@ -143346,7 +143439,8 @@
     "id": "taylor-hendricks",
     "name": "Taylor Hendricks",
     "teams": [
-      "UTA"
+      "UTA",
+      "MEM"
     ],
     "awards": [],
     "allStar": false,
@@ -149627,7 +149721,8 @@
     "id": "trayce-jackson-davis",
     "name": "Trayce Jackson-Davis",
     "teams": [
-      "GSW"
+      "GSW",
+      "TOR"
     ],
     "awards": [],
     "allStar": false,
@@ -152353,7 +152448,16 @@
       "MEM",
       "WAS",
       "PHX",
-      "ORL"
+      "ORL",
+      "DAL",
+      "CHA",
+      "DAL",
+      "CHA",
+      "DAL",
+      "CHA",
+      "DAL",
+      "CHA",
+      "DAL"
     ],
     "awards": [],
     "allStar": false,
@@ -153335,7 +153439,8 @@
     "id": "vince-williams-jr",
     "name": "Vince Williams Jr.",
     "teams": [
-      "MEM"
+      "MEM",
+      "UTA"
     ],
     "awards": [],
     "allStar": false,
@@ -153997,7 +154102,8 @@
     "name": "Vít Krejčí",
     "teams": [
       "OKC",
-      "ATL"
+      "ATL",
+      "POR"
     ],
     "awards": [],
     "allStar": false,
@@ -154842,7 +154948,8 @@
     "id": "walter-clayton-jr",
     "name": "Walter Clayton Jr.",
     "teams": [
-      "UTA"
+      "UTA",
+      "MEM"
     ],
     "awards": [],
     "allStar": false,

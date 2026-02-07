@@ -1,7 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { NBAPlayer, getRandomNotablePlayer, getPlayerSuggestions, getTeamLogoUrl, getPlayerPhotoUrl } from "@/lib/nba-data"
+import { NBAPlayer, getRandomNotablePlayer, getPlayerSuggestions } from "@/lib/nba-data"
+import { TeamLogo } from "@/components/common/team-logo"
+import { PlayerPhoto } from "@/components/common/player-photo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -170,11 +172,7 @@ export function GuessGame() {
                       {idx > 0 && <ArrowRight className="w-3 h-3 text-slate-700" />}
                       <div className="flex flex-col items-center gap-2 group cursor-default">
                         <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-lg p-3 flex items-center justify-center transition-all group-hover:border-nba-blue/50 group-hover:bg-nba-blue/10 group-hover:shadow-[0_0_15px_rgba(29,66,138,0.2)]">
-                           <img 
-                            src={getTeamLogoUrl(team)} 
-                            alt={team} 
-                            className="w-full h-full object-contain drop-shadow-md" 
-                           />
+                           <TeamLogo teamId={team} size={64} className="drop-shadow-md w-full h-full" />
                         </div>
                         <span className="text-[10px] font-mono font-bold text-slate-500 group-hover:text-white transition-colors">{team}</span>
                       </div>
@@ -360,10 +358,10 @@ export function GuessGame() {
                       "w-56 h-56 overflow-hidden shadow-2xl relative group ring-4 ring-offset-4 ring-offset-black",
                       status === 'won' ? 'ring-green-500' : 'ring-red-500'
                   )}>
-                    <img
-                      src={getPlayerPhotoUrl(targetPlayer)}
-                      alt={targetPlayer.name}
-                      className="w-full h-full object-cover bg-slate-200 transform group-hover:scale-105 transition-transform duration-700"
+                    <PlayerPhoto
+                      player={targetPlayer}
+                      fill
+                      className="object-cover bg-slate-200 transform group-hover:scale-105 transition-transform duration-700"
                     />
                      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                   </div>

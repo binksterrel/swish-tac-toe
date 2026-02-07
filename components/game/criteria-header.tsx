@@ -2,8 +2,9 @@
 
 import { cn } from "@/lib/utils"
 import { type Criteria, getTeamLogoUrl } from "@/lib/nba-data"
-
 import { Globe, Crown } from "lucide-react"
+import Image from "next/image"
+import { TeamLogo } from "@/components/common/team-logo"
 
 interface CriteriaHeaderProps {
   criteria: Criteria
@@ -86,12 +87,7 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
                     {/* TEAM LOGOS */}
                     {isTeam && logoUrl && (
                         <div className="w-10 h-10 md:w-14 md:h-14 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
-                            <img 
-                                src={logoUrl} 
-                                alt={criteria.value}
-                                className="w-full h-full object-contain"
-                                onError={(e) => { e.currentTarget.style.display = 'none' }}
-                            />
+                            <TeamLogo teamId={criteria.value} size={56} className="w-full h-full" />
                         </div>
                     )}
 
@@ -101,9 +97,11 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
                             {criteria.value.toLowerCase() === "international" ? (
                                 <Globe className="w-8 h-8 md:w-10 md:h-10 text-blue-400" strokeWidth={1.5} />
                             ) : getCountryFlag(criteria.value) ? (
-                                <img
+                                <Image
                                     src={`https://flagcdn.com/w80/${getCountryFlag(criteria.value)}.png`} 
                                     alt={criteria.value} 
+                                    width={80}
+                                    height={60}
                                     className="w-full h-auto object-cover rounded shadow-sm opacity-90 hover:opacity-100"
                                 />
                             ) : (
@@ -138,9 +136,11 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
                     {/* NBA CHAMPION */}
                     {criteria.type === "champion" && (
                          <div className="w-10 h-10 md:w-16 md:h-16 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
-                            <img 
+                            <Image 
                                 src="/images/trophy.png"
                                 alt="NBA Champion"
+                                width={64}
+                                height={64}
                                 className="w-full h-full object-contain"
                             />
                          </div>

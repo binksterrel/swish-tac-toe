@@ -4,7 +4,8 @@ import React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
-import { getPlayerSuggestions, type NBAPlayer, getPlayerPhotoUrl } from "@/lib/nba-data"
+import { getPlayerSuggestions, type NBAPlayer } from "@/lib/nba-data"
+import { PlayerPhoto } from "@/components/common/player-photo"
 import { Search, X, AlertCircle, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -175,13 +176,11 @@ export function PlayerInput({
                     )}
                   >
                     <div className="w-8 h-8 rounded-full bg-muted overflow-hidden flex-shrink-0 border border-border">
-                      <img
-                        src={getPlayerPhotoUrl(player)}
-                        alt={player.name}
-                        className="w-full h-full object-cover scale-110 translate-y-1"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                        }}
+                      <PlayerPhoto
+                        player={player}
+                        width={32}
+                        height={32}
+                        className="object-cover scale-110 translate-y-1"
                       />
                     </div>
                     <div className="flex flex-col flex-1 min-w-0">

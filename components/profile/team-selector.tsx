@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import { Check, ChevronDown } from "lucide-react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { TeamLogo } from "@/components/common/team-logo"
 
 interface TeamSelectorProps {
     value: string | null
@@ -28,7 +29,7 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                 {selectedTeam ? (
                     <div className="flex items-center gap-3">
                          <div className="w-8 h-8 rounded-full flex items-center justify-center p-1 bg-white">
-                             <img src={`https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/${value?.toLowerCase() === 'uta' ? 'utah' : value?.toLowerCase() === 'nop' ? 'no' : value?.toLowerCase() === 'nyk' ? 'ny' : value?.toLowerCase() === 'sas' ? 'sa' : value?.toLowerCase() === 'gsw' ? 'gs' : value?.toLowerCase() === 'phx' ? 'phx' : value?.toLowerCase() === 'bkn' ? 'bkn' : value?.toLowerCase() === 'was' ? 'wsh' : value?.toLowerCase()}.png`} alt={selectedTeam.name} className="w-full h-full object-contain" />
+                             <TeamLogo teamId={value} size={32} />
                          </div>
                          <div className="text-left">
                              <div className="text-xs text-gray-400 font-bold uppercase tracking-wider">{selectedTeam.city}</div>
@@ -63,7 +64,7 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                                 )}
                             >
                                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center p-1 shadow-sm">
-                                      <img src={`https://a.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/${id.toLowerCase() === 'uta' ? 'utah' : id.toLowerCase() === 'nop' ? 'no' : id.toLowerCase() === 'nyk' ? 'ny' : id.toLowerCase() === 'sas' ? 'sa' : id.toLowerCase() === 'gsw' ? 'gs' : id.toLowerCase() === 'phx' ? 'phx' : id.toLowerCase() === 'bkn' ? 'bkn' : id.toLowerCase() === 'was' ? 'wsh' : id.toLowerCase()}.png`} alt={team.name} className="w-full h-full object-contain" />
+                                      <TeamLogo teamId={id} size={32} />
                                  </div>
                                  <div className="flex-1">
                                      <div className="text-[10px] text-gray-500 font-bold uppercase group-hover:text-gray-300">{team.city}</div>
