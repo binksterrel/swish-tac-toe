@@ -91,13 +91,11 @@ export function getTeamLogoUrl(abbreviation: string): string {
 }
 
 
-export function getPlayerPhotoUrl(player: NBAPlayer): string {
+export function getPlayerPhotoUrl(player: NBAPlayer): string | null {
   if (player.nbaId) {
-    return `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.nbaId}.png`
+    return `https://cdn.nba.com/headshots/nba/latest/1040x760/${player.nbaId}.png`
   }
-  // Fallback to a generic player placeholder or a search-based one if possible
-  return `https://nba-players.herokuapp.com/players/${player.id.split('-').reverse().join('/')}` 
-  // Note: herokuapp might be down, so maybe just a nice avatar.
+  return null
 }
 
 import importedPlayers from './players.json'
