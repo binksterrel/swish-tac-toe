@@ -159905,5 +159905,36 @@
     "nbaId": "1642389",
     "active": false,
     "awards_checked": true
+  },
+  {
+    "id": "luka-doncic",
+    "name": "Luka Doncic",
+    "teams": [
+      "DAL",
+      "LAL"
+    ],
+    "awards": [
+      "Rookie of the Year",
+      "All-NBA First Team",
+      "All-Star"
+    ],
+    "allStar": true,
+    "champion": false,
+    "championYears": [],
+    "mvp": false,
+    "dpoy": false,
+    "roy": true,
+    "allNBA": true,
+    "allDefensive": false,
+    "college": "Real Madrid",
+    "country": "Slovenia",
+    "decades": [
+      "2010s",
+      "2020s"
+    ],
+    "ppgCareer": 28.7,
+    "draftYear": 2018,
+    "draftPick": 3,
+    "nbaId": 1629029
   }
 ]
