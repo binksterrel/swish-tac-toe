@@ -82,6 +82,17 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
   const isRoundOver = state.roundStatus === 'round_over' && (state.roundNumber || 1) < 5
   const isFinalGameOver = state.roundStatus === 'finished' || ((state.roundNumber || 1) >= 5 && !!state.winner)
 
+  const [showFinalModal, setShowFinalModal] = useState(false)
+
+  useEffect(() => {
+    if (state.roundStatus === 'finished') {
+      const timer = setTimeout(() => setShowFinalModal(true), 2500)
+      return () => clearTimeout(timer)
+    } else {
+      setShowFinalModal(false)
+    }
+  }, [state.roundStatus])
+
   useEffect(() => {
     if (isRoundOver && !isFinalGameOver) {
       // Start 5 second countdown
@@ -364,7 +375,7 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
       {onNextRound && <RoundOverOverlay state={state} role={role} onNextRound={onNextRound} />}
       
       {/* Game Over Modal (Full Match) */}
-      {state.roundStatus === 'finished' && <BattleGameOverModal state={state} role={role} />}
+      {state.roundStatus === 'finished' && showFinalModal && <BattleGameOverModal state={state} role={role} />}
     </div>
   )
 }

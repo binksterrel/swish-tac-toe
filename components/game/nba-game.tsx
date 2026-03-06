@@ -9,7 +9,7 @@ import { DifficultySelector } from "./difficulty-selector"
 import { GameConfigPanel } from "./game-config-panel"
 import { Button } from "@/components/ui/button"
 import { RotateCcw, HelpCircle, Play } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -27,6 +27,16 @@ export function NBAGame() {
   } = useGameState()
 
   const [showHelp, setShowHelp] = useState(false)
+  const [showGameOverModal, setShowGameOverModal] = useState(false)
+
+  useEffect(() => {
+    if (gameState?.gameOver) {
+      const timer = setTimeout(() => setShowGameOverModal(true), 2500)
+      return () => clearTimeout(timer)
+    } else {
+      setShowGameOverModal(false)
+    }
+  }, [gameState?.gameOver])
 
   if (isLoading || !gameState) {
     return (
@@ -152,7 +162,7 @@ export function NBAGame() {
       )}
 
       {/* Game Over Modal */}
-      {gameState.gameOver && (
+      {showGameOverModal && gameState.gameOver && (
         <GameOverModal
           won={gameState.won}
           score={gameState.score}
