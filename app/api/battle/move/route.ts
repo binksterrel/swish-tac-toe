@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { pusherServer } from '@/lib/pusher'
+import { pusherServer } from '@/lib/pusher-server'
 import { validatePlayerForCell, ALL_NBA_PLAYERS, PLAYER_MAP, PLAYER_NAME_MAP } from '@/lib/nba-data'
 import { checkBattleWinner } from '@/lib/battle-logic'
 import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'

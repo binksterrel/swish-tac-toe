@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { pusherServer } from '@/lib/pusher'
+import { pusherServer } from '@/lib/pusher-server'
 
 interface ChatMessage {
   id: string

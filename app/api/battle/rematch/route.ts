@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { pusherServer } from '@/lib/pusher'
+import { pusherServer } from '@/lib/pusher-server'
 import { supabaseAdmin } from '@/lib/supabase'
 import { BattleState, GridCell, BattleDbUpdate } from '@/lib/battle-types'
 import { generateGrid } from '@/lib/nba-data'

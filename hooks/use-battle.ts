@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { pusherClient } from "@/lib/pusher"
+import { pusherClient } from "@/lib/pusher-client"
 import { BattleState, BattleMove } from "@/lib/battle-types"
 import { NBAPlayer } from "@/lib/nba-data"
 

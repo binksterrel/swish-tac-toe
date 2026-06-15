@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { pusherServer } from '@/lib/pusher'
+import { pusherServer } from '@/lib/pusher-server'
 import { supabaseAdmin } from '@/lib/supabase'
 import { BattleState } from '@/lib/battle-types'
 
