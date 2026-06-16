@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { pusherClient } from "@/lib/pusher"
+import { getPusherClient } from "@/lib/pusher-client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card } from "@/components/ui/card"
@@ -60,7 +60,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
     if (!code) return
 
     // Standardized channel name
-    const channel = pusherClient.subscribe(`battle-${code}`)
+    const channel = getPusherClient().subscribe(`battle-${code}`)
 
     const handleMessage = (msg: ChatMessage) => {
       setMessages(prev => {
@@ -74,7 +74,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
 
     return () => {
       channel.unbind('chat-message', handleMessage)
-      pusherClient.unsubscribe(`battle-${code}`)
+      getPusherClient().unsubscribe(`battle-${code}`)
     }
   }, [code])
 

@@ -7,7 +7,7 @@ import { Trophy, Loader2, ChevronRight, ChevronLeft, Users, RefreshCw, Zap, Glob
 import { toast } from "sonner"
 import { NBA_TEAMS, getTeamLogoUrl } from "@/lib/nba-data"
 import { cn } from "@/lib/utils"
-import { pusherClient } from "@/lib/pusher"
+import { getPusherClient } from "@/lib/pusher-client"
 import { motion, AnimatePresence, Variants } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { useRouter } from "next/navigation"
@@ -115,7 +115,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
 
     fetchOpenBattles()
 
-    const channel = pusherClient.subscribe('lobby-updates')
+    const channel = getPusherClient().subscribe('lobby-updates')
     
     channel.bind('battle-created', (newBattle: OpenBattle) => {
         setOpenBattles(prev => {
@@ -130,7 +130,7 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
     })
 
     return () => {
-        pusherClient.unsubscribe('lobby-updates')
+        getPusherClient().unsubscribe('lobby-updates')
     }
   }, [view, mode])
 
