@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
-import { pusherClient } from "@/lib/pusher-client"
+import { getPusherClient } from "@/lib/pusher-client"
 import { BattleState, BattleMove } from "@/lib/battle-types"
 import { NBAPlayer } from "@/lib/nba-data"
 
@@ -77,7 +77,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
     useEffect(() => {
         if (!code) return
 
-        const channel = pusherClient.subscribe(`battle-${code}`)
+        const channel = getPusherClient().subscribe(`battle-${code}`)
 
         channel.bind('player-joined', (data: { name: string, role: 'guest' }) => {
             toast.info("Opponent Joined!", { description: "Get ready to battle." })
@@ -149,7 +149,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
         })
 
         return () => {
-            pusherClient.unsubscribe(`battle-${code}`)
+            getPusherClient().unsubscribe(`battle-${code}`)
         }
     }, [code, role, state?.players.host?.name, state?.players.guest?.name])
 
