@@ -7,8 +7,6 @@ export function getPusherClient(): PusherClient {
     throw new Error("getPusherClient() must be called in browser context")
   }
   if (!_client) {
-    // Dynamic require avoids module-level instantiation during SSR prerender
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const PusherJS = require("pusher-js") as typeof PusherClient
     _client = new PusherJS(process.env.NEXT_PUBLIC_PUSHER_KEY!, {
       cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER!,
