@@ -141,10 +141,14 @@ export function useBattle(code: string, initialPlayerName?: string) {
 
         // Listen for timeout events from server
         channel.bind('timeout', (newState: BattleState) => {
-            toast.warning("Time's Up!", { 
+            toast.warning("Time's Up!", {
                 description: `Turn passed to ${newState.currentTurn === 'host' ? 'Host' : 'Guest'}`,
-                duration: 3000 
+                duration: 3000
             })
+            setState(parseState(newState))
+        })
+
+        channel.bind('turn-passed', (newState: BattleState) => {
             setState(parseState(newState))
         })
 
@@ -268,6 +272,29 @@ export function useBattle(code: string, initialPlayerName?: string) {
         })
     }
 
+    const passTurn = async () => {
+        if (!state || !role) return
+        if (state.currentTurn !== role) return
+
+        setState(prev => prev ? { ...prev, currentTurn: role === 'host' ? 'guest' : 'host' } : null)
+
+        try {
+            const res = await fetch('/api/battle/pass-turn', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code, role })
+            })
+            const data = await res.json()
+            if (!data.success) {
+                setState(state)
+                toast.error("Impossible de passer le tour")
+            }
+        } catch {
+            setState(state)
+            toast.error("Erreur réseau")
+        }
+    }
+
     const handleNextRound = async (action: 'continue' | 'forfeit') => {
         if (!code || !role) return
         
@@ -291,6 +318,7 @@ export function useBattle(code: string, initialPlayerName?: string) {
         setRole,
         submitMove,
         voteSkip,
+        passTurn,
         handleNextRound,
         error
     }

@@ -5,7 +5,7 @@ import { Criteria } from "@/lib/nba-data"
 import { motion, AnimatePresence } from "framer-motion"
 import { CriteriaHeader } from "../game/criteria-header" // Reusing
 import { cn } from "@/lib/utils"
-import { Check, X, Loader2, SkipForward } from "lucide-react"
+import { Check, X, Loader2, SkipForward, ChevronsRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { TeamLogo } from "@/components/common/team-logo"
 import { PlayerPhoto } from "@/components/common/player-photo"
@@ -16,6 +16,7 @@ interface BattleGridProps {
   onCellClick: (row: number, col: number) => void
   selectedCell: { row: number, col: number } | null
   onVoteSkip?: () => void
+  onPassTurn?: () => void
 }
 
 import { useEffect, useState, useMemo, useRef } from "react"
@@ -24,7 +25,7 @@ import { BattleGameOverModal } from "./battle-game-over-modal"
 import { useLanguage } from "@/contexts/language-context"
 // ... imports
 
-export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip, onNextRound }: BattleGridProps & { onNextRound?: (action: 'continue' | 'forfeit') => void }) {
+export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip, onPassTurn, onNextRound }: BattleGridProps & { onNextRound?: (action: 'continue' | 'forfeit') => void }) {
   const { t } = useLanguage()
   const { grid, criteria, turnExpiry } = state
   const isMyTurn = state.currentTurn === role
@@ -73,6 +74,19 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
           })
       } finally {
           setIsSkipping(false)
+      }
+  }
+
+  // Pass Turn Logic
+  const [isPassing, setIsPassing] = useState(false)
+
+  const handlePassTurn = async () => {
+      if (!isMyTurn || isGameOver || isPassing) return
+      setIsPassing(true)
+      try {
+          if (onPassTurn) onPassTurn()
+      } finally {
+          setIsPassing(false)
       }
   }
 
@@ -249,11 +263,36 @@ export function BattleGrid({ state, role, onCellClick, selectedCell, onVoteSkip,
              })()}
              
              {/* Central Timer */}
-             <div className="flex flex-col items-center z-10">
-                <div className="mb-2">
-                    <GameTimer time={timeLeft} variant={timeLeft <= 10 ? "danger" : "default"} />
-                </div>
+             <div className="flex flex-col items-center z-10 gap-2">
+                <GameTimer time={timeLeft} variant={timeLeft <= 10 ? "danger" : "default"} />
                 <div className="text-[10px] text-zinc-500 uppercase tracking-widest font-mono">VS</div>
+                <AnimatePresence>
+                  {isMyTurn && !isGameOver && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={handlePassTurn}
+                        disabled={isPassing}
+                        className="h-7 px-3 text-[10px] uppercase tracking-widest rounded-full border border-white/10 text-slate-500 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+                      >
+                        {isPassing ? (
+                          <Loader2 className="w-3 h-3 animate-spin" />
+                        ) : (
+                          <span className="flex items-center gap-1">
+                            <ChevronsRight className="w-3 h-3" />
+                            {t('battle.pass_turn')}
+                          </span>
+                        )}
+                      </Button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
              </div>
 
              {/* Guest */}
