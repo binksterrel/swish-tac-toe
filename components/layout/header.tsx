@@ -126,7 +126,14 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] border-l border-line bg-surface p-s24 text-ink">
               <SheetHeader className="p-0">
-                <SheetTitle className="text-left"><Wordmark /></SheetTitle>
+                <SheetTitle className="text-left">
+                  <SheetClose asChild>
+                    <Link href="/" aria-label="Swish Tac Toe" className={FOCUS}>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- static SVG logo */}
+                      <img src="/brand/logo-swish-dark.svg" alt="" width={380} height={196} className="block h-14 w-auto" />
+                    </Link>
+                  </SheetClose>
+                </SheetTitle>
               </SheetHeader>
 
               <nav className="mt-s24 flex flex-col">
