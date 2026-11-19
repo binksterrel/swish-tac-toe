@@ -1,84 +1,77 @@
+"use client"
 
-import React from 'react';
-import { NBAPlayer, getModernTeam } from '@/lib/nba-data';
-import { TeamLogo } from '@/components/common/team-logo';
-import { PlayerPhoto } from '@/components/common/player-photo';
+import React from "react"
+import { NBAPlayer, getModernTeam } from "@/lib/nba-data"
+import { TeamLogo } from "@/components/common/team-logo"
+import { PlayerPhoto } from "@/components/common/player-photo"
+import { useLanguage } from "@/contexts/language-context"
 
 interface PlayerCardProps {
-  player: NBAPlayer;
+  player: NBAPlayer
 }
 
+// Max team logos shown before collapsing into "+N" (keeps 2-up mobile cards one line tall)
+const MAX_TEAMS = 5
+
 export function PlayerCard({ player }: PlayerCardProps) {
-  // Determine major awards to display as badges
-  const badges = [];
-  if (player.mvp) badges.push({ label: 'MVP', color: 'bg-yellow-500' });
-  if (player.champion) badges.push({ label: 'CHAMP', color: 'bg-yellow-400' });
-  if (player.allStar) badges.push({ label: 'ALL-STAR', color: 'bg-blue-500' });
-  if (player.dpoy) badges.push({ label: 'DPOY', color: 'bg-red-500' });
-  if (player.roy) badges.push({ label: 'ROY', color: 'bg-green-500' });
+  const { language } = useLanguage()
+  const fr = language === "fr"
+
+  const badges: { label: string; color: string }[] = []
+  if (player.mvp) badges.push({ label: "MVP", color: "bg-brand-blue" })
+  if (player.champion) badges.push({ label: fr ? "Champion" : "Champ", color: "bg-brand-blue" })
+  if (player.allStar) badges.push({ label: "All-Star", color: "bg-brand-blue" })
+  if (player.dpoy) badges.push({ label: "DPOY", color: "bg-action" })
+  if (player.roy) badges.push({ label: "ROY", color: "bg-success" })
+
+  const teams = Array.from(new Set(player.teams.map((t) => getModernTeam(t))))
+  const status = player.active ? (fr ? "En activité" : "Active") : fr ? "Retraité" : "Retired"
 
   return (
-    <div className="bg-slate-900 border border-slate-700 rounded-sm overflow-hidden flex flex-col h-full shadow-lg hover:border-blue-500 transition-colors duration-200">
-      {/* Header / Photo Area */}
-      <div className="relative h-48 bg-gradient-to-b from-slate-800 to-slate-900 flex items-center justify-center p-4 overflow-hidden group">
-         {/* Background Team Logo Pattern (Optional nice touch) */}
-         <div className="absolute inset-0 opacity-5 flex flex-wrap justify-center items-center content-center pointer-events-none">
-            {player.teams[0] && (
-                <TeamLogo teamId={player.teams[0]} size={128} className="grayscale opacity-80" />
-            )}
-         </div>
-
-        {/* Player Headshot */}
-        <div className="relative z-10 h-full w-full flex items-center justify-center">
-          <div className="relative h-full w-full">
-            <PlayerPhoto
-              player={player}
-              fill
-              className="object-contain drop-shadow-xl transition-transform group-hover:scale-105"
-            />
-          </div>
+    <div className="flex h-full flex-col overflow-hidden rounded-nested border border-line bg-surface transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:border-brand-blue-soft">
+      {/* Photo */}
+      <div className="relative h-28 sm:h-48 overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-5">
+          {player.teams[0] && <TeamLogo teamId={player.teams[0]} size={128} className="grayscale" />}
         </div>
-        
-        {/* Badges Overlay */}
-        <div className="absolute top-2 right-2 flex flex-col gap-1 z-20">
-          {badges.map((badge, idx) => (
-            <span key={idx} className={`text-[9px] font-bold px-1.5 py-0.5 rounded-sm text-white ${badge.color} shadow-sm border border-black/20`}>
-              {badge.label}
-            </span>
-          ))}
+        <div className="relative z-10 h-full w-full">
+          <PlayerPhoto player={player} fill className="object-contain object-bottom" />
         </div>
       </div>
 
-      {/* Info Body */}
-      <div className="p-3 flex-1 flex flex-col">
-        <h3 className="text-white text-lg font-bold font-oswald leading-tight uppercase truncate">
-          {player.name}
-        </h3>
-        
-        <div className="flex items-center gap-2 text-xs text-slate-400 mt-1 mb-3">
-             <span>{(player.position || 'N/A').split(/[-/]/)[0]}</span>
-             <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
-             <span>{player.active ? 'Active' : 'Retired'}</span>
-             {player.country && player.country !== 'USA' && (
-                 <>
-                    <span className="w-1 h-1 bg-slate-600 rounded-full"></span>
-                    <span>{player.country}</span>
-                 </>
-             )}
+      {/* Info */}
+      <div className="flex flex-1 flex-col gap-s8 border-t border-line p-s8 sm:p-s16">
+        <div className="min-w-0">
+          <h3 className="truncate text-meta sm:text-lead font-semibold leading-tight text-ink">{player.name}</h3>
+          <p className="mt-[2px] truncate text-[11px] sm:text-meta text-ink-muted">
+            {(player.position || "N/A").split(/[-/]/)[0]} · {status}
+            {player.country && player.country !== "USA" ? ` · ${player.country}` : ""}
+          </p>
         </div>
 
-        {/* Team History Strip */}
-        <div className="mt-auto">
-            <div className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-1.5">Career History</div>
-            <div className="flex flex-wrap gap-1">
-                {Array.from(new Set(player.teams.map(t => getModernTeam(t)))).map((team) => (
-                    <div key={team} className="w-6 h-6 bg-white p-0.5 rounded-sm flex items-center justify-center border border-slate-300" title={team}>
-                        <TeamLogo teamId={team} size={24} className="w-full h-full" />
-                    </div>
-                ))}
-            </div>
+        {/* Awards: a row under the name, never on top of the face */}
+        {badges.length > 0 && (
+          <div className="flex flex-wrap gap-[4px]">
+            {badges.map((badge) => (
+              <span key={badge.label} className={`rounded-[4px] px-[6px] py-[1px] text-[10px] font-semibold text-white ${badge.color}`}>
+                {badge.label}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Teams */}
+        <div className="mt-auto flex items-center gap-[4px]" aria-label={fr ? "Équipes" : "Teams"}>
+          {teams.slice(0, MAX_TEAMS).map((team) => (
+            <span key={team} className="flex size-5 sm:size-6 items-center justify-center rounded-[4px] bg-white p-[2px]" title={team}>
+              <TeamLogo teamId={team} size={24} className="h-full w-full" />
+            </span>
+          ))}
+          {teams.length > MAX_TEAMS && (
+            <span className="text-[11px] font-medium text-ink-muted">+{teams.length - MAX_TEAMS}</span>
+          )}
         </div>
       </div>
     </div>
-  );
+  )
 }

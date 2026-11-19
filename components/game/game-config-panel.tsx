@@ -1,8 +1,9 @@
 "use client"
 
+import type { ReactNode } from "react"
 import { DifficultySelector } from "./difficulty-selector"
 import { GridSizeSelector } from "./grid-size-selector"
-import { ModeCard } from "./mode-card"
+import { ModeSelector, MODE_LABELS, modeDetail } from "./mode-card"
 
 interface GameConfigPanelProps {
   difficulty: "easy" | "medium" | "hard"
@@ -11,6 +12,8 @@ interface GameConfigPanelProps {
   onDifficultyChange: (difficulty: "easy" | "medium" | "hard") => void
   onModeChange: (mode: "classic" | "time_attack" | "sudden_death" | "blind") => void
   onGridSizeChange: (size: number) => void
+  /** Start / rules / reset, shown in the panel footer */
+  actions?: ReactNode
 }
 
 export function GameConfigPanel({
@@ -20,50 +23,21 @@ export function GameConfigPanel({
   onDifficultyChange,
   onModeChange,
   onGridSizeChange,
+  actions,
 }: GameConfigPanelProps) {
   return (
-    <div className="w-full bg-card/20 backdrop-blur-sm border border-border/30 rounded-lg p-3 space-y-2">
-      {/* Single row layout */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        {/* Difficulty */}
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Difficulté
-          </span>
-          <DifficultySelector
-            difficulty={difficulty}
-            onSelect={onDifficultyChange}
-          />
-        </div>
-
-        {/* Grid Size */}
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Grille
-          </span>
-          <GridSizeSelector
-            size={gridSize}
-            onSelect={onGridSizeChange}
-          />
-        </div>
-
-        {/* Mode */}
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-            Mode
-          </span>
-          <div className="flex gap-2">
-            {(["classic", "time_attack", "sudden_death", "blind"] as const).map((m) => (
-              <ModeCard
-                key={m}
-                mode={m}
-                isSelected={mode === m}
-                onSelect={() => onModeChange(m)}
-                gridSize={gridSize}
-              />
-            ))}
-          </div>
-        </div>
+    <div className="rounded-ref border border-line bg-surface p-s16 md:p-s24">
+      <div className="flex flex-wrap items-end gap-s16 md:gap-s24">
+        <DifficultySelector difficulty={difficulty} onSelect={onDifficultyChange} />
+        <GridSizeSelector size={gridSize} onSelect={onGridSizeChange} />
+        <ModeSelector mode={mode} gridSize={gridSize} onSelect={onModeChange} />
+      </div>
+      {/* Footer: summary on the left, actions on the right (stacked on phones) */}
+      <div className="mt-s16 flex flex-col gap-s16 border-t border-line pt-s16 md:mt-s24 md:flex-row md:items-center md:justify-between md:pt-s24">
+        <p className="text-meta text-ink-muted">
+          <span className="font-semibold text-ink-soft">{MODE_LABELS[mode]}</span> · {modeDetail(mode, gridSize)}
+        </p>
+        {actions}
       </div>
     </div>
   )

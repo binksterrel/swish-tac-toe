@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { BattleGrid } from "@/components/battle/battle-grid"
-import { Header } from "@/components/layout/header"
+import { Header, SiteFooter } from "@/components/layout/header"
 import { NBATicker } from "@/components/layout/nba-ticker"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -67,29 +67,29 @@ export default function LocalBattlePage() {
     // Setup Screen
     if (!state) {
         return (
-            <div className="min-h-screen bg-black text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a0a] to-black">
+            <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans">
                 <NBATicker />
                 <Header />
                 <div className="container mx-auto px-4 py-8 flex items-center justify-center min-h-[70vh]">
-                    <div className="w-full max-w-2xl bg-black/40 border border-white/10 rounded-xl p-6 backdrop-blur-xl relative overflow-hidden">
+                    <div className="w-full max-w-2xl bg-black/40 border border-line rounded-xl p-6 backdrop-blur-xl relative overflow-hidden">
                         
                         <Button 
                             variant="ghost" 
                             size="icon" 
-                            className="absolute left-4 top-4 text-slate-400 hover:text-white z-20"
+                            className="absolute left-4 top-4 text-ink-muted hover:text-white z-20"
                             onClick={() => router.push('/battle')}
                         >
                             <ArrowLeft className="w-5 h-5" />
                         </Button>
 
                         <div className="text-center mb-6">
-                            <div className="inline-flex items-center justify-center p-2 rounded-full bg-white/5 border border-white/10 mb-3">
+                            <div className="inline-flex items-center justify-center p-2 rounded-full bg-surface-2 border border-line mb-3">
                                 <Swords className="w-5 h-5 text-white" />
                             </div>
                             <h1 className="text-3xl md:text-4xl font-heading font-bold uppercase italic tracking-tighter text-white mb-1">
                                 Local Arena
                             </h1>
-                            <p className="text-slate-400 uppercase tracking-widest text-[10px] font-bold">1 Écran • 2 Joueurs • Gloire Éternelle</p>
+                            <p className="text-ink-muted uppercase tracking-widest text-[10px] font-bold">1 Écran • 2 Joueurs • Gloire Éternelle</p>
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-6 items-center relative">
@@ -100,14 +100,13 @@ export default function LocalBattlePage() {
 
                             {/* Player 1 */}
                             <div className="space-y-4 p-4 rounded-lg bg-nba-blue/10 border border-nba-blue/30 relative group">
-                                <div className="absolute inset-0 bg-nba-blue/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
-                                <h3 className="text-nba-blue font-heading font-bold text-xl uppercase text-center">Joueur 1</h3>
+                                <h3 className="text-brand-blue-soft font-heading font-bold text-xl uppercase text-center">Joueur 1</h3>
                                 
                                 <div className="flex items-center justify-center gap-2">
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p1Team); setP1Team(teamKeys[i-1] || teamKeys[teamKeys.length-1])
                                     }}><ChevronLeft className="w-4 h-4" /></Button>
-                                    <TeamLogo teamId={p1Team} size={64} className="drop-shadow-md" />
+                                    <TeamLogo teamId={p1Team} size={64} className="" />
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p1Team); setP1Team(teamKeys[i+1] || teamKeys[0])
                                     }}><ChevronRight className="w-4 h-4" /></Button>
@@ -122,14 +121,13 @@ export default function LocalBattlePage() {
 
                             {/* Player 2 */}
                             <div className="space-y-4 p-4 rounded-lg bg-nba-red/10 border border-nba-red/30 relative group">
-                                <div className="absolute inset-0 bg-nba-red/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
-                                <h3 className="text-nba-red font-heading font-bold text-xl uppercase text-center">Joueur 2</h3>
+                                <h3 className="text-action font-heading font-bold text-xl uppercase text-center">Joueur 2</h3>
                                 
                                 <div className="flex items-center justify-center gap-2">
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p2Team); setP2Team(teamKeys[i-1] || teamKeys[teamKeys.length-1])
                                     }}><ChevronLeft className="w-4 h-4" /></Button>
-                                    <TeamLogo teamId={p2Team} size={64} className="drop-shadow-md" />
+                                    <TeamLogo teamId={p2Team} size={64} className="" />
                                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => {
                                         const i = teamKeys.indexOf(p2Team); setP2Team(teamKeys[i+1] || teamKeys[0])
                                     }}><ChevronRight className="w-4 h-4" /></Button>
@@ -145,14 +143,14 @@ export default function LocalBattlePage() {
 
                         {/* Difficulty & Start */}
                         <div className="mt-8 flex flex-col items-center gap-4">
-                            <div className="flex gap-1 bg-black/30 p-1 rounded border border-white/10">
+                            <div className="flex gap-1 bg-black/30 p-1 rounded border border-line">
                                 {['easy', 'medium', 'hard'].map(d => (
                                     <button 
                                         key={d}
                                         onClick={() => setDifficulty(d)}
                                         className={cn(
                                             "px-3 py-1.5 rounded text-[10px] font-bold uppercase transition-all",
-                                            difficulty === d ? "bg-white text-black shadow-sm" : "text-slate-500 hover:text-white"
+                                            difficulty === d ? "bg-white text-black shadow-sm" : "text-ink-muted hover:text-white"
                                         )}
                                     >
                                         {d}
@@ -163,7 +161,7 @@ export default function LocalBattlePage() {
                             <Button 
                                 onClick={handleStart}
                                 disabled={!p1Name || !p2Name}
-                                className="w-full max-w-xs h-12 text-lg font-heading uppercase tracking-widest bg-white text-black hover:bg-slate-200 shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all transform hover:scale-105"
+                                className="w-full max-w-xs h-12 text-lg font-heading uppercase tracking-widest bg-white text-black hover:bg-ink-muted shadow-soft transition-all transform hover:scale-105"
                             >
                                 Commencer le Duel
                             </Button>
@@ -171,13 +169,14 @@ export default function LocalBattlePage() {
 
                     </div>
                 </div>
+                <div className="mt-auto"><SiteFooter /></div>
             </div>
         )
     }
 
     // Game Interface
     return (
-        <div className="min-h-screen bg-black text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a0a] to-black">
+        <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans">
             <NBATicker />
             <Header />
             <div className="container mx-auto px-4 py-8">
@@ -197,7 +196,7 @@ export default function LocalBattlePage() {
                 
                 {selectedCell && (
                     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-4 animate-in fade-in duration-200">
-                        <div className="w-full max-w-lg bg-gray-900 border border-gray-800 rounded-xl p-4 shadow-2xl">
+                        <div className="w-full max-w-lg bg-surface border border-line rounded-xl p-4 shadow-raised">
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="uppercase font-bold">
                                         {state.currentTurn === 'host' ? state.players.host?.name : state.players.guest?.name}, Choisis!
@@ -219,6 +218,7 @@ export default function LocalBattlePage() {
                     </div>
                 )}
             </div>
+            <div className="mt-auto"><SiteFooter /></div>
         </div>
     )
 }

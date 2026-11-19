@@ -1,9 +1,8 @@
 "use client"
 
+import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
-import { Trophy, Target, Zap } from "lucide-react"
 import { GameTimer } from "./game-timer"
-
 import { useLanguage } from "@/contexts/language-context"
 
 interface ScorePanelProps {
@@ -17,6 +16,16 @@ interface ScorePanelProps {
   gridSize?: number
 }
 
+function Stat({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-col gap-[4px] sm:gap-s8">
+      <span className="truncate text-[11px] sm:text-meta text-ink-muted">{label}</span>
+      <span className="font-heading text-lead sm:text-display-sm font-bold tabular-nums text-ink">{children}</span>
+    </div>
+  )
+}
+
+/** Scoreboard strip: four readouts separated by hairlines. */
 export function ScorePanel({
   score,
   attempts,
@@ -30,62 +39,24 @@ export function ScorePanel({
   const { t } = useLanguage()
   const remainingAttempts = maxAttempts - attempts
   const totalCells = gridSize * gridSize
-
   const displayTime = mode === "time_attack" ? (timeLeft ?? 0) : gameTime
   const isTimeCritical = mode === "time_attack" && (timeLeft ?? 0) < 30
+  const lowAttempts = remainingAttempts <= 3 && mode !== "blind"
 
   return (
-    <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
-      {/* Score */}
-      <div className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-2 md:px-4 md:py-2">
-        <Trophy className="w-4 h-4 md:w-5 md:h-5 text-accent" />
-        <div className="flex flex-col">
-          <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider">
-            {t('game.score')}
-          </span>
-          <span className="text-lg md:text-xl font-bold text-foreground">
-            {score}
-          </span>
-        </div>
-      </div>
-      
-      {/* Timer (Moved here) */}
+    <div className="grid grid-cols-4 rounded-ref border border-line bg-surface [&>*]:min-w-0 [&>*]:px-s8 [&>*]:py-s8 sm:[&>*]:p-s16 md:[&>*]:px-s24 [&>*]:border-line [&>*:not(:last-child)]:border-r">
+      <Stat label={t("game.score")}>{score}</Stat>
       <GameTimer time={displayTime} variant={isTimeCritical ? "danger" : "default"} />
-
-      {/* Correct Cells */}
-      <div className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-2 md:px-4 md:py-2">
-        <Target className="w-4 h-4 md:w-5 md:h-5 text-success" />
-        <div className="flex flex-col">
-          <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider">
-            {t('game.found')}
-          </span>
-          <span className="text-lg md:text-xl font-bold text-foreground">
-            {correctCells}/{totalCells}
-          </span>
-        </div>
-      </div>
-
-      {/* Remaining Attempts */}
-      <div className="flex items-center gap-2 bg-card border border-border rounded-lg px-3 py-2 md:px-4 md:py-2">
-        <Zap
-          className={cn(
-            "w-4 h-4 md:w-5 md:h-5",
-            remainingAttempts <= 3 ? "text-destructive" : "text-primary"
-          )}
-        />
-        <div className="flex flex-col">
-          <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider">
-            {t('game.attempts')}
-          </span>
-          <span
-            className={cn(
-              "text-lg md:text-xl font-bold",
-              remainingAttempts <= 3 ? "text-destructive" : "text-foreground"
-            )}
-          >
-            {remainingAttempts}
-          </span>
-        </div>
+      <Stat label={t("game.found")}>
+        {correctCells}
+        <span className="text-ink-muted">/{totalCells}</span>
+      </Stat>
+      <div className="flex flex-col gap-[4px] sm:gap-s8">
+        <span className="truncate text-[11px] sm:text-meta text-ink-muted">{t("game.attempts")}</span>
+        <span className={cn("font-heading text-lead sm:text-display-sm font-bold tabular-nums", lowAttempts ? "text-action" : "text-ink")}>
+          {mode === "blind" ? "∞" : remainingAttempts}
+          {mode !== "blind" && <span className="text-ink-muted">/{maxAttempts}</span>}
+        </span>
       </div>
     </div>
   )

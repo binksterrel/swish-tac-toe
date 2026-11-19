@@ -35,9 +35,14 @@ export function GameGrid({
   const gridColsClass = size === 3 ? "grid-cols-4" : size === 4 ? "grid-cols-5" : "grid-cols-6"
 
   return (
-    <div className={cn("w-full mx-auto", size > 3 ? "max-w-4xl" : "max-w-2xl")}>
+    <div
+      className="w-full mx-auto"
+      // The grid is square (header row + header column), so capping its width
+      // by the viewport height keeps scoreboard + grid visible at once.
+      style={{ maxWidth: `min(${size > 3 ? "56rem" : "42rem"}, max(300px, calc(100dvh - 160px)))` }}
+    >
       {/* Grid container */}
-      <div className={cn("grid gap-1 md:gap-2", gridColsClass)}>
+      <div className={cn("grid gap-[4px] sm:gap-s8", gridColsClass)}>
         {/* Empty corner */}
         <div className="aspect-square" />
         

@@ -7,9 +7,9 @@ import { useBattle } from "@/hooks/use-battle"
 import { BattleGrid } from "@/components/battle/battle-grid"
 import { PlayerInput } from "@/components/game/player-input" // Reusing
 import { NBAPlayer } from "@/lib/nba-data"
-import { Header } from "@/components/layout/header" // Adjusted import
-import { Loader2, AlertTriangle, Share2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Header, SiteFooter } from "@/components/layout/header"
+import { useLanguage } from "@/contexts/language-context"
+import { Loader2, Copy, Check } from "lucide-react"
 
 import { NBATicker } from "@/components/layout/nba-ticker"
 
@@ -23,6 +23,7 @@ export default function BattleRoom() {
     const { state, role, setRole, submitMove, voteSkip, passTurn, handleNextRound } = useBattle(code, nameParam || "")
     const [selectedCell, setSelectedCell] = useState<{row: number, col: number} | null>(null)
     const [copySuccess, setCopySuccess] = useState(false)
+    const { t } = useLanguage()
 
     useEffect(() => {
         if (roleParam) setRole(roleParam)
@@ -41,49 +42,56 @@ export default function BattleRoom() {
         }
     }
 
-    if (!role) return <div className="text-white">Accès Invalide</div>
+    const shell = (children: React.ReactNode) => (
+        <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans text-body">
+            <NBATicker />
+            <Header />
+            <main className="flex flex-1 items-center justify-center px-s16 py-s48">{children}</main>
+            <SiteFooter />
+        </div>
+    )
 
-    if (!state) return (
-        <div className="min-h-screen bg-black flex items-center justify-center text-white">
-            <Loader2 className="w-8 h-8 animate-spin" />
-            <span className="ml-2 uppercase font-bold">Connexion au stade...</span>
+    if (!role) return shell(<p className="text-ink-muted">Accès invalide.</p>)
+
+    if (!state) return shell(
+        <div className="flex items-center gap-s16 text-ink-muted">
+            <Loader2 className="size-5 animate-spin" strokeWidth={1.75} />
+            <span className="text-meta">Connexion à la salle…</span>
         </div>
     )
 
     // Waiting Room UI
     if (!state.players.guest && role === 'host') {
-        return (
-             <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
-                 <div className="max-w-md w-full text-center bg-gray-900/50 p-8 rounded-xl border border-white/10 animate-in zoom-in">
-                    <h1 className="text-4xl font-heading uppercase italic mb-2">Lobby Prêt</h1>
-                    <p className="text-slate-400 mb-8">Partage ce code avec ton adversaire</p>
-                    
-                    <div 
-                        onClick={handleCopyCode}
-                        className="bg-black border-2 border-nba-blue rounded-lg p-6 mb-4 cursor-pointer hover:bg-nba-blue/10 transition-colors group relative"
-                    >
-                        <div className="text-5xl font-mono font-bold tracking-[0.2em]">{code}</div>
-                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                            <Share2 className="w-4 h-4 text-slate-400" />
-                        </div>
-                    </div>
-                    
-                    {copySuccess && <p className="text-green-400 text-sm font-bold uppercase mb-4">Code Copié!</p>}
-                    
-                    <div className="flex items-center justify-center gap-2 text-slate-500 animate-pulse">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span className="text-xs uppercase tracking-widest">En attente du Joueur 2...</span>
-                    </div>
-                 </div>
-             </div>
+        return shell(
+            <div className="w-full max-w-md rounded-ref border border-line bg-surface p-s24 md:p-s32 text-center shadow-window animate-in fade-in zoom-in-95 duration-200 ease-out">
+                <p className="font-heading text-meta font-semibold uppercase tracking-wider text-ink-muted">{t('battle.lobby_ready')}</p>
+                <h1 className="mt-s8 font-heading text-display-sm font-bold uppercase tracking-tight text-ink">{t('battle.share_code')}</h1>
+
+                <button
+                    type="button"
+                    onClick={handleCopyCode}
+                    className="group mt-s24 flex w-full items-center justify-between gap-s16 rounded-nested border border-line bg-canvas px-s24 py-s16 transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+                >
+                    <span className="font-heading text-display-sm font-bold tabular-nums tracking-[0.12em] text-ink">{code}</span>
+                    <span className="inline-flex items-center gap-s8 text-meta text-ink-muted group-hover:text-ink">
+                        {copySuccess ? <Check className="size-4 text-success" strokeWidth={1.75} /> : <Copy className="size-4" strokeWidth={1.75} />}
+                        {copySuccess ? t('battle.code_copied') : 'Copier'}
+                    </span>
+                </button>
+
+                <p className="mt-s24 inline-flex items-center gap-s8 text-meta text-ink-muted">
+                    <Loader2 className="size-4 animate-spin" strokeWidth={1.75} />
+                    {t('battle.waiting_p2')}
+                </p>
+            </div>
         )
     }
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans text-body">
             <NBATicker />
             <Header />
-            <div className="container mx-auto px-4 py-8">
+            <div className="flex-1 w-full max-w-5xl mx-auto px-s16 md:px-s32 py-s32">
                 <BattleGrid 
                     state={state} 
                     role={role}
@@ -95,27 +103,17 @@ export default function BattleRoom() {
                 />
                 
                 {selectedCell && (
-                    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-end md:items-center justify-center p-4 animate-in fade-in duration-200">
-                        <div className="w-full max-w-lg bg-gray-900 border border-gray-800 rounded-xl p-4 shadow-2xl">
-                             <div className="flex justify-between items-center mb-4">
-                                 <h3 className="uppercase font-bold">Choisis un Joueur</h3>
-                                 <Button variant="ghost" size="sm" onClick={() => setSelectedCell(null)}>
-                                     Fermer
-                                 </Button>
-                             </div>
-                             <PlayerInput 
-                                onSubmit={handlePlayerSelect}
-                                onCancel={() => setSelectedCell(null)}
-                                usedPlayers={new Set(state.grid.flat().filter(c => c.player).map(c => c.player!.id))}
-                                rowLabel={state.criteria.rows[selectedCell.row]?.label || "Row"}
-                                colLabel={state.criteria.cols[selectedCell.col]?.label || "Column"}
-                                rowType={state.criteria.rows[selectedCell.row]?.type}
-                                colType={state.criteria.cols[selectedCell.col]?.type}
-                             />
-                        </div>
-                    </div>
+                    <PlayerInput
+                        onSubmit={handlePlayerSelect}
+                        onCancel={() => setSelectedCell(null)}
+                        usedPlayers={new Set(state.grid.flat().filter(c => c.player).map(c => c.player!.id))}
+                        rowLabel={state.criteria.rows[selectedCell.row]?.label || "Row"}
+                        colLabel={state.criteria.cols[selectedCell.col]?.label || "Column"}
+                        rowType={state.criteria.rows[selectedCell.row]?.type}
+                        colType={state.criteria.cols[selectedCell.col]?.type}
+                    />
                 )}
-                
+
                 <BattleChat 
                     code={code}
                     role={role}
@@ -123,6 +121,7 @@ export default function BattleRoom() {
                     opponentName={state.players[role === 'host' ? 'guest' : 'host']?.name}
                 />
             </div>
+            <SiteFooter />
         </div>
     )
 }

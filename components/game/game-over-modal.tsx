@@ -1,8 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { Trophy, RotateCcw, Share2, Frown, PartyPopper, Timer } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { RotateCcw, Share2 } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
 interface GameOverModalProps {
@@ -71,74 +70,55 @@ export function GameOverModal({
     }
   }
 
+  const stats: { label: string; value: string }[] = [
+    { label: t("game.score_final"), value: String(score) },
+    { label: t("game.found"), value: `${correctCells}/${totalCells}` },
+    { label: "Précision", value: `${percentage}%` },
+    ...(gameTime > 0 ? [{ label: "Temps", value: formatTime(gameTime) }] : []),
+  ]
+
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-300">
-        {/* Header */}
-        <div
-          className={cn(
-            "p-6 text-center",
-            percentage >= 40 ? "bg-success/20" : "bg-destructive/20"
-          )}
-        >
-          {percentage >= 40 ? (
-            <PartyPopper className="w-16 h-16 mx-auto text-success mb-2" />
-          ) : (
-            <Frown className="w-16 h-16 mx-auto text-destructive mb-2" />
-          )}
-          <h2 className="text-2xl font-bold text-foreground uppercase tracking-wide">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-s16 animate-in fade-in duration-200">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="game-over-title"
+        className="w-full max-w-sm overflow-hidden rounded-ref border border-line bg-surface shadow-window animate-in fade-in zoom-in-95 slide-in-from-bottom-2 duration-200 ease-out"
+      >
+        <div className="p-s24 text-center">
+          <p className="text-meta text-ink-muted">{won ? "Grille complète" : "Fin de partie"}</p>
+          <h2 id="game-over-title" className="mt-s8 font-heading text-display-sm font-bold uppercase tracking-tight text-ink">
             {title}
           </h2>
-          <p className="text-muted-foreground mt-1 text-sm font-medium">
-            {description}
-          </p>
+          <p className="mx-auto mt-s8 max-w-[40ch] text-ink-muted">{description}</p>
         </div>
 
-        {/* Stats */}
-        <div className="p-6 space-y-4">
-          <div className="flex justify-between items-center">
-            <span className="text-muted-foreground">{t('game.score_final')}</span>
-            <span className="text-2xl font-bold text-primary flex items-center gap-2">
-              <Trophy className="w-5 h-5" />
-              {score}
-            </span>
-          </div>
-          
-          {/* Time Display */}
-          {gameTime > 0 && (
-             <div className="flex justify-between items-center">
-               <span className="text-muted-foreground">Temps</span>
-               <span className="text-lg font-semibold text-foreground flex items-center gap-2">
-                 <Timer className="w-4 h-4 text-muted-foreground" />
-                 {formatTime(gameTime)}
-               </span>
-             </div>
-          )}
+        <dl className="grid grid-cols-2 border-y border-line">
+          {stats.map((s, i) => (
+            <div key={s.label} className={cn("p-s16", i % 2 === 0 && "border-r border-line", i < stats.length - 2 && "border-b border-line")}>
+              <dt className="text-meta text-ink-muted">{s.label}</dt>
+              <dd className="mt-s8 font-heading text-display-sm font-bold tabular-nums text-ink">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
 
-          <div className="flex justify-between items-center">
-            <span className="text-muted-foreground">{t('game.found')}</span>
-            <span className="text-lg font-semibold text-foreground">
-              {correctCells}/{totalCells}
-            </span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-muted-foreground">Précision</span>
-            <span className="text-lg font-semibold text-foreground">
-              {percentage}%
-            </span>
-          </div>
-        </div>
-
-        {/* Actions */}
-        <div className="p-4 border-t border-border bg-secondary/30 flex gap-2">
-          <Button variant="outline" onClick={handleShare} className="flex-1 bg-transparent">
-            <Share2 className="w-4 h-4 mr-2" />
-            {t('game.share')}
-          </Button>
-          <Button onClick={onNewGame} className="flex-1">
-            <RotateCcw className="w-4 h-4 mr-2" />
-            {t('game.reset')}
-          </Button>
+        <div className="flex gap-s8 p-s16">
+          <button
+            type="button"
+            onClick={handleShare}
+            className="inline-flex h-11 flex-1 items-center justify-center gap-s8 rounded-nested border border-line font-medium text-ink-soft transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+          >
+            <Share2 className="size-4" strokeWidth={1.75} />
+            {t("game.share")}
+          </button>
+          <button
+            type="button"
+            onClick={onNewGame}
+            className="chamfer inline-flex h-11 flex-1 items-center justify-center gap-s8 bg-action font-heading text-meta font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--color-ink)]"
+          >
+            <RotateCcw className="size-4" strokeWidth={1.75} />
+            {t("game.reset")}
+          </button>
         </div>
       </div>
     </div>

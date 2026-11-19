@@ -1,7 +1,7 @@
 "use client"
 
 import { NBATicker } from "@/components/layout/nba-ticker"
-import { Header } from "@/components/layout/header"
+import { Header, SiteFooter } from "@/components/layout/header"
 import { useLanguage } from "@/contexts/language-context"
 import { useAuth } from "@/contexts/auth-context"
 import { Trophy, TrendingUp, Users, Activity, Medal, Star, Flame, Target, Calendar, PieChart as PieIcon, ArrowUpRight } from "lucide-react"
@@ -29,10 +29,10 @@ export default function StatsPage() {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-black/90 border border-white/10 p-3 rounded shadow-xl">
-          <p className="text-gray-400 text-xs mb-1">{label}</p>
-          <p className="text-white font-bold font-mono text-sm">
-            {payload[0].value} <span className="text-nba-blue">PTS</span>
+        <div className="bg-black/90 border border-line p-3 rounded shadow-raised">
+          <p className="text-ink-muted text-xs mb-1">{label}</p>
+          <p className="text-white font-bold tabular-nums text-sm">
+            {payload[0].value} <span className="text-brand-blue-soft">PTS</span>
           </p>
         </div>
       )
@@ -44,14 +44,12 @@ export default function StatsPage() {
   const avatarUrl = user?.user_metadata?.avatar_url
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-nba-red selection:text-white pb-20">
+    <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans selection:bg-action selection:text-white">
       <NBATicker />
       <Header />
       
       {/* BACKGROUND AMBIANCE */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-nba-blue/5 rounded-full blur-[150px]" />
-          <div className="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-nba-red/5 rounded-full blur-[150px]" />
       </div>
 
       <div className="container mx-auto px-4 py-8 relative z-10">
@@ -65,20 +63,20 @@ export default function StatsPage() {
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden"
+                className="bg-surface-2 backdrop-blur-md border border-line rounded-2xl p-6 md:p-10 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden"
             >
                 {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 p-32 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full pointer-events-none" />
+                <div className="absolute top-0 right-0 p-32 rounded-bl-full pointer-events-none" />
                 
                 {/* Avatar Ring */}
                 <div className="relative group shrink-0">
                     <div className={cn(
                         "absolute -inset-1 rounded-full opacity-70 blur group-hover:opacity-100 transition duration-1000 animate-pulse",
-                        stats ? `bg-gradient-to-tr ${stats.rankData.current.gradient}` : "bg-gradient-to-tr from-nba-blue to-nba-red"
+                        stats ? ` ${stats.rankData.current.gradient}` : "  "
                     )} />
-                    <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-black shadow-2xl relative z-10">
+                    <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-black shadow-raised relative z-10">
                         <AvatarImage src={avatarUrl} className="object-cover" />
-                        <AvatarFallback className="bg-gray-900 text-3xl font-bold font-heading">{displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+                        <AvatarFallback className="bg-surface text-3xl font-bold font-heading">{displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
                     </Avatar>
                     
                     {/* Rank Badge Overlay */}
@@ -96,14 +94,14 @@ export default function StatsPage() {
                             {displayName}
                         </h1>
                         {user ? (
-                            <div className="w-3 h-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.6)] animate-pulse" />
+                            <div className="w-3 h-3 rounded-full bg-success shadow-soft animate-pulse" />
                         ) : (
-                            <div className="w-3 h-3 rounded-full bg-gray-500" />
+                            <div className="w-3 h-3 rounded-full bg-ink-muted" />
                         )}
                     </div>
                     
                     <div className="flex flex-col md:flex-row items-center gap-6 text-sm">
-                        <p className="text-gray-400 font-mono uppercase tracking-widest flex items-center gap-2">
+                        <p className="text-ink-muted tabular-nums uppercase tracking-widest flex items-center gap-2">
                             <Calendar className="w-4 h-4" />
                             Since {new Date().getFullYear()}
                         </p>
@@ -115,19 +113,19 @@ export default function StatsPage() {
                                      <span className={cn("font-bold text-xs uppercase tracking-widest", `text-${stats.rankData.current.color.split('-')[1]}-400`)}>
                                         {stats.rankData.current.label}
                                      </span>
-                                     <span className="text-[10px] text-gray-500 font-mono">
+                                     <span className="text-[10px] text-ink-muted tabular-nums">
                                         {stats.xp} XP
                                      </span>
                                 </div>
-                                <div className="w-48 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                <div className="w-48 h-1.5 bg-surface-2 rounded-full overflow-hidden">
                                      <motion.div 
                                         initial={{ width: 0 }}
                                         animate={{ width: `${stats.rankData.progress}%` }}
                                         transition={{ duration: 1, ease: "easeOut" }}
-                                        className={cn("h-full", `bg-gradient-to-r ${stats.rankData.current.gradient}`)}
+                                        className={cn("h-full", ` ${stats.rankData.current.gradient}`)}
                                      />
                                 </div>
-                                <div className="text-[9px] text-gray-600 uppercase tracking-wider w-full text-right">
+                                <div className="text-[9px] text-ink-muted/50 uppercase tracking-wider w-full text-right">
                                     Next: {stats.rankData.next.label}
                                 </div>
                             </div>
@@ -145,9 +143,9 @@ export default function StatsPage() {
         {!isLoading && stats ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <StatCard icon={<Trophy className="text-[#d4af37]" />} label="Win Rate" value={`${stats.winRate}%`} sub="Global Performance" delay={0.1} />
-                <StatCard icon={<Flame className="text-orange-500" />} label="Current Streak" value={stats.currentStreak} sub="Consecutive Wins" delay={0.2} />
-                <StatCard icon={<Activity className="text-nba-blue" />} label="Matches" value={stats.gamesPlayed} sub="Total Played" delay={0.3} />
-                <StatCard icon={<TrendingUp className="text-green-400" />} label="Avg Score" value={stats.avgScore} sub="Points per Game" delay={0.4} />
+                <StatCard icon={<Flame className="text-brand-blue-soft" />} label="Current Streak" value={stats.currentStreak} sub="Consecutive Wins" delay={0.2} />
+                <StatCard icon={<Activity className="text-brand-blue-soft" />} label="Matches" value={stats.gamesPlayed} sub="Total Played" delay={0.3} />
+                <StatCard icon={<TrendingUp className="text-success" />} label="Avg Score" value={stats.avgScore} sub="Points per Game" delay={0.4} />
             </div>
         ) : (
             <div className="h-32 flex items-center justify-center">
@@ -162,14 +160,14 @@ export default function StatsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="lg:col-span-2 bg-black/40 backdrop-blur-md border border-white/10 rounded-xl p-6 min-h-[350px] relative group"
+                className="lg:col-span-2 bg-black/40 backdrop-blur-md border border-line rounded-xl p-6 min-h-[350px] relative group"
             >
                 <div className="flex items-center justify-between mb-6">
                      <h3 className="text-lg font-bold uppercase tracking-wide flex items-center gap-2">
-                        <TrendingUp className="w-5 h-5 text-nba-red" />
+                        <TrendingUp className="w-5 h-5 text-action" />
                         Score Trajectory (Last 50)
                      </h3>
-                     <div className="px-3 py-1 bg-white/5 rounded text-xs text-gray-400 font-mono">AVG: {stats?.avgScore}</div>
+                     <div className="px-3 py-1 bg-surface-2 rounded text-xs text-ink-muted tabular-nums">AVG: {stats?.avgScore}</div>
                 </div>
                 
                 <div className="h-[250px] w-full">
@@ -200,10 +198,10 @@ export default function StatsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl p-6 min-h-[350px] flex flex-col"
+                className="bg-black/40 backdrop-blur-md border border-line rounded-xl p-6 min-h-[350px] flex flex-col"
             >
                 <div className="flex items-center gap-2 mb-6">
-                    <PieIcon className="w-5 h-5 text-purple-400" />
+                    <PieIcon className="w-5 h-5 text-brand-blue-soft" />
                     <h3 className="text-lg font-bold uppercase tracking-wide">Mode Split</h3>
                 </div>
 
@@ -231,7 +229,7 @@ export default function StatsPage() {
                             {/* Center Stat */}
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                                 <span className="text-3xl font-heading font-bold italic">{stats.gamesPlayed}</span>
-                                <span className="text-[10px] text-gray-500 uppercase tracking-widest">Total</span>
+                                <span className="text-[10px] text-ink-muted uppercase tracking-widest">Total</span>
                             </div>
                         </div>
                     ) : (
@@ -244,9 +242,9 @@ export default function StatsPage() {
                         <div key={item.name} className="flex items-center justify-between text-sm">
                             <div className="flex items-center gap-2">
                                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />
-                                <span className="text-gray-300">{item.name}</span>
+                                <span className="text-ink-soft">{item.name}</span>
                             </div>
-                            <span className="font-mono font-bold">{item.value} ({stats.gamesPlayed > 0 ? Math.round((item.value/stats.gamesPlayed)*100) : 0}%)</span>
+                            <span className="tabular-nums font-bold">{item.value} ({stats.gamesPlayed > 0 ? Math.round((item.value/stats.gamesPlayed)*100) : 0}%)</span>
                         </div>
                     ))}
                 </div>
@@ -256,6 +254,7 @@ export default function StatsPage() {
         )}
 
       </div>
+      <div className="mt-auto"><SiteFooter /></div>
     </div>
   )
 }
@@ -268,25 +267,25 @@ function StatCard({ icon, label, value, sub, delay }: any) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay }}
-            className="bg-black/40 backdrop-blur-md border border-white/5 hover:border-white/20 p-5 rounded-xl group transition-all duration-300 hover:bg-white/5"
+            className="bg-black/40 backdrop-blur-md border border-line hover:border-line p-5 rounded-xl group transition-all duration-300 hover:bg-surface-2"
         >
             <div className="flex justify-between items-start mb-2">
-                <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">{label}</span>
-                <div className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                <span className="text-ink-muted text-[10px] font-bold uppercase tracking-widest">{label}</span>
+                <div className="p-2 rounded-lg bg-surface-2 group-hover:bg-surface-2 transition-colors">
                     {icon}
                 </div>
             </div>
             <div className="text-3xl font-heading font-bold italic text-white mb-1 group-hover:scale-105 transition-transform origin-left">
                 {value}
             </div>
-            <p className="text-xs text-gray-600 group-hover:text-gray-400 transition-colors">{sub}</p>
+            <p className="text-xs text-ink-muted/50 group-hover:text-ink-muted transition-colors">{sub}</p>
         </motion.div>
     )
 }
 
 function EmptyState({ message }: { message: string }) {
     return (
-        <div className="flex flex-col items-center justify-center h-full text-gray-600 gap-2">
+        <div className="flex flex-col items-center justify-center h-full text-ink-muted/50 gap-2">
             <Target className="w-8 h-8 opacity-20" />
             <span className="text-xs uppercase tracking-widest font-bold">{message}</span>
         </div>

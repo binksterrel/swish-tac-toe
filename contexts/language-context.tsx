@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, useLayoutEffect } from 'react'
 import { translations, Language } from '@/lib/translations'
 
 type LanguageContextType = {
@@ -12,16 +12,20 @@ type LanguageContextType = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
+// useLayoutEffect warns during SSR; this runs it on the client only
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
+
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Default to French as per recent iterations
   const [language, setLanguage] = useState<Language>('fr')
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
+  // Layout effect: runs before the browser paints the hydrated page, so a saved
+  // language replaces the French default without a visible flash.
+  useIsoLayoutEffect(() => {
     setMounted(true)
-    // Could eventually persist to localStorage here
-    const saved = localStorage.getItem('swish-lang') as Language
-    if (saved) setLanguage(saved)
+    const saved = localStorage.getItem('swish-lang')
+    if (saved === 'fr' || saved === 'en') setLanguage(saved)
   }, [])
 
   useEffect(() => {

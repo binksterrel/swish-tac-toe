@@ -1,9 +1,66 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
+/*
+ * Design tokens — landing & shared chrome.
+ * Spacing: 8 / 16 / 24 / 32 / 48 / 64 only  -> p-s16, gap-s8, mt-s48…
+ * Type:    meta / body / lead for text, display-sm for game numbers, display for hero titles
+ * Neutrals are tinted with NBA blue (hue 264). The only accent is NBA red (`action`).
+ */
+@theme {
+  --spacing-s8: 8px;
+  --spacing-s16: 16px;
+  --spacing-s24: 24px;
+  --spacing-s32: 32px;
+  --spacing-s48: 48px;
+  --spacing-s64: 64px;
+
+  --text-meta: 13px;
+  --text-meta--line-height: 20px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-lead: 18px;
+  --text-lead--line-height: 28px;
+  /* Scoreboard readouts (numbers in the game UI) */
+  --text-display-sm: 28px;
+  --text-display-sm--line-height: 32px;
+  --text-display: clamp(28px, 4vw, 40px);
+  --text-display--line-height: 1.1;
+
+  --color-canvas: oklch(0.145 0.008 264);
+  --color-surface: oklch(0.185 0.01 264);
+  --color-surface-2: oklch(0.225 0.012 264);
+  --color-line: oklch(0.27 0.012 264);
+  --color-ink: oklch(0.97 0.004 264);
+  --color-ink-soft: oklch(0.84 0.008 264);
+  --color-ink-muted: oklch(0.66 0.012 264);
+  --color-action: #C9082A;
+  --color-action-hover: oklch(0.58 0.21 25);
+  --color-brand-blue: #17408B;
+  --color-brand-blue-soft: oklch(0.62 0.15 262);
+
+  --radius-ref: 12px;    /* top-level containers & buttons */
+  --radius-nested: 8px;  /* anything sitting inside a ref container */
+
+  --shadow-raised:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    0 1px 2px oklch(0 0 0 / 0.35),
+    0 6px 16px -6px oklch(0 0 0 / 0.45);
+  --shadow-soft:
+    0 1px 1px oklch(0 0 0 / 0.2),
+    0 4px 12px -4px oklch(0 0 0 / 0.3);
+
+  --shadow-window:
+    0 2px 4px oklch(0 0 0 / 0.3),
+    0 16px 32px -8px oklch(0 0 0 / 0.5),
+    0 40px 80px -24px oklch(0.45 0.18 262 / 0.35);
+
+  --ease-snappy: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 @theme inline {
   --font-sans: var(--font-body), sans-serif;
-  --font-heading: var(--font-heading), sans-serif;
+  --font-heading: var(--font-body), sans-serif;
 
   --color-nba-blue: #17408B;
   --color-nba-red: #C9082A;
@@ -32,13 +89,14 @@
   
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
   
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
   
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
   --radius-lg: var(--radius);
   
   --animate-scroll: scroll 40s linear infinite;
@@ -69,79 +127,85 @@
   --nba-red: #C9082A;
   --nba-black: #000000;
   
-  --background: oklch(0.10 0.01 260);
-  --foreground: oklch(1 0 0);
+  --background: oklch(0.145 0.008 264);
+  --foreground: oklch(0.97 0.004 264);
 
-  --card: oklch(0.15 0.02 260);
-  --card-foreground: oklch(1 0 0);
-  
-  --popover: oklch(0.12 0.02 260);
-  --popover-foreground: oklch(1 0 0);
+  --card: oklch(0.185 0.01 264);
+  --card-foreground: oklch(0.97 0.004 264);
 
-  --primary: oklch(0.45 0.18 265);
+  --popover: oklch(0.185 0.01 264);
+  --popover-foreground: oklch(0.97 0.004 264);
+
+  /* Single accent: NBA red */
+  --primary: #C9082A;
   --primary-foreground: oklch(1 0 0);
 
-  --secondary: oklch(0.55 0.22 25);
-  --secondary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.225 0.012 264);
+  --secondary-foreground: oklch(0.97 0.004 264);
 
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.7 0 0);
+  --muted: oklch(0.225 0.012 264);
+  --muted-foreground: oklch(0.66 0.012 264);
 
-  --accent: oklch(0.85 0 0);
-  --accent-foreground: oklch(0.1 0 0);
+  --accent: oklch(0.225 0.012 264);
+  --accent-foreground: oklch(0.97 0.004 264);
 
-  --destructive: oklch(0.55 0.22 25);
+  --destructive: oklch(0.62 0.2 25);
   --destructive-foreground: oklch(1 0 0);
 
-  --border: oklch(0.30 0 0);
-  --input: oklch(0.20 0 0);
-  --ring: oklch(0.45 0.18 265);
+  --success: oklch(0.72 0.15 155);
 
-  --radius: 0rem;
+  --border: oklch(0.27 0.012 264);
+  --input: oklch(0.27 0.012 264);
+  --ring: #C9082A;
+
+  --radius: 12px;
 }
 
 .dark {
-  --background: oklch(0.10 0.01 260);
-  --foreground: oklch(1 0 0);
-  --card: oklch(0.15 0.02 260);
-  --card-foreground: oklch(1 0 0);
-  --popover: oklch(0.12 0.02 260);
-  --popover-foreground: oklch(1 0 0);
-  --primary: oklch(0.45 0.18 265);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.55 0.22 25);
-  --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.7 0 0);
-  --accent: oklch(0.85 0 0);
-  --accent-foreground: oklch(0.1 0 0);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.30 0 0);
-  --input: oklch(0.20 0 0);
-  --ring: oklch(0.45 0.18 265);
+  /* Dark is the only theme: same values as :root */
 }
 
-/* Custom Animations for Landing Page */
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(2deg); }
-  100% { transform: translateY(0px) rotate(-2deg); }
+/*
+ * Sentence case everywhere: no forced capitals, no wide letter-spacing.
+ * Headings use the same family as the body, in semi-bold.
+ * Unlayered on purpose: it wins over the `uppercase` / `italic` / `font-bold`
+ * utilities that are still present in component class lists.
+ */
+.uppercase { text-transform: none; }
+.tracking-wide, .tracking-wider, .tracking-widest { letter-spacing: 0; }
+
+.font-heading {
+  text-transform: none;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
-@keyframes bounce-slow {
-  0%, 100% { transform: translateY(-5%); }
-  50% { transform: translateY(5%); }
+
+/* Ambient light sweep across a button: one pass, then a pause */
+@keyframes shine-sweep {
+  0%, 55% { transform: translateX(-120%) skewX(-12deg); }
+  85%, 100% { transform: translateX(420%) skewX(-12deg); }
 }
-.animate-bounce-slow {
-  animation: bounce-slow 3s infinite ease-in-out;
+.shine-sweep { animation: shine-sweep 4.5s ease-in-out infinite; }
+
+/* Respect users who ask for less motion, site-wide */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-@keyframes shine {
-  0% { transform: translateX(-100%) skewX(-20deg); }
-  20% { transform: translateX(100%) skewX(-20deg); }
-  100% { transform: translateX(100%) skewX(-20deg); }
+
+/* Sport-style button with a cut bottom-right corner */
+.chamfer {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
 }
-.animate-shine {
-  animation: shine 3s infinite linear;
+
+/* Mirror of .chamfer: the cut is on the bottom-left corner */
+.chamfer-flip {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 }
 
 /* Utility classes to hide scrollbar but keep functionality */

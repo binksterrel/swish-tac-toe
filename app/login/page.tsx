@@ -4,6 +4,7 @@ import { useAuth } from "@/contexts/auth-context"
 import { useLanguage } from "@/contexts/language-context"
 import { Button } from "@/components/ui/button"
 import { NBATicker } from "@/components/layout/nba-ticker"
+import { Header, SiteFooter } from "@/components/layout/header"
 import { ArrowRight, Loader2, Mail, Lock, User as UserIcon, AlertCircle } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -61,39 +62,26 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans flex flex-col relative overflow-hidden selection:bg-nba-red selection:text-white">
+    <div className="min-h-screen bg-canvas text-ink font-sans flex flex-col selection:bg-action selection:text-white">
         <NBATicker />
+        <Header />
         
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-nba-blue/20 rounded-full blur-[120px] animate-pulse"></div>
-            <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-nba-red/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
-        </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center p-4 relative z-10">
-            
-            {/* Logo / Brand */}
-            <Link href="/" className="mb-8 flex flex-col items-center hover:opacity-90 transition-opacity">
-              <h1 className="text-4xl md:text-5xl font-heading font-bold italic tracking-tighter text-white uppercase leading-[0.85] drop-shadow-lg text-center">
-                SWISH
-                <br/>
-                <span className="text-nba-blue">TAC</span><span className="text-nba-red">TOE</span>
-              </h1>
-            </Link>
+        <div className="flex-1 flex flex-col items-center justify-center px-s16 py-s48 relative z-10">
 
             {/* Login Card */}
             <div className={cn(
-                "w-full bg-gray-900/80 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl transition-all duration-500",
+                "w-full bg-surface border border-line rounded-ref overflow-hidden shadow-window",
                 isSignUp ? "max-w-2xl" : "max-w-sm"
             )}>
                 
                 {/* Header Toggle */}
-                <div className="flex border-b border-white/10">
+                <div className="flex border-b border-line">
                     <button 
                         onClick={() => setIsSignUp(false)}
                         className={cn(
-                            "flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-colors",
-                            !isSignUp ? "bg-white/5 text-white border-b-2 border-nba-blue" : "text-gray-500 hover:text-gray-300"
+                            "flex-1 h-12 font-heading text-meta font-bold uppercase tracking-wider border-b-2 transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy",
+                            !isSignUp ? "text-ink border-action" : "border-transparent text-ink-muted hover:text-ink"
                         )}
                     >
                         {t('auth.sign_in')}
@@ -101,46 +89,46 @@ export default function LoginPage() {
                     <button 
                         onClick={() => setIsSignUp(true)}
                         className={cn(
-                            "flex-1 py-4 text-sm font-bold uppercase tracking-wider transition-colors",
-                            isSignUp ? "bg-white/5 text-white border-b-2 border-nba-red" : "text-gray-500 hover:text-gray-300"
+                            "flex-1 h-12 font-heading text-meta font-bold uppercase tracking-wider border-b-2 transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy",
+                            isSignUp ? "text-ink border-action" : "border-transparent text-ink-muted hover:text-ink"
                         )}
                     >
                         {t('auth.sign_up')}
                     </button>
                 </div>
 
-                <div className="p-8">
-                    <h2 className="text-xl font-bold uppercase tracking-wide text-center mb-6">
+                <div className="p-s24 md:p-s32">
+                    <h2 className="mb-s24 text-center font-heading text-lead font-bold uppercase tracking-tight text-ink">
                         {isSignUp ? t('auth.create_account') : t('auth.welcome_back')}
                     </h2>
 
                     {error && (
-                        <div className="mb-6 p-3 bg-red-500/10 border border-red-500/20 rounded flex items-start gap-2 text-xs text-red-200">
+                        <div className="mb-s24 flex items-start gap-s8 rounded-nested border border-action/30 bg-action/10 p-s16 text-meta text-ink">
                              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                              <span>{error}</span>
                         </div>
                     )}
                     
-                    <div className={cn("flex gap-8", !isSignUp && "flex-col")}>
+                    <div className={cn("flex gap-s32", !isSignUp && "flex-col")}>
                         
-                        <form onSubmit={handleSubmit} className={cn("flex flex-col gap-4", isSignUp ? "flex-1" : "w-full")}>
+                        <form onSubmit={handleSubmit} className={cn("flex flex-col gap-s16", isSignUp ? "flex-1" : "w-full")}>
                         
                         {isSignUp && (
-                            <div className="space-y-1">
-                                <label className="text-xs uppercase font-bold text-gray-500 ml-1">{t('auth.username')}</label>
-                                <div className="flex gap-4">
+                            <div className="flex flex-col gap-s8">
+                                <label className="text-meta text-ink-muted">{t('auth.username')}</label>
+                                <div className="flex items-center gap-s16">
                                      <div className="relative flex-1">
-                                        <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                        <UserIcon className="pointer-events-none absolute left-s16 top-1/2 size-5 -translate-y-1/2 text-ink-muted" strokeWidth={1.75} />
                                         <input 
                                             type="text" 
                                             required 
                                             placeholder={t('auth.username_placeholder')}
                                             value={username}
                                             onChange={(e) => setUsername(e.target.value)}
-                                            className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-red transition-colors"
+                                            className="h-12 w-full rounded-nested border border-line bg-canvas pl-s48 pr-s16 text-body text-ink placeholder:text-ink-muted focus:outline-none focus:border-brand-blue-soft transition-colors duration-[120ms] ease-snappy"
                                         />
                                     </div>
-                                    <div className="w-12 h-12 rounded-full border border-white/20 overflow-hidden bg-gray-800 shrink-0">
+                                    <div className="w-12 h-12 rounded-full border border-line overflow-hidden bg-surface-2 shrink-0">
                                         <img 
                                             src={previewAvatarUrl}
                                             alt="Preview"
@@ -151,60 +139,57 @@ export default function LoginPage() {
                             </div>
                         )}
 
-                        <div className="space-y-1">
-                            <label className="text-xs uppercase font-bold text-gray-500 ml-1">{t('auth.email')}</label>
+                        <div className="flex flex-col gap-s8">
+                            <label className="text-meta text-ink-muted">{t('auth.email')}</label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                <Mail className="pointer-events-none absolute left-s16 top-1/2 size-5 -translate-y-1/2 text-ink-muted" strokeWidth={1.75} />
                                 <input 
                                     type="email" 
                                     required 
                                     placeholder={t('auth.email_placeholder')}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
-                                    className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-blue transition-colors"
+                                    className="h-12 w-full rounded-nested border border-line bg-canvas pl-s48 pr-s16 text-body text-ink placeholder:text-ink-muted focus:outline-none focus:border-brand-blue-soft transition-colors duration-[120ms] ease-snappy"
                                 />
                             </div>
                         </div>
 
-                        <div className="space-y-1">
-                            <label className="text-xs uppercase font-bold text-gray-500 ml-1">{t('auth.password')}</label>
+                        <div className="flex flex-col gap-s8">
+                            <label className="text-meta text-ink-muted">{t('auth.password')}</label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                <Lock className="pointer-events-none absolute left-s16 top-1/2 size-5 -translate-y-1/2 text-ink-muted" strokeWidth={1.75} />
                                 <input 
                                     type="password" 
                                     required 
                                     placeholder={t('auth.password_placeholder')}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-blue transition-colors"
+                                    className="h-12 w-full rounded-nested border border-line bg-canvas pl-s48 pr-s16 text-body text-ink placeholder:text-ink-muted focus:outline-none focus:border-brand-blue-soft transition-colors duration-[120ms] ease-snappy"
                                 />
                             </div>
                         </div>
 
                         {isSignUp && (
-                            <div className="space-y-1 animate-in slide-in-from-top-2 fade-in duration-300">
-                                <label className="text-xs uppercase font-bold text-gray-500 ml-1">{t('auth.confirm_password')}</label>
+                            <div className="flex flex-col gap-s8 animate-in slide-in-from-top-1 fade-in duration-200 ease-out">
+                                <label className="text-meta text-ink-muted">{t('auth.confirm_password')}</label>
                                 <div className="relative">
-                                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                                    <Lock className="pointer-events-none absolute left-s16 top-1/2 size-5 -translate-y-1/2 text-ink-muted" strokeWidth={1.75} />
                                     <input 
                                         type="password" 
                                         required 
                                         placeholder={t('auth.password_placeholder')}
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}
-                                        className="w-full bg-black/50 border border-white/10 rounded-md py-3 pl-10 pr-4 text-sm placeholder:text-gray-700 focus:outline-none focus:border-nba-red transition-colors"
+                                        className="h-12 w-full rounded-nested border border-line bg-canvas pl-s48 pr-s16 text-body text-ink placeholder:text-ink-muted focus:outline-none focus:border-brand-blue-soft transition-colors duration-[120ms] ease-snappy"
                                     />
                                 </div>
                             </div>
                         )}
 
-                        <Button 
+                        <Button
                             type="submit"
                             disabled={loading}
-                            className={cn(
-                                "w-full py-6 font-bold uppercase tracking-wider text-base mt-4 transition-all hover:scale-[1.02] active:scale-[0.98]",
-                                isSignUp ? "bg-nba-red hover:bg-red-700" : "bg-nba-blue hover:bg-blue-700"
-                            )}
+                            className="chamfer mt-s8 h-12 w-full rounded-none bg-action font-heading text-body font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover"
                         >
                             {loading ? (
                                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -215,9 +200,9 @@ export default function LoginPage() {
                     </form>
                     </div>
 
-                    <div className="mt-6 flex justify-center">
+                    <div className="mt-s24 flex justify-center">
                         <Link href="/game">
-                            <button className="text-xs text-gray-500 hover:text-white uppercase tracking-wider flex items-center gap-1 transition-colors">
+                            <button className="flex items-center gap-s8 text-meta text-ink-soft underline decoration-action/60 underline-offset-4 transition-colors duration-[120ms] ease-snappy hover:text-ink hover:decoration-action">
                                 {t('auth.play_guest')} <ArrowRight className="w-3 h-3" />
                             </button>
                         </Link>
@@ -226,6 +211,7 @@ export default function LoginPage() {
             </div>
             
         </div>
+        <div className="mt-auto"><SiteFooter /></div>
     </div>
   )
 }
