@@ -50,6 +50,8 @@ export default function LandingPage() {
               rgbShift={0.004}
               vignette={0.5}
               className="h-full"
+              // CRTWarp is plain JS: TypeScript infers `style` (no default) as required
+              style={undefined}
             />
           </div>
           {/* Legibility scrim behind the headline */}
