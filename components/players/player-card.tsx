@@ -10,9 +10,6 @@ interface PlayerCardProps {
   player: NBAPlayer
 }
 
-// Max team logos shown before collapsing into "+N" (keeps 2-up mobile cards one line tall)
-const MAX_TEAMS = 5
-
 export function PlayerCard({ player }: PlayerCardProps) {
   const { language } = useLanguage()
   const fr = language === "fr"
@@ -61,15 +58,12 @@ export function PlayerCard({ player }: PlayerCardProps) {
         )}
 
         {/* Teams */}
-        <div className="mt-auto flex items-center gap-[4px]" aria-label={fr ? "Équipes" : "Teams"}>
-          {teams.slice(0, MAX_TEAMS).map((team) => (
+        <div className="mt-auto flex flex-wrap items-center gap-[4px]" aria-label={fr ? "Équipes" : "Teams"}>
+          {teams.map((team) => (
             <span key={team} className="flex size-5 sm:size-6 items-center justify-center rounded-[4px] bg-white p-[2px]" title={team}>
               <TeamLogo teamId={team} size={24} className="h-full w-full" />
             </span>
           ))}
-          {teams.length > MAX_TEAMS && (
-            <span className="text-[11px] font-medium text-ink-muted">+{teams.length - MAX_TEAMS}</span>
-          )}
         </div>
       </div>
     </div>

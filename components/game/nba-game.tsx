@@ -59,7 +59,7 @@ export function NBAGame() {
     .filter((c) => c.status === "correct").length
 
   const ghostBtn =
-    "inline-flex h-10 items-center gap-s8 rounded-nested px-s16 font-medium text-ink-soft transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+    "inline-flex h-10 items-center justify-center gap-s8 rounded-nested border border-line md:border-transparent px-s16 font-medium text-ink-soft transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
 
   return (
     <div className="flex flex-col gap-s24">
@@ -71,19 +71,19 @@ export function NBAGame() {
         onModeChange={(m: "classic" | "time_attack" | "sudden_death" | "blind") => initGame(gameState.difficulty, m, gameState.gridSize)}
         onGridSizeChange={(s: number) => initGame(gameState.difficulty, gameState.mode, s)}
         actions={
-          <div className="flex flex-wrap items-center gap-s8 md:flex-row-reverse">
+          <div className="grid grid-cols-2 gap-s8 md:flex md:flex-row-reverse md:items-center">
             {!isGameActive && !gameState.gameOver && (
               <button
                 type="button"
                 onClick={startGame}
-                className="chamfer group inline-flex h-11 sm:h-12 items-center gap-s8 bg-action px-s24 font-heading text-meta sm:text-body font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover active:translate-y-px focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--color-ink)]"
+                className="chamfer group col-span-2 md:col-auto inline-flex h-11 sm:h-12 items-center justify-center gap-s8 bg-action px-s24 font-heading text-meta sm:text-body font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover active:translate-y-px focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--color-ink)]"
               >
                 <Play className="size-4" strokeWidth={1.75} />
                 {t('game.start_game')}
               </button>
             )}
             {isGameActive && (
-              <span className="inline-flex h-11 sm:h-12 items-center gap-s8 px-s8 text-meta font-semibold text-ink-soft">
+              <span className="col-span-2 md:col-auto inline-flex h-11 sm:h-12 items-center justify-center gap-s8 px-s8 text-meta font-semibold text-ink-soft">
                 <span className="relative flex size-2">
                   <span className="absolute inline-flex size-full animate-ping rounded-full bg-action opacity-60 motion-reduce:animate-none" />
                   <span className="relative inline-flex size-2 rounded-full bg-action" />

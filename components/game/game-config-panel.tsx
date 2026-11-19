@@ -27,13 +27,16 @@ export function GameConfigPanel({
 }: GameConfigPanelProps) {
   return (
     <div className="rounded-ref border border-line bg-surface p-s16 md:p-s24">
-      <div className="flex flex-wrap items-end gap-s16 md:gap-s24">
+      {/* Phones: difficulty + grid share a row, mode takes the full width */}
+      <div className="grid grid-cols-2 gap-x-s8 gap-y-s16 md:flex md:flex-wrap md:items-end md:gap-s24">
         <DifficultySelector difficulty={difficulty} onSelect={onDifficultyChange} />
         <GridSizeSelector size={gridSize} onSelect={onGridSizeChange} />
-        <ModeSelector mode={mode} gridSize={gridSize} onSelect={onModeChange} />
+        <div className="col-span-2 md:col-auto">
+          <ModeSelector mode={mode} gridSize={gridSize} onSelect={onModeChange} />
+        </div>
       </div>
       {/* Footer: summary on the left, actions on the right (stacked on phones) */}
-      <div className="mt-s16 flex flex-col gap-s16 border-t border-line pt-s16 md:mt-s24 md:flex-row md:items-center md:justify-between md:pt-s24">
+      <div className="mt-s16 flex flex-col gap-s8 border-t border-line pt-s16 md:mt-s24 md:gap-s16 md:flex-row md:items-center md:justify-between md:pt-s24">
         <p className="text-meta text-ink-muted">
           <span className="font-semibold text-ink-soft">{MODE_LABELS[mode]}</span> · {modeDetail(mode, gridSize)}
         </p>
