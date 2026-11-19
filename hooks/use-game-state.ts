@@ -213,8 +213,8 @@ export function useGameState() {
             const timePenalty = gameTime * 2
             const baseScore = Math.max(100, 1000 - timePenalty)
             
-            // Unicorn Bonus
-            const isUnicorn = !player.allStar
+            // Unicorn Bonus: only the first time this player is used in the game
+            const isUnicorn = !player.allStar && !isAlreadyUsed
             const multiplier = isUnicorn ? 3 : 1
             
             const cellScore = baseScore * multiplier

@@ -54,8 +54,8 @@ export function GameCell({ cell, isSelected, onClick, disabled }: GameCellProps)
 
           <span className="absolute right-[6px] top-[6px] flex flex-col items-end gap-[4px]">
             {cell.isUnicorn && (
-              <span className="rounded-[4px] bg-brand-blue px-[6px] py-[2px] font-heading text-[10px] font-bold uppercase tracking-wide text-white">
-                Unicorn
+              <span role="img" aria-label="Unicorn" title="Unicorn" className="text-[16px] leading-none drop-shadow">
+                🦄
               </span>
             )}
             {cell.score ? (

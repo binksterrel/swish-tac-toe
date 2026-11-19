@@ -8,6 +8,7 @@ import { getPlayerSuggestions, type NBAPlayer } from "@/lib/nba-data"
 import { PlayerPhoto } from "@/components/common/player-photo"
 import { Search, X, AlertCircle } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { useKeyboardViewport } from "@/hooks/use-keyboard-viewport"
 
 // Helper to format criteria text grammatically
 function formatCriteriaText(label: string, type?: string): { prefix: string; text: string } {
@@ -65,6 +66,7 @@ export function PlayerInput({
   const [selectedIndex, setSelectedIndex] = useState(-1)
   const [error, setError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const { containerStyle, panelStyle } = useKeyboardViewport()
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -108,17 +110,20 @@ export function PlayerInput({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-s16 animate-in fade-in duration-200"
+      // Phones: sits at the bottom and rides above the on-screen keyboard (see useKeyboardViewport)
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-s16 transition-[padding] duration-200 ease-out motion-reduce:transition-none animate-in fade-in"
+      style={containerStyle}
       onMouseDown={(e) => { if (e.target === e.currentTarget) onCancel() }}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="player-input-title"
-        className="w-full max-w-md overflow-hidden rounded-ref border border-line bg-surface shadow-window animate-in fade-in zoom-in-95 slide-in-from-bottom-2 duration-200 ease-out"
+        style={panelStyle}
+        className="flex w-full max-w-md flex-col overflow-hidden rounded-ref border border-line bg-surface shadow-window animate-in fade-in zoom-in-95 slide-in-from-bottom-2 duration-200 ease-out"
       >
         {/* Header */}
-        <div className="border-b border-line p-s16 sm:p-s24">
+        <div className="shrink-0 border-b border-line p-s16 sm:p-s24">
           <div className="flex items-center justify-between gap-s16">
             <h3 id="player-input-title" className="font-heading text-lead font-bold uppercase tracking-tight text-ink">Trouver un joueur</h3>
             <button
@@ -140,8 +145,8 @@ export function PlayerInput({
           )}
         </div>
 
-        {/* Input */}
-        <div className="p-s16 sm:p-s24">
+        {/* Input + results: the only part that scrolls when space is short */}
+        <div className="min-h-0 flex-1 overflow-y-auto p-s16 sm:p-s24">
           <div className="relative">
             <Search className="pointer-events-none absolute left-s16 top-1/2 size-5 -translate-y-1/2 text-ink-muted" strokeWidth={1.75} />
             <Input
@@ -202,7 +207,7 @@ export function PlayerInput({
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-s8 border-t border-line p-s16">
+        <div className="flex shrink-0 items-center justify-end gap-s8 border-t border-line p-s16">
           <button
             type="button"
             onClick={onCancel}
