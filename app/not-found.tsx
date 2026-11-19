@@ -1,53 +1,34 @@
 "use client"
 
 import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import { Header } from "@/components/layout/header"
+import { Header, SiteFooter } from "@/components/layout/header"
 import { NBATicker } from "@/components/layout/nba-ticker"
 
 export default function NotFound() {
   const { t } = useLanguage()
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#050505] text-white font-sans selection:bg-nba-red selection:text-white overflow-hidden">
-      <div className="flex-1 flex flex-col items-center justify-center px-4">
-      
-      {/* Background Elements */}
-      <div className="fixed inset-0 pointer-events-none">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-          <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-nba-red/10 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-nba-blue/10 rounded-full blur-[120px]"></div>
-      </div>
+    <div className="flex min-h-screen flex-col bg-canvas text-ink font-sans text-body">
+      <NBATicker />
+      <Header />
 
-      <div className="relative z-10 text-center animate-in fade-in zoom-in-95 duration-700">
-        
-        {/* Giant 404 */}
-        <h1 className="text-[150px] md:text-[250px] font-heading font-black italic leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent select-none">
-          404
-        </h1>
+      <main className="flex flex-1 flex-col items-center justify-center px-s16 py-s64 text-center">
+        <p className="font-heading text-display font-bold italic uppercase tracking-tight text-ink">404</p>
+        <h1 className="mt-s16 font-heading text-lead font-bold uppercase tracking-wide text-action">{t("notFound.title")}</h1>
+        <p className="mx-auto mt-s8 max-w-[45ch] text-ink-muted">{t("notFound.description")}</p>
 
-        {/* Airball Badge */}
-        <div className="relative -mt-10 mb-8 inline-block">
-            <div className="px-6 py-2 bg-nba-red text-white uppercase font-heading font-bold italic text-2xl md:text-4xl tracking-widest transform -rotate-2 shadow-[0_0_30px_rgba(201,8,42,0.4)] border border-white/20">
-                {t('notFound.title')}
-            </div>
-        </div>
-
-        {/* Description */}
-        <p className="text-slate-400 text-lg md:text-xl font-medium max-w-md mx-auto mb-10 leading-relaxed">
-          {t('notFound.description')}
-        </p>
-
-        {/* Action Button */}
-        <Link 
-          href="/" 
-          className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-heading font-bold italic text-xl uppercase tracking-wider rounded transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+        <Link
+          href="/"
+          className="chamfer group mt-s32 inline-flex h-11 sm:h-12 items-center gap-s8 bg-action px-s24 font-heading text-meta sm:text-body font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--color-ink)]"
         >
-          {t('notFound.button')}
+          {t("notFound.button")}
+          <ArrowRight className="size-4 sm:size-5 transition-transform duration-[120ms] group-hover:translate-x-1 group-hover:duration-[200ms] ease-snappy" strokeWidth={1.75} />
         </Link>
+      </main>
 
-      </div>
+      <SiteFooter />
     </div>
-  </div>
   )
 }

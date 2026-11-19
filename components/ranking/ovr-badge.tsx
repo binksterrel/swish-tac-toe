@@ -7,7 +7,7 @@ export function OvrBadge({ rating, className }: { rating: number, className?: st
         if (ovr >= 85) return { label: 'ALL-STAR', color: 'text-cyan-400', glow: 'shadow-cyan-500/40', ring: 'stroke-cyan-400' }
         if (ovr >= 80) return { label: 'STAR', color: 'text-emerald-400', glow: 'shadow-emerald-500/40', ring: 'stroke-emerald-400' }
         if (ovr >= 75) return { label: 'PRO', color: 'text-blue-400', glow: 'shadow-blue-500/40', ring: 'stroke-blue-400' }
-        return { label: 'ROOKIE', color: 'text-gray-400', glow: 'shadow-gray-500/20', ring: 'stroke-gray-500' }
+        return { label: 'ROOKIE', color: 'text-ink-muted', glow: 'shadow-gray-500/20', ring: 'stroke-ink-muted' }
     }
 
     const tier = getTier(rating)
@@ -18,7 +18,7 @@ export function OvrBadge({ rating, className }: { rating: number, className?: st
 
     return (
         <div className={cn(
-            "relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-lg border border-white/5 shadow-2xl transition-all duration-500 hover:scale-105 group",
+            "relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center rounded-full bg-black/40 backdrop-blur-lg border border-line shadow-raised transition-all duration-500 hover:scale-105 group",
             tier.glow,
             className
         )}>
@@ -34,7 +34,7 @@ export function OvrBadge({ rating, className }: { rating: number, className?: st
                     {/* Active Ring */}
                      <circle 
                         cx="50" cy="50" r={radius} 
-                        className={cn("fill-none transition-all duration-1000 ease-out drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]", tier.ring)}
+                        className={cn("fill-none transition-all duration-1000 ease-out ", tier.ring)}
                         strokeWidth="4" 
                         strokeDasharray={circumference}
                         strokeDashoffset={dashOffset}
@@ -45,9 +45,9 @@ export function OvrBadge({ rating, className }: { rating: number, className?: st
 
              {/* Inner Content */}
              <div className="flex flex-col items-center justify-center z-10 relative pt-1">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-[-5px] group-hover:text-white transition-colors">OVR</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink-muted mb-[-5px] group-hover:text-white transition-colors">OVR</span>
                   <span className={cn(
-                      "text-5xl md:text-6xl font-heading font-bold italic tracking-tighter tabular-nums drop-shadow-lg leading-none pr-1", 
+                      "text-5xl md:text-6xl font-heading font-bold italic tracking-tighter tabular-nums  leading-none pr-1", 
                       tier.color
                   )}>
                       {rating}
@@ -58,7 +58,7 @@ export function OvrBadge({ rating, className }: { rating: number, className?: st
              </div>
              
              {/* Gloss Reflection Top */}
-             <div className="absolute inset-x-4 top-2 h-1/2 bg-gradient-to-b from-white/10 to-transparent rounded-full opacity-50 pointer-events-none" />
+             <div className="absolute inset-x-4 top-2 h-1/2 rounded-full opacity-50 pointer-events-none" />
         </div>
     )
 }

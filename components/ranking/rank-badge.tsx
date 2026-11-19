@@ -31,21 +31,21 @@ export function RankBadge({ rank, size = 'md', showLabel = true, className }: Ra
     return (
         <div className={cn("flex flex-col items-center gap-1", className)}>
             <div className={cn(
-                "relative flex items-center justify-center rounded-full border bg-black/50 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)]",
+                "relative flex items-center justify-center rounded-full border bg-black/50 backdrop-blur-md shadow-soft",
                 sizeClasses[size],
                 `border-${rank.color.split('-')[1]}-500/30`
             )}>
                 {/* Glow Effect */}
                 <div className={cn(
                     "absolute inset-0 rounded-full blur-md opacity-40",
-                    `bg-gradient-to-br ${rank.gradient}`
+                    ` ${rank.gradient}`
                 )} />
                 
                 {/* Icon */}
                 <Icon className={cn(
-                    "relative z-10 text-white drop-shadow-md", 
+                    "relative z-10 text-white ", 
                     iconSizes[size],
-                    rank.id === 'HOF' && "text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]"
+                    rank.id === 'HOF' && "text-yellow-400 "
                 )} />
             </div>
 
@@ -53,7 +53,7 @@ export function RankBadge({ rank, size = 'md', showLabel = true, className }: Ra
                 <div className={cn(
                     "font-heading font-bold uppercase italic tracking-wider text-center",
                     size === 'sm' ? "text-[8px]" : size === 'md' ? "text-[10px]" : "text-sm",
-                    `text-transparent bg-clip-text bg-gradient-to-r ${rank.gradient}`
+                    `text-ink   ${rank.gradient}`
                 )}>
                     {rank.label}
                 </div>

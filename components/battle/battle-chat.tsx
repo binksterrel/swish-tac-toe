@@ -149,12 +149,12 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
     return (
       <div className="fixed bottom-4 left-4 z-40 flex flex-col gap-2 items-start">
           {/* Always Visible Quick Chat (Mini) */}
-          <div className="flex gap-1 bg-black/50 p-1 rounded-full backdrop-blur-md border border-white/10 mb-2">
+          <div className="flex gap-1 bg-black/50 p-1 rounded-full backdrop-blur-md border border-line mb-2">
               {QUICK_CHATS.slice(0, 3).map(item => (
                   <button 
                     key={item.key}
                     onClick={() => sendQuickChat(item)}
-                    className="w-8 h-8 rounded-full bg-white/5 hover:bg-white/20 flex items-center justify-center text-lg transition-colors"
+                    className="w-8 h-8 rounded-full bg-surface-2 hover:bg-white/20 flex items-center justify-center text-lg transition-colors"
                     title={t(`battle.chat.quick_chats.${item.key}`)}
                   >
                       {item.emoji}
@@ -171,7 +171,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
             <MessageSquare className="w-4 h-4" />
             <span className="text-xs uppercase">Chat</span>
             {messages.length > 0 && (
-              <span className="ml-2 bg-nba-red text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              <span className="ml-2 bg-action text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                 {messages.length}
               </span>
             )}
@@ -181,18 +181,18 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
   }
 
   return (
-    <Card className="fixed bottom-4 left-4 z-50 w-80 h-[500px] bg-gray-900 border-gray-800 shadow-2xl flex flex-col animate-in slide-in-from-bottom-10">
+    <Card className="fixed bottom-4 left-4 z-50 w-80 h-[500px] bg-surface border-line shadow-raised flex flex-col animate-in slide-in-from-bottom-10">
       {/* Header */}
-      <div className="flex items-center justify-between p-3 border-b border-gray-800 bg-black/50">
+      <div className="flex items-center justify-between p-3 border-b border-line bg-black/50">
         <div>
           <h3 className="text-sm font-bold uppercase">{playerName} vs {opponentName || t('battle.opponent')}</h3>
-          <p className="text-xs text-slate-400">{t('battle.chat.live_chat')}</p>
+          <p className="text-xs text-ink-muted">{t('battle.chat.live_chat')}</p>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => toggleChat(false)}
-          className="text-slate-400 hover:text-white"
+          className="text-ink-muted hover:text-white"
         >
           <X className="w-4 h-4" />
         </Button>
@@ -202,7 +202,7 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
       <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-black/20">
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center text-center">
-            <p className="text-xs text-slate-500 uppercase">{t('battle.chat.no_messages')}</p>
+            <p className="text-xs text-ink-muted uppercase">{t('battle.chat.no_messages')}</p>
           </div>
         ) : (
           messages.map((msg) => (
@@ -218,11 +218,11 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
                   "max-w-[70%] px-3 py-2 rounded-lg break-words",
                   msg.player === role
                     ? "bg-nba-blue text-white rounded-br-none"
-                    : "bg-gray-800 text-gray-100 rounded-bl-none"
+                    : "bg-surface-2 text-ink rounded-bl-none"
                 )}
               >
                 {msg.player !== role && (
-                  <p className="text-xs font-bold uppercase text-slate-400 mb-1">
+                  <p className="text-xs font-bold uppercase text-ink-muted mb-1">
                     {msg.playerName}
                   </p>
                 )}
@@ -241,35 +241,35 @@ export function BattleChat({ code, role, playerName, opponentName, isOpen = fals
       </div>
 
       {/* Quick Chat Bar */}
-      <div className="p-2 bg-gray-900/50 border-t border-gray-800 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+      <div className="p-2 bg-surface/50 border-t border-line flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {QUICK_CHATS.map(item => (
               <button
                 key={item.key}
                 onClick={() => sendQuickChat(item)}
-                className="flex-shrink-0 px-3 py-1 bg-white/5 hover:bg-white/10 rounded-full border border-white/10 text-xs font-bold flex gap-1 items-center transition-colors"
+                className="flex-shrink-0 px-3 py-1 bg-surface-2 hover:bg-surface-2 rounded-full border border-line text-xs font-bold flex gap-1 items-center transition-colors"
               >
                   <span>{item.emoji}</span>
-                  <span className="text-slate-300">{t(`battle.chat.quick_chats.${item.key}`)}</span>
+                  <span className="text-ink-soft">{t(`battle.chat.quick_chats.${item.key}`)}</span>
               </button>
           ))}
       </div>
 
       {/* Input */}
-      <form onSubmit={sendMessage} className="p-3 bg-black/50 border-t border-gray-800">
+      <form onSubmit={sendMessage} className="p-3 bg-black/50 border-t border-line">
         <div className="flex gap-2">
           <Input
             type="text"
             placeholder={t('battle.chat.say_something')}
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="bg-gray-800 border-gray-700 text-white text-sm h-9"
+            className="bg-surface-2 border-line text-white text-sm h-9"
             maxLength={100}
           />
           <Button
             type="submit"
             disabled={!input.trim()}
             size="sm"
-            className="bg-nba-blue hover:bg-blue-600 h-9 w-9 p-0"
+            className="bg-nba-blue hover:bg-brand-blue h-9 w-9 p-0"
             title={t('battle.chat.send')}
           >
             <Send className="w-4 h-4" />

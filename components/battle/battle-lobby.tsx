@@ -1,14 +1,13 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Trophy, Loader2, ChevronRight, ChevronLeft, Users, RefreshCw, Zap, Globe, Swords, ArrowLeft } from "lucide-react"
+import { Loader2, ChevronRight, ChevronLeft, Users, RefreshCw, Zap, Globe, ArrowLeft } from "lucide-react"
 import { toast } from "sonner"
 import { NBA_TEAMS, getTeamLogoUrl } from "@/lib/nba-data"
 import { cn } from "@/lib/utils"
 import { getPusherClient } from "@/lib/pusher-client"
-import { motion, AnimatePresence, Variants } from "framer-motion"
+import { Segmented } from "@/components/game/segmented"
 import { useLanguage } from "@/contexts/language-context"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/contexts/auth-context"
@@ -165,335 +164,266 @@ export function BattleLobby({ onJoin, onCreate, isLoading }: BattleLobbyProps) {
     onJoin(battleCode, fullName)
   }
 
-  const containerVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.98 },
-    visible: { 
-        opacity: 1, 
-        scale: 1,
-        transition: { duration: 0.3, ease: "easeOut" }
-    },
-    exit: { opacity: 0, scale: 0.98, transition: { duration: 0.2 } }
-  }
+  const BTN_PRIMARY =
+    "chamfer inline-flex h-12 w-full items-center justify-center gap-s8 bg-action px-s24 font-heading text-body font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--color-ink)]"
+  const BTN_SECONDARY =
+    "inline-flex h-12 w-full items-center justify-center gap-s8 rounded-nested border border-line px-s24 font-heading text-body font-bold uppercase tracking-wider text-ink transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+  const BTN_GHOST =
+    "inline-flex h-10 items-center gap-s8 rounded-nested px-s8 text-meta font-medium text-ink-muted transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+  const FIELD =
+    "h-12 rounded-nested border-line bg-canvas px-s16 text-body text-ink placeholder:text-ink-muted focus-visible:ring-0 focus-visible:border-brand-blue-soft"
+  const LABEL = "text-meta text-ink-muted"
+
+  // Sub-views unfold from the card they live in
+  const panel = "flex flex-col gap-s24 animate-in fade-in slide-in-from-bottom-1 duration-200 ease-out"
 
   // SCREEN 1: MODE SELECTION (Online vs Local)
   if (view === 'selection') {
+      // Mini board shown on each card: host = blue, guest = red (same as in a live game)
+      type Mark = 'h' | 'g' | null
+      const BOARD_ONLINE: Mark[] = ['h', 'g', null, 'g', 'h', null, null, null, 'h']
+      const BOARD_LOCAL: Mark[] = ['g', 'h', null, 'h', 'g', null, null, null, 'g']
+      const MiniBoard = ({ cells }: { cells: Mark[] }) => (
+        <div aria-hidden="true" className="grid grid-cols-3 gap-[4px]">
+          {cells.map((c, i) => (
+            <span
+              key={i}
+              className={cn(
+                "size-7 rounded-[6px] border",
+                c === 'h' ? "border-transparent bg-brand-blue-soft" : c === 'g' ? "border-transparent bg-action" : "border-line bg-surface-2",
+              )}
+            />
+          ))}
+        </div>
+      )
+
+      const modes = [
+        {
+          key: 'online', icon: Globe, title: t('battle.online_title'), desc: t('battle.online_desc'), meta: t('battle.online_meta'),
+          onClick: () => setView('online'),
+          board: BOARD_ONLINE,
+          chips: <span className="rounded-[6px] border border-line bg-canvas px-s8 py-[2px] font-heading text-meta font-bold tabular-nums tracking-wider text-ink-soft">NBA-XXXX</span>,
+        },
+        {
+          key: 'local', icon: Users, title: t('battle.local_title'), desc: t('battle.local_desc'), meta: t('battle.local_meta'),
+          onClick: () => router.push('/battle/local'),
+          board: BOARD_LOCAL,
+          chips: (
+            <span className="flex items-center gap-s8">
+              <span className="rounded-[6px] border border-brand-blue-soft/40 px-s8 py-[2px] text-meta font-semibold text-brand-blue-soft">{t('battle.player_1')}</span>
+              <span className="rounded-[6px] border border-action/40 px-s8 py-[2px] text-meta font-semibold text-action">{t('battle.player_2')}</span>
+            </span>
+          ),
+        },
+      ]
       return (
-        <div className="w-full max-w-3xl mx-auto relative z-10 font-sans">
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center mb-10"
-            >
-                <h1 className="text-3xl md:text-4xl font-heading font-bold uppercase italic tracking-tighter text-white mb-2">
-                    {t('battle.select_mode')}
-                </h1>
-                <p className="text-slate-400 text-xs md:text-sm uppercase tracking-widest font-medium">
-                   Are you ready for the big stage?
-                </p>
-            </motion.div>
+        <div className="w-full max-w-3xl mx-auto">
+            <p className="font-heading text-meta font-semibold uppercase tracking-wider text-ink-muted">{t('battle.hero_eyebrow')}</p>
+            <h1 className="mt-s8 font-heading text-display-sm font-bold uppercase tracking-tight text-ink">
+                {t('battle.hero_title')}
+            </h1>
+            <p className="mt-s8 max-w-[60ch] text-ink-muted">{t('battle.hero_sub')}</p>
 
-            <div className="grid md:grid-cols-2 gap-6">
-                {/* ONLINE MODE CARD */}
-                <motion.div
-                    whileHover={{ scale: 1.02, borderColor: "rgba(255, 255, 255, 0.2)" }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => setView('online')}
-                    className="group relative h-64 bg-black/40 border border-white/10 rounded-2xl p-6 cursor-pointer flex flex-col items-center justify-center gap-4 transition-all overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-br from-nba-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-2 group-hover:bg-nba-blue/20 transition-colors">
-                        <Globe className="w-8 h-8 text-nba-blue" />
-                    </div>
-                    <div className="text-center relative z-10">
-                        <h3 className="text-xl font-heading font-bold uppercase italic text-white mb-2 group-hover:text-nba-blue transition-colors">Online Battle</h3>
-                        <p className="text-slate-400 text-xs font-medium leading-relaxed px-4">
-                            Affronte des joueurs du monde entier en temps réel. Grimpe dans le classement.
-                        </p>
-                    </div>
-                </motion.div>
+            <div className="mt-s32 grid grid-cols-1 sm:grid-cols-2 gap-s16">
+                {modes.map(({ key, icon: Icon, title, desc, meta, onClick, chips, board }) => (
+                    <button
+                        key={key}
+                        type="button"
+                        onClick={onClick}
+                        className="group flex flex-col rounded-ref border border-line bg-surface p-s16 text-left shadow-soft transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:border-ink-muted/40 hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+                    >
+                        {/* Preview */}
+                        <span className="flex h-36 flex-col items-center justify-center gap-s16 rounded-nested border border-line bg-canvas">
+                            <MiniBoard cells={board} />
+                            {chips}
+                        </span>
 
-                {/* LOCAL MODE CARD */}
-                <motion.div
-                    whileHover={{ scale: 1.02, borderColor: "rgba(255, 255, 255, 0.2)" }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => router.push('/battle/local')}
-                    className="group relative h-64 bg-black/40 border border-white/10 rounded-2xl p-6 cursor-pointer flex flex-col items-center justify-center gap-4 transition-all overflow-hidden"
-                >
-                    <div className="absolute inset-0 bg-gradient-to-br from-nba-red/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mb-2 group-hover:bg-nba-red/20 transition-colors">
-                         <Swords className="w-8 h-8 text-nba-red" />
-                    </div>
-                    <div className="text-center relative z-10">
-                        <h3 className="text-xl font-heading font-bold uppercase italic text-white mb-2 group-hover:text-nba-red transition-colors">Local 1v1</h3>
-                        <p className="text-slate-400 text-xs font-medium leading-relaxed px-4">
-                            Duel sur le même écran. Le mode classique canapé pour humilier tes potes.
-                        </p>
-                    </div>
-                </motion.div>
+                        <span className="mt-s16 flex items-center gap-s8 font-heading text-lead font-bold uppercase tracking-tight text-ink">
+                            <Icon className="size-5 text-ink-muted" strokeWidth={1.75} />
+                            {title}
+                        </span>
+                        <span className="mt-s8 text-meta text-ink-muted">{desc}</span>
+                        <span className="mt-s16 flex w-full items-center justify-between border-t border-line pt-s16">
+                            <span className="text-meta text-ink-muted">{meta}</span>
+                            <span className="inline-flex items-center gap-s8 font-heading text-meta font-bold uppercase tracking-wider text-ink">
+                                {t('battle.choose')}
+                                <ChevronRight className="size-4 transition-transform duration-[120ms] group-hover:translate-x-1 group-hover:duration-[200ms] ease-snappy" strokeWidth={1.75} />
+                            </span>
+                        </span>
+                    </button>
+                ))}
             </div>
         </div>
       )
   }
 
-  // SCREEN 2: ONLINE LOBBY (Existing UI)
-  return (
-    <div className="w-full max-w-md mx-auto relative z-10">
-        <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="bg-black/40 border border-white/10 p-6 rounded-xl backdrop-blur-md shadow-xl relative"
-        >
-            {/* Back Button */}
-            <Button 
-                variant="ghost" 
-                size="icon" 
-                className="absolute left-2 top-2 h-8 w-8 text-slate-500 hover:text-white"
-                onClick={() => setView('selection')}
-            >
-                <ArrowLeft className="w-4 h-4" />
-            </Button>
+  const cycleTeam = (dir: 1 | -1) => {
+    const idx = teamKeys.indexOf(selectedTeam)
+    const nextIdx = (idx + dir + teamKeys.length) % teamKeys.length
+    setSelectedTeam(teamKeys[nextIdx])
+  }
 
-            {/* Header Premium */}
-            <div className="text-center mb-8 relative z-10">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-nba-blue/20 blur-[100px] rounded-full -z-10 pointer-events-none" />
-                <h1 className="text-3xl font-heading font-bold uppercase italic tracking-tighter text-white mb-2 drop-shadow-xl inline-flex flex-col">
-                    <span className="text-sm tracking-[0.3em] text-nba-blue not-italic mb-1">Online Arena</span>
-                    <span>Défie un ami</span>
-                </h1>
-                <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em] font-bold">
-                    En temps réel • 1v1 • Classement
-                </p>
+  // SCREEN 2: ONLINE LOBBY
+  return (
+    <div className="w-full max-w-md mx-auto">
+        <button type="button" onClick={() => setView('selection')} className={BTN_GHOST}>
+            <ArrowLeft className="size-4" strokeWidth={1.75} />
+            {t('battle.back')}
+        </button>
+
+        <div className="mt-s8 rounded-ref border border-line bg-surface p-s24 shadow-window animate-in fade-in zoom-in-95 duration-200 ease-out">
+            <div>
+                <p className="font-heading text-meta font-semibold uppercase tracking-wider text-ink-muted">{t('battle.online_meta')}</p>
+                <h1 className="mt-s8 font-heading text-display-sm font-bold uppercase tracking-tight text-ink">{t('battle.online_heading')}</h1>
             </div>
 
             {!isLoading ? (
-                <AnimatePresence mode="wait">
+                <div className="mt-s24">
                     {mode === 'menu' && (
-                        <motion.div 
-                            key="menu"
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="space-y-6"
-                        >
-                            {/* Team Selector Large Card */}
-                            <div className="bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-xl p-6 relative group">
-                                <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                                    <Swords className="w-24 h-24 text-white" />
-                                </div>
-                                
-                                <div className="flex items-center justify-between mb-4">
-                                     <Button 
-                                        variant="ghost" 
-                                        size="icon" 
-                                        className="h-10 w-10 rounded-full hover:bg-white/10 text-slate-400 hover:text-white"
-                                        onClick={() => {
-                                            const idx = teamKeys.indexOf(selectedTeam)
-                                            const prev = teamKeys[idx - 1] || teamKeys[teamKeys.length - 1]
-                                            setSelectedTeam(prev)
-                                        }}
-                                    >
-                                        <ChevronLeft className="w-6 h-6" />
-                                    </Button>
-
-                                    <div className="relative w-32 h-32 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500">
-                                        <div className="absolute inset-0 bg-white/5 blur-2xl rounded-full" />
-                                        <TeamLogo 
-                                            teamId={selectedTeam} 
-                                            size={128} 
-                                            className="relative z-10 drop-shadow-2xl w-full h-full"
-                                        />
+                        <div key="menu" className={panel}>
+                            {/* Team picker */}
+                            <div className="flex flex-col gap-s8">
+                                <span className={LABEL}>{t('battle.your_team')}</span>
+                                <div className="flex items-center justify-between gap-s16 rounded-nested border border-line bg-canvas p-s16">
+                                    <button type="button" aria-label="Équipe précédente" onClick={() => cycleTeam(-1)} className="inline-flex size-10 items-center justify-center rounded-nested text-ink-muted transition-colors duration-[120ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-action">
+                                        <ChevronLeft className="size-5" strokeWidth={1.75} />
+                                    </button>
+                                    <div className="flex min-w-0 flex-1 items-center gap-s16">
+                                        <span className="relative flex size-16 shrink-0 items-center justify-center">
+                                            <TeamLogo teamId={selectedTeam} size={64} className="h-full w-full" />
+                                        </span>
+                                        <span className="min-w-0">
+                                            <span className="block truncate font-heading text-lead font-bold uppercase tracking-tight text-ink">{NBA_TEAMS[selectedTeam].name}</span>
+                                            <span className="block truncate text-meta text-ink-muted">{NBA_TEAMS[selectedTeam].city}</span>
+                                        </span>
                                     </div>
-
-                                    <Button 
-                                        variant="ghost" 
-                                        size="icon" 
-                                        className="h-10 w-10 rounded-full hover:bg-white/10 text-slate-400 hover:text-white"
-                                        onClick={() => {
-                                            const idx = teamKeys.indexOf(selectedTeam)
-                                            const next = teamKeys[idx + 1] || teamKeys[0]
-                                            setSelectedTeam(next)
-                                        }}
-                                    >
-                                        <ChevronRight className="w-6 h-6" />
-                                    </Button>
-                                </div>
-
-                                <div className="text-center space-y-1">
-                                    <h3 className="text-4xl font-heading font-bold uppercase italic text-white tracking-wide leading-none">
-                                        {NBA_TEAMS[selectedTeam].name}
-                                    </h3>
-                                    <p className="text-xs font-bold text-nba-blue uppercase tracking-[0.2em]">
-                                        {NBA_TEAMS[selectedTeam].city}
-                                    </p>
+                                    <button type="button" aria-label="Équipe suivante" onClick={() => cycleTeam(1)} className="inline-flex size-10 items-center justify-center rounded-nested text-ink-muted transition-colors duration-[120ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-action">
+                                        <ChevronRight className="size-5" strokeWidth={1.75} />
+                                    </button>
                                 </div>
                             </div>
 
-                            <Input 
-                                placeholder="PSEUDO" 
-                                className="bg-black/50 border-white/10 text-white text-center text-lg h-14 font-bold uppercase tracking-widest focus:border-nba-blue/50 focus:ring-1 focus:ring-nba-blue/50 transition-all rounded-lg placeholder:text-slate-600"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                maxLength={12}
-                            />
-                            
-                            <div className="grid grid-cols-2 gap-4">
-                                <Button 
-                                    onClick={() => setMode('create')} 
-                                    className="bg-white text-black hover:bg-slate-200 h-14 text-sm font-black uppercase tracking-widest border border-transparent transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:scale-[1.02]"
-                                    disabled={!name}
-                                >
-                                    Créer
-                                </Button>
-                                <Button 
-                                    onClick={() => setMode('join')} 
-                                    variant="outline"
-                                    className="bg-transparent border-white/20 hover:bg-white/5 hover:border-white/40 text-white h-14 text-sm font-black uppercase tracking-widest transition-all hover:scale-[1.02]"
-                                    disabled={!name}
-                                >
-                                    Rejoindre
-                                </Button>
+                            <label className="flex flex-col gap-s8">
+                                <span className={LABEL}>{t('battle.nickname')}</span>
+                                <Input
+                                    placeholder={t('battle.nickname_placeholder')}
+                                    className={FIELD}
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    maxLength={12}
+                                />
+                            </label>
+
+                            <div className="flex flex-col gap-s8">
+                                <button type="button" onClick={() => setMode('create')} disabled={!name} className={BTN_PRIMARY}>
+                                    {t('battle.create_room')}
+                                </button>
+                                <button type="button" onClick={() => setMode('join')} disabled={!name} className={BTN_SECONDARY}>
+                                    {t('battle.join_room')}
+                                </button>
                             </div>
-                        </motion.div>
+                        </div>
                     )}
 
                     {mode === 'create' && (
-                        <motion.div 
-                            key="create"
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="space-y-5"
-                        >
-                            <div className="space-y-2">
-                                <label className="text-[10px] uppercase font-bold text-slate-500 block text-center tracking-widest">{t('battle.select_difficulty')}</label>
-                                <div className="grid grid-cols-3 gap-2">
-                                    {[{key: 'easy', label: t('battle.difficulty_easy')}, {key: 'medium', label: t('battle.difficulty_medium')}, {key: 'hard', label: t('battle.difficulty_hard')}].map(({key, label}) => (
-                                        <button
-                                            key={key}
-                                            onClick={() => setDifficulty(key)}
-                                            className={cn(
-                                                "py-3 px-1 rounded-md border font-heading font-bold uppercase transition-all duration-200 text-xs",
-                                                difficulty === key 
-                                                    ? "bg-white text-black border-white shadow-sm"
-                                                    : "bg-transparent text-slate-500 border-white/10 hover:border-white/20"
-                                            )}
-                                        >
-                                            {label}
-                                        </button>
-                                    ))}
-                                </div>
+                        <div key="create" className={panel}>
+                            <Segmented
+                                label={t('battle.select_difficulty')}
+                                value={difficulty as 'easy' | 'medium' | 'hard'}
+                                onChange={(v) => setDifficulty(v)}
+                                options={[
+                                    { value: 'easy', label: t('battle.difficulty_easy') },
+                                    { value: 'medium', label: t('battle.difficulty_medium') },
+                                    { value: 'hard', label: t('battle.difficulty_hard') },
+                                ]}
+                            />
+                            <div className="flex flex-col gap-s8">
+                                <button type="button" onClick={handleCreateSubmit} className={BTN_PRIMARY}>
+                                    <Zap className="size-4" strokeWidth={1.75} />
+                                    {t('battle.start')}
+                                </button>
+                                <button type="button" onClick={() => setMode('menu')} className={cn(BTN_GHOST, "self-center")}>
+                                    {t('battle.back')}
+                                </button>
                             </div>
-
-                            <Button 
-                                onClick={handleCreateSubmit} 
-                                className="w-full bg-nba-red hover:bg-red-700 h-12 text-sm font-heading uppercase tracking-widest shadow-lg shadow-red-900/20 transition-all border border-transparent"
-                            >
-                                <Zap className="w-4 h-4 mr-2" />
-                                {t('battle.start')}
-                            </Button>
-
-                            <Button 
-                                onClick={() => setMode('menu')} 
-                                variant="ghost" 
-                                className="w-full text-slate-500 hover:text-white uppercase tracking-widest text-[10px] h-8"
-                            >
-                                {t('battle.back')}
-                            </Button>
-                        </motion.div>
+                        </div>
                     )}
 
                     {mode === 'join' && (
-                        <motion.div 
-                            key="join"
-                            variants={containerVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            className="space-y-5"
-                        >
-                            <div className="space-y-2">
-                                <label className="text-[10px] uppercase font-bold text-slate-500 block text-center tracking-widest">{t('battle.enter_code')}</label>
-                                <Input 
-                                    placeholder="NBA-XXXX" 
-                                    className="bg-black/30 border-white/10 text-white text-center text-xl h-14 font-mono uppercase tracking-[0.15em] focus:border-green-500/50 transition-colors rounded-lg"
+                        <div key="join" className={panel}>
+                            <label className="flex flex-col gap-s8">
+                                <span className={LABEL}>{t('battle.room_code')}</span>
+                                <Input
+                                    placeholder="NBA-XXXX"
+                                    className={cn(FIELD, "font-heading text-lead uppercase tracking-wider tabular-nums")}
                                     value={code}
                                     onChange={(e) => setCode(e.target.value.toUpperCase())}
                                     maxLength={8}
                                     autoFocus
                                 />
-                            </div>
-                            
-                            <Button 
-                                onClick={handleJoin} 
-                                className="w-full bg-green-600 hover:bg-green-700 h-12 text-sm font-heading uppercase tracking-widest shadow-lg shadow-green-900/20 transition-all border border-transparent"
-                            >
+                            </label>
+
+                            <button type="button" onClick={handleJoin} className={BTN_PRIMARY}>
                                 {t('battle.enter_arena')}
-                            </Button>
-                            
-                            {/* Open Battles List Compact */}
-                            <div className="pt-4 border-t border-white/5">
-                                <div className="flex items-center justify-between mb-2">
-                                    <h3 className="text-[10px] uppercase font-bold text-slate-500 flex items-center gap-2 tracking-widest">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                            </button>
+
+                            {/* Public games */}
+                            <div className="border-t border-line pt-s24">
+                                <div className="flex items-center justify-between">
+                                    <h3 className="inline-flex items-center gap-s8 text-meta font-semibold text-ink-soft">
+                                        <span className="size-2 rounded-full bg-success" />
                                         {t('battle.open_battles')}
                                     </h3>
-                                    <Button variant="ghost" size="icon" className="h-6 w-6 text-slate-500 hover:text-white" onClick={fetchOpenBattles}>
-                                        <RefreshCw className={cn("w-3 h-3", loadingBattles && "animate-spin")} />
-                                    </Button>
+                                    <button type="button" aria-label="Actualiser" onClick={fetchOpenBattles} className="inline-flex size-8 items-center justify-center rounded-nested text-ink-muted transition-colors duration-[120ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-action">
+                                        <RefreshCw className={cn("size-4", loadingBattles && "animate-spin")} strokeWidth={1.75} />
+                                    </button>
                                 </div>
-                                
-                                <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+
+                                <div className="mt-s16 flex max-h-48 flex-col gap-s8 overflow-y-auto">
                                     {loadingBattles ? (
-                                        <div className="text-center py-4"><Loader2 className="w-4 h-4 animate-spin mx-auto text-slate-600" /></div>
+                                        <div className="py-s16 text-center"><Loader2 className="mx-auto size-4 animate-spin text-ink-muted" /></div>
                                     ) : openBattles.length > 0 ? (
                                         openBattles.map(battle => (
-                                            <div 
-                                                key={battle.code} 
-                                                className="flex items-center justify-between bg-white/5 p-2.5 rounded-md border border-white/5 hover:border-white/10 hover:bg-white/10 transition-colors cursor-pointer group"
+                                            <button
+                                                key={battle.code}
+                                                type="button"
                                                 onClick={() => handleJoinOpenBattle(battle.code)}
+                                                className="group flex items-center justify-between gap-s16 rounded-nested border border-line bg-canvas px-s16 py-s8 text-left transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 focus-visible:outline-2 focus-visible:outline-action"
                                             >
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-xs font-bold text-slate-300 group-hover:text-white transition-colors">
+                                                <span className="flex min-w-0 items-center gap-s8">
+                                                    <span className="truncate font-medium text-ink">
                                                         {battle.host_name?.includes('|') ? battle.host_name.split('|')[1] : battle.host_name}
                                                     </span>
-                                                    <span className="text-[9px] px-1.5 py-0.5 bg-black/30 rounded text-slate-500 border border-white/5 uppercase">
-                                                        {battle.difficulty || 'med'}
+                                                    <span className="rounded-[4px] border border-line px-[6px] py-[2px] text-meta text-ink-muted">
+                                                        {battle.difficulty || 'medium'}
                                                     </span>
-                                                </div>
-                                                <div className="text-[10px] text-green-500 font-bold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    Rejoindre
-                                                </div>
-                                            </div>
+                                                </span>
+                                                <span className="font-heading text-meta font-bold uppercase tracking-wider text-ink-muted transition-colors group-hover:text-ink">
+                                                    {t('battle.join_short')}
+                                                </span>
+                                            </button>
                                         ))
                                     ) : (
-                                        <div className="text-center py-6 border border-dashed border-white/5 rounded-md">
-                                            <p className="text-[10px] text-slate-600 italic">Aucune partie publique</p>
-                                        </div>
+                                        <p className="rounded-nested border border-dashed border-line py-s24 text-center text-meta text-ink-muted">{t('battle.no_public')}</p>
                                     )}
                                 </div>
                             </div>
 
-                            <Button 
-                                onClick={() => setMode('menu')} 
-                                variant="ghost" 
-                                className="w-full text-slate-500 hover:text-white uppercase tracking-widest text-[10px] h-8"
-                            >
+                            <button type="button" onClick={() => setMode('menu')} className={cn(BTN_GHOST, "self-center")}>
                                 {t('battle.back')}
-                            </Button>
-                        </motion.div>
+                            </button>
+                        </div>
                     )}
-                </AnimatePresence>
+                </div>
             ) : (
-                <div className="flex flex-col items-center justify-center py-8">
-                     <Loader2 className="w-8 h-8 text-white animate-spin mb-4 opacity-50" />
-                     <p className="uppercase font-bold tracking-widest text-xs text-slate-500 animate-pulse">
+                <div className="flex flex-col items-center justify-center gap-s16 py-s48">
+                    <Loader2 className="size-6 animate-spin text-ink-muted" />
+                    <p className="text-meta text-ink-muted">
                         {mode === 'create' ? t('battle.initializing') : t('battle.connecting')}
                     </p>
                 </div>
             )}
-        </motion.div>
+        </div>
     </div>
   )
 }

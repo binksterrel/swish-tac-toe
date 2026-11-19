@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { type Criteria, getTeamLogoUrl } from "@/lib/nba-data"
-import { Globe, Crown } from "lucide-react"
+import { Globe, Crown, Award, Shield, ShieldCheck, Sprout, Star, Medal, Flame, Target, Hand, type LucideIcon } from "lucide-react"
 import Image from "next/image"
 import { TeamLogo } from "@/components/common/team-logo"
 
@@ -13,165 +13,121 @@ interface CriteriaHeaderProps {
   blur?: boolean
 }
 
+// Country code mapping for FlagCDN
+const COUNTRY_FLAGS: Record<string, string> = {
+  USA: "us",
+  France: "fr",
+  Canada: "ca",
+  Spain: "es",
+  Germany: "de",
+  Serbia: "rs",
+  Slovenia: "si",
+  Greece: "gr",
+  Australia: "au",
+  Cameroon: "cm",
+  Nigeria: "ng",
+  Italy: "it",
+  Argentina: "ar",
+}
+
+// Icons for criteria that have no logo/image of their own
+const CRITERIA_ICONS: Partial<Record<string, LucideIcon>> = {
+  mvp: Award,
+  dpoy: Shield,
+  allDefensive: ShieldCheck,
+  roy: Sprout,
+  allStar: Star,
+  allNBA: Medal,
+  ppg: Flame,
+  rpg: Target,
+  apg: Hand,
+}
+
+function getLabel(criteria: Criteria) {
+  switch (criteria.type) {
+    case "mvp": return "MVP"
+    case "champion": return "Champion"
+    case "allStar": return "All-Star"
+    case "roy": return "ROY"
+    case "dpoy": return "DPOY"
+    case "allNBA": return "All-NBA"
+    case "allDefensive": return "All-Defense"
+    case "decade": return `${criteria.value.replace("s", "")}'s`
+    case "ppg": return "20+ PTS"
+    case "rpg": return "10+ REB"
+    case "apg": return "10+ AST"
+    case "position": return criteria.label || criteria.value
+    case "draft_pick_1": return "1st Pick"
+    case "draft_top_3": return "Top 3 Pick"
+    case "country": return criteria.label || criteria.value
+    default: return criteria.value.toUpperCase()
+  }
+}
+
+const LABEL = "font-heading text-meta font-bold uppercase leading-tight tracking-wide text-ink-soft text-center"
+
 export function CriteriaHeader({ criteria, direction, hidden = false, blur = false }: CriteriaHeaderProps) {
   const isTeam = criteria.type === "team"
   const isCountry = criteria.type === "country"
   const logoUrl = isTeam ? getTeamLogoUrl(criteria.value) : null
-
-  // Country Code Mapping for FlagCDN
-  const getCountryFlag = (country: string) => {
-    const map: Record<string, string> = {
-      "USA": "us",
-      "France": "fr",
-      "Canada": "ca",
-      "Spain": "es",
-      "Germany": "de",
-      "Serbia": "rs",
-      "Slovenia": "si",
-      "Greece": "gr",
-      "Australia": "au",
-      "Cameroon": "cm",
-      "Nigeria": "ng",
-      "Italy": "it",
-      "Argentina": "ar"
-    }
-    return map[country] || null
-  }
-
-  // Helper for cleaner labels
-  const getLabel = () => {
-    switch (criteria.type) {
-      case "mvp": return "KIA MVP"
-      case "champion": return "NBA CHAMP"
-      case "allStar": return "ALL-STAR"
-      case "roy": return "ROY"
-      case "dpoy": return "DPOY"
-      case "allNBA": return "ALL-NBA"
-      case "allDefensive": return "ALL-DEFENSE"
-      case "decade": return `${criteria.value.replace("s", "")}'s`
-      case "ppg": return "PPS > 20"
-      case "rpg": return "REB > 10"
-      case "apg": return "AST > 10"
-      case "position": return criteria.label || criteria.value
-      case "draft_pick_1": return "1ST PICK"
-      case "draft_top_3": return "TOP 3 PICK"
-      // Country fallback label if image fails
-      case "country": return criteria.label || criteria.value
-      default: return criteria.value.toUpperCase()
-    }
-  }
+  const flag = isCountry ? COUNTRY_FLAGS[criteria.value] : null
+  const name = criteria.label || criteria.value
+  const Icon = CRITERIA_ICONS[criteria.type]
 
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center p-2 h-full w-full bg-[#0a0a0a]", // Almost black background
-        "border-zinc-800", // Subtle separator
-        direction === "col" ? "border-b" : "border-r"
+        "flex h-full w-full flex-col items-center justify-center gap-s8 p-s8",
+        direction === "col" ? "justify-end" : "",
       )}
+      title={hidden || blur ? undefined : name}
     >
-      {hidden ? (
-          <div className="flex flex-col items-center justify-center animate-pulse">
-             <span className="text-3xl font-heading font-bold text-zinc-800 select-none">?</span>
-          </div>
+      {hidden || blur ? (
+        <span className="font-heading text-lead font-bold text-ink-muted/50 select-none" aria-label="Critère caché">?</span>
       ) : (
-          /* Official Box-Score Style: Minimalist and Sharp */
-          <div className="relative group transition-all duration-300">
-             {/* Blurred/Hidden State Overlay */}
-             {blur ? (
-                 <div className="absolute inset-0 flex items-center justify-center z-10 bg-[#0a0a0a]">
-                     <span className="text-xl md:text-2xl font-bold text-zinc-700 animate-pulse">?</span>
-                 </div>
-             ) : (
-                /* Actual Content */
-                <div className="transition-all duration-300 flex flex-col items-center">
-                    {/* TEAM LOGOS */}
-                    {isTeam && logoUrl && (
-                        <div className="w-10 h-10 md:w-14 md:h-14 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
-                            <TeamLogo teamId={criteria.value} size={56} className="w-full h-full" />
-                        </div>
-                    )}
+        <>
+          {isTeam && logoUrl && (
+            <span className="relative flex size-10 md:size-14 items-center justify-center">
+              <TeamLogo teamId={criteria.value} size={56} className="h-full w-full" />
+            </span>
+          )}
 
-                    {/* COUNTRY FLAGS */}
-                    {isCountry && (
-                        <div className="w-10 h-10 md:w-12 md:h-12 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
-                            {criteria.value.toLowerCase() === "international" ? (
-                                <Globe className="w-8 h-8 md:w-10 md:h-10 text-blue-400" strokeWidth={1.5} />
-                            ) : getCountryFlag(criteria.value) ? (
-                                <Image
-                                    src={`https://flagcdn.com/w80/${getCountryFlag(criteria.value)}.png`} 
-                                    alt={criteria.value} 
-                                    width={80}
-                                    height={60}
-                                    className="w-full h-auto object-cover rounded shadow-sm opacity-90 hover:opacity-100"
-                                />
-                            ) : (
-                                <span className="text-2xl">🌍</span>
-                            )}
-                        </div>
-                    )}
+          {isCountry && (
+            <span className="flex h-8 w-10 md:h-10 md:w-14 items-center justify-center">
+              {criteria.value.toLowerCase() === "international" ? (
+                <Globe className="size-8 text-ink-soft" strokeWidth={1.5} />
+              ) : flag ? (
+                <Image
+                  src={`https://flagcdn.com/w80/${flag}.png`}
+                  alt={criteria.value}
+                  width={80}
+                  height={60}
+                  className="h-auto w-full rounded-[4px] border border-line object-cover"
+                />
+              ) : (
+                <Globe className="size-8 text-ink-soft" strokeWidth={1.5} />
+              )}
+            </span>
+          )}
 
-                    {/* DRAFT PICK #1 */}
-                    {criteria.type === "draft_pick_1" && (
-                         <div className="flex flex-col items-center justify-center mb-1 transition-all hover:scale-110">
-                            <Crown className="w-8 h-8 md:w-10 md:h-10 text-amber-400 mb-1" strokeWidth={1.5} />
-                            <span className="text-[8px] md:text-[10px] font-heading font-bold uppercase tracking-widest text-amber-500/80 leading-none">
-                                1ST PICK
-                            </span>
-                         </div>
-                    )}
+          {Icon && <Icon className="size-6 md:size-8 text-ink-soft" strokeWidth={1.5} />}
 
-                    {/* DRAFT TOP 3 */}
-                    {criteria.type === "draft_top_3" && (
-                         <div className="flex flex-col items-center justify-center mb-1 transition-all hover:scale-110">
-                            <div className="relative">
-                                <Crown className="w-8 h-8 md:w-10 md:h-10 text-slate-300 mb-1" strokeWidth={1.5} />
-                                <span className="absolute -top-1 -right-2 text-[10px] font-bold text-amber-400 bg-black/80 px-1 rounded-full border border-amber-400/50">3</span>
-                            </div>
-                            <span className="text-[8px] md:text-[10px] font-heading font-bold uppercase tracking-widest text-slate-400 leading-none">
-                                TOP 3 DRAFT
-                            </span>
-                         </div>
-                    )}
+          {criteria.type === "champion" && (
+            <span className="relative flex size-10 md:size-14 items-center justify-center">
+              <Image src="/images/trophy.png" alt="" width={64} height={64} className="h-full w-full object-contain" />
+            </span>
+          )}
 
-                    {/* NBA CHAMPION */}
-                    {criteria.type === "champion" && (
-                         <div className="w-10 h-10 md:w-16 md:h-16 relative flex items-center justify-center mb-1 transition-all hover:scale-110">
-                            <Image 
-                                src="/images/trophy.png"
-                                alt="NBA Champion"
-                                width={64}
-                                height={64}
-                                className="w-full h-full object-contain"
-                            />
-                         </div>
-                    )}
+          {(criteria.type === "draft_pick_1" || criteria.type === "draft_top_3") && (
+            <Crown className="size-6 md:size-8 text-ink-soft" strokeWidth={1.5} />
+          )}
 
-                    {/* TEXT LABELS (For Awards, Stats, Decades, or Fallbacks) */}
-                    {!isTeam && !isCountry && criteria.type !== "draft_pick_1" && criteria.type !== "draft_top_3" && (criteria.type as string) !== "champion" && (
-                        <div className="flex flex-col items-center">
-                            {/* Accent Line for awards */}
-                            <div className={cn("w-8 h-1 mb-1", 
-                                criteria.type === "mvp" ? "bg-nba-blue" : 
-                                criteria.type === "champion" ? "bg-amber-400" :
-                                criteria.type === "allStar" ? "bg-nba-red" : "bg-zinc-700"
-                            )} />
-                            
-                            <span className="text-[10px] md:text-xs font-heading font-normal uppercase tracking-widest text-zinc-400 text-center leading-none">
-                                {getLabel()}
-                            </span>
-                        </div>
-                    )}
+          {/* Text label for everything that is not a team logo */}
+          {!isTeam && <span className={LABEL}>{getLabel(criteria)}</span>}
 
-                     {/* Label for Country/Team fallback or addition */}
-                     {(isTeam || isCountry) && (
-                         <span className="text-[8px] font-mono text-zinc-600 uppercase tracking-wider mt-1 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-4 bg-black px-1 rounded">
-                             {criteria.label || criteria.value}
-                         </span>
-                     )}
-
-                </div>
-             )}
-          </div>
+          {/* Team name: discreet, always visible from md up */}
+          {isTeam && <span className="hidden md:block text-meta text-ink-muted text-center leading-tight">{name}</span>}
+        </>
       )}
     </div>
   )

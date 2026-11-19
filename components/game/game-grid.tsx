@@ -5,7 +5,7 @@ import type { CellState } from "@/hooks/use-game-state"
 import type { Criteria } from "@/lib/nba-data"
 import { GameCell } from "./game-cell"
 import { CriteriaHeader } from "./criteria-header"
-import { Fragment } from "react"
+import { Fragment, type CSSProperties } from "react"
 
 interface GameGridProps {
   grid: CellState[][]
@@ -32,12 +32,28 @@ export function GameGrid({
 }: GameGridProps) {
   const isBlind = mode === "blind"
 
-  const gridColsClass = size === 3 ? "grid-cols-4" : size === 4 ? "grid-cols-5" : "grid-cols-6"
+  // Phones: [criteria | cells]. From md up, an empty column mirrors the criteria
+  // column on the right so the cells themselves sit in the middle of the page.
+  const gridColsClass =
+    size === 3 ? "grid-cols-4 md:grid-cols-5" : size === 4 ? "grid-cols-5 md:grid-cols-6" : "grid-cols-6 md:grid-cols-7"
+  // Keep the cells the same size as before despite the extra column
+  const desktopFactor = (size + 2) / (size + 1)
+  const baseMax = `min(${size > 3 ? "56rem" : "42rem"}, max(300px, calc(100dvh - 160px)))`
 
   return (
-    <div className={cn("w-full mx-auto", size > 3 ? "max-w-4xl" : "max-w-2xl")}>
+    <div
+      className="w-full mx-auto max-w-[var(--grid-max)] md:max-w-[var(--grid-max-md)]"
+      // The grid is square (header row + header column), so capping its width
+      // by the viewport height keeps scoreboard + grid visible at once.
+      style={
+        {
+          "--grid-max": baseMax,
+          "--grid-max-md": `calc(${baseMax} * ${desktopFactor})`,
+        } as CSSProperties
+      }
+    >
       {/* Grid container */}
-      <div className={cn("grid gap-1 md:gap-2", gridColsClass)}>
+      <div className={cn("grid gap-[4px] sm:gap-s8", gridColsClass)}>
         {/* Empty corner */}
         <div className="aspect-square" />
         
@@ -51,6 +67,7 @@ export function GameGrid({
             blur={isBlind && !disabled && !hidden} 
            />
         ))}
+        <div className="hidden md:block" aria-hidden />
 
         {/* Rows with cells */}
         {rows?.map((row, rowIndex) => (
@@ -76,6 +93,7 @@ export function GameGrid({
                 disabled={disabled || cell.status === "correct"}
               />
             ))}
+            <div className="hidden md:block" aria-hidden />
           </Fragment>
         ))}
       </div>

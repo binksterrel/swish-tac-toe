@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PlayerCard } from "@/components/players/player-card"
 import { useLanguage } from "@/contexts/language-context"
 import { NBATicker } from "@/components/layout/nba-ticker"
-import { Header } from "@/components/layout/header"
+import { Header, SiteFooter } from "@/components/layout/header"
 
 export default function PlayersPage() {
   const { t } = useLanguage()
@@ -119,31 +119,31 @@ export default function PlayersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans">
+    <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans">
       <NBATicker />
       <Header />
       
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-8 border-b border-gray-800 pb-6">
+      <div className="w-full max-w-6xl mx-auto px-s16 md:px-s32 py-s32 md:py-s48">
+        <div className="mb-s32 flex flex-col gap-s24 border-b border-line pb-s24 xl:flex-row xl:items-end xl:justify-between">
           <div>
-            <h1 className="text-4xl md:text-5xl font-heading font-bold uppercase italic tracking-tighter mb-2">
+            <h1 className="font-heading text-display-sm text-ink">
               {t('players.title')}
             </h1>
-            <p className="text-gray-400 font-mono text-sm">
+            <p className="mt-s8 text-meta tabular-nums text-ink-muted">
               {filteredPlayers.length} {t('common.players')}
             </p>
           </div>
 
-             <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+             <div className="flex w-full flex-col gap-s8 md:flex-row md:flex-wrap xl:w-auto">
                 <Input 
                   placeholder={t('players.search_placeholder')}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="bg-gray-900 border-gray-700 w-full md:w-64"
+                  className="bg-surface border-line w-full md:w-64"
                 />
 
                 <Select value={teamFilter} onValueChange={setTeamFilter}>
-                  <SelectTrigger className="w-full md:w-48 bg-gray-900 border-gray-700">
+                  <SelectTrigger className="w-full md:w-48 bg-surface border-line">
                     <SelectValue placeholder={t('players.filter_all_teams')} />
                   </SelectTrigger>
                   <SelectContent>
@@ -157,7 +157,7 @@ export default function PlayersPage() {
                 </Select>
 
                 <Select value={positionFilter} onValueChange={setPositionFilter}>
-                  <SelectTrigger className="w-full md:w-32 bg-gray-900 border-gray-700">
+                  <SelectTrigger className="w-full md:w-32 bg-surface border-line">
                     <SelectValue placeholder="Position" />
                   </SelectTrigger>
                   <SelectContent>
@@ -170,12 +170,12 @@ export default function PlayersPage() {
                   </SelectContent>
                 </Select>
 
-                <div className="bg-gray-900 p-1 rounded-md border border-gray-700 flex">
+                <div className="flex overflow-x-auto rounded-nested border border-line bg-surface p-[4px]">
                    {["ALL", "2020s", "2010s", "2000s", "1990s", "1980s"].map((decade) => (
                      <button 
                        key={decade}
                        onClick={() => setActiveFilter(decade)}
-                       className={`px-3 py-1.5 text-xs font-bold rounded-sm transition-colors uppercase ${activeFilter === decade ? 'bg-nba-blue text-white' : 'text-gray-400 hover:text-white'}`}
+                       className={`shrink-0 rounded-[6px] px-s8 py-[4px] text-meta font-semibold transition-colors duration-[120ms] ease-snappy ${activeFilter === decade ? 'bg-brand-blue text-white' : 'text-ink-muted hover:text-ink'}`}
                      >
                        {decade === "ALL" ? t('players.filter_all') : decade}
                      </button>
@@ -186,7 +186,7 @@ export default function PlayersPage() {
 
         {displayedPlayers.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-s8 sm:gap-s24">
               {displayedPlayers.map(player => (
                 <PlayerCard key={player.id} player={player} />
               ))}
@@ -198,7 +198,7 @@ export default function PlayersPage() {
                   onClick={loadMore}
                   variant="outline" 
                   size="lg"
-                  className="bg-transparent border-gray-700 text-gray-300 hover:bg-gray-900 hover:text-white uppercase font-bold tracking-widest"
+                  className="bg-transparent border-line text-ink-soft hover:bg-surface hover:text-white uppercase font-bold tracking-widest"
                 >
                   {t('players.load_more')}
                 </Button>
@@ -206,12 +206,13 @@ export default function PlayersPage() {
             )}
           </>
         ) : (
-          <div className="text-center py-20 bg-gray-900/30 rounded-lg border border-gray-800 border-dashed">
-            <h3 className="text-xl font-bold text-gray-500 mb-2">{t('players.no_results')}</h3>
-            <p className="text-gray-600">{t('players.no_results_desc')}</p>
+          <div className="text-center py-20 bg-surface/30 rounded-lg border border-line border-dashed">
+            <h3 className="text-xl font-bold text-ink-muted mb-2">{t('players.no_results')}</h3>
+            <p className="text-ink-muted/50">{t('players.no_results_desc')}</p>
           </div>
         )}
       </div>
+      <div className="mt-auto"><SiteFooter /></div>
     </div>
   )
 }

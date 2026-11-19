@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useEffect, useRef, useState } from "react"
 import { User, Session } from "@supabase/supabase-js"
 import { supabasePublic } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
@@ -23,10 +23,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const router = useRouter()
+  // Id of the user the server last rendered for; lets us skip pointless refreshes
+  const lastUserId = useRef<string | null>(null)
 
   useEffect(() => {
     // Check active session
     supabasePublic.auth.getSession().then(({ data: { session } }) => {
+      lastUserId.current = session?.user?.id ?? null
       setSession(session)
       setUser(session?.user ?? null)
       setIsLoading(false)
@@ -38,7 +41,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         setSession(session)
         setUser(session?.user ?? null)
         setIsLoading(false)
-        router.refresh()
+        // Token refreshes and tab re-focus re-emit events with the same user:
+        // only ask the server for fresh data when someone signs in or out.
+        const nextId = session?.user?.id ?? null
+        if (nextId !== lastUserId.current) {
+          lastUserId.current = nextId
+          router.refresh()
+        }
       }
     )
 

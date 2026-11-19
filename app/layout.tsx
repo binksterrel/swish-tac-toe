@@ -1,18 +1,18 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Oswald, Roboto } from 'next/font/google'
+import { Barlow } from 'next/font/google'
 import { LanguageProvider } from '@/contexts/language-context'
 import { AuthProvider } from '@/contexts/auth-context'
 import { LanguageToggle } from '@/components/layout/language-toggle'
 import { Toaster } from "sonner"
 import './globals.css'
 
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-heading" });
-const roboto = Roboto({ weight: ["400", "500", "700"], subsets: ["latin"], variable: "--font-body" });
+// One family for the whole site (headings included).
+const bodyFont = Barlow({ subsets: ["latin"], weight: ["400","500","600","700"], variable: "--font-body" });
 
 export const metadata: Metadata = {
-  title: 'Swish Tac Toe - Official NBA Grid Game',
-  description: 'The official-style NBA trivia game. Test your knowledge with the daily grid.',
+  title: 'Swish Tac Toe · NBA Trivia Grid',
+  description: 'Name an NBA player who fits both the row and the column. 3×3 to 5×5 grids, 5,139 players, solo or 1v1.',
   icons: {
     icon: '/icon.svg',
   },
@@ -25,14 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${oswald.variable} ${roboto.variable} font-sans antialiased dark bg-[#000000]`}>
+      <body suppressHydrationWarning className={`${bodyFont.variable} font-sans antialiased dark bg-canvas text-ink`}>
         <AuthProvider>
           <LanguageProvider>
             {children}
             <Toaster richColors position="top-center" closeButton />
             
-            {/* Global Language Toggle (Bottom Right) */}
-            <div className="fixed bottom-4 right-4 z-[9999]">
+            {/* Global language toggle (bottom right, desktop only; on mobile it lives in the menu) */}
+            <div className="fixed bottom-s16 right-s16 z-[9999] hidden lg:block">
                <LanguageToggle />
             </div>
           </LanguageProvider>

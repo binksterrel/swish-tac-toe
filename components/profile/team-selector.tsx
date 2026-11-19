@@ -23,7 +23,7 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                 onClick={() => setIsOpen(!isOpen)}
                 className={cn(
                     "w-full h-14 rounded-xl border flex items-center justify-between px-4 transition-all duration-300",
-                    isOpen ? "border-white/40 bg-white/10" : "border-white/10 bg-black/40 hover:border-white/20"
+                    isOpen ? "border-white/40 bg-surface-2" : "border-line bg-black/40 hover:border-line"
                 )}
             >
                 {selectedTeam ? (
@@ -32,14 +32,14 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                              <TeamLogo teamId={value} size={32} />
                          </div>
                          <div className="text-left">
-                             <div className="text-xs text-gray-400 font-bold uppercase tracking-wider">{selectedTeam.city}</div>
+                             <div className="text-xs text-ink-muted font-bold uppercase tracking-wider">{selectedTeam.city}</div>
                              <div className="font-bold text-white leading-none">{selectedTeam.name}</div>
                          </div>
                     </div>
                 ) : (
-                    <span className="text-gray-500 font-bold uppercase tracking-widest text-xs">Select Favorite Team</span>
+                    <span className="text-ink-muted font-bold uppercase tracking-widest text-xs">Select Favorite Team</span>
                 )}
-                <ChevronDown className={cn("w-5 h-5 text-gray-500 transition-transform", isOpen && "rotate-180")} />
+                <ChevronDown className={cn("w-5 h-5 text-ink-muted transition-transform", isOpen && "rotate-180")} />
             </button>
 
             <AnimatePresence>
@@ -48,7 +48,7 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-16 left-0 right-0 h-64 overflow-y-auto bg-[#0a0a0a] border border-white/20 rounded-xl z-50 p-2 shadow-2xl scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent grid grid-cols-1 md:grid-cols-2 gap-1"
+                        className="absolute top-16 left-0 right-0 h-64 overflow-y-auto bg-canvas border border-line rounded-xl z-50 p-2 shadow-raised scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent grid grid-cols-1 md:grid-cols-2 gap-1"
                     >
                         {sortedTeams.map(([id, team]) => (
                             <button
@@ -59,7 +59,7 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                                     setIsOpen(false)
                                 }}
                                 className={cn(
-                                    "flex items-center gap-3 p-2 rounded-lg transition-colors hover:bg-white/10 text-left group",
+                                    "flex items-center gap-3 p-2 rounded-lg transition-colors hover:bg-surface-2 text-left group",
                                     value === id && "bg-nba-blue/20 border border-nba-blue/30"
                                 )}
                             >
@@ -67,10 +67,10 @@ export function TeamSelector({ value, onChange }: TeamSelectorProps) {
                                       <TeamLogo teamId={id} size={32} />
                                  </div>
                                  <div className="flex-1">
-                                     <div className="text-[10px] text-gray-500 font-bold uppercase group-hover:text-gray-300">{team.city}</div>
-                                     <div className={cn("text-xs font-bold text-gray-300 group-hover:text-white", value === id && "text-white")}>{team.name}</div>
+                                     <div className="text-[10px] text-ink-muted font-bold uppercase group-hover:text-ink-soft">{team.city}</div>
+                                     <div className={cn("text-xs font-bold text-ink-soft group-hover:text-white", value === id && "text-white")}>{team.name}</div>
                                  </div>
-                                 {value === id && <Check className="w-4 h-4 text-nba-blue" />}
+                                 {value === id && <Check className="w-4 h-4 text-brand-blue-soft" />}
                             </button>
                         ))}
                     </motion.div>

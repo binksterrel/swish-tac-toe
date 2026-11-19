@@ -6,8 +6,7 @@ import { useState, useEffect, useRef } from "react"
 import { cn } from "@/lib/utils"
 import { getPlayerSuggestions, type NBAPlayer } from "@/lib/nba-data"
 import { PlayerPhoto } from "@/components/common/player-photo"
-import { Search, X, AlertCircle, User } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Search, X, AlertCircle } from "lucide-react"
 import { Input } from "@/components/ui/input"
 
 // Helper to format criteria text grammatically
@@ -104,125 +103,121 @@ export function PlayerInput({
     }
   }
 
+  const row = formatCriteriaText(rowLabel, rowType)
+  const col = formatCriteriaText(colLabel, colType)
+
   return (
-    <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-card border border-border rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
+    <div
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 p-s16 animate-in fade-in duration-200"
+      onMouseDown={(e) => { if (e.target === e.currentTarget) onCancel() }}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="player-input-title"
+        className="w-full max-w-md overflow-hidden rounded-ref border border-line bg-surface shadow-window animate-in fade-in zoom-in-95 slide-in-from-bottom-2 duration-200 ease-out"
+      >
         {/* Header */}
-        <div className="p-4 border-b border-border bg-secondary/50">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-bold text-lg text-foreground">Trouver un joueur</h3>
+        <div className="border-b border-line p-s16 sm:p-s24">
+          <div className="flex items-center justify-between gap-s16">
+            <h3 id="player-input-title" className="font-heading text-lead font-bold uppercase tracking-tight text-ink">Trouver un joueur</h3>
             <button
               type="button"
               onClick={onCancel}
-              className="p-1 hover:bg-muted rounded-md transition-colors"
+              aria-label="Fermer"
+              className="inline-flex size-8 items-center justify-center rounded-nested text-ink-muted transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
             >
-              <X className="w-5 h-5 text-muted-foreground" />
+              <X className="size-5" strokeWidth={1.75} />
             </button>
           </div>
           {hiddenLabels ? (
-            <p className="text-sm text-yellow-500 font-bold animate-pulse">
-                🕵️ Critères Mystères : À vous de déduire !
-            </p>
+            <p className="mt-s8 text-ink-muted">Critères cachés : à vous de les deviner.</p>
           ) : (
-            <p className="text-sm text-muted-foreground">
-                Qui {formatCriteriaText(rowLabel, rowType).prefix}{" "}
-                <span className="text-primary font-semibold">{formatCriteriaText(rowLabel, rowType).text}</span>
-                {" "}et {formatCriteriaText(colLabel, colType).prefix}{" "}
-                <span className="text-primary font-semibold">{formatCriteriaText(colLabel, colType).text}</span> ?
+            <p className="mt-s8 max-w-[60ch] text-ink-muted">
+              Qui {row.prefix} <span className="font-semibold text-ink">{row.text}</span> et {col.prefix}{" "}
+              <span className="font-semibold text-ink">{col.text}</span> ?
             </p>
           )}
         </div>
 
         {/* Input */}
-        <div className="p-4">
+        <div className="p-s16 sm:p-s24">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="pointer-events-none absolute left-s16 top-1/2 size-5 -translate-y-1/2 text-ink-muted" strokeWidth={1.75} />
             <Input
               ref={inputRef}
               type="text"
-              placeholder="Entrez un nom de joueur..."
+              placeholder="Nom du joueur…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="pl-10 bg-secondary border-border"
+              className="h-12 rounded-nested border-line bg-canvas pl-s48 text-body text-ink placeholder:text-ink-muted focus-visible:ring-0 focus-visible:border-brand-blue-soft"
             />
           </div>
 
-          {/* Error */}
           {error && (
-            <div className="mt-2 flex items-center gap-2 text-destructive text-sm">
-              <AlertCircle className="w-4 h-4" />
+            <div className="mt-s8 flex items-center gap-s8 text-meta text-action">
+              <AlertCircle className="size-4" strokeWidth={1.75} />
               {error}
             </div>
           )}
 
-          {/* Suggestions */}
           {suggestions.length > 0 && (
-            <div className="mt-3 space-y-1">
+            <ul className="mt-s16 flex flex-col gap-[4px]" role="listbox">
               {suggestions.map((player, index) => {
                 const isUsed = usedPlayers.has(player.id)
+                const active = selectedIndex === index
                 return (
-                  <button
-                    key={player.id}
-                    type="button"
-                    onClick={() => handleSubmit(player)}
-                    className={cn(
-                      "w-full text-left px-3 py-2 rounded-lg transition-colors",
-                      "flex items-center gap-3",
-                      selectedIndex === index
-                        ? "bg-primary text-primary-foreground"
-                        : "hover:bg-muted",
-                      isUsed && "opacity-75" // Just slightly dim to show it's used, but clickable
-                    )}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-muted overflow-hidden flex-shrink-0 border border-border">
-                      <PlayerPhoto
-                        player={player}
-                        width={32}
-                        height={32}
-                        className="object-cover scale-110 translate-y-1"
-                      />
-                    </div>
-                    <div className="flex flex-col flex-1 min-w-0">
-                      <div className="flex justify-between items-center">
-                          <span className="font-medium truncate">{player.name}</span>
-                          {isUsed && (
-                              <span className="text-[10px] uppercase font-bold text-destructive border border-destructive px-1.5 rounded-sm">
-                                  Utilisé
-                              </span>
-                          )}
-                      </div>
-                    </div>
-                  </button>
+                  <li key={player.id}>
+                    <button
+                      type="button"
+                      role="option"
+                      aria-selected={active}
+                      onClick={() => handleSubmit(player)}
+                      onMouseEnter={() => setSelectedIndex(index)}
+                      className={cn(
+                        "flex w-full items-center gap-s16 rounded-nested px-s8 py-s8 text-left",
+                        "transition-colors duration-[120ms] ease-snappy",
+                        active ? "bg-surface-2" : "hover:bg-surface-2",
+                        isUsed && "opacity-60",
+                      )}
+                    >
+                      <span className="relative size-8 shrink-0 overflow-hidden rounded-full border border-line bg-canvas">
+                        <PlayerPhoto player={player} width={32} height={32} className="object-cover object-top scale-110 translate-y-[2px]" />
+                      </span>
+                      <span className="min-w-0 flex-1 truncate font-medium text-ink">{player.name}</span>
+                      {isUsed && (
+                        <span className="rounded-[4px] border border-line px-[6px] py-[2px] text-meta text-ink-muted">Déjà utilisé</span>
+                      )}
+                    </button>
+                  </li>
                 )
               })}
-            </div>
+            </ul>
           )}
 
-          {/* No results */}
           {query.length >= 2 && suggestions.length === 0 && (
-            <p className="mt-3 text-sm text-muted-foreground text-center py-4">
-              Aucun joueur trouvé. Essayez un autre nom.
-            </p>
+            <p className="mt-s16 py-s16 text-center text-ink-muted">Aucun joueur trouvé. Essayez un autre nom.</p>
           )}
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-border bg-secondary/30 flex gap-2">
-          <Button variant="outline" onClick={onCancel} className="flex-1 bg-transparent">
+        <div className="flex items-center justify-end gap-s8 border-t border-line p-s16">
+          <button
+            type="button"
+            onClick={onCancel}
+            className="inline-flex h-10 items-center rounded-nested px-s16 font-medium text-ink-soft transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-surface-2 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+          >
             Annuler
-          </Button>
-          <Button
-            onClick={() => {
-              if (suggestions.length > 0) {
-                handleSubmit(suggestions[0])
-              }
-            }}
+          </button>
+          <button
+            type="button"
+            onClick={() => { if (suggestions.length > 0) handleSubmit(suggestions[selectedIndex >= 0 ? selectedIndex : 0]) }}
             disabled={suggestions.length === 0}
-            className="flex-1"
+            className="chamfer inline-flex h-10 items-center bg-action px-s24 font-heading text-meta font-bold uppercase tracking-wider text-white transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:bg-action-hover disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:shadow-[inset_0_0_0_2px_var(--color-ink)]"
           >
             Valider
-          </Button>
+          </button>
         </div>
       </div>
     </div>

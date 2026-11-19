@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { BattleLobby } from "@/components/battle/battle-lobby"
-import { Header } from "@/components/layout/header"
+import { Header, SiteFooter } from "@/components/layout/header"
 import { NBATicker } from "@/components/layout/nba-ticker"
 import { toast } from "sonner"
 
@@ -49,7 +49,7 @@ export default function BattlePage() {
             if (data.success) {
                  router.push(`/battle/${code}?role=guest&name=${encodeURIComponent(name)}`)
             } else {
-                toast.error("Impossible de rejoindre la partie. Code invalide ou partie pleine.") 
+                toast.error("Impossible de rejoindre : code invalide ou salle pleine.")
                 setIsLoading(false)
             }
         } catch (e) {
@@ -59,16 +59,17 @@ export default function BattlePage() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0a0a] to-black">
+        <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans text-body">
              <NBATicker />
              <Header />
-             <div className="container mx-auto px-4 py-12 flex items-center justify-center min-h-[80vh]">
+             <div className="flex-1 w-full max-w-6xl mx-auto px-s16 md:px-s32 py-s32 md:py-s48">
                  <BattleLobby 
                     onCreate={handleCreate} 
                     onJoin={handleJoin} 
                     isLoading={isLoading} 
                  />
              </div>
+             <SiteFooter />
         </div>
     )
 }
