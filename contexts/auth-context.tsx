@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       options: {
         data: {
           full_name: username,
-          avatar_url: avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`
+          avatar_url: avatarUrl
         }
       }
     })

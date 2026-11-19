@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Loader2, User, Lock, LogOut, Save, CheckCircle2, AlertCircle, Shield, Sparkles, CalendarDays, Trophy, Medal, Star, Crown, Flame, Zap, Swords, Eye } from "lucide-react"
+import { usableAvatar } from "@/lib/avatar"
+import { Loader2, User, Lock, LogOut, Save, CheckCircle2, AlertCircle, Shield, Sparkles, CalendarDays, Trophy, Medal, Star, Crown, Flame, Zap, Swords, Eye, UserRound } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { OvrBadge } from "@/components/ranking/ovr-badge"
@@ -180,8 +181,8 @@ export default function ProfilePage() {
                                     {/* Avatar Overlay (Small) */}
                                     <div className="absolute -bottom-2 -right-2 w-16 h-16 rounded-full border-4 border-[#121212] bg-[#1a1a1a] overflow-hidden shadow-raised z-20">
                                         <Avatar className="w-full h-full">
-                                            <AvatarImage src={user.user_metadata?.avatar_url} className="object-cover" />
-                                            <AvatarFallback className="bg-[#1a1a1a] text-xs font-bold font-heading italic text-ink-muted">{user.email?.slice(0,2).toUpperCase()}</AvatarFallback>
+                                            <AvatarImage src={usableAvatar(user.user_metadata?.avatar_url)} className="object-cover" />
+                                            <AvatarFallback aria-hidden className="bg-surface-2 text-ink-muted"><UserRound className="size-1/2" strokeWidth={1.75} /></AvatarFallback>
                                         </Avatar>
                                     </div>
                                 </div>

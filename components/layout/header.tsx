@@ -3,12 +3,13 @@
 import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu } from "lucide-react"
+import { Menu, UserRound } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { useAuth } from "@/contexts/auth-context"
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
+import { usableAvatar } from "@/lib/avatar"
 import { LanguageToggle } from "@/components/layout/language-toggle"
 
 const MOTION = "transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy"
@@ -29,7 +30,7 @@ export function Header() {
   const [sheetOpen, setSheetOpen] = useState(false)
 
   const displayName = user?.user_metadata?.full_name || user?.email?.split("@")[0] || "Player"
-  const avatarUrl = user?.user_metadata?.avatar_url
+  const avatarUrl = usableAvatar(user?.user_metadata?.avatar_url)
 
   const primary = [
     { href: "/game", label: t("landing.nav_play") },
@@ -87,7 +88,7 @@ export function Header() {
               <Link href="/profile" className="block rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action">
                 <Avatar className="size-8 border border-line">
                   <AvatarImage src={avatarUrl} alt={displayName} />
-                  <AvatarFallback className="bg-surface-2 text-meta font-bold text-ink">{displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+                  <AvatarFallback aria-hidden className="bg-surface-2 text-ink-muted"><UserRound className="size-1/2" strokeWidth={1.75} /></AvatarFallback>
                 </Avatar>
               </Link>
             ) : (
@@ -156,7 +157,7 @@ export function Header() {
                     <Link href="/profile" className={cn("flex items-center gap-s16 rounded-nested border border-line p-s8 hover:bg-surface-2", MOTION)}>
                       <Avatar className="size-8 border border-line">
                         <AvatarImage src={avatarUrl} alt={displayName} />
-                        <AvatarFallback className="bg-surface-2 text-meta font-bold text-ink">{displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+                        <AvatarFallback aria-hidden className="bg-surface-2 text-ink-muted"><UserRound className="size-1/2" strokeWidth={1.75} /></AvatarFallback>
                       </Avatar>
                       <span className="min-w-0">
                         <span className="block truncate font-semibold text-ink">{displayName}</span>

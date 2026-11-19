@@ -4,9 +4,10 @@ import { NBATicker } from "@/components/layout/nba-ticker"
 import { Header, SiteFooter } from "@/components/layout/header"
 import { useLanguage } from "@/contexts/language-context"
 import { useAuth } from "@/contexts/auth-context"
-import { Trophy, TrendingUp, Users, Activity, Medal, Star, Flame, Target, Calendar, PieChart as PieIcon, ArrowUpRight } from "lucide-react"
+import { Trophy, TrendingUp, Users, Activity, Medal, Star, Flame, Target, Calendar, PieChart as PieIcon, ArrowUpRight, UserRound } from "lucide-react"
 import { useState, useEffect, useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { usableAvatar } from "@/lib/avatar"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, PieChart, Pie, Cell } from 'recharts'
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -41,7 +42,7 @@ export default function StatsPage() {
   }
 
   const displayName = user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Rookie'
-  const avatarUrl = user?.user_metadata?.avatar_url
+  const avatarUrl = usableAvatar(user?.user_metadata?.avatar_url)
 
   return (
     <div className="min-h-screen flex flex-col bg-canvas text-ink font-sans selection:bg-action selection:text-white">
@@ -76,7 +77,7 @@ export default function StatsPage() {
                     )} />
                     <Avatar className="w-32 h-32 md:w-40 md:h-40 border-4 border-black shadow-raised relative z-10">
                         <AvatarImage src={avatarUrl} className="object-cover" />
-                        <AvatarFallback className="bg-surface text-3xl font-bold font-heading">{displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+                        <AvatarFallback aria-hidden className="bg-surface-2 text-ink-muted"><UserRound className="size-1/2" strokeWidth={1.75} /></AvatarFallback>
                     </Avatar>
                     
                     {/* Rank Badge Overlay */}
