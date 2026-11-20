@@ -10,6 +10,17 @@ interface PlayerCardProps {
   player: NBAPlayer
 }
 
+// French position names (same wording as the grid criteria); English keeps the usual abbreviations
+const POSITION_FR: Record<string, string> = {
+  PG: "Meneur",
+  SG: "Arrière",
+  SF: "Ailier",
+  PF: "Ailier fort",
+  C: "Pivot",
+  G: "Arrière",
+  F: "Ailier",
+}
+
 export function PlayerCard({ player }: PlayerCardProps) {
   const { language } = useLanguage()
   const fr = language === "fr"
@@ -23,6 +34,8 @@ export function PlayerCard({ player }: PlayerCardProps) {
 
   const teams = Array.from(new Set(player.teams.map((t) => getModernTeam(t))))
   const status = player.active ? (fr ? "En activité" : "Active") : fr ? "Retraité" : "Retired"
+  const positionCode = (player.position || "").split(/[-/]/)[0]
+  const position = fr ? (POSITION_FR[positionCode] ?? "N/A") : positionCode || "N/A"
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-nested border border-line bg-surface transition-colors duration-[120ms] hover:duration-[200ms] ease-snappy hover:border-brand-blue-soft">
@@ -41,7 +54,7 @@ export function PlayerCard({ player }: PlayerCardProps) {
         <div className="min-w-0">
           <h3 className="truncate text-meta sm:text-lead font-semibold leading-tight text-ink">{player.name}</h3>
           <p className="mt-[2px] truncate text-[11px] sm:text-meta text-ink-muted">
-            {(player.position || "N/A").split(/[-/]/)[0]} · {status}
+            {position} · {status}
             {player.country && player.country !== "USA" ? ` · ${player.country}` : ""}
           </p>
         </div>

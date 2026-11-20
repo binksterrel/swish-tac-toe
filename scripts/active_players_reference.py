@@ -9,7 +9,7 @@ ACTIVE_PLAYERS_2025 = {
     "lebron-james": True,
     "stephen-curry": True,
     "kevin-durant": True,
-    "russell-westbrook": True,
+    "russell-westbrook": False,  # retired
     "james-harden": True,
     "chris-paul": True,
     "damian-lillard": True,

@@ -28,7 +28,7 @@ export function GameConfigPanel({
   return (
     <div className="rounded-ref border border-line bg-surface p-s16 md:p-s24">
       {/* Phones: difficulty + grid share a row, mode takes the full width */}
-      <div className="grid grid-cols-2 gap-x-s8 gap-y-s16 md:flex md:flex-wrap md:items-end md:gap-s24">
+      <div className="grid grid-cols-2 gap-x-s8 gap-y-s16 md:flex md:flex-wrap md:items-end md:justify-center md:gap-s24">
         <DifficultySelector difficulty={difficulty} onSelect={onDifficultyChange} />
         <GridSizeSelector size={gridSize} onSelect={onGridSizeChange} />
         <div className="col-span-2 md:col-auto">

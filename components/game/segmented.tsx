@@ -20,7 +20,7 @@ interface SegmentedProps<T extends string | number> {
 export function Segmented<T extends string | number>({ label, value, options, onChange }: SegmentedProps<T>) {
   return (
     <div className="flex w-full sm:w-auto flex-col gap-s8">
-      <span className="text-[12px] sm:text-meta text-ink-muted">{label}</span>
+      <span className="text-center text-[12px] sm:text-meta text-ink-muted">{label}</span>
       <div role="radiogroup" aria-label={label} className="flex w-full sm:inline-flex sm:w-auto rounded-ref border border-line bg-canvas p-[4px]">
         {options.map((o) => {
           const selected = o.value === value

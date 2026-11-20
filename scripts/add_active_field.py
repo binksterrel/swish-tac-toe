@@ -7,7 +7,7 @@ import re
 
 # Players who are still active as of 2025-26 season
 ACTIVE_PLAYERS = {
-    "lebron-james", "stephen-curry", "kevin-durant", "russell-westbrook",
+    "lebron-james", "stephen-curry", "kevin-durant",
     "james-harden", "chris-paul", "damian-lillard", "anthony-davis",
     "kawhi-leonard", "paul-george", "jimmy-butler", "kyrie-irving",
     "giannis-antetokounmpo", "nikola-jokic", "joel-embiid", "luka-doncic",

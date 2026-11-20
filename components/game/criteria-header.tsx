@@ -2,9 +2,10 @@
 
 import { cn } from "@/lib/utils"
 import { type Criteria, getTeamLogoUrl } from "@/lib/nba-data"
-import { Globe, Crown, Award, Shield, ShieldCheck, Sprout, Star, Medal, Flame, Target, Hand, type LucideIcon } from "lucide-react"
+import { Globe, Crown, Award, Star, Shield, ShieldCheck, Sprout, Users, Flame, Hand, Handshake, CalendarDays, type LucideIcon } from "lucide-react"
 import Image from "next/image"
 import { TeamLogo } from "@/components/common/team-logo"
+import { PositionIcon } from "./position-icon"
 
 interface CriteriaHeaderProps {
   criteria: Criteria
@@ -30,17 +31,19 @@ const COUNTRY_FLAGS: Record<string, string> = {
   Argentina: "ar",
 }
 
-// Icons for criteria that have no logo/image of their own
+// Icons for criteria that have no logo, flag or image of their own
+// (teams, countries, champion, draft picks and positions have theirs below)
 const CRITERIA_ICONS: Partial<Record<string, LucideIcon>> = {
   mvp: Award,
-  dpoy: Shield,
-  allDefensive: ShieldCheck,
-  roy: Sprout,
   allStar: Star,
-  allNBA: Medal,
+  dpoy: Shield,
+  roy: Sprout,
+  allNBA: Users,
+  allDefensive: ShieldCheck,
   ppg: Flame,
-  rpg: Target,
-  apg: Hand,
+  rpg: Hand,
+  apg: Handshake,
+  decade: CalendarDays,
 }
 
 function getLabel(criteria: Criteria) {
@@ -95,32 +98,43 @@ export function CriteriaHeader({ criteria, direction, hidden = false, blur = fal
           {isCountry && (
             <span className="flex h-8 w-10 md:h-10 md:w-14 items-center justify-center">
               {criteria.value.toLowerCase() === "international" ? (
-                <Globe className="size-8 text-ink-soft" strokeWidth={1.5} />
+                <Globe className="size-8 md:size-10 text-blue-400" strokeWidth={1.5} />
               ) : flag ? (
                 <Image
                   src={`https://flagcdn.com/w80/${flag}.png`}
                   alt={criteria.value}
                   width={80}
                   height={60}
-                  className="h-auto w-full rounded-[4px] border border-line object-cover"
+                  className="h-auto w-full rounded-[4px] object-cover opacity-90"
                 />
               ) : (
-                <Globe className="size-8 text-ink-soft" strokeWidth={1.5} />
+                <span className="text-2xl" aria-hidden>🌍</span>
               )}
             </span>
           )}
 
-          {Icon && <Icon className="size-6 md:size-8 text-ink-soft" strokeWidth={1.5} />}
+          {criteria.type === "position" && (
+            <PositionIcon position={criteria.value} className="size-10 md:size-12 text-ink-soft" />
+          )}
 
           {criteria.type === "champion" && (
-            <span className="relative flex size-10 md:size-14 items-center justify-center">
+            <span className="relative flex size-10 md:size-16 items-center justify-center">
               <Image src="/images/trophy.png" alt="" width={64} height={64} className="h-full w-full object-contain" />
             </span>
           )}
 
-          {(criteria.type === "draft_pick_1" || criteria.type === "draft_top_3") && (
-            <Crown className="size-6 md:size-8 text-ink-soft" strokeWidth={1.5} />
+          {criteria.type === "draft_pick_1" && (
+            <Crown className="size-8 md:size-10 text-amber-400" strokeWidth={1.5} />
           )}
+
+          {criteria.type === "draft_top_3" && (
+            <span className="relative">
+              <Crown className="size-8 md:size-10 text-slate-300" strokeWidth={1.5} />
+              <span className="absolute -right-2 -top-1 rounded-full border border-amber-400/50 bg-black/80 px-1 text-[10px] font-bold text-amber-400">3</span>
+            </span>
+          )}
+
+          {Icon && <Icon className="size-8 md:size-10 text-ink-soft" strokeWidth={1.5} />}
 
           {/* Text label for everything that is not a team logo */}
           {!isTeam && <span className={LABEL}>{getLabel(criteria)}</span>}
